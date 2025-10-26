@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AgricultureView.Areas.Admin.Models.LandingPageViewModel
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -76,7 +77,130 @@
             </div>
         </div>
     </section>
+    <section class="main-feature mt-5 pt-5 container">
 
+        <!-- Farmers Table -->
+        <h2 class="mb-3">किसान सुची </h2>
+        @if (Model.Farmers != null && Model.Farmers.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>CitizenNo</th>
+                        <th>PhoneNo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Farmers.Count; i++)
+                    {
+                        var farmer = Model.Farmers[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@farmer.FullName</td>
+                            <td>@farmer.CitizenNo</td>
+                            <td>@farmer.PhoneNo</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>किसान सुची  उपलब्ध छैन </p>
+        }
+
+        <!-- Programs Table -->
+        <h2 class="mt-5 mb-3">कृषि कार्यक्रम </h2>
+        @if (Model.Programs != null && Model.Programs.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Fiscal Year Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Programs.Count; i++)
+                    {
+                        var program = Model.Programs[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@program.Title</td>
+                            <td>@program.FiscalYearName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>कृषि कार्यक्रम उपलब्ध छैन </p>
+        }
+
+        <!-- Projects Table -->
+        <h2 class="mt-5 mb-3">कृषि परियोजना</h2>
+        @if (Model.Projects != null && Model.Projects.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Project Name</th>
+                        <th>Fiscal Year Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Projects.Count; i++)
+                    {
+                        var project = Model.Projects[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@project.ProjectName</td>
+                            <td>@project.FiscalYearName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>कृषि परियोजना  उपलब्ध छैन</p>
+        }
+
+        <!-- Services Table -->
+        <h2 class="mt-5 mb-3">कृषि सेवा </h2>
+        @if (Model.Services != null && Model.Services.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Service Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Services.Count; i++)
+                    {
+                        var service = Model.Services[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@service.ServiceName</td>
+                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>कृषि सेवा  उपलब्ध छैन</p>
+        }
+
+    </section>
     <section class="main-feature mt-5 pt-5">
         <div class="container krishi-feature">
             <div class="">
