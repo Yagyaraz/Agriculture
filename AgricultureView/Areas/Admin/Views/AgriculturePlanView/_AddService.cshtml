@@ -1,0 +1,20 @@
+﻿@using HtmlHelpers.BeginCollectionItemCore
+@model AgricultureServiceAdditionalViewModel
+@{
+    ViewData["Title"] = "_AddService";
+}
+
+<tr class="new">
+    @using (Html.BeginCollectionItem("AgricultureServiceAdditionalViewModelList"))
+    {
+        <td>
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="ServiceId" type="hidden" />
+            <input asp-for="Questions" class="form-control" />
+            <span asp-validation-for="Questions" class="text-danger"></span>
+        </td>
+        <td>
+            <button type="button" onclick="DeleteRow(this)" class="row-button btn btn-sm btn-danger btn-delete"><i class="fa fa-minus"></i></button>
+        </td>
+    }
+</tr>

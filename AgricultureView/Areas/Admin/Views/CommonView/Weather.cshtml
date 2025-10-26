@@ -1,0 +1,190 @@
+﻿@model CustomResponseWeatherReport
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    a {
+        color: white;
+        opacity: 0.6;
+        text-decoration: none;
+    }
+
+        a:hover, a:active, a:focus {
+            color: white;
+            text-decoration: none;
+            opacity: 1;
+        }
+
+    .active {
+        color: white;
+        text-decoration: none;
+        opacity: 1;
+    }
+
+    body {
+        background-color: #F4F6F7;
+    }
+
+    #wrapper {
+        background-color: #1a2035;
+        box-shadow: 1px 5px 25px 3px #444;
+        border-radius: 10px;
+        margin: 100px auto;
+        max-width: 720px;
+        padding: 0px;
+        color: white;
+    }
+
+    #current-weather {
+        padding: 15px;
+    }
+
+    #mainTemperature {
+        font-size: 5.5em;
+        line-height: 0.7;
+    }
+
+    #tempDescription {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .day-weather-box {
+        border: 1px solid #28688C;
+        background-color: #28688c;
+        border-radius: 5px;
+        height: 5em;
+    }
+
+        .day-weather-box p {
+            margin-bottom: 0;
+        }
+
+    .side-weather-info {
+        padding: 0px 10px;
+    }
+
+    .day-weather-inner-box {
+        display: inline-flex;
+        margin: 14px auto;
+        padding: 0px 5px;
+    }
+
+    .forecast-main {
+        padding: 0px 0px 0px 30px;
+    }
+
+    .forecast-icon {
+        font-size: 25px;
+        margin-left: 5px;
+    }
+
+    .modal-body p {
+        color: #333;
+    }
+</style>
+
+<div>
+    <div class="page-inner">
+        <div class="page-header">
+            <div class="col-md-6 col-lg-3 p-0">
+                <select id="districtSelect" asp-items="await _Utility.GetPalikaEngSelectListItems(0)" class="form-select form-control">
+                    <option>--Select--</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="wrapper">
+        <div class="container-fluid" id="current-weather">
+            <div class="row">
+                <!-- Right panel -->
+                <div class="col-md-4 col-sm-5">
+                    <h5><span id="cityName">@Model.Name</span></h5>
+                    <h6>Humidity: <span id="humidity">@Model.Humidity</span>%</h6>
+                    <h6>Wind: <span id="winddirection">@Model.WindDirection</span>°</h6>
+                    <h6>Wind Speed: <span id="windspeed">@Model.WindSpeed</span> m/s</h6>
+                    <a id="refreshButton" href="#"><i class="fa fa-refresh fa-fw" aria-hidden="true"></i> Refresh</a>
+                </div>
+
+                <!-- Center panel -->
+                <div class="col-md-5 col-sm-7" style="margin: 10px auto; padding: 0;">
+                    <div class="row">
+                        <i class="wi" id="main-icon" style="font-size: 85px;"></i>
+                       @*  <div>
+                            <span id="mainTemperature">@Model.Temp °C</span>
+                            <p id="tempDescription">@Model.Description</p>
+                        </div> *@
+                        <p style="font-size: 1.5rem;">
+                            Temperature:
+                            <a href="#" class="active" id="celcius">@Model.Temp °C</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Left panel -->
+                <div class="col-xs-12 col-sm-12 col-md-3 text-end">
+                    <div class="col-md-12 col-sm-3 col-xs-3 side-weather-info">
+                        <h6>Pressure: <span id="Pressure">@Model.Pressure</span> hPa</h6>
+                    </div>
+                    <div class="col-md-12 col-sm-3 col-xs-3 side-weather-info">
+                        <h6>Visibility: <span id="Visibility">@Model.Visibility</span> M</h6>
+                    </div>
+                    <div class="col-md-12 col-sm-3 col-xs-3 side-weather-info">
+                        <h6>High: <span id="mainTempHot">@Model.TempMax</span> °C</h6>
+                    </div>
+                    <div class="col-md-12 col-sm-3 col-xs-3 side-weather-info">
+                        <h6>Low: <span id="mainTempLow">@Model.TempMin</span> °C</h6>
+                    </div>
+                    <div class="col-md-12 col-sm-3 col-xs-3 side-weather-info">
+                        <h6>Feels Like: <span id="FeelsLike">@Model.FeelsLike</span> °C</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function fetchWeatherData(id) {
+            
+            $.ajax({
+                url: '@Url.Action("WeatherAfterAjax", "CommonView", new { area = "Admin" })',
+                type: 'GET',
+                data: { id: id },
+                success: function (data) {
+                    debugger
+                    $("#cityName").text(data.name);
+                    $("#humidity").text(data.humidity);
+                    $("#winddirection").text(data.windDirection);
+                    $("#windspeed").text(data.windSpeed);
+                    $("#Pressure").text(data.pressure);
+                    $("#Visibility").text(data.visibility);
+                    $("#mainTempHot").text(data.tempMax );
+                    $("#mainTempLow").text(data.tempMin);
+                    $("#celcius").text(data.temp);
+                    $("#FeelsLike").text(data.feelsLike);
+                    $("#tempDescription").text(data.description);
+                },
+                error: function () {
+                    alert('Error in calling AJAX!');
+                }
+            });
+        }
+        $("#districtSelect").change(function () {
+            debugger
+            var selectedId = $(this).val();
+            fetchWeatherData(selectedId);
+        });
+        $("#refreshButton").click(function (e) {
+            debugger
+            e.preventDefault(); 
+            var selectedId = $("#districtSelect").val();
+            if (selectedId) {
+                fetchWeatherData(selectedId);
+            } else {
+                alert('Please select a district first.');
+            }
+        });
+    </script>
+}

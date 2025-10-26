@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Agriculture
+/Agriculture/bin
+/Agriculture/Logs
+/Agriculture/obj
+/AgricultureView/bin
+/AgricultureView/obj

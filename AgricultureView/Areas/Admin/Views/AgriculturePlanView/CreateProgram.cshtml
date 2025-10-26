@@ -1,0 +1,65 @@
+﻿@model AgricultureProgramViewModel
+@{
+    ViewData["Title"] = "CreateProgram";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        @* <h3 class="fw-bold mb-3">Create Farmer Group</h3> *@
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Program">Program List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Program</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateProgram">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">कार्यक्रम थप्नुहोस</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>आर्थिक वर्ष</label>
+                                    <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>शीर्षक </label>
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

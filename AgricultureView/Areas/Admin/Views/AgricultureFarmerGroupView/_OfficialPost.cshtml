@@ -1,0 +1,41 @@
+﻿@using HtmlHelpers.BeginCollectionItemCore
+@model OfficialsDetailViewModel
+@{
+    ViewData["Title"] = "OfficialsDetail";
+}
+
+<tr class="new">
+    @using (Html.BeginCollectionItem("OfficialsDetailViewModelList"))
+    {
+        <td>
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="AgricultureFarmerGroupId" type="hidden" />
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </td>
+        <td>
+            <select asp-for="PostId" asp-items="await _Utility.GetPostSelectListItems()" class="form-select form-control">
+                <option>--Select--</option>
+            </select>
+            <span asp-validation-for="PostId" class="text-danger"></span>
+        </td>
+        <td>
+            <input asp-for="Age" class="form-control" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </td>
+
+        <td>
+            <select asp-for="LiterateLevelId" asp-items="await _Utility.GetEducationLevelSelectListItems()" class="form-select form-control">
+                <option>--Select--</option>
+            </select>
+            <span asp-validation-for="LiterateLevelId" class="text-danger"></span>
+        </td>
+        <td>
+            <input asp-for="Area" class="form-control" />
+            <span asp-validation-for="Area" class="text-danger"></span>
+        </td>
+        <td>
+            <button type="button" onclick="DeleteRow(this)" class="row-button btn btn-sm btn-danger btn-delete"><i class="fa fa-minus"></i></button>
+        </td>
+    }
+</tr>

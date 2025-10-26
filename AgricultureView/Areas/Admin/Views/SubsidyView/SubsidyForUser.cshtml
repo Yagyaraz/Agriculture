@@ -1,0 +1,180 @@
+﻿
+@model IEnumerable<SubsidyViewModel>
+@{
+    ViewData["Title"] = "Subsidy";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        @* <a asp-action="CreateSubsidy" class="fw-bold mb-3 btn btn-success"><i class="fa fa-plus"></i>&nbsp; Create New</a> *@
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">अनुदान सूची</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="basic-datatables" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>क्र.सं.</th>
+                                    <th>कार्यक्रम</th>
+                                    <th>योजना</th>
+                                    <th>सुरु मिति</th>
+                                    <th>अन्तिम मिति</th>
+                                    <th>पाएको संख्या</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@string.Format("{0}", Model.ToList().IndexOf(item) + 1)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.ProgramName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.ProjectName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.EndDate)</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AcquiredQty)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModal">अनुदान</h5>
+                <button type="button" class="close manualClose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <input type="hidden" id="popupid" name="popupid" />
+
+                <label>किसानको नाम</label>
+                <select id="selectedFarmer" asp-items="await _Utility.GetFarmerSelectListItems()" class="form-select form-control" required>
+                    <option>--छान्नुहोस्--</option>
+                </select>
+                <label>माग गरिएको संख्या</label>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>क्र.सं.</th>
+                            <th>अनुदानको नाम</th>
+                            <th>खुला संख्या</th>
+                            <th>माग गरिएको संख्या</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary manualClose" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary Complete" id="SaveDarta">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $('.manualClose').click(function () {
+            $('#myModal').modal('hide');
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#SaveDarta').click(function () {
+                var dataToSend = [];
+
+                $('#myModal tbody tr').each(function () {
+                    var row = $(this);
+
+                    var id = row.find('td:nth-child(1)').text().trim();
+                    var subsidyId = row.find('td:nth-child(2)').text().trim();
+                    var quantity = row.find('td:nth-child(5)').text().trim();
+                    var totalRequired = row.find('.totalRequired').val();
+
+                    dataToSend.push({
+                        id: id,
+                        subsidyId: subsidyId,
+                        quantity: quantity,
+                        totalRequired: totalRequired
+                    });
+                });
+
+                $.ajax({
+                    url: '@Url.Action("SaveRequestedSubsidy", "SubsidyView")',
+                    type: 'POST',
+                    data: JSON.stringify(dataToSend),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        debugger
+                       alert('Data saved successfully');
+                        $('#myModal').modal('hide');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error saving data:', error);
+                    }
+                });
+            });
+        });
+
+        function Darta(a, id) {
+            debugger
+            $('#popupid').val(id);
+            $.ajax({
+                url: '@Url.Action("GetDataById", "SubsidyView")',
+                type: 'GET',
+                data: { id: id },
+                success: function (response) {
+                    debugger;
+                    $('#myModal tbody').empty();
+                    response.subsidyDetailPopupViewModelList.forEach(function (item, index) {
+                        var row = `
+                                            <tr>
+                                                     <td style="display:none;">${item.id}</td>
+                                                     <td style="display:none;">${item.subsidyId}</td>
+                                                     <td>${index + 1}.</td>
+                                                     <td>${item.subCategoryName}</td>
+                                                     <td>${item.quantity}</td>
+                                                     <td><input type="number" class="form-control totalRequired"  max="${item.quantity}" required /></td>
+                                            </tr>
+                                        `;
+                        $('#myModal tbody').append(row);
+                    });
+                    $('#myModal').modal('show');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
+            })
+        }
+
+        $(document).on('input', '.totalRequired', function () {
+            var maxQuantity = parseInt($(this).attr('max'));
+            var inputValue = parseInt($(this).val());
+
+            if (inputValue > maxQuantity) {
+                alert('उपलब्ध भन्दा कम हुनुपर्छ ' + maxQuantity);
+                $(this).val(maxQuantity);
+            }
+        });
+
+    </script>
+}

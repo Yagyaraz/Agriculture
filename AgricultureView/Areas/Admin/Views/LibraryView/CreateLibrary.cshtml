@@ -1,0 +1,107 @@
+﻿@model LibraryViewModel
+@{
+    ViewData["Title"] = "CreateLibrary";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">पुस्तकालय - ज्ञान थप्नुहोस</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="LibraryView" asp-action="Library">Library List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Library</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateLibrary" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">पुस्तकालय - ज्ञान </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>प्रकार</label>
+                                    <select asp-for="TypeId" asp-items="await _Utility.GetAgriSectorSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="TypeId" class="text-danger"></span>
+                                </div>
+
+                            </div> 
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>शिर्षक</label>
+                                   <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-6 col-lg-12 p-0">
+                                <div class="form-group">
+                                    <label>विवरण </label>
+                                    <textarea id="Description" name="Description">@Model.Description</textarea>
+                                </div>
+
+                            </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label> फोटो  </label>
+                                    <input type="file" asp-for="FilePoto" class="form-control" accept="image/jpeg" />
+                                    <span asp-validation-for="FilePoto" class="text-danger"></span>
+                                </div>
+                                @if (Model.Id != 0)
+                                {
+                                    <div class="pt-1">
+                                        <img class="user-avatar" src="@(_global.BaseUrl() + Model.FilePhotoPath) " style="width:180px;" alt="Photo">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+  
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        //s = jquery.noConflict();
+        $(document).ready(function () {
+            CKEDITOR.replace('Description');
+
+        });
+
+    </script>
+}

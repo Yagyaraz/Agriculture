@@ -1,0 +1,415 @@
+﻿<div class="sidebar" data-background-color="dark">
+    <div class="sidebar-logo">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark">
+            <a asp-controller="Home" asp-action="Index" asp-area="" class="logo">
+                <img src="~/assets/img/kaiadmin/jupi.png"
+                     alt="navbar brand"
+                     class="navbar-brand"
+                     height="20" />
+            </a>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                    <i class="gg-menu-left"></i>
+                </button>
+            </div>
+            <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+            </button>
+        </div>
+        <!-- End Logo Header -->
+    </div>
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="UserView" asp-area="">
+                        <i class="fas fa-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Components</h4>
+                </li>
+              @*   <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#base">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Setup</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="base">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="CommonView" asp-action="Index">
+                                    <span class="sub-item">FiscalYear</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="CommonView" asp-action="Office">
+                                    <span class="sub-item">Office Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="CommonView" asp-action="EducationLevel">
+                                    <span class="sub-item">Education Level Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="CommonView" asp-action="FarmerGroup">
+                                    <span class="sub-item"> Farmer Group Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="CommonView" asp-action="FarmerCategory">
+                                    <span class="sub-item">Farmer Category Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="CommonView" asp-action="AnimalSetup">
+                                    <span class="sub-item">Animal Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="CommonView" asp-action="WardSetup">
+                                    <span class="sub-item">Ward Setup</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                        <i class="fas fa-th-list"></i>
+                        <p>कृषि / किसान</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="sidebarLayouts">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">
+                                    <span class="sub-item">किसान सुची</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#forms">
+                        <i class="fas fa-pen-square"></i>
+                        <p>समुह/सहकारि/फर्म</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="forms">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgricultureFarmerGroupView" asp-action="Index">
+                                    <span class="sub-item">समुह/सहकारि/फर्म</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#tables">
+                        <i class="fas fa-table"></i>
+                        <p>कृषि योजना</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Program">
+                                    <span class="sub-item">कार्यक्रम</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Project">
+                                    <span class="sub-item">योजना</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Service">
+                                    <span class="sub-item">सेवा र सुबिधा</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="ApplicatoionForm">
+                                    <span class="sub-item">परियोजना/कार्यक्रम आवेदन फारम </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> *@
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#maps">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>अनुदान</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="maps">
+                        <ul class="nav nav-collapse">
+                           @*  <li>
+                                <a asp-area="Admin" asp-controller="SubsidyView" asp-action="Category">
+                                    <span class="sub-item">श्रेणी</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="SubsidyView" asp-action="SubCategory">
+                                    <span class="sub-item">उप श्रेणी</span>
+                                </a>
+                            </li> *@
+                            <li>
+                                <a asp-area="Admin" asp-controller="SubsidyView" asp-action="SubsidyForUser">
+                                    <span class="sub-item">अनुदान थप्नुहोस्</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="SubsidyView" asp-action="OtherSubsidy">
+                                    <span class="sub-item">अन्य अनुदानहरू</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+               @* <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#charts">
+                        <i class="far fa-chart-bar"></i>
+                        <p>पुस्तकालय</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="charts">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="LibraryView" asp-action="Library">
+                                    <span class="sub-item">पुस्तकालय</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#chartss">
+                        <i class="fas fa-calendar"></i>
+                        <p>कृषि क्यालेन्डर</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="chartss">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriCalendarView" asp-action="AgriCalendarType">
+                                    <span class="sub-item">कृषि प्रकार</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriCalendarView" asp-action="AgriCalendarCategory">
+                                    <span class="sub-item">उत्पादन श्रेणी</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriCalendarView" asp-action="AgriCalendarProduct">
+                                    <span class="sub-item">उत्पादन</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="AgriCalendarView" asp-action="AgriCalendar">
+                                    <span class="sub-item">कृषि पात्रो</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="TrainingView" asp-action="Training">
+                        <i class="fas fa-desktop"></i>
+                        <p>तालिम</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#chartsa">
+                        <i class="far fa-chart-bar"></i>
+                        <p>स्टोर/केन्द्रहरूको सुची</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="chartsa">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="StoresCenterView" asp-action="FertilizerStore">
+                                    <span class="sub-item">खाद्य पसल</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="StoresCenterView" asp-action="SeedStore">
+                                    <span class="sub-item">बालि पसल</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="StoresCenterView" asp-action="InsuranceCenter">
+                                    <span class="sub-item">बीमा केन्द्रहरूको सुची</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="StoresCenterView" asp-action="AgricultureEquipment">
+                                    <span class="sub-item">कृषि औजार पसल</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#chartssa">
+                        <i class="fa fa-money-bill"></i>
+                        <p>बजार मूल्य</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="chartssa">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="MarketPriceView" asp-action="Market">
+                                    <span class="sub-item">बजार</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="MarketPriceView" asp-action="MarketPrice">
+                                    <span class="sub-item">बजार मूल्य</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#chartimg">
+                        <i class="fa fa-image"></i>
+                        <p>तस्बिर ग्यालरी</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="chartimg">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="ImageGalleryView" asp-action="Album">
+                                    <span class="sub-item">एल्बम</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="ImageGalleryView" asp-action="ImageGallery">
+                                    <span class="sub-item">तस्बिर ग्यालरी</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#chartvid">
+                        <i class="fa fa-video"></i>
+                        <p>भिडियो ग्यालरी</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="chartvid">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="VideoGalleryView" asp-action="Playlist">
+                                    <span class="sub-item">प्लेलिस्ट</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="VideoGalleryView" asp-action="VideoGallery">
+                                    <span class="sub-item">भिडियो ग्यालरी</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#chartfarm">
+                        <i class="fa fa-id-card"></i>
+                        <p>किसान सेवा</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="chartfarm">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a asp-area="Admin" asp-controller="FarmerServiceView" asp-action="FarmerService">
+                                    <span class="sub-item">किसान सेवा</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="FarmerServiceView" asp-action="FarmerServiceCard">
+                                    <span class="sub-item">किसान सेवा कार्ड</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="CommonView" asp-action="Weather">
+                        <i class="fas fa-cloud"></i>
+                        <p>मौसम</p>
+                    </a>
+                </li> *@
+                @*  <li class="nav-item">
+                    <a href="../../documentation/index.html">
+                        <i class="fas fa-file"></i>
+                        <p>Documentation</p>
+                        <span class="badge badge-secondary">1</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#submenu">
+                        <i class="fas fa-bars"></i>
+                        <p>Menu Levels</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="submenu">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a data-bs-toggle="collapse" href="#subnav1">
+                                    <span class="sub-item">Level 1</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="subnav1">
+                                    <ul class="nav nav-collapse subnav">
+                                        <li>
+                                            <a href="#">
+                                                <span class="sub-item">Level 2</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="sub-item">Level 2</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="collapse" href="#subnav2">
+                                    <span class="sub-item">Level 1</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="subnav2">
+                                    <ul class="nav nav-collapse subnav">
+                                        <li>
+                                            <a href="#">
+                                                <span class="sub-item">Level 2</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="sub-item">Level 1</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> *@
+            </ul>
+        </div>
+    </div>
+</div>

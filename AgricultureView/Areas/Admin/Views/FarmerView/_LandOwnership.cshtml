@@ -1,0 +1,46 @@
+﻿@using HtmlHelpers.BeginCollectionItemCore
+@model LandOwnershipViewModel
+@{
+    ViewData["Title"] = "_LandOwnership";
+}
+
+<tr class="new">
+    @using (Html.BeginCollectionItem("LandOwnershipViewModelList"))
+    {
+        <td>
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="FieldDetailsId" type="hidden" />
+            <select asp-for="OwnershipId" asp-items="await _Utility.GetOwnershipSelectListItems()" class="form-select form-control">
+                <option>--Select--</option>
+            </select>
+            <span asp-validation-for="OwnershipId" class="text-danger"></span>
+        </td>
+        <td>
+            <select asp-for="LandTypeId" asp-items="await _Utility.GetLandTypeSelectListItems()" class="form-select form-control">
+                <option>--Select--</option>
+            </select>
+            <span asp-validation-for="LandTypeId" class="text-danger"></span>
+        </td>
+        <td>
+            <input asp-for="Area" class="form-control" />
+            <span asp-validation-for="Area" class="text-danger"></span>
+        </td>
+        <td>
+            <input asp-for="IsIrrigartionAvilable" type="checkbox" class="form-check-input" />
+        </td>
+
+        <td>
+            <input asp-for="IrrigartionArea" class="form-control" />
+            <span asp-validation-for="IrrigartionArea" class="text-danger"></span>
+        </td>
+        <td>
+            <select asp-for="IrrigationSourceId" asp-items="await _Utility.GetIrrigationSourceSelectListItems()" class="form-select form-control">
+                <option>--Select--</option>
+            </select>
+            <span asp-validation-for="IrrigationSourceId" class="text-danger"></span>
+        </td>
+        <td>
+            <button type="button" onclick="DeleteRow(this)" class="row-button btn btn-sm btn-danger btn-delete"><i class="fa fa-minus"></i></button>
+        </td>
+    }
+</tr>

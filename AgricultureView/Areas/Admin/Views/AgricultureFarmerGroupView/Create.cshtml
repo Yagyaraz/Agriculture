@@ -1,0 +1,270 @@
+﻿@model AgricultureFarmerGroupViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="page-inner">
+    <div class="page-header">
+        @* <h3 class="fw-bold mb-3">Create Farmer Group</h3> *@
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgricultureFarmerGroupView" asp-action="Index">Farmer Group List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Farmer Group</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="Create">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">समुह/सहकारि/फर्मको विवरण</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको </label>
+                                    <input asp-for="FirmName" class="form-control" />
+                                    <span asp-validation-for="FirmName" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको - English </label>
+                                    <input asp-for="FirmNameEng" class="form-control" />
+                                    <span asp-validation-for="FirmNameEng" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको स्थापना वर्ष</label>
+                                    <input asp-for="FirmEstdDate" class="form-control NepaliDate" />
+                                    <span asp-validation-for="FirmEstdDate" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>पालिकाको नाम</label>
+                                    <input asp-for="FirmPalikaName" class="form-control" />
+                                    <span asp-validation-for="FirmPalikaName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>वडा नं</label>
+                                    <input asp-for="FirmWardNo" class="form-control" />
+                                    <span asp-validation-for="FirmWardNo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>टोलको नाम </label>
+                                    <input asp-for="FirmTolName" class="form-control" />
+                                    <span asp-validation-for="FirmTolName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको प्रकार</label>
+                                    <select asp-for="AgriGroupTypeId" asp-items="await _Utility.GetAgriGroupTypeSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="AgriGroupTypeId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको प्यान नं</label>
+                                    <input asp-for="FirmPanNo" class="form-control" />
+                                    <span asp-validation-for="FirmPanNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको दर्ता नं</label>
+                                    <input asp-for="FirmDartaNo" class="form-control" />
+                                    <span asp-validation-for="FirmDartaNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको दर्ता मिति</label>
+                                    <input asp-for="FirmRegDate" class="form-control NepaliDate" />
+                                    <span asp-validation-for="FirmRegDate" class="text-danger"></span>
+                                </div>
+                            </div>                           
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुह/सहकारि/फर्मको हितकोष रकम</label>
+                                    <input asp-for="FirmHitKoshAmt" class="form-control" />
+                                    <span asp-validation-for="FirmHitKoshAmt" class="text-danger"></span>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <div class="card-title">समुह/सहकारि/फर्मको सदस्य संख्याको विवरण</div><br />
+                        <div class="card-title">सदस्य संख्या</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">                            
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>पुरुष </label>
+                                    <input asp-for="SadsyeMaleCount" class="form-control" />
+                                    <span asp-validation-for="SadsyeMaleCount" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>महिला </label>
+                                    <input asp-for="SadsyeFemaleCount" class="form-control" />
+                                    <span asp-validation-for="SadsyeFemaleCount" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>अन्य</label>
+                                    <input asp-for="SadsyeOtherCount" class="form-control" />
+                                    <span asp-validation-for="SadsyeOtherCount" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुहको उद्देश्य </label>
+                                    <input asp-for="SamuhaAim" class="form-control" />
+                                    <span asp-validation-for="SamuhaAim" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>समुहको विवरण </label>
+                                    <input asp-for="SamuhaDetails" class="form-control" />
+                                    <span asp-validation-for="SamuhaDetails" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कार्यालयको वडा</label>
+                                    <input asp-for="SamuhaWardNo" class="form-control" />
+                                    <span asp-validation-for="SamuhaWardNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कार्यालयको नाम</label>
+                                    <input asp-for="KaryalayeName" class="form-control" />
+                                    <span asp-validation-for="KaryalayeName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <div class="card-title">पदाधिकारीहरुको विवरण</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>पुरा नाम</th>
+                                                    <th style="width:15%">पद</th>
+                                                    <th style="width:15%">उमेर</th>
+                                                    <th style="width: 18%;">साक्षर योग्यता</th>
+                                                    <th style="width:20%">क्षेत्रफल</th>
+                                                    <th style="">कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial">
+                                                @if (Model.OfficialsDetailViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.OfficialsDetailViewModelList)
+                                                    {
+                                                        <partial name="_OfficialPost.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_OfficialPost.cshtml" model="@new OfficialsDetailViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        var date = document.getElementsByClassName("NepaliDate");
+        date.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            readOnlyInput: true,
+        });
+        </script>
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("OfficialPost", "AgricultureFarmerGroupView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+}

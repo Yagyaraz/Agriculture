@@ -1,0 +1,144 @@
+﻿@model FiscalYearViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Fiscal Year</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="CommonView" asp-action="Index">Fiscal Year List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Fiscal Year</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="Create">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Fiscal Year</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="Name"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="Name_En"></label>
+                                    <input asp-for="Name_En" class="form-control" />
+                                    <span asp-validation-for="Name_En" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="Code"></label>
+                                    <input asp-for="Code" class="form-control" />
+                                    <span asp-validation-for="Code" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="StartYear"></label>
+                                    <input asp-for="StartYear" class="form-control" />
+                                    <span asp-validation-for="StartYear" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="EndYear"></label>
+                                    <input asp-for="EndYear" class="form-control" />
+                                    <span asp-validation-for="EndYear" class="text-danger"></span>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="DateFrom"></label>
+                                    <input asp-for="DateFrom" class="form-control" />
+                                    <span asp-validation-for="DateFrom" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="DateFromEng"></label>
+                                    <input asp-for="DateFromEng" class="form-control" />
+                                    <span asp-validation-for="DateFromEng" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="DateTo"></label>
+                                    <input asp-for="DateTo" class="form-control" />
+                                    <span asp-validation-for="DateTo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="DateToEng"></label>
+                                    <input asp-for="DateToEng" class="form-control" />
+                                    <span asp-validation-for="DateToEng" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label asp-for="PreviousFiscalYearId"></label>
+                                   <select asp-for="PreviousFiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                       <option>--Select--</option>
+                                   </select>
+                                    <span asp-validation-for="PreviousFiscalYearId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-check">
+                                    <input asp-for="IsActive" class="form-check-input" />
+                                    <label class="form-check-label"
+                                           for="flexCheckDefault">
+                                        @Html.DisplayNameFor(model => model.IsActive)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('DateFrom'), document.getElementById('DateFromEng'))
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('DateTo'), document.getElementById('DateToEng'))
+    </script>
+
+}

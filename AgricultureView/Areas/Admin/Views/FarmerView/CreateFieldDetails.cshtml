@@ -1,0 +1,365 @@
+﻿@model FieldDetailsViewModel
+@{
+    ViewData["Title"] = "CreateFieldDetails";
+
+}
+
+<style>
+    .table > tbody > tr > td, .table > tbody > tr > th {
+        padding: 4px 8px !important
+    }
+
+    .table thead th {
+        padding: 4px 8px !important
+    }
+</style>
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Field Detail</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Field Detail List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">खेतको जानकारी</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateFieldDetails">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">खेतको जानकारी</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <input asp-for="FarmerId" class="form-control" type="hidden" />
+                            <div class="col-md-12 col-sm-12 col-12 row">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>आर्थिक वर्ष</label>
+                                        <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                            <option>--Select--</option>
+                                        </select>
+                                        <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+                                   
+                                    <div class="table-responsive">
+                                        <span>जमिन स्वामित्वको विवरण (स्थायी ठेगानामा रहेको)</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th colspan="3">जग्गाको विवरण</th>
+                                                    <th colspan="3">सिँचाइको विवरण</th>
+                                                    <th colspan="1" rowspan="2">कार्य</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">स्वामित्व</th>
+                                                    <th colspan="1">जमिनको किसिम</th>
+                                                    <th colspan="1">क्षेत्रफल (बिघा-कठ्ठा-धुरमा)</th>
+                                                    <th colspan="1">सिँचाइको<br />उपलब्धता</th>
+                                                    <th colspan="1">सिँचाइको क्षेत्रफल (बिघा-कठ्ठा-धुरमा)</th>
+                                                    <th colspan="1">सिँचाइ स्रोत</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial" class="text-center">
+                                                @if (Model.LandOwnershipViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.LandOwnershipViewModelList)
+                                                    {
+                                                        <partial name="_LandOwnership.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_LandOwnership.cshtml" model="@new LandOwnershipViewModel()" />
+                                                }
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial1" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px;  z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span> एक भन्दा बढी स्थानीय तहमा कनेक्ट किसान गरिएको भए सो को विवरण</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th>ठेगाना</th>
+                                                    <th>क्षेत्रफल</th>
+                                                    <th>सिँचाइको<br />उपलब्धता</th>
+                                                    <th>कृषि कार्यको क्षेत्र</th>
+                                                    <th>कृषि कार्यको उप क्षेत्र</th>
+                                                    <th>स्वामित्व</th>
+                                                    <th>करार भए जग्गा धनीको विवरण</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial1" class="text-center">
+                                                @if (Model.AgriFarmMoreThanOneLocalLevelViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.AgriFarmMoreThanOneLocalLevelViewModelList)
+                                                    {
+                                                        <partial name="_AgriFarmMoreThanOne.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_AgriFarmMoreThanOne.cshtml" model="@new AgriFarmMoreThanOneLocalLevelViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial2" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span>अन्य व्यक्तिलाई जग्गा करार/भाडामा लगाएको भए सोको विवरण</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th colspan="3">जग्गाको विवरण</th>
+                                                    <th colspan="3">सिँचाइको विवरण</th>
+                                                    <th colspan="1" rowspan="2">कार्य</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="1">स्वामित्व</th>
+                                                    <th colspan="1">जमिनको किसिम</th>
+                                                    <th colspan="1">क्षेत्रफल (बिघा-कठ्ठा-धुरमा)</th>
+                                                    <th colspan="1">सिँचाइको<br />उपलब्धता</th>
+                                                    <th colspan="1">सिँचाइको क्षेत्रफल (बिघा-कठ्ठा-धुरमा)</th>
+                                                    <th colspan="1">सिँचाइ स्रोत</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial2" class="text-center">
+                                                @if (Model.LeasedLandDetailViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.LeasedLandDetailViewModelList)
+                                                    {
+                                                        <partial name="_LeasedLand.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_LeasedLand.cshtml" model="@new LeasedLandDetailViewModel()" />
+                                                }
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>कृषक विवरण</h3>
+                            <div class="col-md-12 col-sm-12 col-12 row">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        @* <input asp-for="IsKrishakDarta" type="checkbox" class="form-check-input" /> *@
+                                        <input asp-for="IsKrishakDarta" type="checkbox" class="form-check-input" id="IsKrishakDarta" />
+                                        <label class="form-check-label"
+                                               for="flexCheckDefault">
+                                            कृषक दर्ता गरिएको छ?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0" id="DartaNos">
+                                <div class="form-group">
+                                    <label>कृषक दर्ता नम्बर</label>
+                                    <input asp-for="DartaNo" class="form-control" />
+                                    <span asp-validation-for="DartaNo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row" id="grpdivs">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>पुरा नाम</label>
+                                        <input asp-for="FullName" class="form-control" />
+                                        <span asp-validation-for="FullName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>फोन नम्बर</label>
+                                        <input asp-for="PhoneNo" class="form-control" />
+                                        <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>ठेगाना</label>
+                                        <input asp-for="Address" class="form-control" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>सम्झौता मिति</label>
+                                        <input asp-for="SanjhutaMiti" class="form-control" />
+                                        <input asp-for="SanjhutaDate" class="form-control" type="hidden" />
+                                        <span asp-validation-for="SanjhutaMiti" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>सम्झौता समाप्त हुने मिति</label>
+                                        <input asp-for="SamjhutaEndMiti" class="form-control" />
+                                        <input asp-for="SamjhutaEndDate" class="form-control" type="hidden" />
+                                        <span asp-validation-for="SamjhutaEndMiti" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>नागरिकता नम्बर</label>
+                                        <input asp-for="CitizenNo" class="form-control" />
+                                        <span asp-validation-for="CitizenNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>हालको ठेगाना</label>
+                                        <input asp-for="CurrentAddress" class="form-control" />
+                                        <span asp-validation-for="CurrentAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('SanjhutaMiti'), document.getElementById('SanjhutaDate'))
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('SamjhutaEndMiti'), document.getElementById('SamjhutaEndDate'))
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            myFunction();  // Call the function once on page load to set the initial state
+        });
+
+        // Attach the event handler correctly
+        document.getElementById("IsKrishakDarta").onchange = myFunction;
+
+        function myFunction() {
+            // Use jQuery to get the correct element and check its state
+            if ($("#IsKrishakDarta").prop("checked") == true) {
+                $("#DartaNos").show();
+                $("#grpdivs").hide();
+
+                $("#FullName").val("");
+                $("#PhoneNo").val("");
+                $("#Address").val("");
+                $("#SanjhutaMiti").val("");
+                $("#SanjhutaDate").val("");
+                $("#SamjhutaEndMiti").val("");
+                $("#SamjhutaEndDate").val("");
+                $("#CitizenNo").val("");
+                $("#CurrentAddress").val("");
+            } else {
+                $("#DartaNos").hide();
+                $("#grpdivs").show();
+                $("#DartaNo").val("");
+            }
+        }
+    </script>
+
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("LandOwner", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial1').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("AgriFarm", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial1').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial2').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("LeasedLand", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial2').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+
+}

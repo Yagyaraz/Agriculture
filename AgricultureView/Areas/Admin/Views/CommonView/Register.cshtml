@@ -1,0 +1,177 @@
+﻿@using AgricultureView.Utility
+@model AgricultureView.Models.RegisterViewModel
+
+@inject IUtility _Utility
+@{
+
+}
+
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Register</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="CommonView" asp-action="UserList">User List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Register New</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="Register" method="post">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Register New</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="Email"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="Password"></label>
+                                    <input asp-for="Password" type="password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="ConfirmPassword"></label>
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="Role"></label>
+                                    <select asp-for="Role" asp-items="await _Utility.GetSelectListRoles()" class="form-select form-control">
+                                        <option>Please select Role</option>
+                                    </select>
+                                    <span asp-validation-for="Role" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="adminRow" style="display:none;">
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="FullName"></label>
+                                    <input asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="FullNameNep"></label>
+                                    <input asp-for="FullNameNep" class="form-control" />
+                                    <span asp-validation-for="FullNameNep" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="WardId"></label>
+                                    <input asp-for="WardId" class="form-control" />
+                                    <span asp-validation-for="WardId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="PhoneNo"></label>
+                                    <input asp-for="PhoneNo" class="form-control" />
+                                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="farmerRow" style="display:none">
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label asp-for="FarmerId"></label>
+                                    <select asp-for="FarmerId" asp-items="await _Utility.GetFarmerSelectListItems()" class="form-select form-control">
+                                        <option value=""> -Please select Farmer- </option>
+                                    </select>
+                                    <span asp-validation-for="FarmerId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            RoleBaseControll();
+
+        });
+        $('#Role').change(function () {
+            RoleBaseControll();
+        });
+
+        function RoleBaseControll() {
+            debugger
+            var value = $('#Role').val();
+            if (value.includes("Admin")) {
+                $('#adminRow').attr('style', 'display:flex;');
+                $('#farmerRow').attr('style', 'display:none;');
+                $('#FullName').attr('required', 'required');
+                $('#FullNameNep').attr('required', 'required');
+                $('#WardId').attr('required', 'required');
+                $('#PhoneNo').attr('required', 'required');
+                $('#FarmerId').val("");
+
+            } else if (value.includes("User")) {
+                $('#farmerRow').attr('style', 'display:flex;');
+                $('#adminRow').attr('style', 'display:none;');
+                $('#FarmerId').attr('required', 'required');
+                $('#FullName').val("");
+                $('#FullNameNep').val("");
+                $('#WardId').val("");
+                $('#PhoneNo').val("");
+            } else{
+                $('#adminRow').attr('style', 'display:none;');
+                $('#farmerRow').attr('style', 'display:none;');
+                $('#FullName').removeAttr('required', 'required');
+                $('#FullNameNep').removeAttr('required', 'required');
+                $('#WardId').removeAttr('required', 'required');
+                $('#PhoneNo').removeAttr('required', 'required');
+                $('#FarmerId').removeAttr('required', 'required');
+                $('#FullName').val("");
+                $('#FullNameNep').val("");
+                $('#WardId').val("");
+                $('#PhoneNo').val("");
+                $('#FarmerId').val("");
+
+            }
+        }
+    </script>
+}

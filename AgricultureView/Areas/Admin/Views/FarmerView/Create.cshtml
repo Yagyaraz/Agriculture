@@ -1,0 +1,296 @@
+﻿@model FarmerViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Farmer</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Farmer List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Farmer</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="Create">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Farmer</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>पुरा नाम</label>
+                                    <input asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>पुरा नाम(Eng)</label>
+                                    <input asp-for="FullNameEng" class="form-control" />
+                                    <span asp-validation-for="FullNameEng" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>प्रदेश</label>
+                                    <select asp-for="StateId" asp-items="await _Utility.GetStateSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="StateId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>जिल्ला</label>
+                                    <select asp-for="DistrictId" asp-items="await _Utility.GetDistrictSelectListItems(Model.StateId)" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="DistrictId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>पालिका</label>
+                                    <select asp-for="PalikaId" asp-items="await _Utility.GetPalikaSelectListItems(Model.DistrictId)" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="PalikaId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>वार्ड नं</label>
+                                    <select asp-for="WardNo" asp-items="await _Utility.GetWardNoSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="WardNo" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>फोन नम्बर</label>
+                                    <input asp-for="PhoneNo" class="form-control" />
+                                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>इमेल</label>
+                                    <input asp-for="Email" type="email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>लिङ्ग</label>
+                                    <select asp-for="GenderId" asp-items="await _Utility.GetGenderSelectListItems()" class=" form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="GenderId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>जन्म मिति (बि.सं.)</label>
+                                    <input asp-for="DOBNep" class="form-control" />
+                                    <input asp-for="DOBEng" type="hidden" />
+                                    <span asp-validation-for="DOBNep" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>शिक्षा योग्यता</label>
+                                    <select asp-for="EducationId" asp-items="await _Utility.GetEducationSelectListItems()" id="selectEdu" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="EducationId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0" id="edulevel">
+                                <div class="form-group">
+                                    <label>साक्षर योग्यता</label>
+                                    <select asp-for="EducationLevelId" asp-items="await _Utility.GetEducationLevelSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="EducationLevelId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>गाउँ / टोल नाम</label>
+                                    <input asp-for="TolName" class="form-control" />
+                                    <span asp-validation-for="TolName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>नागरिकता नम्बर </label>
+                                    <input asp-for="CitizenNo" class="form-control" />
+                                    <span asp-validation-for="CitizenNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>नागरिकता जारी जिल्ला</label>
+                                    <select asp-for="CitizenDistricrId" asp-items="await _Utility.GetOnlyDistrictSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="CitizenDistricrId" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>नागरिकता जारी मिति (बि.सं.)</label>
+                                    <input asp-for="CitizenIssueDate" class="form-control NepaliDate" />
+                                    <span asp-validation-for="CitizenIssueDate" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कृषक समूह</label>
+                                    <select asp-for="FarmerGroupId" asp-items="await _Utility.GetFarmerGroupSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="FarmerGroupId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कृषक श्रेणी</label>
+                                    <select asp-for="FarmerCategoryId" asp-items="await _Utility.GetFarmerCategorySelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="FarmerCategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>घरपरिवार नम्बर</label>
+                                    <input asp-for="HouseNo" class="form-control" />
+                                    <span asp-validation-for="HouseNo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('DOBNep'), document.getElementById('DOBEng'))
+    </script>
+    <script>
+        var date = document.getElementsByClassName("NepaliDate");
+        date.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            readOnlyInput: true,
+        });
+    </script>
+    <script>
+ $(document).ready(function() {
+                $("#CitizenDistricrId").select2();
+                       $("#StateId").select2();
+                              $("#DistrictId").select2();
+                                     $("#PalikaId").select2();
+                                            $("#WardNo").select2();
+                                                   $("#EducationId").select2();
+                                                          $("#EducationLevelId").select2();
+                                                                 $("#FarmerGroupId").select2();
+                                                                        $("#FarmerCategoryId").select2();
+        });
+    </script>
+    <script>
+        $('#StateId').change(function () {
+            $.ajax({
+                url: '@Url.Action("GetDistrictByStateId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(this).val() },
+                success: function (data) {
+                    $('#DistrictId').empty().append("<option value=''>-Please Select District-</option>");
+                    $.each(data, function (index, item) {
+                        $('#DistrictId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                    $('#PalikaId').empty().append("<option value=''>-Please Select Palika-</option>");
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        });
+
+
+        $('#DistrictId').change(function () {
+            $.ajax({
+                url: '@Url.Action("GetPalikaByDistId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(this).val() },
+                success: function (data) {
+                    $('#PalikaId').empty().append("<option value=''>-Please Select Palika-</option>");
+                    $.each(data, function (index, item) {
+                        $('#PalikaId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            myFunction();
+        });
+        var select = document.getElementById("selectEdu").onchange = function () { myFunction() };
+
+        function myFunction() {
+            debugger
+            var value = $('#selectEdu').val();
+            if (value === "1") {
+                $('#edulevel').attr('style', 'display:block;');
+            } else if (value === "2") {
+                $('#edulevel').attr('style', 'display:none;');
+                $('#EducationLevelId').val('');
+            } else {
+                $('#edulevel').attr('style', 'display:none;');
+                $('#EducationLevelId').val('');
+            }
+        }
+    </script>
+}

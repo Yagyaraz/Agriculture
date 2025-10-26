@@ -1,0 +1,22 @@
+﻿@model OtherSubsidyQnsViewModel
+@using HtmlHelpers.BeginCollectionItemCore
+
+@{
+    ViewData["Title"] = "_OtherSubsidyDetail";
+}
+
+<tr class="new">
+    @using (Html.BeginCollectionItem("OtherSubsidyQnsViewModelList"))
+    {
+        <td>
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="OtherSubsidyId" type="hidden" />
+            <input asp-for="Qns" class="form-control" />
+            <span asp-validation-for="Qns" class="text-danger"></span>
+        </td>
+       
+        <td>
+            <button type="button" onclick="DeleteRow(this)" class="row-button btn btn-sm btn-danger btn-delete"><i class="fa fa-minus"></i></button>
+        </td>
+    }
+</tr>

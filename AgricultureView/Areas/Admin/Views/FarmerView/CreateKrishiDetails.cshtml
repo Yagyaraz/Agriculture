@@ -1,0 +1,311 @@
+﻿@model KrishiDetailsViewModel
+@{
+    ViewData["Title"] = "CreateKrishiDetails";
+    var name = Model.IsSelfJagga.Equals(true) ? "block" : "none";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Agriculture Detail</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Agriculture Detail List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Agriculture Detail</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateKrishiDetails">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Agriculture Detail</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <input asp-for="FarmerId" class="form-control" type="hidden" />
+                            <div class="col-md-12 col-sm-12 col-12 row">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>आर्थिक वर्ष </label>
+                                        <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                            <option>--Select--</option>
+                                        </select>
+                                        <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>कृषि कार्य गरेको वडा नम्बर</th>
+                                                    <th>कृषि कार्य गरेको गाउँको नाम</th>
+                                                    <th>कृषि कार्यको क्षेत्र</th>
+                                                    <th>वर्ग कृषि कार्यको उप क्षेत्र</th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial">
+                                                @if (Model.AgricultureDetailViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.AgricultureDetailViewModelList)
+                                                    {
+                                                        <partial name="_AgricultureDetail.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_AgricultureDetail.cshtml" model="@new AgricultureDetailViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-12">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 row">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <input asp-for="IsSelfJagga" type="checkbox" class="form-check-input" />
+
+                                        <label class="form-check-label"
+                                               for="flexCheckDefault">
+                                            जग्गा आफ्नो छ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="landAreas" style="display:@name;">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label class="control-label">मापन एकाइ</label>
+                                        <select class="form-select form-control" id="selectland" asp-for="ChooseLand" required="">
+                                            <option value="">--select--</option>
+                                            <option value="1">रोपनी-आना-पैसा-दाम</option>
+                                            <option value="2">बिगाह-कट्ठा-धुर</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12 p-0" id="Bigha">
+                                    <div class="form-group">
+                                        <div class="table-responsive">
+                                            <table class="mb-0 table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>बिगाह</th>
+                                                        <th>कट्ठा</th>
+                                                        <th>धुर</th>
+                                                        <th>वर्ग मिटर</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>कुल क्षेत्रफल</td>
+                                                        <td><input asp-for="TotalBigaha" class="form-control" onchange="CalculateBiga()" /></td>
+                                                        <td><input asp-for="TotalKattha" class="form-control" min="0" max="19" onchange="CalculateBiga()" /></td>
+                                                        <td><input asp-for="TotalDhur" class="form-control" min="0" max="19" onchange="CalculateBiga()" /></td>
+                                                        <td><input asp-for="TotalBigaSquareMiter" class="form-control" readonly /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12 p-0" id="Ropani">
+                                    <div class="form-group">
+                                        <div class="table-responsive">
+                                            <table class="mb-0 table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>रोपनी</th>
+                                                        <th>आना</th>
+                                                        <th>पैसा</th>
+                                                        <th>दाम</th>
+                                                        <th>वर्ग मिटर</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>कुल क्षेत्रफल</td>
+                                                        <td><input asp-for="TotalRopani" class="form-control" onchange="CalculateRopani()" /></td>
+                                                        <td><input asp-for="TotalAana" class="form-control" min="0" max="15" onchange="CalculateRopani()" /></td>
+                                                        <td><input asp-for="TotalPaisa" class="form-control" min="0" max="3" onchange="CalculateRopani()" /></td>
+                                                        <td><input asp-for="TotalDam" class="form-control" min="0" max="3" onchange="CalculateRopani()" /></td>
+                                                        <td><input asp-for="TotalRopaniSquareMiter" class="form-control" readonly /></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कृषि बाटको आम्दानी रु.</label>
+                                    <input asp-for="IncomeFromAgri" class="form-control" onchange="CalcToal()" />
+                                    <span asp-validation-for="IncomeFromAgri" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>गैर कृषि पेशाबाट हुने आम्दानी रु.</label>
+                                    <input asp-for="IncomeFromNonAgri" class="form-control" onchange="CalcToal()" />
+                                    <span asp-validation-for="IncomeFromNonAgri" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कुल आम्दानी रु.</label>
+                                    <input asp-for="TotalIncome" class="form-control" readonly/>
+                                    <span asp-validation-for="TotalIncome" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>संलग्न समय</label>
+                                    <select asp-for="AvgMonthForAgriId" asp-items="await _Utility.GetAvgmonthSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="AvgMonthForAgriId" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $("#IsSelfJagga").click(function () {
+            if ($(this).prop("checked") == true) {
+                $("#landAreas").show();
+            }
+            else if ($(this).prop("checked") == false) {
+                $("#landAreas").hide();
+                $("#selectland").val("");
+                $("#TotalBigaha").val("");
+                $("#TotalKattha").val("");
+                $("#TotalDhur").val("");
+                $("#TotalBigaSquareMiter").val("");
+                $("#TotalRopani").val("");
+                $("#TotalAana").val("");
+                $("#TotalPaisa").val("");
+                $("#TotalDam").val("");
+                $("#TotalRopaniSquareMiter").val("");
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            myFunction();
+        });
+        var select = document.getElementById("selectland").onchange = function () { myFunction() };
+
+        function myFunction() {
+            var value = $('#selectland').val();
+            if (value === "1") {
+                $('#Ropani').attr('style', 'display:block;');
+                $('#Bigha').attr('style', 'display:none;');
+            } else if (value === "2") {
+                $('#Ropani').attr('style', 'display:none;');
+                $('#Bigha').attr('style', 'display:block;');
+            } else {
+                $('#Ropani').attr('style', 'display:none;');
+                $('#Bigha').attr('style', 'display:none;');
+            }
+        }
+    </script>
+    <script>
+        function CalcToal() {
+            var AgriIncome = parseInt($("#IncomeFromAgri").val() || 0);
+            var NonAgriIncome = parseInt($("#IncomeFromNonAgri").val() || 0);
+            var total = AgriIncome + NonAgriIncome;
+            $("#TotalIncome").val(total);
+        }
+        </script>
+    <script>
+        function CalculateRopani() {
+            var Tropani = parseInt($("#TotalRopani").val() || 0);
+            var Tana = parseInt($("#TotalAana").val() || 0);
+            var Tpaisa = parseInt($("#TotalPaisa").value || 0);
+            var Tdam = parseInt($("#TotalDam").value || 0);
+
+            var Tropanibarga = Tropani * 508.720;
+            var Tanabarga = Tana * 31.800;
+            var Tpaisabarga = Tpaisa * 7.950;
+            var Tdambarga = Tdam * 1.990;
+            var totalSquareMeters = Tropanibarga + Tanabarga + Tpaisabarga + Tdambarga;
+            $("#TotalRopaniSquareMiter").val(totalSquareMeters);
+        }
+        function CalculateBiga() {
+            var Tbiga = parseInt($("#TotalBigaha").val() || 0);
+            var Tkattha = parseInt($("#TotalKattha").val() || 0);
+            var Tdhur = parseInt($("#TotalDhur").value || 0);
+
+            var Tbigabarga = Tbiga * 6772.630;
+            var Tkatthabarga = Tkattha * 338.630;
+            var Tdhurabarga = Tdhur * 16.930;
+            var TotalBsqm = Tbigabarga + Tkatthabarga + Tdhurabarga;
+            $("#TotalBigaSquareMiter").val(TotalBsqm)
+        }
+    </script>
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("AgriDetails", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+}

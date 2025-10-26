@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #388E3C;
+    --background: #f5f5f5;
+    --text-dark: #333;
+    --text-light: #666;
+}
+
+body {
+    background: var(--background);
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: var(--secondary-color);
+    padding: 20px;
+    color: white;
+    position: fixed;
+}
+
+.logo {
+    font-size: 24px;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li{
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.nav-links li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-links li:hover {
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 30px;
+    width: calc(100% - 250px);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: var(--text-dark);
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.card .value {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.weather-widget {
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.crop-health {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.progress-bar {
+    background: #eee;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    background: var(--primary-color);
+    height: 100%;
+    width: 75%;
+}
+
+.avatar-sm a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-sm a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.avatar-sm img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}

@@ -1,0 +1,1502 @@
+﻿@model AnimalHusbandryViewModel
+@{
+    ViewData["Title"] = "CreateAnimalHusbandry";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Farmer</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Farmer List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">पशुपालन</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- kishan form  -->
+    <div class="row">
+        <form asp-action="CreateAnimalHusbandry">
+            <div class="col-md-12">
+                <div class="card">
+
+
+                    <div class="card-header">
+                        <div class="card-title">पशुपालन</div>
+                    </div>
+                    <!-- card body start -->
+                    <div class="card-body">
+                        <div class="card-sub p-0 m-0">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-12">
+                                <div class="card">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input asp-for="Id" class="form-control" type="hidden" />
+                                    <input asp-for="FarmerId" class="form-control" type="hidden" />
+                                    <div class="card-body row">
+                                        <div class="form-group col-lg-4 col-sm-12">
+                                            <label>आर्थिक वर्ष </label>
+                                            <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- गाईपालन start -->
+                        <div class="row" id="Gaipalan" style="display:none;">
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">गाईपालन </h6>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">स्थानीय </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <input asp-for="CowInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                                <input asp-for="CowInfromationViewModelList.Id" class="form-control" type="hidden" />
+
+                                                <label asp-for="CowInfromationViewModelList.CowLocCount">संख्या </label>
+                                                <input asp-for="CowInfromationViewModelList.CowLocCount" class="form-control" />
+                                                <span asp-validation-for="CowInfromationViewModelList.CowLocCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बार्षिक औसत दुध दिने महिना </label>
+                                                <input asp-for="CowInfromationViewModelList.CowLocMilkMonth" class="form-control" />
+                                                <span asp-validation-for="CowInfromationViewModelList.CowLocMilkMonth" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">दैनिक दुध उत्पादन लिटर </label>
+                                                <input asp-for="CowInfromationViewModelList.CowLocMilkDaily" class="form-control" />
+                                                <span asp-validation-for="CowInfromationViewModelList.CowLocMilkDaily" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">उन्नत </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label>संख्या </label>
+                                                <input asp-for="CowInfromationViewModelList.CowUnnatCount" class="form-control" />
+                                                <span asp-validation-for="CowInfromationViewModelList.CowUnnatCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बार्षिक औसत दुध दिने महिना </label>
+                                                <input asp-for="CowInfromationViewModelList.CowUnnatMilkMonth" class="form-control" />
+                                                <span asp-validation-for="CowInfromationViewModelList.CowUnnatMilkMonth" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">दैनिक दुध उत्पादन लिटर </label>
+                                                <input asp-for="CowInfromationViewModelList.CowUnnatMilkDaily" class="form-control" />
+                                                <span asp-validation-for="CowInfromationViewModelList.CowUnnatMilkDaily" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- भैसीपालन start -->
+                        <div class="row" id="Bhaisipalan" style="display:none;">
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">भैसीपालन </h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">स्थानीय </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <input asp-for="BuffaloInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                                <input asp-for="BuffaloInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="BuffaloInfromationViewModelList.BuffLocCount" class="form-control" />
+                                                <span asp-validation-for="BuffaloInfromationViewModelList.BuffLocCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बार्षिक औसत दुध दिने महिना </label>
+                                                <input asp-for="BuffaloInfromationViewModelList.BuffLocMilkMonth" class="form-control" />
+                                                <span asp-validation-for="BuffaloInfromationViewModelList.BuffLocMilkMonth" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">दैनिक दुध उत्पादन लिटर </label>
+                                                <input asp-for="BuffaloInfromationViewModelList.BuffLocMilkDaily" class="form-control" />
+                                                <span asp-validation-for="BuffaloInfromationViewModelList.BuffLocMilkDaily" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">उन्नत </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="BuffaloInfromationViewModelList.BuffUnnatCount" class="form-control" />
+                                                <span asp-validation-for="BuffaloInfromationViewModelList.BuffUnnatCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बार्षिक औसत दुध दिने महिना </label>
+                                                <input asp-for="BuffaloInfromationViewModelList.BuffUnnatMilkMonth" class="form-control" />
+                                                <span asp-validation-for="BuffaloInfromationViewModelList.BuffUnnatMilkMonth" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">दैनिक दुध उत्पादन लिटर </label>
+                                                <input asp-for="BuffaloInfromationViewModelList.BuffUnnatMilkDaily" class="form-control" />
+                                                <span asp-validation-for="BuffaloInfromationViewModelList.BuffUnnatMilkDaily" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- चौरी/याक पालन start -->
+                        <div class="row" id="Chauri" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">चौरी/याक पालन </h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">चौरी </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <input asp-for="CharuiYakInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                                <input asp-for="CharuiYakInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="CharuiYakInfromationViewModelList.ChauriCount" class="form-control" />
+                                                <span asp-validation-for="CharuiYakInfromationViewModelList.ChauriCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बार्षिक औसत दुध दिने महिना </label>
+                                                <input asp-for="CharuiYakInfromationViewModelList.ChauriMilkMonth" class="form-control" />
+                                                <span asp-validation-for="CharuiYakInfromationViewModelList.ChauriMilkMonth" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">दैनिक दुध उत्पादन लिटर </label>
+                                                <input asp-for="CharuiYakInfromationViewModelList.ChauriMilkDaily" class="form-control" />
+                                                <span asp-validation-for="CharuiYakInfromationViewModelList.ChauriMilkDaily" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">याक </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="CharuiYakInfromationViewModelList.YakCount" class="form-control" />
+                                                <span asp-validation-for="CharuiYakInfromationViewModelList.YakCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बार्षिक औसत दुध दिने महिना </label>
+                                                <input asp-for="CharuiYakInfromationViewModelList.YakMilkMonth" class="form-control" />
+                                                <span asp-validation-for="CharuiYakInfromationViewModelList.YakMilkMonth" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">दैनिक दुध उत्पादन लिटर </label>
+                                                <input asp-for="CharuiYakInfromationViewModelList.YakMilkDaily" class="form-control" />
+                                                <span asp-validation-for="CharuiYakInfromationViewModelList.YakMilkDaily" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- गोरु / रांगा पालन start -->
+                        <div class="row" id="Goru" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">गोरु/रांगा पालन </h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <input asp-for="GoruInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                                <input asp-for="GoruInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                                <label for="number">गोरु </label>
+                                                <input asp-for="GoruInfromationViewModelList.GoruCount" class="form-control" />
+                                                <span asp-validation-for="GoruInfromationViewModelList.GoruCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">रांगा </label>
+                                                <input asp-for="GoruInfromationViewModelList.RagaCount" class="form-control" />
+                                                <span asp-validation-for="GoruInfromationViewModelList.RagaCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- भेडा / बाख्रा / च्या्ङ्ग्रा पालन start -->
+                        <div class="row" id="Beda" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">भेडा/बाख्रा/च्या्ङ्ग्रा पालन</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">भेडा </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                                <label for="number">माउको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BhedaCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BhedaCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">खसिको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BhedaKasiCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BhedaKasiCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बोकाको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BhedaBokaCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BhedaBokaCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पठा/पाठि संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BhedaPathaCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BhedaPathaCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">बाख्रा </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">माउको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BakhraCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BakhraCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">खसिको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BakhraKasiCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BakhraKasiCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बोकाको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BakhraBokaCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BakhraBokaCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पठा/पाठि संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.BakhraPathaCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.BakhraPathaCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">च्या्ङ्ग्रा </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">माउको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.ChangraCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.ChangraCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">खसिको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.ChangraKasiCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.ChangraKasiCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बोकाको संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.ChangraBokaCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.ChangraBokaCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पठा/पाठि संख्या </label>
+                                                <input asp-for="BhedaBakhraInfromationViewModelList.ChangraPathaCount" class="form-control" />
+                                                <span asp-validation-for="BhedaBakhraInfromationViewModelList.ChangraPathaCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- बङ्गुर/सुङ्गुर/बंदेल पालन start -->
+                        <div class="row" id="Bungur" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">बङ्गुर/सुङ्गुर/बंदेल पालन</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <input asp-for="BungurSungurInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                            <input asp-for="BungurSungurInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">बङ्गुर </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">माउको संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.BungurCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.BungurCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">भालेको संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.BungurMaleCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.BungurMaleCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पठा/पाठि संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.BungurPathaCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.BungurPathaCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">सुङ्गुर </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">माउको संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.SungurCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.SungurCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">भालेको संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.SungurMaleCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.SungurMaleCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पठा/पाठि संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.SungurPathaCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.SungurPathaCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">बंदेल </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">माउको संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.BadelCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.BadelCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">भालेको संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.BadelMaleCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.BadelMaleCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पठा/पाठि संख्या </label>
+                                                <input asp-for="BungurSungurInfromationViewModelList.BadelPathaCount" class="form-control" />
+                                                <span asp-validation-for="BungurSungurInfromationViewModelList.BadelPathaCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- कुखुरा पालन start -->
+                        <div class="row" id="Hen" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">कुखुरा पालन </h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <input asp-for="HenInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                            <input asp-for="HenInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">लेयर्स कुखुरा </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पालन गरिएको छ ?  </label>
+                                                <input asp-for="HenInfromationViewModelList.IsLayers" type="checkbox" class="form-check-input" />
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="HenInfromationViewModelList.LayersCount" class="form-control" />
+                                                <span asp-validation-for="HenInfromationViewModelList.LayersCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="HenInfromationViewModelList.LayersEggCount" class="form-control" />
+                                                <span asp-validation-for="HenInfromationViewModelList.LayersEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="HenInfromationViewModelList.LayersChickenProductionCount" class="form-control" />
+                                                <span asp-validation-for="HenInfromationViewModelList.LayersChickenProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">ब्रोईलर कुखुरा </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">पालन गरिएको छ ? </label>
+                                                <input asp-for="HenInfromationViewModelList.IsBoiler" type="checkbox" class="form-check-input" />
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="HenInfromationViewModelList.BoilerCount" class="form-control" />
+                                                <span asp-validation-for="HenInfromationViewModelList.BoilerCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="HenInfromationViewModelList.BoilerEggCount" class="form-control" />
+                                                <span asp-validation-for="HenInfromationViewModelList.BoilerEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="HenInfromationViewModelList.BoilerChickenProductionCount" class="form-control" />
+                                                <span asp-validation-for="HenInfromationViewModelList.BoilerChickenProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- अन्य पन्छीहरु start -->
+                        <div class="row" id="otherBird" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">अन्य पन्छीहरु </h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <input asp-for="OtherBirdInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                            <input asp-for="OtherBirdInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">हांस </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.DuckCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.DuckCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.DuckEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.DuckEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.DuckProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.DuckProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">बट्टाई </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.BattaiCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.BattaiCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.BattaiEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.BattaiEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.BattaiProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.BattaiProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">अस्ट्रिच </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.AustrichCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.AustrichCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.AustrichEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.AustrichEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.AustrichProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.AustrichProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">कालिज </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.KalijCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.KalijCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.KalijEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.KalijEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.KalijProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.KalijProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">टर्की </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.TurkeyCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.TurkeyCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.TurkeyEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.TurkeyEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.TurkeyProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.TurkeyProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">लौकाट </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.LaukatCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.LaukatCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.LaukatEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.LaukatEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.LaukatProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.LaukatProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">परेवा </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.PegionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.PegionCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.PegionEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.PegionEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.PegionProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.PegionProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">अन्य </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.OtherCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.OtherCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत अण्डा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.OtherEggCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.OtherEggCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">
+                                                    वार्षिक औषत कुखुरा उत्पादन संख्या
+                                                </label>
+                                                <input asp-for="OtherBirdInfromationViewModelList.OtherProductionCount" class="form-control" />
+                                                <span asp-validation-for="OtherBirdInfromationViewModelList.OtherProductionCount" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- मत्स्य पालन start -->
+                        <div class="row" id="Fish" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">मत्स्य पालन</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <input asp-for="FishInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                            <input asp-for="FishInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">प्रजाति </h6>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsRahu" type="checkbox" class="form-check-input" />
+
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    रहु
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsNaini" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    नैनी
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsSilvercarp" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    सिल्भर कार्प
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsNaibigheadkarpni" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    नैबिगहेड कार्पनी
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsGrasscarp" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    ग्रास कार्प
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsComoncarp" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    कमन कार्पनी
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsTrout" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    ट्राउट
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.Ischadi" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    छडी
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsTilapiya" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    टिलापिया
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsPangas" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    पंगास
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsLocal" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    स्थानीय
+                                                </label>
+                                            </div>
+                                            <div class="form-check col-lg-2">
+                                                <input asp-for="FishInfromationViewModelList.IsOther" type="checkbox" class="form-check-input" />
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    अन्य
+                                                </label>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="defaultSelect">उत्पादन एकाइ </label>
+                                                <select asp-for="FishInfromationViewModelList.ProcustionMeasurementId" class="form-select form-control" asp-items="await _Utility.GetProcustionMeasurementSelectListItems()">
+                                                    <option>उत्पादन एकाइ छान्नुहोस</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">उत्पादन परिमाण (के.जि) मा </label>
+                                                <input asp-for="FishInfromationViewModelList.ProcustionQuantity" class="form-control" />
+                                                <span asp-validation-for="FishInfromationViewModelList.ProcustionQuantity" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">पोखरीको क्षेत्रफल </label>
+                                                <input asp-for="FishInfromationViewModelList.PondArea" class="form-control" />
+                                                <span asp-validation-for="FishInfromationViewModelList.PondArea" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">संख्या </label>
+                                                <input asp-for="FishInfromationViewModelList.TotalCount" class="form-control" />
+                                                <span asp-validation-for="FishInfromationViewModelList.TotalCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="defaultSelect">उत्पादन प्रयोजन </label>
+                                                <select asp-for="FishInfromationViewModelList.ProcustionUseId" class="form-select form-control" asp-items="await _Utility.GetProcustionUseSelectListItems()">
+                                                    <option>उत्पादन एकाइ छान्नुहोस</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- अन्य पशुपालन start -->
+                        <div class="row" id="otherPashu" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">अन्य पशुपालन</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <input asp-for="OtherAnimalInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                            <input asp-for="OtherAnimalInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                            <div class="form-group col-lg-2 col-sm-12">
+                                                <label for="number">घोडाको संख्या </label>
+                                                <input asp-for="OtherAnimalInfromationViewModelList.GhodaCount" class="form-control" />
+                                                <span asp-validation-for="OtherAnimalInfromationViewModelList.GhodaCount" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-2 col-sm-12">
+                                                <label for="number">खच्चडको संख्या </label>
+                                                <input asp-for="OtherAnimalInfromationViewModelList.KhaccedCount" class="form-control" />
+                                                <span asp-validation-for="OtherAnimalInfromationViewModelList.KhaccedCount" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-2 col-sm-12">
+                                                <label for="number">गधाको संख्या </label>
+                                                <input asp-for="OtherAnimalInfromationViewModelList.GadhaCount" class="form-control" />
+                                                <span asp-validation-for="OtherAnimalInfromationViewModelList.GadhaCount" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-2 col-sm-12">
+                                                <label for="number">खरायोको संख्या </label>
+                                                <input asp-for="OtherAnimalInfromationViewModelList.RabbitCount" class="form-control" />
+                                                <span asp-validation-for="OtherAnimalInfromationViewModelList.RabbitCount" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-2 col-sm-12">
+                                                <label for="number">कुकुरको संख्या </label>
+                                                <input asp-for="OtherAnimalInfromationViewModelList.DogCount" class="form-control" />
+                                                <span asp-validation-for="OtherAnimalInfromationViewModelList.DogCount" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-2 col-sm-12">
+                                                <label for="number">बिरालोको संख्या </label>
+                                                <input asp-for="OtherAnimalInfromationViewModelList.CatCount" class="form-control" />
+                                                <span asp-validation-for="OtherAnimalInfromationViewModelList.CatCount" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-2 col-sm-12">
+                                                <label for="number">अन्य </label>
+                                                <input asp-for="OtherAnimalInfromationViewModelList.OtherCount" class="form-control" />
+                                                <span asp-validation-for="OtherAnimalInfromationViewModelList.OtherCount" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- हुउंदे बर्षे बहुवर्षे घांसेबालीको विवरण  start -->
+                        <div class="row" id="Grass" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">हुउंदे बर्षे बहुवर्षे घांसेबालीको विवरण</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <input asp-for="GhaseBaliInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                            <input asp-for="GhaseBaliInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">हिउंदे </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="string">जात </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.HudeJaat" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.HudeJaat" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">क्षेत्रफल </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.HudeArea" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.HudeArea" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">हरियो घांस उत्पादन<br>(मे.टन)</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.HudeGrassProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.HudeGrassProd" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बिउ उत्पादन</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.HudeSeedProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.HudeSeedProd" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">बर्षे </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="string">जात </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BarshaJaat" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BarshaJaat" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">क्षेत्रफल </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BarshaArea" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BarshaArea" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">हरियो घांस उत्पादन<br>(मे.टन)</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BarshaGrassProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BarshaGrassProd" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बिउ उत्पादन</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BarshaSeedProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BarshaSeedProd" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">बहु बर्षे </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="string">जात </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BahuBarshaJaat" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BahuBarshaJaat" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">क्षेत्रफल </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BahuBarshaArea" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BahuBarshaArea" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">हरियो घांस उत्पादन<br> (मे.टन)</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BahuBarshaGrassProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BahuBarshaGrassProd" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बिउ उत्पादन</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.BahuBarshaSeedProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.BahuBarshaSeedProd" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">डाले घांस </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="string">जात </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.DaleJaat" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.DaleJaat" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">क्षेत्रफल </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.DaleArea" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.DaleArea" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">हरियो घांस उत्पादन<br> (मे.टन)</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.DaleGrassProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.DaleGrassProd" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बिउ उत्पादन</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.DaleSeedProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.DaleSeedProd" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <div class="card-sub p-0 m-0 col-md-12">
+                                                <h6 class="text-center">नर्सरी </h6>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="string">जात </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.NurseryJaat" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.NurseryJaat" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">क्षेत्रफल </label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.NurseryArea" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.NurseryArea" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">हरियो घांस उत्पादन<br> (मे.टन)</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.NurseryGrassProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.NurseryGrassProd" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-6 col-sm-12">
+                                                <label for="number">बिउ उत्पादन</label>
+                                                <input asp-for="GhaseBaliInfromationViewModelList.NurserySeedProd" class="form-control" />
+                                                <span asp-validation-for="GhaseBaliInfromationViewModelList.NurserySeedProd" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- कृषि व्यावसाय / फर्म / उधम विवरण start -->
+                        <div class="row" id="farmDet" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">कृषि व्यावसाय / फर्म / उधम विवरण</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <!-- inside card -->
+                                    <div class="card">
+                                        <div class="card-body row">
+                                            <input asp-for="KrishiFarmInfromationViewModelList.AnimalHusbandryId" class="form-control" type="hidden" />
+                                            <input asp-for="KrishiFarmInfromationViewModelList.Id" class="form-control" type="hidden" />
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">
+                                                    व्यावसाय / फर्म / उधम दर्ता नम्बर
+                                                </label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.DartaNo" class="form-control" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.DartaNo" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">दर्ता मिति </label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.DartaMiti" class="form-control NepaliDate" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.DartaMiti" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">व्यावसाय / फर्म / उधमको नाम </label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.Name" class="form-control" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.Name" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">दर्ता भएको कार्यालय </label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.KaryalayeName" class="form-control" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.KaryalayeName" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">प्यान / भ्याट नं.</label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.PanNo" class="form-control" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.PanNo" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">अध्यक्ष/संचालकको नाम </label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.ChairpersonName" class="form-control" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.ChairpersonName" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="defaultSelect">किसिम </label>
+                                                <select class="form-select form-control" asp-for="KrishiFarmInfromationViewModelList.KrishiFarmTypeId" asp-items="await _Utility.GetKrishiFarmTypeSelectListItems()">
+                                                    <option>उत्पादन एकाइ छान्नुहोस</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">सदस्य संख्या</label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.MemberCount" class="form-control" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.MemberCount" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-sm-12">
+                                                <label for="number">बार्षिक रोजगारी सृजना संख्या</label>
+                                                <input asp-for="KrishiFarmInfromationViewModelList.EmploymentCount" class="form-control" />
+                                                <span asp-validation-for="KrishiFarmInfromationViewModelList.EmploymentCount" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- कृषि / पशूपन्छी / मत्स्यपालन संग सम्बन्धित मेशिनरी प्रयोग विवरण start -->
+                        <div class="row" id="meachineDet" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">कृषि / पशूपन्छी / मत्स्यपालन संग सम्बन्धित मेशिनरी प्रयोग विवरण</h6>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right"
+                                            style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;">
+                                        <i class="fa fa-plus"> &nbsp; थप्नुहोस्</i>
+                                    </button>
+
+                                    <div class="table-responsive">
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>क्र.स.</th>
+                                                    <th>मेसिनरीको नाम</th>
+                                                    <th>स्वामित्व</th>
+                                                    <th>क्षमता</th>
+                                                    <th>संख्या</th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial">
+                                                @if (Model.KrishiMechinaryInfromationViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.KrishiMechinaryInfromationViewModelList)
+                                                    {
+                                                        <partial name="_KrishiMechinary.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_KrishiMechinary.cshtml" model="@new KrishiMechinaryInfromationViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- कृषि / पशुपालन / मत्स्यपालनसंग सम्बन्धित संरचनाको विवरण  start -->
+                        <div class="row" id="sanrachDet" style="display:none;">
+
+                            <div class="card-sub p-0 m-0">
+                                <h6 class="text-center">कृषि / पशुपालन / मत्स्यपालनसंग सम्बन्धित संरचनाको विवरण</h6>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial1" class="btn btn-add pull-right"
+                                            style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;">
+                                        <i class="fa fa-plus"> &nbsp; थप्नुहोस्</i>
+                                    </button>
+
+                                    <div class="table-responsive">
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>क्र.स.</th>
+                                                    <th>संरचनाको प्रकार</th>
+                                                    <th>संख्या</th>
+                                                    <th>क्षेत्रफल</th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial1">
+                                                @if (Model.KrishiSanrachanaInfromationViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.KrishiSanrachanaInfromationViewModelList)
+                                                    {
+                                                        <partial name="_KrishiSanrachana.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_KrishiSanrachana.cshtml" model="@new KrishiSanrachanaInfromationViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        var date = document.getElementsByClassName("NepaliDate");
+        date.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            readOnlyInput: true,
+        });
+        </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetAllActiveAgriculture", "FarmerView")',
+                success: function (result) {
+                    const sections = {
+                        1: '#Gaipalan',
+                        2: '#Bhaisipalan',
+                        3: '#Chauri',
+                        4: '#Goru',
+                        5: '#Beda',
+                        6: '#Bungur',
+                        7: '#Hen',
+                        8: '#otherBird',
+                        9: '#Fish',
+                        10: '#otherPashu',
+                        11: '#Grass',
+                        12: '#farmDet',
+                        13: '#meachineDet',
+                        14: '#sanrachDet'
+                    };
+
+                    result.forEach(function (item) {
+                        const sectionId = sections[item.value];
+                        if (sectionId) {
+                            $(sectionId).show();
+                        }
+                    });
+                }
+            });
+        });
+        // $(document).ready(function () {
+        //     debugger;
+        //     $.ajax({
+        //         url: '@Url.Action("GetAllActiveAgriculture", "FarmerView")',
+        //         success: function (result) {
+        //             debugger;
+        //             result.forEach(function (item) {
+        //                 if (item.value == 1) {
+        //                     $('#Gaipalan').show();
+        //                 }
+        //                 else if (item.value == 2) {
+        //                     $('#Bhaisipalan').show();
+        //                 }
+        //                 else if (item.value == 3) {
+        //                     $('#Chauri').show();
+        //                 }
+        //                 else if (item.value == 4) {
+        //                     $('#Goru').show();
+        //                 }
+        //                 else if (item.value == 5) {
+        //                     $('#Beda').show();
+        //                 }
+        //                 else if (item.value == 6) {
+        //                     $('#Bungur').show();
+        //                 }
+        //                 else if (item.value == 7) {
+        //                     $('#Hen').show();
+        //                 }
+        //                 else if (item.value == 8) {
+        //                     $('#otherBird').show();
+        //                 }
+        //                 else if (item.value == 9) {
+        //                     $('#Fish').show();
+        //                 }
+        //                 else if (item.value == 10) {
+        //                     $('#otherPashu').show();
+        //                 }
+        //                 else if (item.value == 11) {
+        //                     $('#Grass').show();
+        //                 }
+        //                 else if (item.value == 12) {
+        //                     $('#farmDet').show();
+        //                 }
+        //                 else if (item.value == 13) {
+        //                     $('#meachineDet').show();
+        //                 }
+        //                 else if (item.value == 14) {
+        //                     $('#sanrachDet').show();
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
+    </script>
+
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("KrishiMechinary", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial1').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("KrishiSanrachana", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial1').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+}

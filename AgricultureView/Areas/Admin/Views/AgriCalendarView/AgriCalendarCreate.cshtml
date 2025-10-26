@@ -1,0 +1,183 @@
+﻿@model AgriCalendarViewModel
+@{
+    ViewData["Title"] = "AgriCalendarCreate";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">कृषि पात्रो थप्नुहोस </h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgriCalendarView" asp-action="AgriCalendar">कृषि पात्रो थप्नुहोस </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">कृषि पात्रो थप्नुहोस</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="AgriCalendarCreate" method="post">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">कृषि पात्रो थप्नुहोस </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>प्रकार</label>
+                                    <select asp-for="TypeId" asp-items="await _Utility.GetAgriCalendarTypeSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="TypeId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>उत्पादन श्रेणी</label>
+                                    <select asp-for="CategoryId" asp-items="await _Utility.GetAgriCalendarCategorySelectListItems(Model.TypeId)" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>उत्पादन</label>
+                                    <select asp-for="ProductId" asp-items="await _Utility.GetAgriCalendarProductSelectListItems(Model.CategoryId)" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="ProductId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>जात</label>
+                                    <input asp-for="Variety" class="form-control" />
+                                    <span asp-validation-for="Variety" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 p-0">
+                                <div class="form-group">
+                                    @* <span class="DetailButton" ><i class="fa fa-plus-square"></i> नयाँ थप्नुहोस्</span> *@
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" onclick="AddDetailsPartial()" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 p-0">
+                                <div class="form-group">
+                                    <div id="table-body-Partial">
+                                        @if (Model.AgriCalendarDetailViewModelList.Count > 0)
+                                        {
+                                            foreach (var item in Model.AgriCalendarDetailViewModelList)
+                                            {
+                                                <partial name="_AgriCalendarDetail.cshtml" model="@item" />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <partial name="_AgriCalendarDetail.cshtml" model="@new AgriCalendarDetailViewModel()" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+
+    <script>
+        function AddDetailsPartial() {
+            $.ajax({
+                url: '@Url.Action("AgriCalendarDetail")',
+                type: 'GET',
+                success: function (data) {
+                    if (data) {
+                        $('#table-body-Partial').append(data);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        }
+
+        function RemoveDiv(a, event) {
+            debugger
+            event.preventDefault(); 
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(a).closest('.NewRow').remove();
+            }
+        }
+    </script>
+    <script>
+        $('#TypeId').change(function () {
+            $.ajax({
+                url: '@Url.Action("GetAgriCalendarTypeId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(this).val() },
+                success: function (data) {
+                    $('#CategoryId').empty().append("<option value=''>-Please Select-</option>");
+                    $.each(data, function (index, item) {
+                        $('#CategoryId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                    $('#ProductId').empty().append("<option value=''>-Please Select-</option>");
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        });
+
+
+        $('#CategoryId').change(function () {
+            $.ajax({
+                url: '@Url.Action("GetAgriCalendarCategoryId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(this).val() },
+                success: function (data) {
+                    $('#ProductId').empty().append("<option value=''>-Please Select-</option>");
+                    $.each(data, function (index, item) {
+                        $('#ProductId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        });
+    </script>
+}

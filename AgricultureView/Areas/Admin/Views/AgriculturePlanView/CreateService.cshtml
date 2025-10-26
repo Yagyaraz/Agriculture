@@ -1,0 +1,176 @@
+﻿@model AgricultureServiceViewModel
+@{
+    ViewData["Title"] = "CreateService";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        @* <h3 class="fw-bold mb-3">Create Farmer Group</h3> *@
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Service">Service List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Service</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateService">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">सेवा र सुविधा थप्नुहोस</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>आर्थिक वर्ष</label>
+                                    <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कार्यक्रम </label>
+                                    <select asp-for="ProgramId" asp-items="await _Utility.GetProgramSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="ProgramId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>योजना </label>
+                                    <select asp-for="ProjectId" asp-items="await _Utility.GetProjectSelectListItems(Model.ProgramId)" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="ProjectId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कृषि योजनाको लागि मान्य समय </label>
+                                    <input asp-for="ValidTillDate" class="form-control" />
+                                    <input asp-for="ValidTillDateEng" type="hidden" class="form-control" />
+                                    <span asp-validation-for="ValidTillDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>सेवा नाम </label>
+                                    <input asp-for="ServiceName" class="form-control" />
+                                    <span asp-validation-for="ServiceName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12 p-0">
+                                        <div class="form-group">
+                                            <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                            <div class="table-responsive">
+                                                <table class="mb-0 table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr class="text-center">
+                                                            <th>थप प्रश्न</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="table-body-Partial">
+                                                        @if (Model.AgricultureServiceAdditionalViewModelList.Count > 0)
+                                                        {
+                                                            foreach (var item in Model.AgricultureServiceAdditionalViewModelList)
+                                                            {
+                                                                <partial name="_AddService.cshtml" model="@item" />
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <partial name="_AddService.cshtml" model="@new AgricultureServiceAdditionalViewModel()" />
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('ValidTillDate'), document.getElementById('ValidTillDateEng'));
+    </script>
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("AddService", "AgriculturePlanView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+    <script>
+        $('#ProgramId').change(function () {
+            $.ajax({
+                url: '@Url.Action("GetProjectByProgramId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(this).val() },
+                success: function (data) {
+                    $('#ProjectId').empty().append("<option value=''>-Please Select Project-</option>");
+                    $.each(data, function (index, item) {
+                        $('#ProjectId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        });
+    </script>
+}

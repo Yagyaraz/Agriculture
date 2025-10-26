@@ -1,0 +1,142 @@
+﻿@model MarketPriceViewModel
+@{
+    ViewData["Title"] = "MarketPriceCreate";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">बजार मुल्य थप्नुहोस </h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="MarketPriceView" asp-action="MarketPrice">बजार मुल्य थप्नुहोस </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">बजार मुल्य थप्नुहोस</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="MarketPriceCreate" method="post">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">बजार मुल्य थप्नुहोस </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>सर्भेक्षण मिति / बि.स. YYYY-MM-DD</label>
+                                    <input asp-for="Date" class="form-control" />
+                                    <input asp-for="DateEng" class="form-control" type="hidden" />
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>बजार</label>
+                                    <select asp-for="MarketId" asp-items="await _Utility.GetMarketSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="MarketId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12 p-0">
+                                        <div class="form-group">
+                                            <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                            <div class="table-responsive">
+                                                <table class="mb-0 table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr class="text-center">
+                                                            <th>नाम</th>
+                                                            <th>खुद्रा मुल्य</th>
+                                                            <th>थोक मुल्य</th>
+                                                            <th>औसत मुल्य</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="table-body-Partial">
+                                                        @if (Model.MarketPriceDetailsViewModelList.Count > 0)
+                                                        {
+                                                            foreach (var item in Model.MarketPriceDetailsViewModelList)
+                                                            {
+                                                                <partial name="_MarketPriceDetail.cshtml" model="@item" />
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <partial name="_MarketPriceDetail.cshtml" model="@new MarketPriceDetailsViewModel()" />
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('Date'), document.getElementById('DateEng'))
+    </script>
+
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("MarketPriceDetail", "MarketPriceView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+
+}

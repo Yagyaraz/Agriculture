@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="_AllCSSfiles" />
+</head>
+<body>
+    <div class="wrapper">
+       
+
+            <partial name="_SidemenuBar" />
+
+            <div class="main-panel">
+                <partial name="_Header" />
+
+            <div class="container">
+                @RenderBody()
+            </div>
+
+            <footer class="footer">
+                <partial name="_Footer" />
+            </footer>
+
+        </div>
+     
+    </div>
+    <partial name="_AllScriptFiles" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

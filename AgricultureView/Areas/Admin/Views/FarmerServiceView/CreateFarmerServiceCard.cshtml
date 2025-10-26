@@ -1,0 +1,173 @@
+﻿@model FarmerServiceCardViewModel
+@{
+    ViewData["Title"] = "CreateFarmerServiceCard";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        @* <h3 class="fw-bold mb-3">किसान सेवा कार्ड थप्नुहोस</h3> *@
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerServiceView" asp-action="FarmerServiceCard">किसान सेवा कार्ड सुची</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">किसान सेवा कार्ड थप्नुहोस</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateFarmerServiceCard">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">किसान सेवा कार्ड थप्नुहोस</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <input asp-for="FiscalYearId" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>सेवा लिएको मिति </label>
+                                    <input asp-for="ServiceDate" class="form-control NepaliDate" />
+                                    <span asp-validation-for="ServiceDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>किसान नाम</label>
+                                    <select asp-for="FarmerId" asp-items="await _Utility.GetFarmerSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="FarmerId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-header">
+                        <div class="card-title">सेवाहरू</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th style="width:15%">प्रकार</th>
+                                                    <th style="width:15%">सेवा</th>
+                                                    <th style="width:15%">इकाई</th>
+                                                    <th style="width:15%">मात्रा</th>
+                                                    <th style="width:20%">विवरण</th>
+                                                    <th style="">कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial">
+                                                @if (Model.FarmerServiceCardDetailList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.FarmerServiceCardDetailList)
+                                                    {
+                                                        <partial name="_FarmerServiceCardDetail.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_FarmerServiceCardDetail.cshtml" model="@new FarmerServiceCardDetailViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $("#FarmerId").select2({
+                placeholder: "छान्नुहोस्",
+                allowClear: true
+            });
+        });
+        </script>
+    <script>
+        var date = document.getElementsByClassName("NepaliDate");
+        date.nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            readOnlyInput: true,
+        });
+    </script>
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("FarmerServiceCardDetail", "FarmerServiceView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+    <script>
+        function UpdateType(a) {
+            debugger
+            $.ajax({
+                url: '@Url.Action("GetAgriAgriServiceId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(a).val() },
+                success: function (data) {
+                    $(a).closest('.newRow').find('.ServiceId').empty().append("<option value=''>-Please Select-</option>");
+                    $.each(data, function (index, item) {
+                        $(a).closest('.newRow').find('.ServiceId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        }
+    </script>
+}

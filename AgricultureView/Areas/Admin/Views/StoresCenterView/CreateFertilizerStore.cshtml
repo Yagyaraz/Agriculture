@@ -1,0 +1,243 @@
+﻿@model FertilizerStoreViewModel
+@{
+    ViewData["Title"] = "CreateFertilizerStore";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        @* <h3 class="fw-bold mb-3">Create Farmer Group</h3> *@
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="StoresCenterView" asp-action="FertilizerStore">खाद्य पसल</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">खाद्य पसलहरु थप्नुहोस</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        @* <form asp-action="CreateFertilizerStore" enctype="multipart/form-data"> *@
+        <form asp-action="CreateFertilizerStore">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">खाद्य पसलहरु थप्नुहोस</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>नाम </label>
+                                    <input asp-for="Name" class="form-control NepaliDate" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>इमेल </label>
+                                    <input asp-for="Email" type="email" class="form-control NepaliDate" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>फोन नम्बर </label>
+                                    <input asp-for="PhoneNo" class="form-control" />
+                                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>ठेगाना  </label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12 p-0">
+                                        <div class="form-group">
+                                            <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                            <div class="table-responsive">
+                                                <table class="mb-0 table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr class="text-center">
+                                                            <th>प्रकार</th>
+                                                            <th>उत्पादन श्रेणी</th>
+                                                            <th>उत्पादन</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="table-body-Partial">
+                                                        @if (Model.FertilizerStoreProductionViewModelList.Count > 0)
+                                                        {
+                                                            foreach (var item in Model.FertilizerStoreProductionViewModelList)
+                                                            {
+                                                                <partial name="_StorageProduction.cshtml" model="@item" />
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <partial name="_StorageProduction.cshtml" model="@new FertilizerStoreProductionViewModel()" />
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12 p-0">
+                                        <div class="form-group">
+                                            <button type="button" id="Partial1" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                            <div class="table-responsive">
+                                                <table class="mb-0 table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr class="text-center">
+                                                            <th>नाम</th>
+                                                            <th>फोन नम्बर</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="table-body-Partial1">
+                                                        @if (Model.FertilizerStoreContactPersonViewModelList.Count > 0)
+                                                        {
+                                                            foreach (var item in Model.FertilizerStoreContactPersonViewModelList)
+                                                            {
+                                                                <partial name="_ContactPerson.cshtml" model="@item" />
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <partial name="_ContactPerson.cshtml" model="@new FertilizerStoreContactPersonViewModel()" />
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       @*  <div class="row">
+                            <div class="col-md-6 col-lg-12 p-0">
+                                <div class="form-group">
+                                    <label>फाइल </label>
+                                    <input type="file" asp-for="Photo" class="form-control" accept="image/jpeg" />
+                                    <span asp-validation-for="Photo" class="text-danger"></span>
+                                </div>
+                                @if (Model.Id != 0)
+                                {
+                                    <div class="pt-1">
+                                        <img class="user-avatar" src="@(_global.BaseUrl() + Model.DisplayPhotoPath) " style="width:180px;" alt="Photo">
+                                    </div>
+                                }
+                            </div>
+                        </div> *@
+
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+
+    <script>
+        function UpdateType(a) {
+            $.ajax({
+                url: '@Url.Action("GetAgriCalendarTypeId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(a).val() },
+                success: function (data) {
+                    $(a).closest('.newRow').find('.StorCategoryId').empty().append("<option value=''>-Please Select-</option>");
+                    $.each(data, function (index, item) {
+                        $(a).closest('.newRow').find('.StorCategoryId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                    $(a).closest('.newRow').find('.ProductId').empty().append("<option value=''>-Please Select-</option>");
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        }
+
+        function UpdateCat(a) {
+            $.ajax({
+                url: '@Url.Action("GetAgriCalendarCategoryId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(a).val() },
+                success: function (data) {
+                    $(a).closest('.newRow').find('.ProductId').empty().append("<option value=''>-Please Select-</option>");
+                    $.each(data, function (index, item) {
+                        $(a).closest('.newRow').find('.ProductId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        }
+    </script>
+    <script>
+        $('#Partial').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("StorageProduction", "StoresCenterView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial1').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("ContactPerson", "StoresCenterView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial1').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+}

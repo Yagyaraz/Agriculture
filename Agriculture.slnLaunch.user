@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Agriculture\\Agriculture.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AgricultureView\\AgricultureView.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

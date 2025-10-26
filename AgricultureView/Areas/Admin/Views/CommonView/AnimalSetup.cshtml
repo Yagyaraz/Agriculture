@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AnimalSetupViewModel>
+@{
+    ViewData["Title"] = "AnimalSetup";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Office</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Animal Setup</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Animal Setup</div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            var isChecked = item.IsSelect ? "checked" : "";
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-check form-switch d-flex align-items-center">
+                                    <input class="form-check-input mt-0" type="checkbox" onchange="IsApprovedOrNot(this, '@item.Id')" data-toggle="toggle" data-on="Activate" data-off="DeActivate" data-onstyle="success" data-offstyle="danger" data-size="xs" @isChecked />
+                                    <label style="white-space:normal" class="form-check-label mb-0" for="flexSwitchCheckChecked">@item.Name</label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function IsApprovedOrNot(checkbox, id) {
+            debugger
+            var isChecked = $(checkbox).prop('checked');
+
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                url: '@Url.Action("AnimalSetupCreate")',
+                data: { id: id, isChecked: isChecked },
+                success: function (data) {
+                    debugger
+                    if (data === true) {
+                        $(checkbox).bootstrapToggle('on');
+                    } else {
+                        $(checkbox).bootstrapToggle('off');
+                    }
+                }
+            });
+        }
+    </script>
+}

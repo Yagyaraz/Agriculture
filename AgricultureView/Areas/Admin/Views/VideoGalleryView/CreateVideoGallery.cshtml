@@ -1,0 +1,191 @@
+﻿@model VideoGalleryViewModel
+@{
+    ViewData["Title"] = "CreateVideoGallery";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">भिडियो ग्यालरी थप्नुहोस</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="VideoGalleryView" asp-action="VideoGallery">भिडियो ग्यालरी सुची</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">भिडियो ग्यालरी थप्नुहोस</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateVideoGallery" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">भिडियो ग्यालरी थप्नुहोस</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>शिर्षक</label>
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>एल्बम </label>
+                                    <select asp-for="PlaylistId" asp-items="await _Utility.GetPlaylistSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="PlaylistId" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group d-flex" style="flex-direction:column;align-items:flex-start">
+                                    <label>शिर्षक</label>
+                                    <input asp-for="IsPublised" type="checkbox" class="ms-3" />
+                                    <span asp-validation-for="IsPublised" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 p-0">
+                                <div class="form-group d-flex" style="flex-direction:column;align-items:flex-start">
+                                    <label>विवरण </label>
+                                    <textarea asp-for="Description" class="form-control"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label> भिडियो(mp4 format)  </label>
+                                    <input type="file" id="videoInput" asp-for="FilePoto" class="form-control" accept="video/mp4" />
+                                    <span asp-validation-for="FilePoto" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-lg-8 p-0">
+                                @if (Model.Id != 0)
+                                {
+                                    <div class="pt-1">
+                                        <video id="videoPreview" controls>
+                                            <source src="@(_global.BaseUrl() + Model.FilePath)" alt="User Avatar" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pt-1">
+                                        <video id="videoPreview" controls style="display: none;">
+                                            <source id="videoSource" type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="row text-center p-5">
+                            <h3> <strong> वा </strong> </h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label>भिडियो यूआरएल</label>
+                                    <input asp-for="YoutubeURL" class="form-control" />
+                                    <span asp-validation-for="YoutubeURL" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-8 col-lg-8 p-0">
+
+                                <div id="video-preview" class="embed-responsive embed-responsive-16by9" style="display:none;">
+                                    <iframe style="width:32rem;height:16rem" id="video-iframe" class="embed-responsive-item" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            debugger
+            $('#YoutubeURL').on('input', function () {
+                var url = $(this).val();
+                var videoId = extractVideoId(url);
+
+                if (videoId) {
+                    var embedUrl = 'https://www.youtube.com/embed/' + videoId;
+                    $('#video-iframe').attr('src', embedUrl);
+                    $('#video-preview').show();
+                } else {
+                    $('#video-preview').hide();
+                    $('#video-iframe').attr('src', '');
+                }
+            });
+            if (@Model.Id > 0) {
+                var url = $('#YoutubeURL').val();
+                var videoId = extractVideoId(url);
+
+                if (videoId) {
+                    var embedUrl = 'https://www.youtube.com/embed/' + videoId;
+                    $('#video-iframe').attr('src', embedUrl);
+                    $('#video-preview').show();
+                } else {
+                    $('#video-preview').hide();
+                    $('#video-iframe').attr('src', '');
+                }
+
+            }
+
+            function extractVideoId(url) {
+                var regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+                var match = url.match(regex);
+                return match ? match[1] : null;
+            }        
+        });
+    </script>
+    <script>
+            document.getElementById('videoInput').addEventListener('change', function (event) {
+                debugger
+                const file = event.target.files[0];
+                if (file) {
+                    const videoPreview = document.getElementById('videoPreview');
+                    const videoSource = document.getElementById('videoSource');
+                    videoSource.src = URL.createObjectURL(file);
+                    videoPreview.style.display = 'block';
+                    videoPreview.load();
+                }
+            });
+      
+       
+    </script>
+}

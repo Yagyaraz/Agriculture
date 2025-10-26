@@ -1,0 +1,49 @@
+﻿ @model IEnumerable<FarmerViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <a asp-action="Create" class="fw-bold mb-3 btn btn-success"><i class="fa fa-plus"></i>Create New</a>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Farmer List</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="basic-datatables" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>क्र.सं.</th>
+                                    <th>पुरा नाम</th>
+                                    <th>लिङ्ग</th>
+                                    <th>प्रमाणपत्र नम्बर</th>
+                                    <th>फोन नं.</th>
+                                    <th>कार्य</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@string.Format("{0}", Model.ToList().IndexOf(item) + 1)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                                        <td>@* @Html.DisplayFor(modelItem => item.) *@</td>
+                                        <td>@Html.DisplayFor(modelItem => item.PhoneNo)</td>
+                                        <td>
+                                            <a asp-action="Create" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+﻿@using HtmlHelpers.BeginCollectionItemCore
+@model AgriCalendarDetailViewModel
+@{
+    ViewData["Title"] = "_AgriCalendarDetail";
+}
+
+<div class="NewRow">
+    @using (Html.BeginCollectionItem("AgriCalendarDetailViewModelList"))
+    {
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="AgriCalendarId" type="hidden" />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body row">
+                                        <div class="form-group col-lg-4 col-sm-12">
+                                            <label>भेग</label>
+                                            <select asp-for="EcologicalAreaId" asp-items="await _Utility.GetEcologicalAreaSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="EcologicalAreaId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-sm-12">
+                                            <label>उचाई बाट </label>
+                                            <input asp-for="ElevationFrom" class="form-control" />
+                                            <span asp-validation-for="ElevationFrom" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-sm-12">
+                                            <label>उचाई सम्म</label>
+                                            <input asp-for="ElevationTo" class="form-control" />
+                                            <span asp-validation-for="ElevationTo" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="col-md-6 col-lg-6">
+                                <!-- ropni samaya -->
+                                <div class="card">
+                                    <div class="card-body row">
+                                        <div class="card-sub p-0 m-0 col-md-12">
+                                            <h6 class="text-center">रोप्ने समय <span class="text-danger">*</span></h6>
+                                        </div>
+
+                                        <!-- Headers for two columns -->
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <h6 class="text-center">सुरु</h6>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <h6 class="text-center">अन्तिम</h6>
+                                        </div>
+
+                                        <!-- Dropdown for महिना and हप्ता -->
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="monthStart">महिना <span class="text-danger">*</span></label>
+                                            <select asp-for="SowingStartMonthId" asp-items="await _Utility.GetMonthSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="SowingStartMonthId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="monthEnd">महिना <span class="text-danger">*</span></label>
+                                            <select asp-for="SowingEndMonthId" asp-items="await _Utility.GetMonthSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="SowingEndMonthId" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="weekStart">हप्ता <span class="text-danger">*</span></label>
+                                            <select asp-for="SowingStartWeekId" asp-items="await _Utility.GetAgriCalendarWeekSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="SowingStartWeekId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="weekEnd">हप्ता <span class="text-danger">*</span></label>
+                                            <select asp-for="SowingEndWeekId" asp-items="await _Utility.GetAgriCalendarWeekSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="SowingEndWeekId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6">
+                                <!-- ropni samaya -->
+                                <div class="card">
+                                    <div class="card-body row">
+                                        <div class="card-sub p-0 m-0 col-md-12">
+                                            <h6 class="text-center">रोप्ने समय <span class="text-danger">*</span></h6>
+                                        </div>
+
+                                        <!-- Headers for two columns -->
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <h6 class="text-center">सुरु</h6>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <h6 class="text-center">अन्तिम</h6>
+                                        </div>
+
+                                        <!-- Dropdown for महिना and हप्ता -->
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="monthStart">महिना <span class="text-danger">*</span></label>
+                                            <select asp-for="HarvestStartMonthId" asp-items="await _Utility.GetMonthSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="HarvestStartMonthId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="monthEnd">महिना <span class="text-danger">*</span></label>
+                                            <select asp-for="HarvestEndMonthId" asp-items="await _Utility.GetMonthSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="HarvestEndMonthId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="weekStart">हप्ता <span class="text-danger">*</span></label>
+                                            <select asp-for="HarvestStartWeekId" asp-items="await _Utility.GetAgriCalendarWeekSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="HarvestStartWeekId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="weekEnd">हप्ता <span class="text-danger">*</span></label>
+                                            <select asp-for="HarvestEndWeekId" asp-items="await _Utility.GetAgriCalendarWeekSelectListItems()" class="form-select form-control">
+                                                <option>--Select--</option>
+                                            </select>
+                                            <span asp-validation-for="HarvestEndWeekId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-danger" onclick="RemoveDiv(this, event)" style="width: 100%; padding: 6px;"><i class="fa fa-trash-alt"></i> Remove</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,223 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #8FB58D;
+}
+
+.main{
+    padding-left: 150px!important;
+    padding-right: 100px!important;
+}
+
+.logo img {
+    border-radius: 50px;
+}
+
+.mt50{
+    margin-top: 80px;
+    margin-bottom: 100px;
+}
+
+html h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    width: 80%;
+}
+
+
+.mt50 p{
+    margin-top: 25px;
+    font-size: 1.2rem;
+}
+
+.button a{
+    background-color: #4e894c;
+    color: white;
+}
+
+.button a:hover{
+    background-color: green;
+    color: white;
+}
+
+.krisi-update-photo img{
+    width: 100%;
+    height: 100%;
+}
+
+html h2{
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.krisi-update{
+    display: flex;
+}
+
+.krisi-update .box1{
+    background-color: #7aa978;
+    border: 1px solid #4e894c;
+    border-radius: 8px;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.krisi-update .box-desc{
+    margin-left: 20px;
+}
+
+.mt-10{
+    line-height: 35px;
+}
+
+.main-feature{
+    padding-left: 100px!important;
+    padding-right: 100px!important;
+}
+
+.krishi-feature{
+    padding: 50px!important;
+    background-color: #4e894c;
+}
+
+.feature-desc{
+    margin-top: 20px;
+}
+
+.feature-desc h3{
+    font-size: 1.2rem!important;
+    font-weight: bold;
+}
+
+footer{
+    background-color: #4e894c;
+    height: 100px;
+}
+
+footer .bg-footer p{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+
+@media screen and (max-width: 600px){
+    .main{
+        padding-left: 20px!important;
+        padding-right: 20px!important;
+    }
+    
+    .mt50{
+        margin-top: 80px;
+    }
+
+    html h1{
+        font-size: 2rem;
+        font-weight: 700;
+        width: 100%;
+    }
+
+    html h2{
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+}
+
+
+
+
+
+
+/* <header class="hero">
+        <div class="d-flex justify-content-between mt-3">
+            <div class="logo">
+                <img src="ag-logo.webp" width="80" height="80">
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary">login</button>
+                <button type="button" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+        <h1>Empowering Farmers with Smart Agriculture Solutions</h1>
+        <p>Your one-stop platform for farming guidance, market prices, government schemes, and more.</p>
+    </header>
+    
+    <section class="update">
+        <h2>Stay Updated with Dynamic Krishi</h2>
+        <ul>
+            <li><strong>Weather Forecast:</strong> Get real-time updates and plan your activities.</li>
+            <li><strong>Market Prices:</strong> Track crop prices and make informed decisions.</li>
+            <li><strong>Government Schemes:</strong> Access relevant schemes and maximize benefits.</li>
+            <li><strong>Training Programs:</strong> Enhance your knowledge with expert-led webinars.</li>
+        </ul>
+    </section>
+    
+    <section class="features">
+        <h2>Explore Key Features & Services</h2>
+        <div class="feature-grid">
+            <div><strong>Farming Guidelines</strong> - Best practices for improved yields.</div>
+            <div><strong>Cooperative Farming</strong> - Collaborate for better resource management.</div>
+            <div><strong>Financial Assistance</strong> - Find schemes and loans for your needs.</div>
+            <div><strong>Market Access</strong> - Connect with buyers and sell produce.</div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2>Success Stories & Testimonials</h2>
+        <div class="testimonial-grid">
+            <div><strong>Ram Bahadur, Farmer</strong> - "This portal helped me double my crop yield!"</div>
+            <div><strong>Sita Devi, Farmer</strong> - "I now get the best market price for my crops!"</div>
+            <div><strong>Krishna Sharma, Farmer</strong> - "The government scheme information is invaluable."</div>
+        </div>
+    </section>
+    
+    <section class="news">
+        <h2>Stay Informed with News & Blogs</h2>
+        <ul>
+            <li>New Subsidy Scheme Announced</li>
+            <li>Improved Irrigation Techniques</li>
+        </ul>
+        <ul>
+            <li>5 Tips for Sustainable Farming</li>
+            <li>Organic Farming: A Detailed Guide</li>
+        </ul>
+    </section>
+    
+    <section class="contact">
+        <h2>Contact Us for Support</h2>
+        <ul>
+            <li><strong>Contact Form:</strong> Send us your questions directly.</li>
+            <li><strong>Live Chat:</strong> Get instant support from our experts.</li>
+            <li><strong>Helpline Number:</strong> Call us for immediate assistance.</li>
+            <li><strong>Email:</strong> Reach out for detailed inquiries.</li>
+        </ul>
+    </section>
+    
+    <section class="vision">
+        <h2>Learn About Our Vision</h2>
+        <ul>
+            <li><strong>Our Mission:</strong> Empower farmers with knowledge and tools.</li>
+            <li><strong>Our Vision:</strong> Create a sustainable agricultural ecosystem.</li>
+            <li><strong>Our Values:</strong> Innovation, collaboration, and sustainability.</li>
+        </ul>
+    </section>
+    
+    <section class="download">
+        <h2>Download Our App</h2>
+        <p>Google Play | Apple App Store</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Smart Agriculture. All rights reserved.</p>
+    </footer> */
+
+

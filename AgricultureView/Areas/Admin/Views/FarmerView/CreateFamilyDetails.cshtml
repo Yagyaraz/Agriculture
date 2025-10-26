@@ -1,0 +1,271 @@
+﻿@model FamilyDetailssViewModel
+@{
+    ViewData["Title"] = "CreateFamilyDetails";
+}
+<style>
+    .table > tbody > tr > td, .table > tbody > tr > th {
+        padding: 4px 8px !important
+    }
+
+    .table thead th {
+        padding: 4px 8px !important
+    }
+
+</style>
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Family Detail</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Family Detail List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">पारिवारिक विवरण</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateFamilyDetails">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">पारिवारिक विवरण</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <input asp-for="FarmerId" class="form-control" type="hidden" />
+                            <div class="col-md-12 col-sm-12 col-12 row">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>आर्थिक वर्ष </label>
+                                        <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                            <option>--Select--</option>
+                                        </select>
+                                        <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row ps-5 pt-3">
+                                <!-- Card A -->
+                                <div class="col-6">
+                                    <h5 class="mb-2" style="text-align:center;">कुल परिवार सदस्य </h5>
+                                    <div class="card d-flex" style="flex-direction: row;">
+                                        <div class="p-0">
+                                            <div class="form-group">
+                                                <label>पुरुष</label>
+                                                <input asp-for="TotalMale" min="0" class="form-control" onchange="CalcToal()" />
+                                                <span asp-validation-for="TotalMale" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="p-0">
+                                            <div class="form-group">
+                                                <label>महिला</label>
+                                                <input asp-for="TotalFemale" min="0" class="form-control" onchange="CalcToal()" />
+                                                <span asp-validation-for="TotalFemale" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="p-0">
+                                            <div class="form-group">
+                                                <label>कुल</label>
+                                                <input asp-for="TotalMember" min="0" class="form-control" readonly />
+                                                <span asp-validation-for="TotalMember" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card B -->
+                                <div class="col-6">
+                                    <h5 class="mb-2" style="text-align:center;">कृषि कार्यमा संलग्न परिवार सदस्य</h5>
+                                    <div class="card d-flex" style="flex-direction: row;">
+                                        <div class="p-0">
+                                            <div class="form-group">
+                                                <label>पुरुष</label>
+                                                <input asp-for="TotalMaleInAgri" min="0" class="form-control" onchange="CalcTotal()" />
+                                                <span asp-validation-for="TotalMaleInAgri" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="p-0">
+                                            <div class="form-group">
+                                                <label>महिला</label>
+                                                <input asp-for="TotalFemaleInAgri" min="0" class="form-control" onchange="CalcTotal()" />
+                                                <span asp-validation-for="TotalFemaleInAgri" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="p-0">
+                                            <div class="form-group">
+                                                <label>कुल</label>
+                                                <input asp-for="TotalMemberInAgri" min="0" class="form-control" readonly />
+                                                <span asp-validation-for="TotalMemberInAgri" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @* <div class="row ps-5 pt-3">
+                                <div class="card col-6 d-flex" style="flex-direction:row;">
+                                  
+                                    <div class="p-0">
+                                        <div class="form-group">
+                                            <label>पुरुष</label>
+                                            <input asp-for="TotalMale" min="0" class="form-control" onchange="CalcToal()" />
+                                            <span asp-validation-for="TotalMale" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="p-0">
+                                        <div class="form-group">
+                                            <label>महिला</label>
+                                            <input asp-for="TotalFemale" min="0" class="form-control" onchange="CalcToal()" />
+                                            <span asp-validation-for="TotalFemale" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="p-0">
+                                        <div class="form-group">
+                                            <label>कुल</label>
+                                            <input asp-for="TotalMember" min="0" class="form-control" readonly />
+                                            <span asp-validation-for="TotalMember" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card col-6 d-flex" style="flex-direction:row;">
+                                   
+                                    <div class="p-0">
+                                        <div class="form-group">
+                                            <label>पुरुष</label>
+                                            <input asp-for="TotalMaleInAgri" min="0" class="form-control" onchange="CalcTotal()" />
+                                            <span asp-validation-for="TotalMaleInAgri" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="p-0">
+                                        <div class="form-group">
+                                            <label>महिला</label>
+                                            <input asp-for="TotalFemaleInAgri" min="0" class="form-control" onchange="CalcTotal()" />
+                                            <span asp-validation-for="TotalFemaleInAgri" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="p-0">
+                                        <div class="form-group">
+                                            <label>कुल</label>
+                                            <input asp-for="TotalMemberInAgri" min="0" class="form-control" readonly />
+                                            <span asp-validation-for="TotalMemberInAgri" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> *@
+                            <div class="col-md-12 col-sm-12 col-12 p-0">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span>कृषि कार्यमा संलग्न परिवार सदस्यहरुको विवरण</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>कृषकसँगको सम्बन्ध</th>
+                                                    <th>पुरा नाम</th>
+                                                    <th style="width:10%">उमेर</th>
+                                                    <th>लिङ्ग</th>
+                                                    <th style="width: 14%;">काम गर्ने क्षेत्र</th>
+                                                    <th style="width:12%">नागरिकता<br />नम्बर</th>
+                                                    <th>फोन नम्बर</th>
+                                                    <th style="">कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial">
+                                                @if (Model.FamilyDetailInvolveList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.FamilyDetailInvolveList)
+                                                    {
+                                                        <partial name="_AgricultureInvolvedDetail.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_AgricultureInvolvedDetail.cshtml" model="@new FamilyDetailsInvolvedInAgriViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कृषि पेशा वा व्यावसायमा संलग्न वर्ष</label>
+                                    <input asp-for="TotalInvolvedinAgi" min="0" class="form-control" />
+                                    <span asp-validation-for="TotalInvolvedinAgi" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function CalcToal() {
+            var TotalMale = parseInt($("#TotalMale").val() || 0);
+            var TotalFemale = parseInt($("#TotalFemale").val() || 0);
+            var total = TotalMale + TotalFemale;
+            $("#TotalMember").val(total);
+        }
+        function CalcTotal() {
+            var TotalMaleInAgri = parseInt($("#TotalMaleInAgri").val() || 0);
+            var TotalFemaleInAgri = parseInt($("#TotalFemaleInAgri").val() || 0);
+            var total = TotalMaleInAgri + TotalFemaleInAgri;
+            $("#TotalMemberInAgri").val(total);
+        }
+    </script>
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("AgriInvolved", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+
+}

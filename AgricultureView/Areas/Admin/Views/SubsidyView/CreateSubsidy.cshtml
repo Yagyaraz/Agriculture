@@ -1,0 +1,208 @@
+﻿@model SubsidyViewModel
+@{
+    ViewData["Title"] = "CreateSubsidy";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">अनुदान थप्नुहोस</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="SubsidyView" asp-action="Subsidy">Subsidy List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Subsidy</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateSubsidy">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">अनुदान </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>आर्थिक वर्ष</label>
+                                    <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>कार्यक्रम</label>
+                                    <select asp-for="ProgramId" asp-items="await _Utility.GetProgramSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="ProgramId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>योजना</label>
+                                    <select asp-for="ProjectId" asp-items="await _Utility.GetProjectSelectListItems(Model.ProgramId)" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="ProjectId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>सुरु मिति</label>
+                                    <input asp-for="StartDate" class="form-control" />
+                                    <input asp-for="StartDateEng" class="form-control" type="hidden" />
+                                    <span asp-validation-for= "StartDate" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>अन्तिम मिति</label>
+                                    <input asp-for="EndDate" class="form-control" />
+                                    <input asp-for="EndDateEng" class="form-control" type="hidden"/>
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">अनुदान विवरण</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>अनुदान श्रेणी</th>
+                                                    <th>निम्न अनुदान श्रेणीको नाम</th>
+                                                    <th>अनुदान संख्या</th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial">
+                                                @if (Model.SubsidyDetailViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.SubsidyDetailViewModelList)
+                                                    {
+                                                        <partial name="_SubsidyDetail.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_SubsidyDetail.cshtml" model="@new SubsidyDetailViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('StartDate'), document.getElementById('StartDateEng'))
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('EndDate'), document.getElementById('EndDateEng'))
+    </script>
+    <script>
+        $('#ProgramId').change(function () {
+            $.ajax({
+                url: '@Url.Action("GetProjectByProgramId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(this).val() },
+                success: function (data) {
+                    $('#ProjectId').empty().append("<option value=''>-Please Select Project-</option>");
+                    $.each(data, function (index, item) {
+                        $('#ProjectId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('#Partial').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("SubsidyDetail", "SubsidyView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+    <script>
+        function UpdateSubCat(a) {
+            $.ajax({
+                url: '@Url.Action("GetCatId", "AjaxMVC", new { area = "" })',
+                type: 'GET',
+                data: { id: $(a).val() },
+                success: function (data) {
+                    debugger
+                    $(a).closest('.new').find('.SubCategoryId').empty().append("<option value=''>-छान्नुहोस्-</option>");
+                    $.each(data, function (index, item) {
+                        $(a).closest('.new').find('.SubCategoryId').append(`<option value="${item.value}">${item.text}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('error in calling ajax !!');
+                }
+            });
+        }
+    </script>
+}

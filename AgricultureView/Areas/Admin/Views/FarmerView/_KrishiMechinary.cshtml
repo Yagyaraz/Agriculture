@@ -1,0 +1,33 @@
+﻿@using HtmlHelpers.BeginCollectionItemCore
+@model KrishiMechinaryInfromationViewModel
+@{
+    ViewData["Title"] = "_KrishiMechinary";
+}
+
+<tr class="new">
+    @using (Html.BeginCollectionItem("KrishiMechinaryInfromationViewModelList"))
+    {
+        <td>
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="AnimalHusbandryId" type="hidden" />
+            <input asp-for="MechinaryName" class="form-control" />
+            <span asp-validation-for="MechinaryName" class="text-danger"></span>
+        </td>
+        <td>
+            <input asp-for="Swamitya" class="form-control" />
+            <span asp-validation-for="Swamitya" class="text-danger"></span>
+        </td>
+        <td>
+            <input asp-for="Potential" class="form-control" />
+            <span asp-validation-for="Potential" class="text-danger"></span>
+        </td>
+
+        <td>
+            <input asp-for="TotalCount" class="form-control" />
+            <span asp-validation-for="TotalCount" class="text-danger"></span>
+        </td>
+        <td>
+            <button type="button" onclick="DeleteRow(this)" class="row-button btn btn-sm btn-danger btn-delete"><i class="fa fa-minus"></i></button>
+        </td>
+    }
+</tr>

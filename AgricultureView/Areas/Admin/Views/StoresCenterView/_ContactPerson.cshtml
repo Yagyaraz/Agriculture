@@ -1,0 +1,24 @@
+﻿@using HtmlHelpers.BeginCollectionItemCore
+@model FertilizerStoreContactPersonViewModel
+@{
+    ViewData["Title"] = "_ContactPerson";
+}
+
+<tr class="new">
+    @using (Html.BeginCollectionItem("FertilizerStoreContactPersonViewModelList"))
+    {
+        <td>
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="FertilizerStoreId" type="hidden" />
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </td>
+        <td>
+            <input asp-for="PhoneNo" class="form-control" />
+            <span asp-validation-for="PhoneNo" class="text-danger"></span>
+        </td>
+        <td>
+            <button type="button" onclick="DeleteRow(this)" class="row-button btn btn-sm btn-danger btn-delete"><i class="fa fa-minus"></i></button>
+        </td>
+    }
+</tr>

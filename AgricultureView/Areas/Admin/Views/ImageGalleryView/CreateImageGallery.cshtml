@@ -1,0 +1,96 @@
+﻿@model ImageGalleryViewModel
+@{
+    ViewData["Title"] = "CreateImageGallery";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">फोटो ग्यालरी थप्नुहोस</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="ImageGalleryView" asp-action="ImageGallery">फोटो ग्यालरी सुची</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">फोटो ग्यालरी थप्नुहोस</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateImageGallery" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">फोटो ग्यालरी थप्नुहोस</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>शिर्षक</label>
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>एल्बम </label>
+                                    <select asp-for="AlbumId" asp-items="await _Utility.GetAlbumSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="AlbumId" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>शिर्षक</label>
+                                    <input asp-for="IsPublised" type="checkbox" />
+                                    <span asp-validation-for="IsPublised" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label> फोटो  </label>
+                                    <input type="file" asp-for="FilePoto" class="form-control" accept="image/jpeg" />
+                                    <span asp-validation-for="FilePoto" class="text-danger"></span>
+                                </div>
+                                @if (Model.Id != 0)
+                                {
+                                    <div class="pt-1">
+                                        <img class="user-avatar" src="@(_global.BaseUrl() + Model.FilePath) " style="width:180px;" alt="Photo">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

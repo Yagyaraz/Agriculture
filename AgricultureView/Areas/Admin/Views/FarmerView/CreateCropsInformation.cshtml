@@ -1,0 +1,366 @@
+﻿@model CropsInformationViewModel
+@{
+    ViewData["Title"] = "CreateCropsInformation";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Create Crops Information</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Crops Information List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">अन्नबालीको जानकारी</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateCropsInformation">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">अन्नबालीको जानकारी</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <input asp-for="FarmerId" class="form-control" type="hidden" />
+                            <div class="col-md-12 col-sm-12 col-12 row">
+                                <div class="col-md-6 col-lg-3 p-0">
+                                    <div class="form-group">
+                                        <label>आर्थिक वर्ष</label>
+                                        <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                            <option>--Select--</option>
+                                        </select>
+                                        <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="form-group">
+                                    <button type="button" id="Partial" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span> खाधन्न बाली, तरकारि बाली, दलहनबाली,औधोगीक बाली, मसलाबाली, पुष्पखेती</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>बालीको नाम</th>
+                                                    <th>क्षेत्रफल</th>
+                                                    <th>उत्पादन परिमाण (के.जि) मा </th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial">
+                                                @if (Model.EatableCropsViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.EatableCropsViewModelList)
+                                                    {
+                                                        <partial name="_EatableCrops.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_EatableCrops.cshtml" model="@new EatableCropsViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="form-group">
+                                    <button type="button" id="Partial1" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span>फलफुल बाली</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>बालीको नाम</th>
+                                                    <th>बोटको संख्या</th>
+                                                    <th>क्षेत्रफल</th>
+                                                    <th>उत्पादन परिमाण (के.जि) मा </th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial1">
+                                                @if (Model.FruitCropsViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.FruitCropsViewModelList)
+                                                    {
+                                                        <partial name="_FruitCrops.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_FruitCrops.cshtml" model="@new FruitCropsViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="form-group">
+                                    <button type="button" id="Partial2" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span>बिउ / बेर्ना / नर्सरी</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>बालीको नाम</th>
+                                                    <th>जात</th>
+                                                    <th>क्षेत्रफल</th>
+                                                    <th>उत्पादन परिमाण (के.जि) मा </th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial2">
+                                                @if (Model.SeedCropsViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.SeedCropsViewModelList)
+                                                    {
+                                                        <partial name="_SeedCrops.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_SeedCrops.cshtml" model="@new SeedCropsViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="form-group">
+                                    <button type="button" id="Partial3" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span>च्याउ</span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>च्याउको जात</th>
+                                                    <th>टनेल संख्या</th>
+                                                    <th>क्षेत्रफल(वर्ग मिटर मा)</th>
+                                                    <th>उत्पादन परिमाण (के.जि) मा </th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial3">
+                                                @if (Model.MushroomCrposViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.MushroomCrposViewModelList)
+                                                    {
+                                                        <partial name="_MushroomCrpos.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_MushroomCrpos.cshtml" model="@new MushroomCrposViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="form-group">
+                                    <button type="button" id="Partial4" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span>रेशम </span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>किम्बु लगाईएको क्षेत्रफल(वर्ग मिटर मा)</th>
+                                                    <th>रेशम कीराको जात </th>
+                                                    <th>किरा संख्या</th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial4">
+                                                @if (Model.SilkCropsViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.SilkCropsViewModelList)
+                                                    {
+                                                        <partial name="_SilkCrops.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_SilkCrops.cshtml" model="@new SilkCropsViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="form-group">
+                                    <button type="button" id="Partial5" class="btn btn-add pull-right" style="background-color:green; color: #fff; padding: 7px 12px; margin-top: -36px; z-index: 99999;   margin-bottom: 5px;"><i class="fa fa-plus"> &nbsp; थप्नुहोस्</i></button>
+
+                                    <div class="table-responsive">
+                                        <span>मौरी </span>
+                                        <table class="mb-0 table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>मौरीको जात</th>
+                                                    <th>घारको संख्या</th>
+                                                    <th>उत्पादन परिमाण (के.जि) मा</th>
+                                                    <th>कार्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body-Partial5">
+                                                @if (Model.BeeCropsViewModelList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.BeeCropsViewModelList)
+                                                    {
+                                                        <partial name="_BeeCrops.cshtml" model="@item" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <partial name="_BeeCrops.cshtml" model="@new BeeCropsViewModel()" />
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#Partial').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("EatableCrops", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial1').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("FruitCrops", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial1').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial2').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("SeedCrops", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial2').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial3').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("MushroomCrpos", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial3').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial4').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("SilkCrops", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial4').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#Partial5').on('click', function () {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("BeeCrops", "FarmerView")',
+                success: function (result) {
+                    if (result) {
+                        $('#table-body-Partial5').append(result);
+                    }
+                },
+                error: function () {
+                    alert('error in calling ajax !!')
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function DeleteRow(e) {
+            var confirmValue = confirm("Are you sure to delete ?");
+            if (confirmValue) {
+                $(e).closest('tr').remove();
+            }
+        }
+    </script>
+}
