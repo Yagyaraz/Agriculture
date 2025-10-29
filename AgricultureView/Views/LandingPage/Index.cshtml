@@ -198,6 +198,343 @@
         else
         {
             <p>कृषि सेवा  उपलब्ध छैन</p>
+        }         
+        <!-- AGRI CALENDAR TYPES -->
+        <h2 class="mb-3 mt-5">Agri Calendar Types</h2>
+        @if (Model.AgriCalendarTypes != null && Model.AgriCalendarTypes.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Type Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.AgriCalendarTypes.Count; i++)
+                    {
+                        var item = Model.AgriCalendarTypes[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.NameEng</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No calendar types found.</p>
+        }
+
+        <!-- AGRI CALENDAR CATEGORIES -->
+        <h2 class="mb-3 mt-5">Agri Calendar Categories</h2>
+        @if (Model.AgriCalendarCategories != null && Model.AgriCalendarCategories.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Category Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.AgriCalendarCategories.Count; i++)
+                    {
+                        var item = Model.AgriCalendarCategories[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.NameEng</td>
+                            <td>@item.AgriCalendarType</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No calendar categories found.</p>
+        }
+
+        <!-- AGRI CALENDAR PRODUCTS -->
+        <h2 class="mb-3 mt-5">Agri Calendar Products</h2>
+        @if (Model.AgriCalendarProducts != null && Model.AgriCalendarProducts.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.AgriCalendarProducts.Count; i++)
+                    {
+                        var item = Model.AgriCalendarProducts[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.AgriCalendarCategory</td>
+                            <td>@item.AgriCalendarType</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No calendar products found.</p>
+        }
+
+        <!-- AGRI CALENDAR -->
+        <h2 class="mb-3 mt-5">Agri Calendar</h2>
+        @if (Model.AgriCalendars != null && Model.AgriCalendars.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Product Name</th>
+                        <th>Type Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.AgriCalendars.Count; i++)
+                    {
+                        var item = Model.AgriCalendars[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.ProductName</td>
+                            <td>@item.TypeName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No agri calendar items found.</p>
+        }
+
+        <!-- LIBRARIES -->
+        <h2 class="mb-3 mt-5">Library List</h2>
+        @if (Model.Libraries != null && Model.Libraries.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Libraries.Count; i++)
+                    {
+                        var item = Model.Libraries[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No libraries found.</p>
+        }
+
+        <!-- MARKETS -->
+        <h2 class="mb-3 mt-5">Market List</h2>
+        @if (Model.Markets != null && Model.Markets.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Market Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Markets.Count; i++)
+                    {
+                        var item = Model.Markets[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No markets found.</p>
+        }
+
+        <!-- MARKET PRICES -->
+        <h2 class="mb-3 mt-5">Market Prices</h2>
+        @if (Model.MarketPrices != null && Model.MarketPrices.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Market</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.MarketPrices.Count; i++)
+                    {
+                        var item = Model.MarketPrices[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.MarketName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No market prices found.</p>
+        }
+
+        <!-- TRAININGS -->
+        <h2 class="mb-3 mt-5">Training List</h2>
+        @if (Model.Trainings != null && Model.Trainings.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Training Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Trainings.Count; i++)
+                    {
+                        var item = Model.Trainings[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.Title</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No trainings found.</p>
+        }
+
+        <!-- VIDEO PLAYLIST -->
+        <h2 class="mb-3 mt-5">Video Playlists</h2>
+        @if (Model.Playlists != null && Model.Playlists.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Playlist Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Playlists.Count; i++)
+                    {
+                        var item = Model.Playlists[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.Publised</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No playlists found.</p>
+        }
+
+        <!-- VIDEO GALLERIES -->
+        <h2 class="mb-3 mt-5">Video Galleries</h2>
+        @if (Model.VideoGalleries != null && Model.VideoGalleries.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Video URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.VideoGalleries.Count; i++)
+                    {
+                        var item = Model.VideoGalleries[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.Title</td>
+                            <td>@item.FilePath</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No videos found.</p>
+        }
+
+        <!-- IMAGE GALLERIES -->
+        <h2 class="mb-3 mt-5">Image Galleries</h2>
+        @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.ImageGalleries.Count; i++)
+                    {
+                        var item = Model.ImageGalleries[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@item.Title</td>
+                            <td><img src="@item.FilePath" width="80" /></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+            <p>No images found.</p>
         }
 
     </section>

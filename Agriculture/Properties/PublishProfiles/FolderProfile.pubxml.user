@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\WorkFromHome Publish\Agri\Agri3-6-2025\AgriApi</_PublishTargetUrl>
-    <History>True|2025-03-06T06:20:51.2144357Z||;True|2025-03-02T13:03:19.5008141+05:45||;True|2025-02-12T14:43:11.5529779+05:45||;True|2024-09-10T12:21:54.2408348+05:45||;True|2024-09-08T13:25:51.1060319+05:45||;True|2024-09-06T18:03:07.4517432+05:45||;True|2024-09-06T11:15:01.5843157+05:45||;False|2024-09-06T11:14:05.1836863+05:45||;True|2024-08-18T10:51:08.8924105+05:45||;</History>
+    <_PublishTargetUrl>F:\Softeh Projects\AgriculturePublish</_PublishTargetUrl>
+    <History>True|2025-10-27T02:32:31.8167541Z||;True|2025-03-06T12:05:51.2144357+05:45||;True|2025-03-02T13:03:19.5008141+05:45||;True|2025-02-12T14:43:11.5529779+05:45||;True|2024-09-10T12:21:54.2408348+05:45||;True|2024-09-08T13:25:51.1060319+05:45||;True|2024-09-06T18:03:07.4517432+05:45||;True|2024-09-06T11:15:01.5843157+05:45||;False|2024-09-06T11:14:05.1836863+05:45||;True|2024-08-18T10:51:08.8924105+05:45||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
