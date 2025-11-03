@@ -168,7 +168,7 @@ namespace AgricultureView.Controllers
             {
                 model.VideoGalleries = JsonConvert.DeserializeObject<List<VideoGalleryViewModel>>(videoGalleryResponse.Data.ToString());
             }
-
+            var test = model;
             return View(model);
         }
     }

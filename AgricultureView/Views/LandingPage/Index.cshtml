@@ -1,586 +1,1005 @@
-﻿@model AgricultureView.Areas.Admin.Models.LandingPageViewModel
-@{
+﻿@{
     Layout = null;
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <title>AgriConnect – Empowering Farmers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishi</title>
-    <link href="~/assets/css/landingpagestyle.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="keywords" content="agriculture, farming, crop advisory, market linkage, farmer community">
+    <meta name="description" content="AgriConnect – One-stop platform for modern farming solutions.">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Owl Carousel & Lightbox -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #28a745;
+            --secondary: #20c997;
+            --dark: #155724;
+            --light: #f8f9fa;
+            --text: #212529;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .bg-primary {
+            background: var(--primary) !important;
+            color: #fff;
+        }
+
+        .text-primary {
+            color: var(--primary) !important;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background: var(--dark);
+                transform: translateY(-2px);
+            }
+
+        .navbar {
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(8px);
+            transition: all .3s ease;
+        }
+
+            .navbar.scrolled {
+                background: #fff;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
+                padding: 0.5rem 0;
+            }
+
+
+        
+        /* Hero Section Height */
+        .home {
+            height: 90vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header-carousel-item {
+            height: 90vh;
+            position: relative;
+        }
+
+            .header-carousel-item img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+        /* Carousel Caption Overlay */
+        .carousel-caption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgb(0 0 0 / 15%);
+            z-index: 2;
+        }
+
+        /* Owl Carousel Buttons */
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.356) !important;
+            color: #198754 !important;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 22px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+            .owl-prev:hover,
+            .owl-next:hover {
+                background: #198754 !important;
+                color: #fff !important;
+            }
+
+        .owl-prev {
+            left: 25px;
+        }
+
+        .owl-next {
+            right: 25px;
+        }
+
+        /* Ensure buttons are above caption overlay */
+        .owl-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+        }
+
+            .owl-nav button {
+                pointer-events: all;
+            }
+
+        .service-item,
+        .project-item,
+        .blog-item,
+        .team-item,
+        .testimonial-item,
+        .gallery-item {
+            transition: all .3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+            .service-item:hover,
+            .blog-item:hover,
+            .gallery-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, .15) !important;
+            }
+
+        .project-item {
+            position: relative;
+            min-height: 80vh;
+            background: linear-gradient(135deg, #5ec966c7 0%, #1b6070eb 100%);
+            color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+            .project-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="80" cy="80" r="1.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+                animation: float 25s linear infinite;
+                z-index: 1;
+            }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+            max-width: 70%;
+        }
+
+        .weather-widget {
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+            .weather-widget:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            }
+
+        .temp {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            transition: transform 0.5s ease;
+        }
+
+        .weather-widget:hover .weather-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .counter-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .footer {
+            background: var(--dark);
+            color: #ddd;
+        }
+
+            .footer a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .footer a:hover {
+                    color: #fff;
+                }
+
+        .back-to-top {
+            background: var(--primary);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+            .back-to-top.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(-10px);
+            }
+
+            .back-to-top:hover {
+                background: var(--dark);
+                transform: translateY(-5px);
+            }
+
+        /* Gallery Styles */
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: #fff;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* ==== NEW: VIDEO SECTION ==== */
+        .video-section {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            overflow: hidden;
+        }
+
+        .video-carousel .video-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            cursor: pointer;
+        }
+
+            .video-carousel .video-item video {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                display: block;
+            }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 167, 69, .6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .4s ease;
+        }
+
+        .video-item:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, .9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
+            transition: transform .3s ease;
+        }
+
+        .video-item:hover .play-btn {
+            transform: scale(1.15);
+        }
+
+        .video-wrapper:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 167, 69, .7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: .4s;
+        }
+
+            .play-overlay i {
+                font-size: 3rem;
+                color: white;
+            }
+
+
+        .footer {
+            background: var(--dark);
+            color: #ddd;
+        }
+
+            .footer a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .footer a:hover {
+                    color: #fff;
+                }
+    </style>
 </head>
+
 <body>
-    <section class="main">
+
+    <!-- Topbar -->
+    <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
+        <div class="container px-0">
+            <div class="row gx-0 align-items-center" style="height:45px;">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <div class="d-flex flex-wrap">
+                        <a href="#" class="text-muted me-4">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>Find
+                            a Farmer
+                        </a>
+                        <a href="tel:+01234567890" class="text-muted me-4">
+                            <i class="fas fa-phone-alt text-primary me-2"></i>+012 345 67890
+                        </a>
+                        <a href="mailto:info@agriconnect.com" class="text-muted me-0">
+                            <i class="fas fa-envelope text-primary me-2"></i>info@agriconnect.com
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-0">
+                            <i class="fab fa-linkedin-in text-white"></i>
+                        </a>
+                        <a type="button" asp-area="" asp-controller="Account" asp-action="Index" class="btn btn-primary btn-square rounded-circle nav-fill me-0">login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar & Hero -->
+    <div class="container-fluid px-0 sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-4 ">
+            <a href="#" class="navbar-brand p-0 d-flex">
+                <img src="~/assets/img/ag-logo.webp" alt="logo"
+                     width="50" height="50">
+                <h1 class="text-primary m-0">कृषि सिरीजङ्घा</h1>
+                <!-- <h1 class="text-primary m-0"><i class="fas fa-seedling me-2"></i>AgriConnect</h1> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="#home" class="nav-item nav-link active">Home</a>
+                    <a href="#about" class="nav-item nav-link">About</a>
+                    <a href="#services" class="nav-item nav-link">Services</a>
+                    <a href="#projects" class="nav-item nav-link">Projects</a>
+                    <a href="#gallery" class="nav-item nav-link">Gallery</a>
+                    @* <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="#blog" class="dropdown-item">Blog</a>
+                            <a href="#team" class="dropdown-item">Team</a>
+                            <a href="#testimonial" class="dropdown-item">Testimonials</a>
+                            <a href="#faq" class="dropdown-item">FAQ</a>
+                        </div>
+                    </div> *@
+                    <a href="#contact" class="nav-item nav-link">Contact</a>
+                </div>
+                <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">Get Started</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="container-fluid home bg-light p-0">
+        <div class="header-carousel owl-carousel owl-theme">
+
+            <!-- Slide 1 -->
+            <div class="header-carousel-item position-relative">
+                <img src="https://imgs.search.brave.com/q_bnm999Dg83l-bhSVrbKzLIwVmlhRpNMKZGHTi9KnE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjg4MDg1Mjdf/MGU1YzRlYjZlOF9i/LmpwZw"
+                     class="img-fluid w-100 h-100 object-fit-cover" alt="Farm">
+                <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
+                    <div class="p-3" style="max-width:600px;" data-aos="fade-right">
+                        <h1 class="display-3 text-white mb-4">“किसानलाई प्रविधिसँग जोड्दै — समृद्ध सिरीजङ्घा तर्फको यात्रा”</h1>
+                        @* <p class="fs-5 text-white mb-4">
+                            Your one-stop platform for farming guidance, market prices,
+                            government schemes, and more.
+                        </p> *@
+                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5 me-3">हाम्रा सेवाहरू हेर्नुहोस्</a>
+                        <a href="#contact" class="btn btn-outline-light rounded-pill py-3 px-5">आजै सदस्य बनौं</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="header-carousel-item position-relative">
+                <img src="https://imgs.search.brave.com/hM-zck5UyjTFEusTc9E-3fGO_YGyiBJeYGavLmD4VuE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjc5OTQzMDNf/ZDEwZGI1YjcwMl9i/LmpwZw"
+                     class="img-fluid w-100 h-100 object-fit-cover" alt="Crops">
+                <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
+                    <div class="p-3 text-center" style="max-width:700px;" data-aos="fade-up">
+                        <h1 class="display-3 text-white mb-4">“ज्ञान, बजार र अवसर — सबै एकै प्लेटफर्ममा”</h1>
+                        @* <p class="fs-5 text-white mb-4">
+                            Real-time crop advisory, market prices, and community support.
+                        </p> *@
+                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5">थप जान्नुहोस्</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- About -->
+    <section id="about" class="container-fluid about bg-light py-5">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                         class="img-fluid rounded shadow" alt="Farmers">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h4 class="text-primary">कृषि सिरीजङ्घा बारेमा</h4>
+                    <h1 class="display-5 mb-4">सिरीजङ्घा गाउँपालिका - कृषि संजाल</h1>
+                    <p class="mb-4">
+                        कृषि सिरीजङ्घा, ताप्लेजुङ जिल्लाको सिरीजङ्घा गाउँपालिकाको एक डिजिटल पहल हो, जसको उद्देश्य किसानहरूलाई प्रविधि–आधारित कृषि सेवासँग जोड्नु हो।
+                        नेपालको पूर्वी पहाडी क्षेत्रस्थित सिरीजङ्घा प्राकृतिक सौन्दर्य, सांस्कृतिक विविधता र मेहनती कृषक समुदायका लागि परिचित छ।
+                        यस प्लेटफर्ममार्फत किसानहरूले बालीसम्बन्धी सल्लाह, बजार पहुँच, मौसम सूचना र वित्तीय सहयोगका माध्यमबाट दिगो तथा नाफामुखी कृषि अभ्यास गर्न सक्नेछन्।
+                    </p>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> बाली परामर्श र तालिम</p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> बजार पहुँच र मूल्य जानकारी</p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> मौसम अपडेट र चेतावनी</p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> किसान समुदाय मंच</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary rounded-pill py-3 px-5">सुरु गर्नुहोस्</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="container-fluid py-5">
         <div class="container">
-            <div class="d-flex justify-content-between mt-3">
-                <div class="logo">
-                    <img src="~/assets/img/ag-logo.webp" width="80" height="80">
-                </div>
-                <div class="button">
-                    <a type="button" class="btn" asp-area="" asp-controller="Account" asp-action="Index">login</a>
-                    @* <a type="button" class="btn">Register</a> *@
-                </div>
+            <div class="text-center mx-auto pb-5" data-aos="fade-up">
+                <h4 class="text-primary">नवीनतम जानकारी</h4>
+                <h1 class="display-4">कृषि कार्यक्रम</h1>
             </div>
-            <div class="mt50">
-                <div>
-                    <h1>Empowering Farmers with Smart Agriculture Solutions</h1>
-                    <p>Your one-stop platform for farming guidance, market prices, government schemes, and more.</p>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-item rounded shadow overflow-hidden">
+                        <img src="https://imgs.search.brave.com/zkh1vfuVI6vH52BJrXbb23ebhQWX-siJg76py0vhdJU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9iaW9t/ZW1ha2Vycy5jb20v/aHMtZnMvaHViZnMv/R29vZ2xlJTIwRHJp/dmUlMjBJbnRlZ3Jh/dGlvbi9Tb2lsJTIw/SGVhbHRoJTIwR2xv/c3NhcnklMjAtJTIw/cmV2aXNlZC1BcHIt/MTgtMjAyMi0xMC0x/OS0wMy01NC1QTS5q/cGVnP3dpZHRoPTEy/MDAmbmFtZT1Tb2ls/JTIwSGVhbHRoJTIw/R2xvc3NhcnklMjAt/JTIwcmV2aXNlZC1B/cHItMTgtMjAyMi0x/MC0xOS0wMy01NC1Q/TS5qcGVn"
+                             class="img-fluid" alt="Soil">
+                        <div class="p-4">
+                            <span class="text-primary small">माटोको स्वास्थ्य</span>
+                            <h5 class="mt-2">माटोको उर्वरता स्वाभाविक रूपमा बढाउने ५ उपायहरू</h5>
+                            <a href="#" class="btn btn-primary rounded-pill py-2 px-4 mt-3">थप पढ्नुहोस्</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more blog items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5" data-aos="fade-up">
+                <h4 class="text-primary">हाम्रा सेवाहरू</h4>
+                <h1 class="display-4">स्मार्ट कृषि प्रवर्द्धनका प्रमुख विशेषताहरू</h1>
+                <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item bg-white rounded shadow p-4 text-center h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-seedling fa-3x text-primary"></i>
+                        </div>
+                        <h5>कृषि मार्गदर्शन</h5>
+                        <p class="mb-3">वैज्ञानिक कृषि अभ्यास, मौसमी बाली तालिका र उत्पादन बढाउने विशेषज्ञ सल्लाहहरू प्राप्त गर्नुहोस्।</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item bg-white rounded shadow p-4 text-center h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fa-solid fa-wheat-awn fa-3x text-primary"></i>
+                        </div>
+                        <h5>सहकारी खेती</h5>
+                        <p class="mb-3">साझा स्रोत, उपकरण र बजार पहुँचका लागि सहकार्यमा आधारित खेती प्रणालीलाई प्रोत्साहन।</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item bg-white rounded shadow p-4 text-center h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-hand-holding-usd fa-3x text-primary"></i>
+                        </div>
+                        <h5>वित्तीय सहयोग</h5>
+                        <p class="mb-3">सरकारी योजना, सहकारी ऋण तथा अनुदानका अवसरहरूबारे जानकारी प्राप्त गर्नुहोस्।</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-item bg-white rounded shadow p-4 text-center h-100">
+                        <div class="service-icon mb-3">
+                            <i class="fa-solid fa-cart-shopping fa-3x text-primary"></i>
+                        </div>
+                        <h5>बजार पहुँच</h5>
+                        <p class="mb-3">कृषि उत्पादनको उचित मूल्य र बजार विस्तारका लागि खरिदकर्ता तथा व्यापारीहरूसँग प्रत्यक्ष सम्पर्क स्थापित गर्नुहोस्।</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="main">
+    <!-- Projects ( Weather) -->
+    <section id="projects" class="project-item container-fluid py-5">
+        <div class="container project-content">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <h1 class="display-3">कृषि मार्फत जानकारीमा रहनुहोस्</h1>
+                    <p>
+                        वास्तविक समयको बाली सल्लाह, प्रत्यक्ष बजार पहुँच, मौसम सूचना र सक्रिय किसान समुदाय — सबै सेवा एउटै प्लेटफर्ममा।
+                    </p>
+                    <div>
+                        <a href="#services" class="btn btn-light btn-lg me-3">हाम्रा सेवाहरू हेर्नुहोस्</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">आजै सदस्य बनौं</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-5 mt-lg-0">
+                    <div class="weather-widget" data-aos="fade-left">
+                        <h4 class="text-white">प्रत्यक्ष मौसम अपडेट</h4>
+                        <h5><i class="fas fa-map-marker-alt"></i> <span id="city">स्थान पत्ता लगाइँदै...</span></h5>
+                        <div class="d-flex align-items-center justify-content-center my-3">
+                            <i id="weather-icon" class="fas fa-sun weather-icon"></i>
+                            <div class="temp ms-3" id="temp">--°C</div>
+                        </div>
+                        <p id="description" class="mb-1">मौसम विवरण लोड हुँदै...</p>
+                        <p class="small mb-0">
+                            <i class="fas fa-tint"></i> <span id="humidity">--%</span> • <i class="fas fa-wind"></i> <span id="wind">-- m/s</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="container-fluid py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5" data-aos="fade-up">
+                <h1 class="text-primary">हाम्रो ग्यालरी</h1>
+                <h1 class="display-4">खेतबारीका झल्किहरू</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <a href="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                       data-lightbox="gallery" class="gallery-item d-block rounded shadow overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                             alt="Happy Farmer">
+                        <div class="gallery-caption">Happy Farmer with Harvest</div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="https://images.unsplash.com/photo-1598522017612-6c4c6b9e8e2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                       data-lightbox="gallery" class="gallery-item d-block rounded shadow overflow-hidden">
+                        <img src="https://imgs.search.brave.com/miER0fSp4PG7jgOp9LbImCsBExWz08XWRUT_25U9CF4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/YW50aHJvZW5jeWNs/b3BlZGlhLmNvbS9z/aXRlcy93d3cuYW50/aHJvZW5jeWNsb3Bl/ZGlhLmNvbS9maWxl/cy9zdHlsZXMvZnVs/bC1hcnRpY2xlLXN0/eWxlL3B1YmxpYy9m/YXJtaW5nX29sZF9w/aWN0dXJlX2hpZ2hf/cmVzLmpwZWc_aXRv/az13cjF3SXJlaw"
+                             alt="Drone Farming">
+                        <div class="gallery-caption">Precision Farming with Drones</div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+                    <a href="https://imgs.search.brave.com/Ci1VRQGSWtqbWxWXt-A_YsXScIr2cwDIH0Q0dmoMxkw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9uYWNj/Zmwub3JnLm5wL2Jh/Y2tlbmQvdXBsb2Fk/cy9wcm9qZWN0LzE3/NTQ2NjUwNzhfZmFt/aWx5LWZhcm1pbmct/aW4tbmVwYWwuanBn"
+                       data-lightbox="gallery" class="gallery-item d-block rounded shadow overflow-hidden">
+                        <img src="https://imgs.search.brave.com/Ci1VRQGSWtqbWxWXt-A_YsXScIr2cwDIH0Q0dmoMxkw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9uYWNj/Zmwub3JnLm5wL2Jh/Y2tlbmQvdXBsb2Fk/cy9wcm9qZWN0LzE3/NTQ2NjUwNzhfZmFt/aWx5LWZhcm1pbmct/aW4tbmVwYWwuanBn"
+                             alt="Community">
+                        <div class="gallery-caption">Farmers United</div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="https://imgs.search.brave.com/KUqcLvIwl8hyDcTux-y9F0uQRapcBgbQoiYEVt2O1O8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/d2lraWZhcm1lci5j/b20vaW1hZ2VzL2Rl/dGFpbGVkLzIwMjQv/MDcvaVN0b2NrLTIw/MjE4MDc5OTkuanBn"
+                       data-lightbox="gallery" class="gallery-item d-block rounded shadow overflow-hidden">
+                        <img src="https://imgs.search.brave.com/KUqcLvIwl8hyDcTux-y9F0uQRapcBgbQoiYEVt2O1O8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/d2lraWZhcm1lci5j/b20vaW1hZ2VzL2Rl/dGFpbGVkLzIwMjQv/MDcvaVN0b2NrLTIw/MjE4MDc5OTkuanBn"
+                             alt="Organic">
+                        <div class="gallery-caption">Organic Farming Success</div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="500">
+                    <a href="https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+                       data-lightbox="gallery" class="gallery-item d-block rounded shadow overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                             alt="Rice Fields">
+                        <div class="gallery-caption">Golden Rice Fields</div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="600">
+                    <a href="https://imgs.search.brave.com/Ox6EQQasOFsbghT_XUHlxffCHTHwrNnGSYskaWP9BtY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNDc2/MTk2NDk0L3Bob3Rv/L2luZGlhbi1zdHJl/ZXQtc2VsbGVycy1p/bi1rYXRobWFuZHUt/bmVwYWwuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPWVpSUxP/YVdZYlhSSExtWHNx/SkRLcUI3b2tULUZy/UmpJX1ZJbHdaTU9W/SXc9"
+                       data-lightbox="gallery" class="gallery-item d-block rounded shadow overflow-hidden">
+                        <img src="https://imgs.search.brave.com/Ox6EQQasOFsbghT_XUHlxffCHTHwrNnGSYskaWP9BtY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNDc2/MTk2NDk0L3Bob3Rv/L2luZGlhbi1zdHJl/ZXQtc2VsbGVycy1p/bi1rYXRobWFuZHUt/bmVwYWwuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPWVpSUxP/YVdZYlhSSExtWHNx/SkRLcUI3b2tULUZy/UmpJX1ZJbHdaTU9W/SXc9"
+                             alt="Market">
+                        <div class="gallery-caption">Direct Market Sales</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- video Section -->
+    <section id="videos" class="container-fluid py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5" data-aos="fade-up">
+                <h4 class="text-primary">हेर्नुहोस् र सिक्नुहोस्</h4>
+                <h1 class="display-4">साँचो किसानका कथाहरू</h1>
+                <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- YouTube 1: Ram’s Story -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer youtube-play"
+                         data-id="WIenndKR1m8">
+                        <iframe src="https://www.youtube.com/embed/WIenndKR1m8?mute=1&autoplay=1&loop=1&playlist=WIenndKR1m8&controls=0&rel=0"
+                                allow="autoplay" allowfullscreen class="border-0"></iframe>
+                        <div class="play-overlay"><i class="fas fa-play fa-3x"></i></div>
+                    </div>
+                    <div class="p-3 bg-white text-center">
+                        <h5>रामको बाली उत्पादन ४०% वृद्धि</h5>
+                    </div>
+                </div>
+
+                <!-- YouTube 2: Women Farmers -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer youtube-play"
+                         data-id="Mw1QLB2KzQs">
+                        <iframe src="https://www.youtube.com/embed/Mw1QLB2KzQs?mute=1&autoplay=1&loop=1&playlist=Mw1QLB2KzQs&controls=0"
+                                allow="autoplay" allowfullscreen class="border-0"></iframe>
+                        <div class="play-overlay"><i class="fas fa-play fa-3x"></i></div>
+                    </div>
+                    <div class="p-3 bg-white text-center">
+                        <h5>महिलाहरूले ३ गुणा बजार मूल्य कमाउँछन्</h5>
+                    </div>
+                </div>
+
+                <!-- Local MP4: Drone -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer local-play"
+                         data-src="https://videos.pexels.com/video-files/3195395/3195395-hd_1280_720_30fps.mp4">
+                        <video poster="https://images.pexels.com/videos/3195395/free-video-3195395.jpg" loop muted
+                               playsinline preload="metadata" class="w-100 h-100 object-fit-cover">
+                            <source src="https://videos.pexels.com/video-files/3195395/3195395-hd_1280_720_30fps.mp4"
+                                    type="video/mp4">
+                        </video>
+                        <div class="play-overlay"><i class="fas fa-play fa-3x"></i></div>
+                    </div>
+                    <div class="p-3 bg-white text-center">
+                        <h5>ड्रोनले ६०% पानी बचत गर्यो</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    
+
+    <!-- Footer -->
+    <footer class="footer py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <h2 class="mt-5">Stay Updated with Dynamic Krishi</h2>
-                    <div class="mt-5 mt-10">
-                        <div class="krisi-update">
-                            <div class="box1">1</div>
-                            <div class="box-desc">
-                                <h3>Weather Forecast</h3>
-                                <p>Get real-time updates and plan your activities.</p>
-                            </div>
-                        </div>
-                        <div class="krisi-update">
-                            <div class="box1">2</div>
-                            <div class="box-desc">
-                                <h3>Market Prices</h3>
-                                <p>Track crop prices and make informed decisions.</p>
-                            </div>
-                        </div>
-                        <div class="krisi-update">
-                            <div class="box1">3</div>
-                            <div class="box-desc">
-                                <h3>Government Schemes</h3>
-                                <p>Access relevant schemes and maximize benefits.</p>
-                            </div>
-                        </div>
-                        <div class="krisi-update">
-                            <div class="box1">4</div>
-                            <div class="box-desc">
-                                <h3>Training Programs</h3>
-                                <p>Enhance your knowledge with expert-led webinars.</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h1 class="text-white"><i class="fas fa-seedling me-2"></i>AgriConnect</h1>
+                    <p class="text-light">Empowering farmers with technology and community.</p>
                 </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="krisi-update-photo">
-                        <img src="~/assets/img/krishi-update-Photoroom.png" alt="krishi">
+                <div class="col-lg-8">
+                    <div class="row g-5 justify-content-center">
+                        <div class="col-6 col-md-4">
+                            <h5 class="text-white">Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#services">Services</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-6 col-md-4">
+                            <h5 class="text-white">social Media Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#"><i class="fa-solid fa-envelope"></i> email</a></li>
+                                <li><a href="#"><i class="fa-solid fa-phone"></i> Phone No</a></li>
+                                <li><a href="#"><i class="fa-solid fa-globe"></i> WebSite</a></li>
+                            </ul>
+                        </div>
+                        <!-- More columns -->
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="main-feature mt-5 pt-5 container">
-
-        <!-- Farmers Table -->
-        <h2 class="mb-3">किसान सुची </h2>
-        @if (Model.Farmers != null && Model.Farmers.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>CitizenNo</th>
-                        <th>PhoneNo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Farmers.Count; i++)
-                    {
-                        var farmer = Model.Farmers[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@farmer.FullName</td>
-                            <td>@farmer.CitizenNo</td>
-                            <td>@farmer.PhoneNo</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <p>किसान सुची  उपलब्ध छैन </p>
-        }
-
-        <!-- Programs Table -->
-        <h2 class="mt-5 mb-3">कृषि कार्यक्रम </h2>
-        @if (Model.Programs != null && Model.Programs.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Fiscal Year Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Programs.Count; i++)
-                    {
-                        var program = Model.Programs[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@program.Title</td>
-                            <td>@program.FiscalYearName</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <p>कृषि कार्यक्रम उपलब्ध छैन </p>
-        }
-
-        <!-- Projects Table -->
-        <h2 class="mt-5 mb-3">कृषि परियोजना</h2>
-        @if (Model.Projects != null && Model.Projects.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Project Name</th>
-                        <th>Fiscal Year Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Projects.Count; i++)
-                    {
-                        var project = Model.Projects[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@project.ProjectName</td>
-                            <td>@project.FiscalYearName</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <p>कृषि परियोजना  उपलब्ध छैन</p>
-        }
-
-        <!-- Services Table -->
-        <h2 class="mt-5 mb-3">कृषि सेवा </h2>
-        @if (Model.Services != null && Model.Services.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Service Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Services.Count; i++)
-                    {
-                        var service = Model.Services[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@service.ServiceName</td>
-                          
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <p>कृषि सेवा  उपलब्ध छैन</p>
-        }         
-        <!-- AGRI CALENDAR TYPES -->
-        <h2 class="mb-3 mt-5">Agri Calendar Types</h2>
-        @if (Model.AgriCalendarTypes != null && Model.AgriCalendarTypes.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Type Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.AgriCalendarTypes.Count; i++)
-                    {
-                        var item = Model.AgriCalendarTypes[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.NameEng</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No calendar types found.</p>
-        }
-
-        <!-- AGRI CALENDAR CATEGORIES -->
-        <h2 class="mb-3 mt-5">Agri Calendar Categories</h2>
-        @if (Model.AgriCalendarCategories != null && Model.AgriCalendarCategories.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Category Name</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.AgriCalendarCategories.Count; i++)
-                    {
-                        var item = Model.AgriCalendarCategories[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.NameEng</td>
-                            <td>@item.AgriCalendarType</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No calendar categories found.</p>
-        }
-
-        <!-- AGRI CALENDAR PRODUCTS -->
-        <h2 class="mb-3 mt-5">Agri Calendar Products</h2>
-        @if (Model.AgriCalendarProducts != null && Model.AgriCalendarProducts.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.AgriCalendarProducts.Count; i++)
-                    {
-                        var item = Model.AgriCalendarProducts[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.AgriCalendarCategory</td>
-                            <td>@item.AgriCalendarType</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No calendar products found.</p>
-        }
-
-        <!-- AGRI CALENDAR -->
-        <h2 class="mb-3 mt-5">Agri Calendar</h2>
-        @if (Model.AgriCalendars != null && Model.AgriCalendars.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Product Name</th>
-                        <th>Type Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.AgriCalendars.Count; i++)
-                    {
-                        var item = Model.AgriCalendars[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.CategoryName</td>
-                            <td>@item.ProductName</td>
-                            <td>@item.TypeName</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No agri calendar items found.</p>
-        }
-
-        <!-- LIBRARIES -->
-        <h2 class="mb-3 mt-5">Library List</h2>
-        @if (Model.Libraries != null && Model.Libraries.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Libraries.Count; i++)
-                    {
-                        var item = Model.Libraries[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.Title</td>
-                            <td>@item.Description</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No libraries found.</p>
-        }
-
-        <!-- MARKETS -->
-        <h2 class="mb-3 mt-5">Market List</h2>
-        @if (Model.Markets != null && Model.Markets.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Market Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Markets.Count; i++)
-                    {
-                        var item = Model.Markets[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.Name</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No markets found.</p>
-        }
-
-        <!-- MARKET PRICES -->
-        <h2 class="mb-3 mt-5">Market Prices</h2>
-        @if (Model.MarketPrices != null && Model.MarketPrices.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Market</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.MarketPrices.Count; i++)
-                    {
-                        var item = Model.MarketPrices[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.MarketName</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No market prices found.</p>
-        }
-
-        <!-- TRAININGS -->
-        <h2 class="mb-3 mt-5">Training List</h2>
-        @if (Model.Trainings != null && Model.Trainings.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Training Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Trainings.Count; i++)
-                    {
-                        var item = Model.Trainings[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.Title</td>
-                            <td>@item.StartDate</td>
-                            <td>@item.EndDate</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No trainings found.</p>
-        }
-
-        <!-- VIDEO PLAYLIST -->
-        <h2 class="mb-3 mt-5">Video Playlists</h2>
-        @if (Model.Playlists != null && Model.Playlists.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Playlist Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Playlists.Count; i++)
-                    {
-                        var item = Model.Playlists[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.Publised</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No playlists found.</p>
-        }
-
-        <!-- VIDEO GALLERIES -->
-        <h2 class="mb-3 mt-5">Video Galleries</h2>
-        @if (Model.VideoGalleries != null && Model.VideoGalleries.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Video URL</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.VideoGalleries.Count; i++)
-                    {
-                        var item = Model.VideoGalleries[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.Title</td>
-                            <td>@item.FilePath</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No videos found.</p>
-        }
-
-        <!-- IMAGE GALLERIES -->
-        <h2 class="mb-3 mt-5">Image Galleries</h2>
-        @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
-        {
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.ImageGalleries.Count; i++)
-                    {
-                        var item = Model.ImageGalleries[i];
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@item.Title</td>
-                            <td><img src="@item.FilePath" width="80" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-
-            <p>No images found.</p>
-        }
-
-    </section>
-    <section class="main-feature mt-5 pt-5">
-        <div class="container krishi-feature">
-            <div class="">
-                <h2>Explore Key Features & Services</h2>
-                <div class="row mt-5">
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-seedling" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Farming Guidelines</h3>
-                            <p>Access best practices for improved yields.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-wheat-awn" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Cooperative Farming</h3>
-                            <p>Collaborate for better resource management.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-money-bill" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Financial Assistance</h3>
-                            <p>Find schemes and loans for your needs.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-cart-shopping" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Market Access</h3>
-                            <p>Connect with buyers and sell your produce.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="mt-5">
-        <div class="bg-footer">
-            <p>© 2025 Krishi. All rights reserved.</p>
+            <hr class="my-4">
+            <p class="text-center text-light mb-0">&copy; 2025 AgriConnect. All Rights Reserved.</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn back-to-top position-fixed bottom-0 end-0 m-4"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        const API_KEY = "e56234b0015d3d7e9703abfcbb3f2aef";
+        const weather = {
+            city: document.getElementById('city'),
+            temp: document.getElementById('temp'),
+            icon: document.getElementById('weather-icon'),
+            desc: document.getElementById('description'),
+            humidity: document.getElementById('humidity'),
+            wind: document.getElementById('wind')
+        };
+
+        // Fetch weather data from OpenWeatherMap
+        async function getWeather(lat, lon) {
+            try {
+                const res = await fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+                );
+                if (!res.ok) throw new Error('Weather data not available');
+                const data = await res.json();
+
+                weather.city.textContent = data.name || "Unknown Location";
+                weather.temp.textContent = Math.round(data.main.temp) + "°C";
+                weather.desc.textContent = data.weather[0].description;
+                weather.humidity.textContent = data.main.humidity + "%";
+                weather.wind.textContent = data.wind.speed + " m/s";
+
+                // Display appropriate weather icon
+                const icon = data.weather[0].icon;
+                weather.icon.className = `fas fa-${getWeatherIcon(icon)} weather-icon me-3`;
+            } catch (error) {
+                console.error(error);
+                weather.city.textContent = "Weather Unavailable";
+                weather.temp.textContent = "--°C";
+                weather.desc.textContent = "N/A";
+                weather.humidity.textContent = "--";
+                weather.wind.textContent = "--";
+            }
+        }
+
+        // Map OpenWeather icons to Font Awesome icons
+        function getWeatherIcon(code) {
+            if (code.startsWith("01")) return "sun";
+            if (code.startsWith("02")) return "cloud-sun";
+            if (code.startsWith("03") || code.startsWith("04")) return "cloud";
+            if (code.startsWith("09") || code.startsWith("10")) return "cloud-rain";
+            if (code.startsWith("11")) return "bolt";
+            if (code.startsWith("13")) return "snowflake";
+            if (code.startsWith("50")) return "smog";
+            return "cloud";
+        }
+
+        // Try to get user's location automatically
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                pos => getWeather(pos.coords.latitude, pos.coords.longitude),
+                err => {
+                    console.warn(err);
+                    weather.city.textContent = "Location Denied";
+                    weather.temp.textContent = "--°C";
+                }
+            );
+        } else {
+            weather.city.textContent = "Geolocation Not Supported";
+        }
+
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+            document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Owl Carousel
+        $('.header-carousel').owlCarousel({
+            loop: true, margin: 0, nav: true, autoplay: true, autoplayTimeout: 8000,
+            items: 1, dots: true, animateOut: 'fadeOut', animateIn: 'fadeIn'
+        });
+
+        $(document).ready(function () {
+            $(".header-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                smartSpeed: 900,
+                nav: true,
+                dots: false,
+                navText: [
+                    '<i class="fas fa-chevron-left"></i>',
+                    '<i class="fas fa-chevron-right"></i>'
+                ]
+            });
+        });
+
+         // YouTube Popup
+        document.querySelectorAll('.youtube-play').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoId = btn.getAttribute('data-id');
+                const modalHtml = `
+                <div class="modal fade" id="ytModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header border-0">
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body p-0">
+                                <iframe width="100%" height="500"
+                                        src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                                        frameborder="0" allow="autoplay; fullscreen"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+                new bootstrap.Modal('#ytModal').show();
+                document.getElementById('ytModal').addEventListener('hidden.bs.modal', () =>
+                    document.getElementById('ytModal').remove()
+                );
+            });
+        });
+
+        // Local MP4 Popup
+        document.querySelectorAll('.local-play').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const src = btn.getAttribute('data-src');
+                const modalHtml = `
+                <div class="modal fade" id="mp4Modal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header border-0">
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body p-0">
+                                <video controls autoplay class="w-100" style="max-height:80vh;">
+                                    <source src="${src}" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+                new bootstrap.Modal('#mp4Modal').show();
+                document.getElementById('mp4Modal').addEventListener('hidden.bs.modal', () =>
+                    document.getElementById('mp4Modal').remove()
+                );
+            });
+        });
+
+        // Counter Up
+        $('.counter-value').counterUp({ delay: 10, time: 1500 });
+    </script>
 </body>
+
 </html>
