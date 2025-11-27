@@ -759,6 +759,16 @@
         .footer a:hover {
             color: #fff;
         }
+
+        @@keyframes flash {
+            0%, 100% {
+                background-color: #dc3545;
+            }
+
+            50% {
+                background-color: #c82333;
+            }
+        }
     </style>
 </head>
 
@@ -833,6 +843,32 @@
                 <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a>
             </div>
         </nav>
+    </div>
+    <!-- धेरै प्रभावशाली Important Message Scrolling Bar -->
+    @* <div class="bg-gradient bg-danger text-white text-center py-4 fw-bold shadow-lg"
+         style="font-size: 1.6rem; animation: flash 2s infinite;">
+        <i class="bi bi-bell-fill fs-1 animate__animated animate__tada animate__infinite"></i>
+        <strong> महत्त्वपूर्ण सूचना:</strong>
+        <marquee scrollamount="12" class="text-warning fw-bolder">
+            नयाँ बाली बीमा योजना सुरु ! पहिलो १०० किसानलाई निःशुल्क बीमा ! दर्ता आजै गर्नुहोस् !
+        </marquee>
+    </div> *@
+    <div class="bg-success text-white text-center py-1 fw-bold position-relative overflow-hidden"
+         style="font-size: 1rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+
+        <div class="d-flex align-items-center justify-content-center">
+            @* <i class="bi bi-megaphone-fill fs-1 me-3 animate__animated animate__swing animate__infinite"></i> *@
+            <strong class="me-4">महत्त्वपूर्ण सूचना :</strong>
+
+            <marquee behavior="scroll" direction="left" scrollamount="8"
+                     onmouseover="this.stop();" onmouseout="this.start();"
+                     class="fw-bold">
+                कृषि सिरीजङ्घाले नयाँ "स्मार्ट खेती तालीम" सुरु गरेको छ !
+                पहिलो ५० जना किसानलाई ५०% छुट !
+                दर्ता मिति: १५ मंसिरसम्म मात्र !
+                फोन: ९८५xxxxxxxx | इमेल: info@krishisirijanga.com.np
+            </marquee>
+        </div>
     </div>
 
     <!-- Hero Section -->
@@ -1063,6 +1099,7 @@
                             <small class="text-muted d-block mt-2">तालिम उद्घाटन समारोहको फोटो</small>
                         </div>
                     </div>
+                    @* ---------------------- change to the apply the form ---------------------------------- *@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
                     </div>
@@ -1190,8 +1227,10 @@
 
                         <!-- Close Button (X) -->
                         <div class="close-btn" data-bs-dismiss="modal">×</div>
-                        <img id="modalImage" src="" alt="Full view" class="img-fluid">
-                        <h4 id="modalCaption" class="mt-4"></h4>
+                        <div class="row justify-content-center">
+                            <img id="modalImage" src="" alt="Full view" class="img-fluid">
+                            <h4 id="modalCaption" class="mt-4" style="width: 50%;"></h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1202,50 +1241,18 @@
     <!-- video Section -->
     <section id="videos" class="container-fluid py-5 bg-success-subtle">
         <div class="container py-5">
-            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-center mx-auto pb-5">
                 <h4 class="text-primary">हेर्नुहोस् र सिक्नुहोस्</h4>
                 <h1>किसानका कथाहरू</h1>
                 <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p>
             </div>
 
-            <!-- Category Buttons -->
             <div class="category-buttons text-center mb-4" id="categoryButtons"></div>
 
-            <!-- Video Gallery -->
             <div class="container py-4">
-                <div class="row g-4" id="videoList">
-                    @if (Model.VideoGalleries != null && Model.VideoGalleries.Any())
-                    {
-                        @foreach (var item in Model.VideoGalleries)
-                        {
-                            // Determine video source
-                            var videoSrc = string.IsNullOrEmpty(item.YoutubeURL)
-                            ? _global.BaseUrl() + item.FilePath   // Local video
-                            : item.YoutubeURL;                    // YouTube
-
-                            <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="@(100 * Model.VideoGalleries.IndexOf(item))">
-                                <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer video-item"
-                                     data-src="@videoSrc"
-                                     data-title="@item.Title">
-                                    <img class="video-thumb w-100 h-100 object-fit-cover" src="/image/video-placeholder.png" />
-                                   
-                                </div>
-                                <div class="video-card shadow rounded overflow-hidden local-play">
-                                    <p class="text-center fw-bold">@item.Title</p>
-                                </div>
-                            </div>
-
-                            
-                        }
-                    }
-                    else
-                    {
-                        <p>No videos found.</p>
-                    }
-                </div>
+                <div class="row g-4" id="videoList"></div>
             </div>
 
-            <!-- Bootstrap Modal -->
             <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content bg-dark">
@@ -1257,7 +1264,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -1268,14 +1274,23 @@
     <footer class="footer py-5">
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <h1 class="text-white"><i class="fas fa-seedling me-2"></i>AgriConnect</h1>
                     <p class="text-light">Empowering farmers with technology and community.</p>
+
+                    <div class="mt-5">
+                        <h5 class="text-white text-center">social Media Links</h5>
+                        <ul class="list-unstyled text-center">
+                            <li class="data-flex mt-4"><a href="#"><i class="fa-solid fa-envelope"></i> email</a></li>
+                            <li class="mt-4"><a href="#"><i class="fa-solid fa-phone"></i> Phone No</a></li>
+                            <li class="mt-4"><a href="#"><i class="fa-solid fa-globe"></i> WebSite</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="row g-5 justify-content-center">
+                <div class="col-lg-9">
+                    <div class="row g-5 ">
                         <div class="col-6 col-md-4">
-                            <h5 class="text-white">Quick Links</h5>
+                            <h5 class="text-white text-center">Quick Links</h5>
                             <ul class="list-unstyled">
                                 <li><a href="#home">Home</a></li>
                                 <li><a href="#about">About</a></li>
@@ -1283,15 +1298,36 @@
                             </ul>
                         </div>
 
-                        <div class="col-6 col-md-4">
-                            <h5 class="text-white">social Media Links</h5>
-                            <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa-solid fa-envelope"></i> email</a></li>
-                                <li><a href="#"><i class="fa-solid fa-phone"></i> Phone No</a></li>
-                                <li><a href="#"><i class="fa-solid fa-globe"></i> WebSite</a></li>
-                            </ul>
+                        
+                        <div class="col-12 col-md-8">
+                            <div class="card-body">
+                                @* <form action="https://formspree.io/f/YOUR_ID" method="POST" enctype="multipart/form-data"> *@
+                                <form method="POST" enctype="multipart/form-data">
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <label class="form-label">पुरा नाम <span class="text-danger">*</span></label>
+                                            <input type="text" name="name" class="form-control form-control-lg" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">मोबाइल नम्बर <span class="text-danger">*</span></label>
+                                            <input type="tel" name="phone" class="form-control form-control-lg" required>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label">गुनासोको विस्तृत विवरण <span class="text-danger">*</span></label>
+                                            <textarea name="message" class="form-control" rows="8"
+                                                      placeholder="कृपया सत्य र स्पष्ट कुरा मात्र लेख्नुहोस्..." required></textarea>
+                                        </div>
+
+                                        <div class="text-center my-5">
+                                            <button type="submit" class="btn btn-danger btn-lg text-white btn-submit shadow-lg">
+                                                गुनासो दर्ता गर्नुहोस्
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <!-- More columns -->
                     </div>
                 </div>
             </div>
@@ -1440,12 +1476,12 @@
         });
 
         // gallery light box
-                function changeModalImage(src, caption) {
+        function changeModalImage(src, caption) {
             document.getElementById('modalImage').src = src;
             document.getElementById('modalCaption').textContent = caption;
         }
 
-              // Show button only when scrolled down
+       // Show button only when scrolled down
         window.onscroll = function() {
           const btn = document.querySelector('.back-to-top');
           if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -1466,11 +1502,77 @@
         
     </script>
 
+    @* ---------------------------------------------
+   BUILD JAVASCRIPT VIDEO ARRAY FROM MODEL
+---------------------------------------------- *@
+    @* Build JavaScript Array From Model *@
     <script>
-        const videoItems = document.querySelectorAll('.video-item');
+        const videos = [
+            @foreach (var item in Model.VideoGalleries)
+            {
+                    var videoSrc = string.IsNullOrEmpty(item.YoutubeURL)
+                            ? _global.BaseUrl() + item.FilePath
+                            : item.YoutubeURL;
+
+                    <text>{
+                        src: "@videoSrc",
+                        title: "@Html.Raw(item.Title)",
+            // ------------------------- update the this code in the categories एल्बम for backend code ------------------------------------ //
+                        category: "@Html.Raw(item.Title)"  
+                    },</text>
+            }
+        ];
+    </script>
+
+    <script>
+        const categoryButtons = document.getElementById('categoryButtons');
+        const videoList = document.getElementById('videoList');
         const modal = new bootstrap.Modal(document.getElementById('videoModal'));
         const modalTitle = document.getElementById("modalTitle");
         const modalBody = document.getElementById("modalBodyContainer");
+
+        // ------------------- GET UNIQUE CATEGORIES -------------------
+        const categories = ["All", ...new Set(videos.map(v => v.category))];
+
+        // ------------------- RENDER CATEGORY BUTTONS -------------------
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline-dark m-1';
+            btn.textContent = cat;
+
+            btn.addEventListener('click', () => {
+                displayVideos(cat);
+            });
+
+            categoryButtons.appendChild(btn);
+        });
+
+        // ------------------- DISPLAY VIDEOS -------------------
+        function displayVideos(selectedCategory) {
+            videoList.innerHTML = "";
+
+            const filtered = selectedCategory === "All"
+                ? videos
+                : videos.filter(v => v.category === selectedCategory);
+
+            filtered.forEach(v => {
+                const html = `
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer video-item"
+                             data-src="${v.src}" data-title="${v.title}">
+                            <img class="video-thumb w-100 h-100 object-fit-cover" src="/image/video-placeholder.png" />
+                        </div>
+                        <div class="video-card shadow rounded overflow-hidden local-play">
+                            <p class="text-center fw-bold">${v.title}</p>
+                        </div>
+                    </div>
+                `;
+                videoList.insertAdjacentHTML("beforeend", html);
+            });
+
+            loadThumbnails();
+            enableVideoClicks();
+        }
 
         // ------------------- GET YOUTUBE THUMBNAIL -------------------
         function getYoutubeThumbnail(url) {
@@ -1480,7 +1582,7 @@
             return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
         }
 
-        // ------------------- CREATE LOCAL MP4 THUMBNAIL -------------------
+        // ------------------- CREATE LOCAL VIDEO THUMBNAIL -------------------
         function createLocalThumbnail(videoSrc, imgElement) {
             const video = document.createElement("video");
             video.src = videoSrc;
@@ -1489,7 +1591,7 @@
             video.crossOrigin = "anonymous";
 
             video.addEventListener("loadedmetadata", () => {
-                video.currentTime = 0.5; // seek to first frame
+                video.currentTime = 0.5;
             });
 
             video.addEventListener("seeked", () => {
@@ -1506,61 +1608,64 @@
             };
         }
 
-        // ------------------- GENERATE THUMBNAILS -------------------
-        videoItems.forEach(item => {
-            const img = item.querySelector(".video-thumb");
-            const src = item.dataset.src;
-
-            if (!img) return;
-
-            if (src.includes("youtube.com") || src.includes("youtu.be")) {
-                img.src = getYoutubeThumbnail(src);
-            } else {
-                createLocalThumbnail(src, img);
-            }
-        });
-
-        // ------------------- OPEN MODAL & PLAY VIDEO -------------------
-        videoItems.forEach(item => {
-            item.addEventListener("click", () => {
+        // ------------------- THUMBNAIL LOADER -------------------
+        function loadThumbnails() {
+            document.querySelectorAll('.video-item').forEach(item => {
+                const img = item.querySelector(".video-thumb");
                 const src = item.dataset.src;
-                const title = item.dataset.title;
 
-                modalTitle.textContent = title;
-                modalBody.innerHTML = "";
-
-                // YOUTUBE VIDEO
-                if (src.includes("youtube.com") || src.includes("youtu.be")) {
-                    let id = "";
-                    if (src.includes("watch?v=")) id = src.split("watch?v=")[1].split("&")[0];
-                    else if (src.includes("youtu.be/")) id = src.split("youtu.be/")[1].split("?")[0];
-
-                    modalBody.innerHTML = `
-                        <iframe width="100%" height="600"
-                            src="https://www.youtube.com/embed/${id}?autoplay=1"
-                            frameborder="0"
-                            allow="autoplay; encrypted-media; fullscreen"
-                            allowfullscreen></iframe>
-                    `;
+                if (src.includes("youtu")) {
+                    img.src = getYoutubeThumbnail(src);
+                } else {
+                    createLocalThumbnail(src, img);
                 }
-                // LOCAL MP4 VIDEO
-                else {
-                    modalBody.innerHTML = `
-                        <video controls autoplay class="w-100" style="max-height:80vh;">
-                            <source src="${src}" type="video/mp4">
-                        </video>
-                    `;
-                }
-
-                modal.show();
             });
-        });
+        }
 
-        // ------------------- STOP VIDEO ON MODAL CLOSE -------------------
+        // ------------------- ENABLE VIDEO CLICK -------------------
+        function enableVideoClicks() {
+            document.querySelectorAll(".video-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    const src = item.dataset.src;
+                    const title = item.dataset.title;
+
+                    modalTitle.textContent = title;
+                    modalBody.innerHTML = "";
+
+                    if (src.includes("youtu")) {
+                        let id = "";
+                        if (src.includes("watch?v=")) id = src.split("watch?v=")[1].split("&")[0];
+                        else if (src.includes("youtu.be/")) id = src.split("youtu.be/")[1].split("?")[0];
+
+                        modalBody.innerHTML = `
+                            <iframe width="100%" height="600"
+                                src="https://www.youtube.com/embed/${id}?autoplay=1"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media; fullscreen"
+                                allowfullscreen></iframe>
+                        `;
+                    } else {
+                        modalBody.innerHTML = `
+                            <video controls autoplay muted playsinline class="w-100" style="max-height:80vh;">
+                                <source src="${src}" type="video/mp4">
+                            </video>
+                        `;
+                    }
+
+                    modal.show();
+                });
+            });
+        }
+
+        // Stop video on close
         document.getElementById("videoModal").addEventListener("hidden.bs.modal", () => {
             modalBody.innerHTML = "";
         });
+
+        // Load all videos initially
+        displayVideos("All");
     </script>
+
 
 
 </body>
