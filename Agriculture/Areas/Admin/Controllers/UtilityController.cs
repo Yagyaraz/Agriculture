@@ -304,5 +304,11 @@ namespace Agriculture.Areas.Admin.Controllers
             var data = await _Utility.GetSelectListRoles();
             return Ok(new ApiResponse { Status = data.Any(), Message = data.Any() ? "Successfully Generated All List of GetSelectListRoles" : "GetSelectListRoles List Not Generated Try Again", Data = data });
         }
+        [HttpGet("GetOfficeDetails")]
+        public async Task<IActionResult> GetOfficeDetails()
+        {
+            var data = await _Utility.GetOfficeDetails();
+            return Ok(new ApiResponse { Status = data.Id>0, Message = data.Id>0 ? "Successfully Generated All List of GetSelectListRoles" : "GetSelectListRoles List Not Generated Try Again", Data = data });
+        }
     }
 }

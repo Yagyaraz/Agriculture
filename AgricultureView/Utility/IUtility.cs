@@ -1,4 +1,5 @@
-﻿using AgricultureView.Models;
+﻿using AgricultureView.Areas.Admin.Models;
+using AgricultureView.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using static AgricultureView.Controllers.AccountController;
 
@@ -64,6 +65,6 @@ namespace AgricultureView.Utility
         Task<SelectList> GetAlbumSelectListItems();
         Task<SelectList> GetPlaylistSelectListItems();
         Task<SelectList> GetSelectListRoles();
-
+        Task<OfficeMVCViewModel> GetOfficeDetail();
     }
 }

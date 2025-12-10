@@ -1,4 +1,5 @@
-﻿using AgricultureView.Models;
+﻿using AgricultureView.Areas.Admin.Models;
+using AgricultureView.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
@@ -947,6 +948,24 @@ namespace AgricultureView.Utility
             }
 
             return new SelectList(new List<CommonTexForStringIdValViewModel>());
+        }
+        public async Task<OfficeMVCViewModel> GetOfficeDetail()
+        {
+            try
+            {
+                var response = await _globalVeriable.GetMethod("Admin/Utility/GetOfficeDetails");
+                if (response.Status)
+                {
+                    var data = JsonConvert.DeserializeObject<OfficeMVCViewModel>(response.Data.ToString());
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during deserialization: {ex.Message}");
+            }
+            return new OfficeMVCViewModel();
+
         }
     }
 }

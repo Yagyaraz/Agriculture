@@ -1,4 +1,5 @@
-﻿using Agriculture.Data;
+﻿using Agriculture.Areas.Admin.Models;
+using Agriculture.Data;
 using Agriculture.Models;
 using Agriculture.Security;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -295,6 +296,31 @@ namespace Agriculture.Utilities
         {
             var aa = await _context.Roles.Where(x => x.Name != UserRoles.Administrator && x.Name != UserRoles.SuperAdmin).ToListAsync();
             return new SelectList(await _context.Roles.Where(x => x.Name != UserRoles.Administrator && x.Name != UserRoles.SuperAdmin).ToListAsync(), "Name", "Name");
+        }
+        public async Task<OfficeViewModel> GetOfficeDetails()
+        {
+            var data=await _context.Office.Select(x=>new OfficeViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Name_En = x.Name_En,
+                Code = x.Code,
+                Address = x.Address,
+                PhoneNo = x.PhoneNo,
+                FaxNo = x.FaxNo,
+                Email = x.Email,
+                PalikaId = x.PalikaId,
+                PalikaName = x.Palika.PalikaNameNep,
+                StateName = x.State.StateNameNep,
+                DistrictName = x.District.DistrictNameNep,
+                StateName_En = x.State.StateName,
+                DistrictName_En = x.District.DistrictName,
+                PalikaName_En = x.Palika.PalikaName,
+                Url = x.Url,
+                StateId = x.StateId,
+                DistrictId = x.DistrictId,
+            }).FirstOrDefaultAsync();
+            return data??new OfficeViewModel();
         }
     }
 }

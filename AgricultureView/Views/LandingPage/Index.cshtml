@@ -1,7 +1,11 @@
-﻿@model AgricultureView.Areas.Admin.Models.LandingPageViewModel
+﻿@using AgricultureView.Utility
+@model AgricultureView.Areas.Admin.Models.LandingPageViewModel
 @inject AgricultureView.Utility.IGlobalVeriable _global
+@inject IUtility _Utility
 @{
     Layout = null;
+    var org =await _Utility.GetOfficeDetail();
+    var orgname = org.PalikaName;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +17,9 @@
     <meta name="description" content="AgriConnect – One-stop platform for modern farming solutions.">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -65,10 +70,10 @@
             transition: all 0.3s ease;
         }
 
-            .btn-primary:hover {
-                background: var(--dark);
-                transform: translateY(-2px);
-            }
+        .btn-primary:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
 
         .navbar {
             background: rgba(255, 255, 255, .95);
@@ -76,11 +81,11 @@
             transition: all .3s ease;
         }
 
-            .navbar.scrolled {
-                background: #fff;
-                box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
-                padding: 0.5rem 0;
-            }
+        .navbar.scrolled {
+            background: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
+            padding: 0.5rem 0;
+        }
 
 
 
@@ -96,10 +101,10 @@
             position: relative;
         }
 
-            .header-carousel-item img {
-                height: 100%;
-                object-fit: cover;
-            }
+        .header-carousel-item img {
+            height: 100%;
+            object-fit: cover;
+        }
 
         /* Carousel Caption Overlay */
         .carousel-caption {
@@ -130,11 +135,11 @@
             transition: all 0.3s ease;
         }
 
-            .owl-prev:hover,
-            .owl-next:hover {
-                background: #198754 !important;
-                color: #fff !important;
-            }
+        .owl-prev:hover,
+        .owl-next:hover {
+            background: #198754 !important;
+            color: #fff !important;
+        }
 
         .owl-prev {
             left: 25px;
@@ -154,9 +159,9 @@
             pointer-events: none;
         }
 
-            .owl-nav button {
-                pointer-events: all;
-            }
+        .owl-nav button {
+            pointer-events: all;
+        }
 
         .service-item,
         .project-item,
@@ -164,17 +169,17 @@
         .team-item,
         .testimonial-item,
         .gallery-item {
-            transition: all .3s ease;
+           transition: all .3s ease;
             border-radius: 12px;
             overflow: hidden;
         }
 
-            .service-item:hover,
-            .blog-item:hover,
-            .gallery-item:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, .15) !important;
-            }
+        .service-item:hover,
+        .blog-item:hover,
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, .15) !important;
+        }
 
         .project-item {
             position: relative;
@@ -186,17 +191,17 @@
             align-items: center;
         }
 
-            .project-item::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="80" cy="80" r="1.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
-                animation: float 25s linear infinite;
-                z-index: 1;
-            }
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="80" cy="80" r="1.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            animation: float 25s linear infinite;
+            z-index: 1;
+        }
 
         .project-content {
             position: relative;
@@ -216,10 +221,10 @@
             transition: all 0.4s ease;
         }
 
-            .weather-widget:hover {
-                transform: translateY(-8px) scale(1.02);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-            }
+        .weather-widget:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
 
         .temp {
             font-size: 3.5rem;
@@ -246,15 +251,15 @@
             color: #ddd;
         }
 
-            .footer a {
-                color: #adb5bd;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-                .footer a:hover {
-                    color: #fff;
-                }
+        .footer a:hover {
+            color: #fff;
+        }
 
         .back-to-top {
             background: var(--primary);
@@ -273,345 +278,501 @@
             z-index: 1000;
         }
 
-            .back-to-top.show {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(-10px);
-            }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-10px);
+        }
 
-            .back-to-top:hover {
-                background: var(--dark);
-                transform: translateY(-5px);
-            }
+        .back-to-top:hover {
+            background: var(--dark);
+            transform: translateY(-5px);
+        }
 
         /* Blog Section Styling */
-        #blog {
-            background: linear-gradient(rgb(168 227 178)), url('/images/agriculture-bg.jpg') no-repeat center center;
-            background-blend-mode: overlay;
-            min-height: 100vh;
-            position: relative;
-            color: #333;
+#blog {
+    background: linear-gradient(rgb(168 227 178)), url('/images/agriculture-bg.jpg') no-repeat center center;
+    background-blend-mode: overlay; 
+    min-height: 100vh; 
+    position: relative;
+    color: #333; 
+}
+
+/* Blog Card Styling */
+.blog-item {
+    transition: all 0.3s ease-in-out; 
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+    background-color: #e6f4ea;
+}
+
+.blog-item .btn-primary {
+    transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.blog-item .btn-primary:hover {
+    transform: scale(1.05); 
+    background-color: #218838; 
+}
+
+.blog-item h5 {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.blog-item .small {
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+
+
+/* Responsive Adjustments */
+@@media (max-width: 768px) {
+    .blog-item {
+        padding: 15px; 
+    }
+    #blog h1 {
+        font: bold;
+        font-size: 2.5rem; 
+    }
+    .blog-item h5 {
+        font-size: 1.1rem; 
+    }
+    .blog-item .btn-primary {
+        font-size: 0.9rem;
+        padding: 8px 16px; 
+    }
+}
+
+@@media (max-width: 576px) {
+    .blog-item {
+        padding: 12px; 
+    }
+    .blog-item h5 {
+        font-size: 1rem; 
+    }
+    .blog-item .btn-primary {
+        font-size: 0.85rem; 
+        padding: 6px 12px; 
+    }
+   }
+
+        /* Services Section Styling */
+#services {
+                background: linear-gradient(rgb(168 227 178));
+                min-height: 100vh; 
+}
+
+/* Service Card Styling */
+.service-item {
+    transition: all 0.3s ease-in-out; 
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    position: relative;
+    overflow: hidden;
+}
+
+.service-item:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+    background-color: #e6f4ea; 
+}
+
+.service-icon {
+    transition: transform 0.3s ease-in-out; 
+}
+
+.service-item:hover .service-icon {
+    transform: scale(1.1); 
+}
+
+.service-item h5 {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.service-item p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+
+
+/* Responsive Adjustments */
+@@media (max-width: 768px) {
+    .service-item {
+        padding: 15px;
+    }
+    #services h1 {
+        font: bold;
+        font-size: 2.5rem; 
+    }
+    .service-item h5 {
+        font-size: 1.1rem; 
+    }
+    .service-icon i {
+        font-size: 2.5rem; 
+    }
+}
+
+@@media (max-width: 576px) {
+    .service-item {
+        padding: 12px; 
+    }
+    .service-item h5 {
+        font-size: 1rem; 
+    }
+    .service-icon i {
+        font-size: 2rem;
+    }
+}
+
+
+        /* Market Section Styling */
+#market {
+    background: linear-gradient(rgb(168 227 178));
+    min-height: 100vh;
+}
+
+/* Table Styling */
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.table {
+    margin-bottom: 0;
+    transition: all 0.3s ease-in-out; 
+}
+
+.table-hover tbody tr.market-row:hover {
+    background-color: #e6f4ea; 
+    transform: scale(1.02); 
+    transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.table-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.table-success th {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Table Row Styling */
+.market-row td {
+    vertical-align: middle;
+    padding: 15px; 
+    transition: all 0.3s ease-in-out; 
+}
+
+
+
+/* Responsive Adjustments */
+@@media (max-width: 768px) {
+    .table {
+        font-size: 0.9rem;
+    }
+    .table-responsive {
+        margin: 0 -15px; 
+    }
+    .table th, .table td {
+        padding: 10px; 
+    }
+    #market h1 {
+        font: bold;
+        font-size: 2.5rem; 
+    }
+}
+
+@@media (max-width: 576px) {
+    .table {
+        font-size: 0.85rem;
+    }
+    .table th, .table td {
+        padding: 8px; 
+    }
+}
+
+    /* -----------------------------  traning ------------------------------------------ */
+        #traning{
+            background: linear-gradient(rgb(168 227 178));
+        }  
+        
+    .training-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
-        /* Blog Card Styling */
-        .blog-item {
-            transition: all 0.3s ease-in-out;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: relative;
+            .training-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+            }
+
+        .short-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-            .blog-item:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-                background-color: #e6f4ea;
+        .modal-header {
+            background-color: #1d8820;
+            color: white;
+        }
+
+        .badge-custom {
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Styles */
+        .page-title {
+            color: white;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            font-weight: 800;
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+        }
+
+        /* Gallery Card Styling */
+        .gallery-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            height: 350px;
+            cursor: pointer;
+        }
+
+            .gallery-card:hover {
+                transform: translateY(-15px) scale(1.02);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             }
 
-            .blog-item .btn-primary {
-                transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+            .gallery-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
             }
 
-                .blog-item .btn-primary:hover {
-                    transform: scale(1.05);
-                    background-color: #218838;
-                }
-
-            .blog-item h5 {
-                font-weight: 600;
-                color: #333;
-                margin-bottom: 0.5rem;
+            .gallery-card:hover img {
+                transform: scale(1.12);
             }
 
-            .blog-item .small {
-                font-size: 0.85rem;
-                letter-spacing: 0.05em;
+        /* Overlay Caption */
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-card:hover .card-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Lightbox Close Button - Beautiful */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1070;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+            .close-btn:hover {
+                background: rgba(220, 53, 69, 0.9);
+                transform: scale(1.15);
+                border-color: white;
             }
 
+        /* Modal Enhancements */
+        #modalImage {
+            border-radius: 16px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+            max-height: 80vh;
+            width: auto;
+        }
 
+        #modalCaption {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 20px;
+            display: inline-block;
+        }
 
         /* Responsive Adjustments */
         @@media (max-width: 768px) {
-            .blog-item {
-                padding: 15px;
+            .gallery-card {
+                height: 280px;
             }
 
-            #blog h1 {
-                font: bold;
-                font-size: 2.5rem;
-            }
-
-            .blog-item h5 {
-                font-size: 1.1rem;
-            }
-
-            .blog-item .btn-primary {
-                font-size: 0.9rem;
-                padding: 8px 16px;
+            .btn-close-white {
+                width: 44px;
+                height: 44px;
+                top: 15px;
+                right: 15px;
             }
         }
 
-        @@media (max-width: 576px) {
-            .blog-item {
-                padding: 12px;
+        /* ==== NEW: VIDEO SECTION ==== */
+        .video-section {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            overflow: hidden;
+        }
+
+        .video-carousel .video-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            cursor: pointer;
+        }
+
+        .video-carousel .video-item video {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 167, 69, .6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .4s ease;
+        }
+
+        .video-item:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, .9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
+            transition: transform .3s ease;
+        }
+
+        .video-item:hover .play-btn {
+            transform: scale(1.15);
+        }
+
+        .video-wrapper:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 167, 69, .7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .play-overlay i {
+            font-size: 3rem;
+            color: white;
+        }
+
+
+        .footer {
+            background: var(--dark);
+            color: #ddd;
+        }
+
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        @@keyframes flash {
+            0%, 100% {
+                background-color: #dc3545;
             }
 
-                .blog-item h5 {
-                    font-size: 1rem;
-                }
-
-                .blog-item .btn-primary {
-                    font-size: 0.85rem;
-                    padding: 6px 12px;
-                }
-            /* Services Section Styling */
-            #services {
-                background: linear-gradient(rgb(168 227 178));
-                min-height: 100vh;
+            50% {
+                background-color: #c82333;
             }
-            /* Service Card Styling */
-            .service-item {
-                transition: all 0.3s ease-in-out;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                position: relative;
-                overflow: hidden;
-            }
-
-                .service-item:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-                    background-color: #e6f4ea;
-                }
-
-            .service-icon {
-                transition: transform 0.3s ease-in-out;
-            }
-
-            .service-item:hover .service-icon {
-                transform: scale(1.1);
-            }
-
-            .service-item h5 {
-                font-weight: 600;
-                color: #333;
-                margin-bottom: 0.5rem;
-            }
-
-            .service-item p {
-                font-size: 0.9rem;
-                color: #666;
-                margin-bottom: 0;
-            }
-            /* Responsive Adjustments */
-            @@media (max-width: 768px) {
-                .service-item {
-                    padding: 15px;
-                }
-
-                #services h1 {
-                    font: bold;
-                    font-size: 2.5rem;
-                }
-
-                .service-item h5 {
-                    font-size: 1.1rem;
-                }
-
-                .service-icon i {
-                    font-size: 2.5rem;
-                }
-            }
-
-            @@media (max-width: 576px) {
-                .service-item {
-                    padding: 12px;
-                }
-
-                    .service-item h5 {
-                        font-size: 1rem;
-                    }
-
-                .service-icon i {
-                    font-size: 2rem;
-                }
-            }
-            /* Market Section Styling */
-            #market {
-                background: linear-gradient(rgb(168 227 178));
-                min-height: 100vh;
-            }
-            /* Table Styling */
-            .table-responsive {
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            }
-
-            .table {
-                margin-bottom: 0;
-                transition: all 0.3s ease-in-out;
-            }
-
-            .table-hover tbody tr.market-row:hover {
-                background-color: #e6f4ea;
-                transform: scale(1.02);
-                transition: background-color 0.3s ease, transform 0.3s ease-in-out;
-            }
-
-            .table-success {
-                background-color: #28a745;
-                color: white;
-            }
-
-                .table-success th {
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    letter-spacing: 0.05em;
-                }
-            /* Table Row Styling */
-            .market-row td {
-                vertical-align: middle;
-                padding: 15px;
-                transition: all 0.3s ease-in-out;
-            }
-            /* Empty State Styling */
-            /* Responsive Adjustments */
-            @@media (max-width: 768px) {
-                .table {
-                    font-size: 0.9rem;
-                }
-
-                .table-responsive {
-                    margin: 0 -15px;
-                }
-
-                .table th, .table td {
-                    padding: 10px;
-                }
-
-                #market h1 {
-                    font: bold;
-                    font-size: 2.5rem;
-                }
-            }
-
-            @@media (max-width: 576px) {
-                .table {
-                    font-size: 0.85rem;
-                }
-
-                    .table th, .table td {
-                        padding: 8px;
-                    }
-            }
-            /* Gallery Styles */
-            .gallery-item img {
-                width: 100%;
-                height: 220px;
-                object-fit: cover;
-                transition: transform 0.4s ease;
-            }
-
-            .gallery-item:hover img {
-                transform: scale(1.08);
-            }
-
-            .gallery-caption {
-                padding: 1rem;
-                background: #fff;
-                text-align: center;
-                font-weight: 500;
-            }
-            /* ==== NEW: VIDEO SECTION ==== */
-            .video-section {
-                background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
-                overflow: hidden;
-            }
-
-            .video-carousel .video-item {
-                position: relative;
-                border-radius: 16px;
-                overflow: hidden;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
-                cursor: pointer;
-            }
-
-                .video-carousel .video-item video {
-                    width: 100%;
-                    height: 400px;
-                    object-fit: cover;
-                    display: block;
-                }
-
-            .video-overlay {
-                position: absolute;
-                inset: 0;
-                background: rgba(40, 167, 69, .6);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                transition: opacity .4s ease;
-            }
-
-            .video-item:hover .video-overlay {
-                opacity: 1;
-            }
-
-            .play-btn {
-                width: 80px;
-                height: 80px;
-                background: rgba(255, 255, 255, .9);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2rem;
-                color: var(--primary);
-                box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
-                transition: transform .3s ease;
-            }
-
-            .video-item:hover .play-btn {
-                transform: scale(1.15);
-            }
-
-            .video-wrapper:hover .play-overlay {
-                opacity: 1;
-            }
-
-            .play-overlay {
-                position: absolute;
-                inset: 0;
-                background: rgba(40, 167, 69, .7);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                transition: .4s;
-            }
-
-                .play-overlay i {
-                    font-size: 3rem;
-                    color: white;
-                }
-
-
-            .footer {
-                background: var(--dark);
-                color: #ddd;
-            }
-
-                .footer a {
-                    color: #adb5bd;
-                    text-decoration: none;
-                    transition: color 0.3s ease;
-                }
-
-                    .footer a:hover {
-                        color: #fff;
-                    }
+        }
     </style>
 </head>
 
@@ -628,10 +789,10 @@
                             a Farmer
                         </a>
                         <a href="tel:+01234567890" class="text-muted me-4">
-                            <i class="fas fa-phone-alt text-primary me-2"></i>+012 345 67890
+                            <i class="fas fa-phone-alt text-primary me-2"></i>@org.PhoneNo
                         </a>
                         <a href="mailto:info@agriconnect.com" class="text-muted me-0">
-                            <i class="fas fa-envelope text-primary me-2"></i>info@agriconnect.com
+                            <i class="fas fa-envelope text-primary me-2"></i>@org.Email
                         </a>
                     </div>
                 </div>
@@ -640,14 +801,14 @@
                         <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
                             <i class="fab fa-facebook-f text-white"></i>
                         </a>
-
+                        
                         <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
                             <i class="fab fa-instagram text-white"></i>
                         </a>
-
-
+                        
+                        
                         <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
-                           class="btn btn-primary btn-square rounded-circle nav-fill me-0">login</a>
+                            class="btn btn-primary btn-square rounded-circle nav-fill me-0">login</a>
                     </div>
                 </div>
             </div>
@@ -659,7 +820,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-4 ">
             <a href="#" class="navbar-brand p-0 d-flex">
                 <img src="~/assets/img/ag-logo.webp" alt="logo" width="50" height="50">
-                <h1 class="text-primary m-0">कृषि सिरीजङ्घा</h1>
+                <h1 class="text-primary m-0">@org.Name</h1>
                 <!-- <h1 class="text-primary m-0"><i class="fas fa-seedling me-2"></i>AgriConnect</h1> -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -672,20 +833,30 @@
                     <a href="#services" class="nav-item nav-link">सेवाहरू</a>
                     <a href="#projects" class="nav-item nav-link">परियोजनाहरू</a>
                     <a href="#gallery" class="nav-item nav-link">ग्यालरी</a>
-                    @* <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="#blog" class="dropdown-item">Blog</a>
-                            <a href="#team" class="dropdown-item">Team</a>
-                            <a href="#testimonial" class="dropdown-item">Testimonials</a>
-                            <a href="#faq" class="dropdown-item">FAQ</a>
-                        </div>
-                    </div> *@
+                  
                     <a href="#contact" class="nav-item nav-link">सम्पर्क</a>
                 </div>
                 <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a>
             </div>
         </nav>
+    </div>
+  
+    <div class="bg-success text-white text-center py-1 fw-bold position-relative overflow-hidden"
+         style="font-size: 1rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+
+        <div class="d-flex align-items-center justify-content-center">
+            @* <i class="bi bi-megaphone-fill fs-1 me-3 animate__animated animate__swing animate__infinite"></i> *@
+            <strong class="me-4">महत्त्वपूर्ण सूचना :</strong>
+
+            <marquee behavior="scroll" direction="left" scrollamount="8"
+                     onmouseover="this.stop();" onmouseout="this.start();"
+                     class="fw-bold">
+                @org.Name ले नयाँ "स्मार्ट खेती तालीम" सुरु गरेको छ !
+                पहिलो ५० जना किसानलाई ५०% छुट !
+                दर्ता मिति: १५ मंसिरसम्म मात्र !
+                फोन: @org.PhoneNo | इमेल: @org.Email
+            </marquee>
+        </div>
     </div>
 
     <!-- Hero Section -->
@@ -695,21 +866,17 @@
             <!-- Slide 1 -->
             <div class="header-carousel-item position-relative">
                 <img src="https://imgs.search.brave.com/q_bnm999Dg83l-bhSVrbKzLIwVmlhRpNMKZGHTi9KnE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjg4MDg1Mjdf/MGU1YzRlYjZlOF9i/LmpwZw"
-                     class="img-fluid w-100 h-100 object-fit-cover" alt="Farm">
+                    class="img-fluid w-100 h-100 object-fit-cover" alt="Farm">
                 <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
                     <div class="p-3" style="max-width:600px;" data-aos="fade-right">
-                        <h1 class="text-white mb-4">
-                            “किसानलाई प्रविधिसँग जोड्दै — समृद्ध सिरीजङ्घा तर्फको
-                            यात्रा”
-                        </h1>
+                        <h1 class="text-white mb-4">“किसानलाई प्रविधिसँग जोड्दै — समृद्ध सिरीजङ्घा तर्फको
+                            यात्रा”</h1>
                         @* <p class="fs-5 text-white mb-4">
                             Your one-stop platform for farming guidance, market prices,
                             government schemes, and more.
                         </p> *@
-                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5 me-3">
-                            हाम्रा सेवाहरू
-                            हेर्नुहोस्
-                        </a>
+                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5 me-3">हाम्रा सेवाहरू
+                            हेर्नुहोस्</a>
                         <a href="#contact" class="btn btn-outline-light rounded-pill py-3 px-5">आजै सदस्य बनौं</a>
                     </div>
                 </div>
@@ -718,7 +885,7 @@
             <!-- Slide 2 -->
             <div class="header-carousel-item position-relative">
                 <img src="https://imgs.search.brave.com/hM-zck5UyjTFEusTc9E-3fGO_YGyiBJeYGavLmD4VuE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjc5OTQzMDNf/ZDEwZGI1YjcwMl9i/LmpwZw"
-                     class="img-fluid w-100 h-100 object-fit-cover" alt="Crops">
+                    class="img-fluid w-100 h-100 object-fit-cover" alt="Crops">
                 <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
                     <div class="p-3 text-center" style="max-width:700px;" data-aos="fade-up">
                         <h1 class="text-white mb-4">“ज्ञान, बजार र अवसर — सबै एकै प्लेटफर्ममा”</h1>
@@ -740,15 +907,15 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                         class="img-fluid rounded shadow" alt="Farmers">
+                        class="img-fluid rounded shadow" alt="Farmers">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <h4 class="text-primary">कृषि सिरीजङ्घा बारेमा</h4>
-                    <h1 class="mb-4">सिरीजङ्घा गाउँपालिका - कृषि संजाल</h1>
+                    <h4 class="text-primary">@org.Name बारेमा</h4>
+                    <h1 class="mb-4">@org.PalikaName - कृषि संजाल</h1>
                     <p class="mb-4">
-                        कृषि सिरीजङ्घा, ताप्लेजुङ जिल्लाको सिरीजङ्घा गाउँपालिकाको एक डिजिटल पहल हो, जसको उद्देश्य
+                        @org.Name, @org.DistrictName जिल्लाको @org.PalikaName को एक डिजिटल पहल हो, जसको उद्देश्य
                         किसानहरूलाई प्रविधि–आधारित कृषि सेवासँग जोड्नु हो।
-                        नेपालको पूर्वी पहाडी क्षेत्रस्थित सिरीजङ्घा प्राकृतिक सौन्दर्य, सांस्कृतिक विविधता र मेहनती कृषक
+                        नेपालको पूर्वी पहाडी क्षेत्रस्थित @org.PalikaName प्राकृतिक सौन्दर्य, सांस्कृतिक विविधता र मेहनती कृषक
                         समुदायका लागि परिचित छ।
                         यस प्लेटफर्ममार्फत किसानहरूले बालीसम्बन्धी सल्लाह, बजार पहुँच, मौसम सूचना र वित्तीय सहयोगका
                         माध्यमबाट दिगो तथा नाफामुखी कृषि अभ्यास गर्न सक्नेछन्।
@@ -836,12 +1003,103 @@
         </div>
     </section>
 
+    <section id="traning" class="container-fluid py-5">
+        <div class="container">
+            <h1 class="text-center mb-5 fw-bold text-success">तालिम विवरण</h1>
+
+            <div class="row g-4">
+                <!-- Training Card 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 training-card shadow-sm" data-bs-toggle="modal" data-bs-target="#trainingModal1">
+                        <div class="card-body d-flex flex-column">
+                           
+                            <h5 class="card-title text-primary fw-bold" style="text-shadow: none;">पशुपालन तालिम</h5>  @* शिर्षक *@
+
+                            <div class="d-flex flex-wrap gap-2 mt-2 small text-muted">
+                                <span><i class="bi bi-calendar3"></i> सुरु: २०८२-०४-०१</span>  @* सुरु मिति *@
+                                <span><i class="bi bi-calendar-x"></i> अन्त्य: २०८२-०४-१५</span>  @* अन्तिम मिति *@
+                            </div>
+
+                            <div class="mt-2">
+                                <span class="badge bg-success badge-custom">स्थान: काठमाडौँ</span> @* स्थान *@
+                                <span class="badge bg-info text-dark badge-custom">प्रिमियम</span>  @* प्रिमियम प्रकार *@
+                                <span class="badge bg-warning text-dark badge-custom">पशुपालन तालिम</span>  @* ट्रेनिङ प्रकार *@
+                            </div>
+
+                            <p class="short-desc mt-3 flex-grow-1">
+                                @* विवरण *@
+                                यो तालिमले सहभागीहरूलाई कम्प्युटरको आधारभूत प्रयोग, इन्टरनेटको सुरक्षित प्रयोग, एमएस अफिसका
+                                आधारभूत सफ्टवेयरहरू (Word, Excel, PowerPoint), इ-मेल र सामाजिक सञ्जालको उचित प्रयोग, डिजिटल
+                                सुरक्षा र गोपनीयता सम्बन्धी ज्ञान प्रदान गर्दछ।
+                                तालिम अवधिभर ह्यान्ड्स-अन अभ्यास, प्रोजेक्ट वर्क र प्रमाणपत्र वितरण गरिनेछ।
+                            </p>
+
+                            <div class="text-end mt-2">
+                                <a href="javascript:void(0)" class="text-primary fw-bold">
+                                    थप पढ्नुहोस् <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal (Lightbox) -->
+        <div class="modal fade" id="trainingModal1" tabindex="-1" aria-labelledby="trainingModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="trainingModalLabel1">डिजिटल साक्षरता तथा आधारभूत कम्प्युटर तालिम</h5>  @* शिर्षक *@
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="fw-bold text-success">आयोजक: नेपाल सरकार, सूचना प्रविधि मन्त्रालय</h6>  @* आयोजक *@
+
+                        <div class="row mt-3 text-muted small">
+                            <div class="col-6"><strong>सुरु मिति:</strong> २०८२-०४-०१</div>  @* सुरु मिति *@
+                            <div class="col-6"><strong>अन्तिम मिति:</strong> २०८२-०४-१५</div>  @* अन्तिम मिति *@
+                            <div class="col-6"><strong>आर्थिक वर्ष:</strong> २०८२/८३</div>  @* आर्थिक वर्ष *@
+                            <div class="col-6"><strong>स्थान:</strong> काठमाडौँ, नेपाल</div>  @* स्थान *@
+                            <div class="col-6"><strong>प्रशिक्षक:</strong> श्री रामबहादुर थापा</div>  @* प्रशिक्षक *@
+                            <div class="col-6"><strong>प्रिमियम प्रकार:</strong> प्रिमियम</div>  @* प्रिमियम प्रकार *@
+                            <div class="col-6"><strong>ट्रेनिङ प्रकार:</strong> आधारभूत तालिम</div>  @* ट्रेनिङ प्रकार *@
+                        </div>
+
+                        <hr>
+
+                        <h6 class="fw-bold">विवरण</h6>  @* विवरण *@
+                        <p>
+                            यो तालिमले सहभागीहरूलाई कम्प्युटरको आधारभूत प्रयोग, इन्टरनेटको सुरक्षित प्रयोग, एमएस अफिसका
+                            आधारभूत सफ्टवेयरहरू (Word, Excel, PowerPoint), इ-मेल र सामाजिक सञ्जालको उचित प्रयोग, डिजिटल
+                            सुरक्षा र गोपनीयता सम्बन्धी ज्ञान प्रदान गर्दछ।
+                            तालिम अवधिभर ह्यान्ड्स-अन अभ्यास, प्रोजेक्ट वर्क र प्रमाणपत्र वितरण गरिनेछ।
+                        </p>
+
+                        <div class="text-center my-4">
+                            @* फोटो *@
+                            <img src="https://imgs.search.brave.com/_7PApOFXoueFNjtQ12trK8ESVPyD8M3OPVvsFlTM95A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9zdW5z/ZXQtc29saXR1ZGUt/bG9uZS10cmVlLXN0/YW5kcy1kcnktY3Jh/Y2tlZC1lYXJ0aC1s/YW5kc2NhcGUtdW5k/ZXItZHJhbWF0aWMt/c2t5LWdlbmVyYXRp/dmUtYWktYmVhdXRp/ZnVsbHktY3JhZnRl/ZC1kaWdpdGFsLTM3/MzQxMTQ3Ni5qcGc"
+                                 class="img-fluid rounded shadow" style="height: 350px; width: 500px;" alt="तालिमको फोटो">
+                            <small class="text-muted d-block mt-2">तालिम उद्घाटन समारोहको फोटो</small>
+                        </div>
+                    </div>
+                    @* ---------------------- change to the apply the form ---------------------------------- *@
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- market -->
     <section id="market" class="container-fluid py-5 bg-success-subtle">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
                 <h4 class="text-primary">बजार मूल्य</h4>
-                <h1 id="market-heading">हाम्रा बजारहरू</h1>
+                <h1 id="market-heading">हाम्रा बजारहरू</h1> 
                 <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
             </div>
             @if (Model.Markets != null && Model.Markets.Any())
@@ -850,7 +1108,7 @@
                     <table class="table table-bordered table-striped table-hover" role="grid" aria-describedby="market-heading">
                         <thead class="table-success">
                             <tr>
-                                <th scope="col" class="text-center">क्र.म</th>
+                                <th scope="col" class="text-center">क्र.स.</th>
                                 <th scope="col" class="text-center">बजारको नाम</th>
                                 <th scope="col" class="text-center">सामानको नाम</th>
                                 <th scope="col" class="text-center">सामानको मूल्य</th>
@@ -863,6 +1121,9 @@
                                 <tr data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(300 + (100 * i))" data-aos-easing="ease-in-out" class="market-row">
                                     <td class="text-center">@(i + 1)</td>
                                     <td class="text-center">@item.Name</td>
+        @*--------------------------------------------------------------------------------------------
+                                    backend data input for this field 
+        --------------------------------------------------------------------------------------------*@
                                     <td class="text-center">आलु</td>
                                     <td class="text-center">८०</td>
                                 </tr>
@@ -925,11 +1186,15 @@
                 {
                     @foreach (var item in Model.ImageGalleries)
                     {
-                        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="@(100 * Model.ImageGalleries.IndexOf(item))">
-                            <a href="@(_global.BaseUrl() + item.FilePath)" data-lightbox="gallery" aria-label="View @item.Title in full screen"
-                               class="gallery-item d-block rounded shadow overflow-hidden">
-                                <img src="@(_global.BaseUrl() + item.FilePath)" alt="@item.Title" class="img-fluid">
-                                <div class="gallery-caption">@item.Title</div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
+                               onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
+                                <img src="@(_global.BaseUrl() + item.FilePath)"
+                                     alt="@item.Title">
+                                <div class="card-overlay">
+                                    <div class="card-title">@item.Title</div>
+                                    @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
+                                </div>
                             </a>
                         </div>
                     }
@@ -940,42 +1205,50 @@
                 }
             </div>
         </div>
+        <!-- Modal Lightbox with Close Button -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+                <div class="modal-content bg-transparent border-0 shadow-none">
+                    <div class="modal-body text-center position-relative p-4">
+
+                        <!-- Close Button (X) -->
+                        <div class="close-btn" data-bs-dismiss="modal">×</div>
+                        <div class="row justify-content-center">
+                            <img id="modalImage" src="" alt="Full view" class="img-fluid">
+                            <h4 id="modalCaption" class="mt-4" style="width: 50%;"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
 
     <!-- video Section -->
     <section id="videos" class="container-fluid py-5 bg-success-subtle">
         <div class="container py-5">
-            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-center mx-auto pb-5">
                 <h4 class="text-primary">हेर्नुहोस् र सिक्नुहोस्</h4>
                 <h1>किसानका कथाहरू</h1>
                 <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p>
             </div>
 
-            <div class="row g-4">
-                @if (Model.VideoGalleries != null && Model.VideoGalleries.Any())
-                {
-                    @foreach (var item in Model.VideoGalleries)
-                    {
-                        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="@(100 * Model.VideoGalleries.IndexOf(item))">
-                            <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer local-play"
-                                 data-src="@(_global.BaseUrl() + item.FilePath)">
-                                <video poster="@(_global.BaseUrl() + item.FilePath)" loop muted autoplay playsinline
-                                       preload="metadata" class="w-100 h-100 object-fit-cover">
-                                    <source src="@(_global.BaseUrl() + item.FilePath)" type="video/mp4">
-                                </video>
-                                <div class="play-overlay"><i class="fas fa-play fa-3x"></i></div>
-                            </div>
-                            <div class="p-3 bg-white text-center">
-                                <h5>@item.Title</h5>
-                            </div>
+            <div class="category-buttons text-center mb-4" id="categoryButtons"></div>
+
+            <div class="container py-4">
+                <div class="row g-4" id="videoList"></div>
+            </div>
+
+            <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title text-white" id="modalTitle"></h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                         </div>
-                    }
-                }
-                else
-                {
-                    <p data-aos="fade-in" data-aos-duration="800">No videos found.</p>
-                }
+                        <div class="modal-body p-0" id="modalBodyContainer"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -987,14 +1260,23 @@
     <footer class="footer py-5">
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <h1 class="text-white"><i class="fas fa-seedling me-2"></i>AgriConnect</h1>
                     <p class="text-light">Empowering farmers with technology and community.</p>
+
+                    <div class="mt-5">
+                        <h5 class="text-white text-center">social Media Links</h5>
+                        <ul class="list-unstyled text-center">
+                            <li class="data-flex mt-4"><a href="#"><i class="fa-solid fa-envelope"></i> E-mail:@org.Email</a></li>
+                            <li class="mt-4"><a href="#"><i class="fa-solid fa-phone"></i> Phone No:@org.PhoneNo</a></li>
+                            <li class="mt-4"><a href="#"><i class="fa-solid fa-globe"></i> WebSite:sirijanghamun.gov.np/</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="row g-5 justify-content-center">
+                <div class="col-lg-9">
+                    <div class="row g-5 ">
                         <div class="col-6 col-md-4">
-                            <h5 class="text-white">Quick Links</h5>
+                            <h5 class="text-white text-center">Quick Links</h5>
                             <ul class="list-unstyled">
                                 <li><a href="#home">Home</a></li>
                                 <li><a href="#about">About</a></li>
@@ -1002,15 +1284,36 @@
                             </ul>
                         </div>
 
-                        <div class="col-6 col-md-4">
-                            <h5 class="text-white">social Media Links</h5>
-                            <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa-solid fa-envelope"></i> email</a></li>
-                                <li><a href="#"><i class="fa-solid fa-phone"></i> Phone No</a></li>
-                                <li><a href="#"><i class="fa-solid fa-globe"></i> WebSite</a></li>
-                            </ul>
+                        
+                        <div class="col-12 col-md-8">
+                            <div class="card-body">
+                                @* <form action="https://formspree.io/f/YOUR_ID" method="POST" enctype="multipart/form-data"> *@
+                                <form method="POST" enctype="multipart/form-data">
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <label class="form-label">पुरा नाम <span class="text-danger">*</span></label>
+                                            <input type="text" name="name" class="form-control form-control-lg" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">मोबाइल नम्बर <span class="text-danger">*</span></label>
+                                            <input type="tel" name="phone" class="form-control form-control-lg" required>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label">गुनासोको विस्तृत विवरण <span class="text-danger">*</span></label>
+                                            <textarea name="message" class="form-control" rows="8"
+                                                      placeholder="कृपया सत्य र स्पष्ट कुरा मात्र लेख्नुहोस्..." required></textarea>
+                                        </div>
+
+                                        <div class="text-center my-5">
+                                            <button type="submit" class="btn btn-danger btn-lg text-white btn-submit shadow-lg">
+                                                गुनासो दर्ता गर्नुहोस्
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <!-- More columns -->
                     </div>
                 </div>
             </div>
@@ -1020,7 +1323,18 @@
     </footer>
 
     <!-- Back to Top -->
-    <a href="#" class="btn back-to-top position-fixed bottom-0 end-0 m-4"><i class="fa fa-arrow-up"></i></a>
+    <a href="#"
+       class="btn btn-lg btn-success back-to-top
+          position-fixed bottom-0 end-0
+          m-4 shadow-lg rounded-circle
+          d-flex align-items-center justify-content-center
+          text-white"
+       style="width: 56px; height: 56px; z-index: 1050; display: none;"
+       aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+        </svg>
+    </a>
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -1147,64 +1461,199 @@
             });
         });
 
-        // YouTube Popup
-        document.querySelectorAll('.youtube-play').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const videoId = btn.getAttribute('data-id');
-                const modalHtml = `
-                <div class="modal fade" id="ytModal" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header border-0">
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body p-0">
-                                <iframe width="100%" height="500"
-                                        src="https://www.youtube.com/embed/${videoId}?autoplay=1"
-                                        frameborder="0" allow="autoplay; fullscreen"
-                                        allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-                document.body.insertAdjacentHTML('beforeend', modalHtml);
-                new bootstrap.Modal('#ytModal').show();
-                document.getElementById('ytModal').addEventListener('hidden.bs.modal', () =>
-                    document.getElementById('ytModal').remove()
-                );
-            });
-        });
+        // gallery light box
+        function changeModalImage(src, caption) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('modalCaption').textContent = caption;
+        }
 
-        // Local MP4 Popup
-        document.querySelectorAll('.local-play').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const src = btn.getAttribute('data-src');
-                const modalHtml = `
-                <div class="modal fade" id="mp4Modal" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header border-0">
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body p-0">
-                                <video controls autoplay class="w-100" style="max-height:80vh;">
-                                    <source src="${src}" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-                document.body.insertAdjacentHTML('beforeend', modalHtml);
-                new bootstrap.Modal('#mp4Modal').show();
-                document.getElementById('mp4Modal').addEventListener('hidden.bs.modal', () =>
-                    document.getElementById('mp4Modal').remove()
-                );
-            });
-        });
+       // Show button only when scrolled down
+        window.onscroll = function() {
+          const btn = document.querySelector('.back-to-top');
+          if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = "flex";
+          } else {
+            btn.style.display = "none";
+          }
+        };
 
-        // Counter Up
-        $('.counter-value').counterUp({ delay: 10, time: 1500 });
+        // Smooth scroll to top when clicked
+        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+        
     </script>
+
+    @* ---------------------------------------------
+   BUILD JAVASCRIPT VIDEO ARRAY FROM MODEL
+---------------------------------------------- *@
+    @* Build JavaScript Array From Model *@
+    <script>
+        const videos = [
+            @foreach (var item in Model.VideoGalleries)
+            {
+                    var videoSrc = string.IsNullOrEmpty(item.YoutubeURL)
+                            ? _global.BaseUrl() + item.FilePath
+                            : item.YoutubeURL;
+
+                    <text>{
+                        src: "@videoSrc",
+                        title: "@Html.Raw(item.Title)",
+            // ------------------------- update the this code in the categories एल्बम for backend code ------------------------------------ //
+                        category: "@Html.Raw(item.Title)"  
+                    },</text>
+            }
+        ];
+    </script>
+
+    <script>
+        const categoryButtons = document.getElementById('categoryButtons');
+        const videoList = document.getElementById('videoList');
+        const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBodyContainer");
+
+        // ------------------- GET UNIQUE CATEGORIES -------------------
+        const categories = ["All", ...new Set(videos.map(v => v.category))];
+
+        // ------------------- RENDER CATEGORY BUTTONS -------------------
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline-dark m-1';
+            btn.textContent = cat;
+
+            btn.addEventListener('click', () => {
+                displayVideos(cat);
+            });
+
+            categoryButtons.appendChild(btn);
+        });
+
+        // ------------------- DISPLAY VIDEOS -------------------
+        function displayVideos(selectedCategory) {
+            videoList.innerHTML = "";
+
+            const filtered = selectedCategory === "All"
+                ? videos
+                : videos.filter(v => v.category === selectedCategory);
+
+            filtered.forEach(v => {
+                const html = `
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer video-item"
+                             data-src="${v.src}" data-title="${v.title}">
+                            <img class="video-thumb w-100 h-100 object-fit-cover" src="/image/video-placeholder.png" />
+                        </div>
+                        <div class="video-card shadow rounded overflow-hidden local-play">
+                            <p class="text-center fw-bold">${v.title}</p>
+                        </div>
+                    </div>
+                `;
+                videoList.insertAdjacentHTML("beforeend", html);
+            });
+
+            loadThumbnails();
+            enableVideoClicks();
+        }
+
+        // ------------------- GET YOUTUBE THUMBNAIL -------------------
+        function getYoutubeThumbnail(url) {
+            let id = "";
+            if (url.includes("watch?v=")) id = url.split("watch?v=")[1].split("&")[0];
+            else if (url.includes("youtu.be/")) id = url.split("youtu.be/")[1].split("?")[0];
+            return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+        }
+
+        // ------------------- CREATE LOCAL VIDEO THUMBNAIL -------------------
+        function createLocalThumbnail(videoSrc, imgElement) {
+            const video = document.createElement("video");
+            video.src = videoSrc;
+            video.preload = "metadata";
+            video.muted = true;
+            video.crossOrigin = "anonymous";
+
+            video.addEventListener("loadedmetadata", () => {
+                video.currentTime = 0.5;
+            });
+
+            video.addEventListener("seeked", () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                imgElement.src = canvas.toDataURL("image/jpeg");
+            });
+
+            video.onerror = () => {
+                imgElement.src = "/image/video-placeholder.png";
+            };
+        }
+
+        // ------------------- THUMBNAIL LOADER -------------------
+        function loadThumbnails() {
+            document.querySelectorAll('.video-item').forEach(item => {
+                const img = item.querySelector(".video-thumb");
+                const src = item.dataset.src;
+
+                if (src.includes("youtu")) {
+                    img.src = getYoutubeThumbnail(src);
+                } else {
+                    createLocalThumbnail(src, img);
+                }
+            });
+        }
+
+        // ------------------- ENABLE VIDEO CLICK -------------------
+        function enableVideoClicks() {
+            document.querySelectorAll(".video-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    const src = item.dataset.src;
+                    const title = item.dataset.title;
+
+                    modalTitle.textContent = title;
+                    modalBody.innerHTML = "";
+
+                    if (src.includes("youtu")) {
+                        let id = "";
+                        if (src.includes("watch?v=")) id = src.split("watch?v=")[1].split("&")[0];
+                        else if (src.includes("youtu.be/")) id = src.split("youtu.be/")[1].split("?")[0];
+
+                        modalBody.innerHTML = `
+                            <iframe width="100%" height="600"
+                                src="https://www.youtube.com/embed/${id}?autoplay=1"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media; fullscreen"
+                                allowfullscreen></iframe>
+                        `;
+                    } else {
+                        modalBody.innerHTML = `
+                            <video controls autoplay muted playsinline class="w-100" style="max-height:80vh;">
+                                <source src="${src}" type="video/mp4">
+                            </video>
+                        `;
+                    }
+
+                    modal.show();
+                });
+            });
+        }
+
+        // Stop video on close
+        document.getElementById("videoModal").addEventListener("hidden.bs.modal", () => {
+            modalBody.innerHTML = "";
+        });
+
+        // Load all videos initially
+        displayVideos("All");
+    </script>
+
+
+
 </body>
 
 </html>
