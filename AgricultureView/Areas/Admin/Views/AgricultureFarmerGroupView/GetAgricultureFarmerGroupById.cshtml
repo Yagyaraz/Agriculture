@@ -1,0 +1,232 @@
+﻿@model AgricultureFarmerGroupViewModel
+@{
+    ViewData["Title"] = "Farmer Group Details";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgricultureFarmerGroupView" asp-action="Index">Farmer Group List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Farmer Group Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <!-- Group General Information -->
+                <div class="card-header">
+                    <div class="card-title">समुह/सहकारि/फर्मको विवरण</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>समुह/सहकारि/फर्मको </label>
+                                <p class="form-control-static fw-bold">@Model.FirmName</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>समुह/सहकारि/फर्मको - English</label>
+                                <p class="form-control-static">@Model.FirmNameEng</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>समुह/सहकारि/फर्मको स्थापना वर्ष</label>
+                                <p class="form-control-static">@Model.FirmEstdDate</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>पालिकाको नाम</label>
+                                <p class="form-control-static">@Model.FirmPalikaName</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>वडा नं</label>
+                                <p class="form-control-static">@Model.FirmWardNo</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>टोलको नाम</label>
+                                <p class="form-control-static">@Model.FirmTolName</p>
+                            </div>
+                        </div>
+
+                       @*  <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>समुह/सहकारि/फर्मको प्रकार</label>
+                                <p class="form-control-static">@Model.AgriGroupTypeName</p>
+                            </div>
+                        </div> *@
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>प्यान नं</label>
+                                <p class="form-control-static">@Model.FirmPanNo</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>दर्ता नं</label>
+                                <p class="form-control-static">@Model.FirmDartaNo</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>दर्ता मिति</label>
+                                <p class="form-control-static">@Model.FirmRegDate</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>हितकोष रकम</label>
+                                <p class="form-control-static">@Model.FirmHitKoshAmt</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Member Count Section -->
+                <div class="card-header">
+                    <div class="card-title">समुह/सहकारि/फर्मको सदस्य संख्याको विवरण</div><br />
+                    <div class="card-title">सदस्य संख्या</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>पुरुष</label>
+                                <p class="form-control-static">@Model.SadsyeMaleCount</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>महिला</label>
+                                <p class="form-control-static">@Model.SadsyeFemaleCount</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>अन्य</label>
+                                <p class="form-control-static">@Model.SadsyeOtherCount</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>समुहको उद्देश्य</label>
+                                <p class="form-control-static">@Model.SamuhaAim</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>समुहको विवरण</label>
+                                <p class="form-control-static">@Model.SamuhaDetails</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>कार्यालयको वडा</label>
+                                <p class="form-control-static">@Model.SamuhaWardNo</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>कार्यालयको नाम</label>
+                                <p class="form-control-static">@Model.KaryalayeName</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Officials Section -->
+                <div class="card-header">
+                    <div class="card-title">पदाधिकारीहरुको विवरण</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="mb-0 table table-hover table-bordered">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>पुरा नाम</th>
+                                    <th style="width: 15%">पद</th>
+                                    <th style="width: 15%">उमेर</th>
+                                    <th style="width: 18%">साक्षर योग्यता</th>
+                                    <th style="width: 20%">क्षेत्रफल</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.OfficialsDetailViewModelList != null && Model.OfficialsDetailViewModelList.Any())
+                                {
+                                    foreach (var item in Model.OfficialsDetailViewModelList)
+                                    {
+                                        <tr>
+                                            <td>@item.FullName</td>
+@*                                             <td>@item.PostName</td>
+ *@                                            <td>@item.Age</td>
+@*                                             <td>@item.EducationName</td>
+ *@                                            <td>@item.Area</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr><td colspan="5" class="text-center">No officials added.</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="card-footer">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

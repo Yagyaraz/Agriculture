@@ -1,0 +1,129 @@
+﻿@model AgricultureServiceViewModel
+@{
+    ViewData["Title"] = "Service Details";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Service">Service List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Service Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">सेवा र सुविधा विवरण</div>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <!-- Fiscal Year -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>आर्थिक वर्ष</label>
+                                <input class="form-control" value="@Model.FiscalYearName" readonly />
+                            </div>
+                        </div>
+
+                        <!-- Program -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>कार्यक्रम</label>
+                                <input class="form-control" value="@Model.ProgramName" readonly />
+                            </div>
+                        </div>
+
+                        <!-- Project -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>योजना</label>
+                                <input class="form-control" value="@Model.ProjectName" readonly />
+                            </div>
+                        </div>
+
+                        <!-- Valid Till Nepali Date -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>कृषि योजनाको लागि मान्य समय</label>
+                                <input class="form-control" value="@Model.ValidTillDate" readonly />
+                            </div>
+                        </div>
+
+                        <!-- Service Name -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>सेवा नाम</label>
+                                <input class="form-control" value="@Model.ServiceName" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Questions Table -->
+                    <div class="row mt-4">
+                        <div class="col-md-12 p-0">
+
+                            <div class="table-responsive">
+                                <table class="mb-0 table table-hover table-bordered">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>थप प्रश्न</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @if (Model.AgricultureServiceAdditionalViewModelList != null &&
+                                                                                Model.AgricultureServiceAdditionalViewModelList.Count > 0)
+                                        {
+                                            foreach (var item in Model.AgricultureServiceAdditionalViewModelList)
+                                            {
+                                                <tr>
+                                                    <td>@item.Questions</td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td class="text-center text-muted">
+                                                    कुनै थप प्रश्नहरू उपलब्ध छैनन्।
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a asp-action="Service" class="btn btn-primary">Back to List</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

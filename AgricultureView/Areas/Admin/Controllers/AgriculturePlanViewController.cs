@@ -101,6 +101,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new AgricultureServiceViewModel());
         }
+        public async Task<IActionResult> ServiceDetails(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/AgriculturePlan/GetServiceById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<AgricultureServiceViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new AgricultureServiceViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> CreateService(AgricultureServiceViewModel model)
         {

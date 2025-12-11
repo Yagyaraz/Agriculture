@@ -1,15 +1,204 @@
-﻿
+﻿@model FarmerViewModel
 @{
-    Layout = null;
+    ViewData["Title"] = "Farmer Details";
 }
 
-<!DOCTYPE html>
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Farmer Details</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Farmer List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Farmer Details</a>
+            </li>
+        </ul>
+    </div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetFarmerById</title>
-</head>
-<body>
-</body>
-</html>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Farmer Information</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <!-- FULL NAME -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>पुरा नाम</label>
+                                <p class="form-control-static fw-bold">@Model.FullName</p>
+                            </div>
+                        </div>
+
+                        <!-- FULL NAME ENG -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>पुरा नाम(Eng)</label>
+                                <p class="form-control-static">@Model.FullNameEng</p>
+                            </div>
+                        </div>
+
+                        <!-- PROVINCE -->
+                       @*  <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>प्रदेश</label>
+                                <p class="form-control-static">@Model.StateName</p>
+                            </div>
+                        </div>
+
+                        <!-- DISTRICT -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>जिल्ला</label>
+                                <p class="form-control-static">@Model.DistrictName</p>
+                            </div>
+                        </div>
+
+                        <!-- PALIKA -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>पालिका</label>
+                                <p class="form-control-static">@Model.PalikaName</p>
+                            </div>
+                        </div> *@
+
+                        <!-- WARD NO -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>वार्ड नं</label>
+                                <p class="form-control-static">@Model.WardNo</p>
+                            </div>
+                        </div>
+
+                        <!-- PHONE -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>फोन नम्बर</label>
+                                <p class="form-control-static">@Model.PhoneNo</p>
+                            </div>
+                        </div>
+
+                        <!-- EMAIL -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>इमेल</label>
+                                <p class="form-control-static">@Model.Email</p>
+                            </div>
+                        </div>
+
+                        <!-- GENDER -->
+                      @*   <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>लिङ्ग</label>
+                                <p class="form-control-static">@Model.GenderName</p>
+                            </div>
+                        </div> *@
+
+                        <!-- DOB -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>जन्म मिति (बि.सं.)</label>
+                                <p class="form-control-static">@Model.DOBNep</p>
+                            </div>
+                        </div>
+
+                        <!-- EDUCATION -->
+                       @*  <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>शिक्षा योग्यता</label>
+                                <p class="form-control-static">@Model.EducationName</p>
+                            </div>
+                        </div>
+
+                        <!-- EDUCATION LEVEL -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>साक्षर योग्यता</label>
+                                <p class="form-control-static">@Model.EducationLevelName</p>
+                            </div>
+                        </div> *@
+
+                        <!-- TOL NAME -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>गाउँ / टोल नाम</label>
+                                <p class="form-control-static">@Model.TolName</p>
+                            </div>
+                        </div>
+
+                        <!-- CITIZEN NO -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>नागरिकता नम्बर</label>
+                                <p class="form-control-static">@Model.CitizenNo</p>
+                            </div>
+                        </div>
+
+                        <!-- CITIZEN DISTRICT -->
+                       @*  <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>नागरिकता जारी जिल्ला</label>
+                                <p class="form-control-static">@Model.CitizenDistrictName</p>
+                            </div>
+                        </div> *@
+
+                        <!-- CITIZEN ISSUE DATE -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>नागरिकता जारी मिति (बि.सं.)</label>
+                                <p class="form-control-static">@Model.CitizenIssueDate</p>
+                            </div>
+                        </div>
+
+                        <!-- FARMER GROUP -->
+                       @*  <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>कृषक समूह</label>
+                                <p class="form-control-static">@Model.FarmerGroupName</p>
+                            </div>
+                        </div> *@
+
+                        <!-- FARMER CATEGORY -->
+                       @*  <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>कृषक श्रेणी</label>
+                                <p class="form-control-static">@Model.FarmerCategoryName</p>
+                            </div>
+                        </div> *@
+
+                        <!-- HOUSE NO -->
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>घरपरिवार नम्बर</label>
+                                <p class="form-control-static">@Model.HouseNo</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -22,7 +22,7 @@
                                     <th>दर्ता नं</th>
                                     <th>नाम</th>
                                     <th>ठेगाना</th>
-                                    <th></th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +36,9 @@
                                         <td>@Html.DisplayFor(modelItem => item.FirmPalikaName)</td>
                                         <td>
                                             <a asp-action="Create" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="GetAgricultureFarmerGroupById" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Details</a>
                                         </td>
                                     </tr>
                                 }
