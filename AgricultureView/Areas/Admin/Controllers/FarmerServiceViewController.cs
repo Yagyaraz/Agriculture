@@ -69,6 +69,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new FarmerServiceCardViewModel());
         }
+        public async Task<IActionResult> PrintFarmerServiceCard(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/FarmerService/GetFarmerServiceCardById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<FarmerServiceCardViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new FarmerServiceCardViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> CreateFarmerServiceCard(FarmerServiceCardViewModel model)
         {

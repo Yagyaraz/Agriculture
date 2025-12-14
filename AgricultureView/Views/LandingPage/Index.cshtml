@@ -1284,25 +1284,23 @@
                             </ul>
                         </div>
 
-                        
+
                         <div class="col-12 col-md-8">
                             <div class="card-body">
-                                @* <form action="https://formspree.io/f/YOUR_ID" method="POST" enctype="multipart/form-data"> *@
-                                <form method="POST" enctype="multipart/form-data">
+                                <form asp-area="Admin" asp-controller="Gunaso" asp-action="CreateGunaso" method="post" enctype="multipart/form-data">
                                     <div class="row g-4">
                                         <div class="col-md-6">
                                             <label class="form-label">पुरा नाम <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control form-control-lg" required>
+                                            <input type="text" asp-for="Gunaso.Name" class="form-control form-control-lg" required />
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">मोबाइल नम्बर <span class="text-danger">*</span></label>
-                                            <input type="tel" name="phone" class="form-control form-control-lg" required>
+                                            <input type="tel" asp-for="Gunaso.PhoneNumber" class="form-control form-control-lg" required />
                                         </div>
 
                                         <div class="col-12">
                                             <label class="form-label">गुनासोको विस्तृत विवरण <span class="text-danger">*</span></label>
-                                            <textarea name="message" class="form-control" rows="8"
-                                                      placeholder="कृपया सत्य र स्पष्ट कुरा मात्र लेख्नुहोस्..." required></textarea>
+                                            <textarea asp-for="Gunaso.Description" class="form-control" rows="8" placeholder="कृपया सत्य र स्पष्ट कुरा मात्र लेख्नुहोस्..." required></textarea>
                                         </div>
 
                                         <div class="text-center my-5">

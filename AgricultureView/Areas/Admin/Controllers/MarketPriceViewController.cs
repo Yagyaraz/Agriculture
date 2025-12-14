@@ -66,6 +66,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new MarketPriceViewModel());
         }
+        public async Task<IActionResult> MarketPriceDetails(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/MarketPrice/GetMarketPriceById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<MarketPriceViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new MarketPriceViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> MarketPriceCreate(MarketPriceViewModel model)
         {

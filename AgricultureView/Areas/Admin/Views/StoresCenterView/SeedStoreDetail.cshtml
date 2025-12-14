@@ -111,8 +111,9 @@
                 </div>
 
                 <div class="card-action">
-                    <a asp-action="SeedStore" asp-controller="StoresCenterView" class="btn btn-secondary">Back</a>
-                    <a asp-action="EditSeedStore" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+                    <div class="card-footer text-start">
+                        <a asp-action="SeedStore" class="btn btn-primary">⬅ Back to List</a>
+                    </div>
                 </div>
 
             </div>

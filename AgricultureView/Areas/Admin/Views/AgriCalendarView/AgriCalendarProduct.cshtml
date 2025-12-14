@@ -35,6 +35,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.NameEng)</td>
                                         <td>@Html.DisplayFor(modelItem => item.AgriCalendarCategory)</td>
                                         <td> <a asp-action="AgriCalendarProductCreate" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></td>
+                                        <td> <a asp-action="AgriCalendarProductDetail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Details</a></td>
                                     </tr>
                                 }
                             </tbody>

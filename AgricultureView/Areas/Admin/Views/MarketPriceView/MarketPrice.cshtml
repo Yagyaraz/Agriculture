@@ -33,6 +33,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.Date)</td>
                                         <td>@Html.DisplayFor(modelItem => item.MarketName)</td>
                                         <td> <a asp-action="MarketPriceCreate" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></td>
+                                        <td> <a asp-action="MarketPriceDetails" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Detail</a></td>
                                     </tr>
                                 }
                             </tbody>

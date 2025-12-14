@@ -32,7 +32,7 @@
         public List<TrainingViewModel> Trainings { get; set; }
         public List<PlaylistViewModel> Playlists { get; set; }
         public List<VideoGalleryViewModel> VideoGalleries { get; set; }
-        
+        public GunasoViewModel Gunaso { get; set; }
 
     }
 }

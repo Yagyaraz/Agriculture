@@ -1,0 +1,113 @@
+﻿@model SubsidyViewModel
+@{
+    ViewData["Title"] = "Subsidy Details";
+}
+
+<div class="page-inner">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">अनुदान विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="SubsidyView" asp-action="Subsidy">Subsidy List</a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a href="#">Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO CARD -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">अनुदानको आधारभूत जानकारी</div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>आर्थिक वर्ष</strong>
+                            <p class="text-muted">@Model.FiscalYearId</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>कार्यक्रम</strong>
+                            <p class="text-muted">@Model.ProgramName</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>योजना</strong>
+                            <p class="text-muted">@Model.ProjectName</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>सुरु मिति</strong>
+                            <p class="text-muted">@Model.StartDate</p>
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <strong>अन्तिम मिति</strong>
+                            <p class="text-muted">@Model.EndDate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL TABLE CARD -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">अनुदान विवरण सूची</div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>अनुदान श्रेणी</th>
+                                    <th>उप-श्रेणी</th>
+                                    <th>अनुदान संख्या</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.SubsidyDetailViewModelList != null && Model.SubsidyDetailViewModelList.Any())
+                                {
+                                    foreach (var item in Model.SubsidyDetailViewModelList)
+                                    {
+                                        <tr>
+                                            <td>@item.CategoryId</td>
+                                            <td>@item.SubCategoryId</td>
+                                            <td>
+                                                <span class="badge badge-primary">@item.Quantity</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted">
+                                            No details available
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer text-start">
+                    <a asp-action="Subsidy" class="btn btn-primary">⬅ Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> <!-- page-inner -->

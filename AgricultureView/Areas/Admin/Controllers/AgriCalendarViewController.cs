@@ -98,6 +98,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new AgriCalendarProductViewModel());
         }
+        public async Task<IActionResult> AgriCalendarProductDetail(int id )
+        {
+            var response = await _globalVeriable.GetMethod("Admin/AgriCalendar/GetAgriCalendarProductById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<AgriCalendarProductViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new AgriCalendarProductViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> AgriCalendarProductCreate(AgriCalendarProductViewModel model)
         {
@@ -121,6 +131,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             return View(new List<AgriCalendarViewModel>());
         }
         public async Task<IActionResult> AgriCalendarCreate(int id = 0)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/AgriCalendar/GetAgriCalendarById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<AgriCalendarViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new AgriCalendarViewModel());
+        }
+        public async Task<IActionResult> AgriCalendarDetails(int id )
         {
             var response = await _globalVeriable.GetMethod("Admin/AgriCalendar/GetAgriCalendarById/" + id);
             if (response.Status)

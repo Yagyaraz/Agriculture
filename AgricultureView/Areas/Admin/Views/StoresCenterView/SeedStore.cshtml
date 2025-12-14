@@ -35,6 +35,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.Address)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
                                         <td> <a asp-action="CreateSeedStore" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></td>
+                                        <td> <a asp-action="SeedStoreDetail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Detail</a></td>
                                     </tr>
                                 }
                             </tbody>

@@ -1,0 +1,112 @@
+﻿@model MarketPriceViewModel
+@{
+    ViewData["Title"] = "Market Price Details";
+}
+
+<div class="page-inner">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">बजार मुल्य विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin"
+                   asp-controller="MarketPriceView"
+                   asp-action="MarketPrice">
+                    बजार मुल्य
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">बजार मुल्य जानकारी</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>सर्भेक्षण मिति</strong>
+                            <p class="text-muted">@Model.Date</p>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>बजार</strong>
+                            <p class="text-muted">@Model.MarketName</p>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL LIST -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">बजार मुल्य विवरण</div>
+                </div>
+
+                <div class="card-body">
+                    @if (Model.MarketPriceDetailsViewModelList != null &&
+                                        Model.MarketPriceDetailsViewModelList.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>नाम</th>
+                                        <th>खुद्रा मुल्य</th>
+                                        <th>थोक मुल्य</th>
+                                        <th>औसत मुल्य</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.MarketPriceDetailsViewModelList)
+                                    {
+                                        <tr>
+                                            <td>@item.ProductName</td>
+                                            <td>@item.RetailPrice</td>
+                                            <td>@item.WholesalePrice</td>
+                                            <td>@item.AveragePrice</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No market price details available.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-start">
+        <a asp-action="MarketPrice"
+           class="btn btn-primary">
+            ⬅ Back to List
+        </a>
+    </div>
+</div>

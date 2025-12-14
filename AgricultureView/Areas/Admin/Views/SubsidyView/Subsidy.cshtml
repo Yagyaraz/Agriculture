@@ -37,6 +37,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.EndDate)</td>
                                         <td>
                                             <a asp-action="CreateSubsidy" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                            <a asp-action="SubsidyDetails" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Detail</a>
                                             <span id="checkData">
                                             <a class="btn btn-primary" onclick="Darta(this, '@item.Id')">
                                                 <i class="fa fa-thumbs-up"> दर्ता </i>

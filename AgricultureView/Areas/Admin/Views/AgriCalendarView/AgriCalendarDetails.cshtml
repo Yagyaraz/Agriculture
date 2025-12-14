@@ -1,0 +1,171 @@
+﻿@model AgriCalendarViewModel
+@{
+    ViewData["Title"] = "Agri Calendar Details";
+}
+
+<div class="page-inner">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">कृषि पात्रो विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin"
+                   asp-controller="AgriCalendarView"
+                   asp-action="AgriCalendar">
+                    कृषि पात्रो
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">कृषि पात्रो जानकारी</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <strong>प्रकार</strong>
+                            <p class="text-muted">@Model.TypeName</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>उत्पादन श्रेणी</strong>
+                            <p class="text-muted">@Model.CategoryName</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>उत्पादन</strong>
+                            <p class="text-muted">@Model.ProductName</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>जात</strong>
+                            <p class="text-muted">@Model.Variety</p>
+                        </div>
+
+                    </div>
+                </div>
+
+               
+
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL LIST -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">कृषि पात्रो विवरण</div>
+                </div>
+
+                <div class="card-body">
+                    @if (Model.AgriCalendarDetailViewModelList != null &&
+                                        Model.AgriCalendarDetailViewModelList.Any())
+                    {
+                        @foreach (var item in Model.AgriCalendarDetailViewModelList)
+                        {
+                            <div class="border p-3 mb-3">
+
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <strong>भेग</strong>
+                                        <p class="text-muted">@item.EcologicalAreaId</p>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <strong>उचाई बाट</strong>
+                                        <p class="text-muted">@item.ElevationFrom</p>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <strong>उचाई सम्म</strong>
+                                        <p class="text-muted">@item.ElevationTo</p>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12 text-center">
+                                        <strong>रोप्ने समय</strong>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <strong>सुरु</strong>
+                                        <p class="text-muted">
+                                            @item.SowingStartMonthId - @item.SowingStartWeekId
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <strong>अन्तिम</strong>
+                                        <p class="text-muted">
+                                            @item.SowingEndMonthId - @item.SowingEndWeekId
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <strong>कटनी समय</strong>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <strong>सुरु</strong>
+                                        <p class="text-muted">
+                                            @item.HarvestStartMonthId - @item.HarvestStartWeekId
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <strong>अन्तिम</strong>
+                                        <p class="text-muted">
+                                            @item.HarvestEndMonthId - @item.HarvestEndWeekId
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">No details available</p>
+                    }
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="card-footer text-start">
+        <a asp-action="AgriCalendar"
+           class="btn btn-primary">
+            ⬅ Back to List
+        </a>
+    </div>
+</div>
