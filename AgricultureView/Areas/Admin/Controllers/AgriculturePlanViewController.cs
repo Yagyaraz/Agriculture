@@ -135,7 +135,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new List<AgricultureApplicatoionFormViewModel>());
         }
-
+        public async Task<IActionResult> ApplicationDetails (int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/AgriculturePlan/GetApplicatoionFormById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<AgricultureApplicatoionFormViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new AgricultureApplicatoionFormViewModel());
+        }
         public async Task<IActionResult> CreateApplicatoionForm(int id = 0)
         {
             var response = await _globalVeriable.GetMethod("Admin/AgriculturePlan/GetApplicatoionFormById/" + id);
@@ -146,43 +155,6 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new AgricultureApplicatoionFormViewModel());
         }
-        //[HttpPost]
-        //public async Task<IActionResult> CreateApplicatoionForm(AgricultureApplicatoionFormViewModel model)
-        //{
-        //    using (var formData = new MultipartFormDataContent())
-        //    {
-        //        formData.Add(new StringContent(model.Id.ToString()), "Id");
-        //        formData.Add(new StringContent(model.FiscalYearId.ToString()), "FiscalYearId");
-        //        formData.Add(new StringContent(model.ProgramId.ToString()), "ProgramId");
-        //        formData.Add(new StringContent(model.ProjectId.ToString()), "ProjectId");
-        //        formData.Add(new StringContent(model.ServiceId.ToString()), "ServiceId");
-        //        formData.Add(new StringContent(model.FarmerTypeId.ToString()), "FarmerTypeId");
-        //        formData.Add(new StringContent(model.FarmerId.ToString()), "FarmerId");
-        //        formData.Add(new StringContent(model.AgriGroupId.ToString()), "AgriGroupId");
-        //        formData.Add(new StringContent(model.ContactName ?? ""), "ContactName");
-        //        formData.Add(new StringContent(model.Remarks ?? ""), "Remarks");
-
-        //        if (model.CitizenPhoto != null)
-        //        {
-        //            formData.Add(new StreamContent(model.CitizenPhoto.OpenReadStream()), "CitizenPhoto", model.CitizenPhoto.FileName);
-        //        }
-        //        if (model.LandOwnershipPhoto != null)
-        //        {
-        //            formData.Add(new StreamContent(model.LandOwnershipPhoto.OpenReadStream()), "LandOwnershipPhoto", model.LandOwnershipPhoto.FileName);
-        //        }
-        //        if (model.PlanDetailPhoto != null)
-        //        {
-        //            formData.Add(new StreamContent(model.PlanDetailPhoto.OpenReadStream()), "PlanDetailPhoto", model.PlanDetailPhoto.FileName);
-        //        }
-
-        //        var response = await _globalVeriable.PostMethod("Admin/AgriculturePlan/CreateApplicatoionForm", formData);
-        //        if (response.Status)
-        //        {
-        //            return RedirectToAction("ApplicatoionForm");
-        //        }
-        //    }
-        //    return View(model);
-        //}
         [HttpPost]
         public async Task<IActionResult> CreateApplicatoionForm(AgricultureApplicatoionFormViewModel model)
         {

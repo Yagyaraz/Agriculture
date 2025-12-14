@@ -1,0 +1,132 @@
+﻿@model AgricultureApplicatoionFormViewModel
+@{
+    ViewData["Title"] = "Application Form Details";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index"><i class="icon-home"></i></a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="ApplicatoionForm">Application List</a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item"><a href="#">Application Details</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- === BASIC DETAILS === -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="card-title">मूलभूत विवरण</div>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label class="fw-bold">आर्थिक वर्ष:</label>
+                            <div>@Model.FiscalYearName</div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="fw-bold">कार्यक्रम:</label>
+                            <div>@Model.ProgramName</div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="fw-bold">योजना:</label>
+                            <div>@Model.ProjectName</div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="fw-bold">सेवा:</label>
+                            <div>@Model.ServiceName</div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="fw-bold">किसान प्रकार:</label>
+                            <div>@(Model.FarmerTypeId == 1 ? "व्यक्तिगत" : "समूह")</div>
+                        </div>
+
+                        @if (Model.FarmerTypeId == 1)
+                        {
+                            <div class="col-md-3 mb-3">
+                                <label class="fw-bold">किसानको नाम:</label>
+                                <div>@Model.FarmerId</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-3 mb-3">
+                                <label class="fw-bold">कृषि समूह:</label>
+                                <div>@Model.FarmerorAgriGroupName</div>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="fw-bold">सम्पर्क व्यक्ति:</label>
+                                <div>@Model.ContactName</div>
+                            </div>
+                        }
+
+                        <div class="col-md-12 mb-3">
+                            <label class="fw-bold">कैफियत:</label>
+                            <div>@Model.Remarks</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- === PHOTO SECTION === -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">फोटो विवरण</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        @foreach (var photo in new[]
+                                                {
+                                                new { Label = "नागरिकताको फोटो", Path = Model.CitizenPhotoPath },
+                                                new { Label = "जग्गा स्वामित्वको फोटो", Path = Model.LandOwnershipPhotoPath },
+                                                new { Label = "योजना विवरणको फोटो", Path = Model.PlanDetailPhotoPath },
+                                                new { Label = "पंजीकरण / नवीकरणको फोटो", Path = Model.PanjikaranPhotoPath },
+                                                new { Label = "स्थाई लेखा फोटो", Path = Model.SthailekhaPhotoPath },
+                                                new { Label = "करको फोटो", Path = Model.TaxPhotoPath },
+                                                new { Label = "बैठक माईन्युट फोटो", Path = Model.MinutePhotoPath },
+                                                new { Label = "स्व घोषणा फोटो", Path = Model.SelfdecisionPhotoPath }
+                                                })
+                        {
+                            <div class="col-md-4 mb-4 text-center">
+                                <div class="card p-2 shadow-sm" style="min-height: 300px;">
+
+                                    <label class="fw-bold d-block mb-2">@photo.Label</label>
+
+                                    @if (!string.IsNullOrEmpty(photo.Path))
+                                    {
+                                        <img src="@(_global.BaseUrl() + photo.Path)"
+                                             class="img-fluid rounded border"
+                                             style="max-height: 220px; object-fit: cover;" />
+                                    }
+                                    else
+                                    {
+                                        <div class="text-danger mt-5">फोटो अपलोड गरिएको छैन</div>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

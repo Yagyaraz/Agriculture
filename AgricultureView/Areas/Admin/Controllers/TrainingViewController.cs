@@ -24,6 +24,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             return View(new List<TrainingViewModel>());
         }
 
+        public async Task<IActionResult> TrainingDetail(int id )
+        {
+            var response = await _globalVeriable.GetMethod("Admin/Training/GetTrainingById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<TrainingViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new TrainingViewModel());
+        }
         public async Task<IActionResult> CreateTraining(int id = 0)
         {
             var response = await _globalVeriable.GetMethod("Admin/Training/GetTrainingById/" + id);

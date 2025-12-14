@@ -1,18 +1,18 @@
-﻿@model IEnumerable<FertilizerStoreViewModel>
+﻿@model IEnumerable<AgricultureEquipmentViewModel>
 @{
-    ViewData["Title"] = "FertilizerStore";
+    ViewData["Title"] = "AgricultureEquipment";
 }
 
 
 <div class="page-inner">
     <div class="page-header">
-        <a asp-action="CreateFertilizerStore" class="fw-bold mb-3 btn btn-success"><i class="fa fa-plus"></i>&nbsp; Create New</a>
+        <a asp-action="CreateAgricultureEquipment" class="fw-bold mb-3 btn btn-success"><i class="fa fa-plus"></i>&nbsp; Create New</a>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">खाद्य पसल व्यवस्थापन</h4>
+                    <h4 class="card-title">कृषि औजार पसल</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,8 +34,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Address)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                        <td> <a asp-action="CreateFertilizerStore" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></td>
-                                        <td> <a asp-action="StoreDetail" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Detail</a></td>
+                                        <td> <a asp-action="CreateAgricultureEquipment" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></td>
                                     </tr>
                                 }
                             </tbody>

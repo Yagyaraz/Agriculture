@@ -31,95 +31,89 @@
 
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">सेवा र सुविधा विवरण</div>
+                    <h4 class="card-title">सेवाको विवरण</h4>
                 </div>
 
                 <div class="card-body">
 
                     <div class="row">
 
-                        <!-- Fiscal Year -->
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
-                                <label>आर्थिक वर्ष</label>
-                                <input class="form-control" value="@Model.FiscalYearName" readonly />
+                                <label>आर्थिक वर्ष:</label>
+                                <p><strong>@Model.FiscalYearName</strong></p>
                             </div>
                         </div>
 
-                        <!-- Program -->
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
-                                <label>कार्यक्रम</label>
-                                <input class="form-control" value="@Model.ProgramName" readonly />
+                                <label>कार्यक्रम:</label>
+                                <p><strong>@Model.ProgramName</strong></p>
                             </div>
                         </div>
 
-                        <!-- Project -->
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
-                                <label>योजना</label>
-                                <input class="form-control" value="@Model.ProjectName" readonly />
+                                <label>योजना:</label>
+                                <p><strong>@Model.ProjectName</strong></p>
                             </div>
                         </div>
 
-                        <!-- Valid Till Nepali Date -->
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
-                                <label>कृषि योजनाको लागि मान्य समय</label>
-                                <input class="form-control" value="@Model.ValidTillDate" readonly />
+                                <label>मान्य समय:</label>
+                                <p><strong>@Model.ValidTillDate (ने)</strong></p>
                             </div>
                         </div>
 
-                        <!-- Service Name -->
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
-                                <label>सेवा नाम</label>
-                                <input class="form-control" value="@Model.ServiceName" readonly />
+                                <label>सेवा नाम:</label>
+                                <p><strong>@Model.ServiceName</strong></p>
                             </div>
                         </div>
+
                     </div>
 
-                    <!-- Additional Questions Table -->
-                    <div class="row mt-4">
-                        <div class="col-md-12 p-0">
+                    <hr />
 
-                            <div class="table-responsive">
-                                <table class="mb-0 table table-hover table-bordered">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>थप प्रश्न</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>थप प्रश्नहरू</h5>
 
-                                        @if (Model.AgricultureServiceAdditionalViewModelList != null &&
-                                                                                Model.AgricultureServiceAdditionalViewModelList.Count > 0)
-                                        {
-                                            foreach (var item in Model.AgricultureServiceAdditionalViewModelList)
-                                            {
-                                                <tr>
-                                                    <td>@item.Questions</td>
-                                                </tr>
-                                            }
-                                        }
-                                        else
+                            <table class="table table-bordered table-hover mt-2">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>प्रश्न</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.AgricultureServiceAdditionalViewModelList != null &&
+                                                                        Model.AgricultureServiceAdditionalViewModelList.Count > 0)
+                                    {
+                                        foreach (var item in Model.AgricultureServiceAdditionalViewModelList)
                                         {
                                             <tr>
-                                                <td class="text-center text-muted">
-                                                    कुनै थप प्रश्नहरू उपलब्ध छैनन्।
-                                                </td>
+                                                <td>@item.Questions</td>
                                             </tr>
                                         }
-
-                                    </tbody>
-                                </table>
-                            </div>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="3" class="text-center text-muted">
+                                                कुनै प्रश्न छैन ।
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <div class="mt-4">
-                        <a asp-action="Service" class="btn btn-primary">Back to List</a>
-                    </div>
+                    <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Service" class="btn btn-primary">
+                        Back to List
+                    </a>
 
                 </div>
             </div>

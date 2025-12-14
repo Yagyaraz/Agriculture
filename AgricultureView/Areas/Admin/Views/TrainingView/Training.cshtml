@@ -44,6 +44,9 @@
                                         <td>
                                             <a asp-action="CreateTraining" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
                                         </td>
+                                        <td>
+                                            <a asp-action="TrainingDetail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Details</a>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
