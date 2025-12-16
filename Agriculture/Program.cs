@@ -82,6 +82,7 @@ builder.Services.AddScoped<IVideoGallery, VideoGalleryRepository>();
 builder.Services.AddScoped<IFarmerService, FarmerServiceRepository>();
 builder.Services.AddScoped<IWeather, WeatherRepository>();
 builder.Services.AddScoped<IDashboard, DashboardRepository>();
+builder.Services.AddScoped<IGunaso, GunasoRepository>();
 
 
 

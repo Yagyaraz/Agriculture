@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Agriculture.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Route("api/Admin/[controller]")]
+    [ApiController]
     public class GunasoController : ControllerBase
     {
         private readonly IGunaso _gunaso;

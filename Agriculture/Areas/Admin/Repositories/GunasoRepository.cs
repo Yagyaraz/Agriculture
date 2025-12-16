@@ -22,12 +22,10 @@ namespace Agriculture.Areas.Admin.Repositories
                     Name = model.Name,
                     PhoneNumber = model.PhoneNumber,
                     Description = model.Description,
-                    Status = model.Status
+                    Status = true
                 };
-
                 _dbContext.Gunasos.Add(entity);
                 await _dbContext.SaveChangesAsync();
-
                 model.Id = entity.Id;
                 return true;
             }

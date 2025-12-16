@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace AgricultureView.Controllers
 {
-       [AllowAnonymous]
+    [AllowAnonymous]
     public class LandingPageController : Controller
     {
         private readonly IGlobalVeriable _globalVeriable;
@@ -31,7 +31,7 @@ namespace AgricultureView.Controllers
             var serviceResponse = await _globalVeriable.GetMethod("Admin/AgriculturePlan/GetAllService");
             if (serviceResponse.Status)
             {
-              model.Services = JsonConvert.DeserializeObject<List<AgricultureServiceViewModel>>(serviceResponse.Data.ToString());
+                model.Services = JsonConvert.DeserializeObject<List<AgricultureServiceViewModel>>(serviceResponse.Data.ToString());
             }
             var farmerRsponse = await _globalVeriable.GetMethod("Admin/Farmer/GetAllFarmer");
             if (farmerRsponse.Status)
@@ -168,7 +168,6 @@ namespace AgricultureView.Controllers
             {
                 model.VideoGalleries = JsonConvert.DeserializeObject<List<VideoGalleryViewModel>>(videoGalleryResponse.Data.ToString());
             }
-            var test = model;
             return View(model);
         }
     }

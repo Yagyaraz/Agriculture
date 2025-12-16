@@ -4,7 +4,7 @@
 @inject IUtility _Utility
 @{
     Layout = null;
-    var org =await _Utility.GetOfficeDetail();
+    var org = await _Utility.GetOfficeDetail();
     var orgname = org.PalikaName;
 }
 <!DOCTYPE html>
@@ -17,9 +17,8 @@
     <meta name="description" content="AgriConnect – One-stop platform for modern farming solutions.">
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -70,10 +69,10 @@
             transition: all 0.3s ease;
         }
 
-        .btn-primary:hover {
-            background: var(--dark);
-            transform: translateY(-2px);
-        }
+            .btn-primary:hover {
+                background: var(--dark);
+                transform: translateY(-2px);
+            }
 
         .navbar {
             background: rgba(255, 255, 255, .95);
@@ -81,11 +80,11 @@
             transition: all .3s ease;
         }
 
-        .navbar.scrolled {
-            background: #fff;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
-            padding: 0.5rem 0;
-        }
+            .navbar.scrolled {
+                background: #fff;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
+                padding: 0.5rem 0;
+            }
 
 
 
@@ -101,10 +100,10 @@
             position: relative;
         }
 
-        .header-carousel-item img {
-            height: 100%;
-            object-fit: cover;
-        }
+            .header-carousel-item img {
+                height: 100%;
+                object-fit: cover;
+            }
 
         /* Carousel Caption Overlay */
         .carousel-caption {
@@ -135,11 +134,11 @@
             transition: all 0.3s ease;
         }
 
-        .owl-prev:hover,
-        .owl-next:hover {
-            background: #198754 !important;
-            color: #fff !important;
-        }
+            .owl-prev:hover,
+            .owl-next:hover {
+                background: #198754 !important;
+                color: #fff !important;
+            }
 
         .owl-prev {
             left: 25px;
@@ -159,9 +158,9 @@
             pointer-events: none;
         }
 
-        .owl-nav button {
-            pointer-events: all;
-        }
+            .owl-nav button {
+                pointer-events: all;
+            }
 
         .service-item,
         .project-item,
@@ -169,17 +168,17 @@
         .team-item,
         .testimonial-item,
         .gallery-item {
-           transition: all .3s ease;
+            transition: all .3s ease;
             border-radius: 12px;
             overflow: hidden;
         }
 
-        .service-item:hover,
-        .blog-item:hover,
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, .15) !important;
-        }
+            .service-item:hover,
+            .blog-item:hover,
+            .gallery-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, .15) !important;
+            }
 
         .project-item {
             position: relative;
@@ -191,17 +190,17 @@
             align-items: center;
         }
 
-        .project-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="80" cy="80" r="1.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
-            animation: float 25s linear infinite;
-            z-index: 1;
-        }
+            .project-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="80" cy="80" r="1.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+                animation: float 25s linear infinite;
+                z-index: 1;
+            }
 
         .project-content {
             position: relative;
@@ -221,10 +220,10 @@
             transition: all 0.4s ease;
         }
 
-        .weather-widget:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-        }
+            .weather-widget:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            }
 
         .temp {
             font-size: 3.5rem;
@@ -251,15 +250,15 @@
             color: #ddd;
         }
 
-        .footer a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+            .footer a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
 
-        .footer a:hover {
-            color: #fff;
-        }
+                .footer a:hover {
+                    color: #fff;
+                }
 
         .back-to-top {
             background: var(--primary);
@@ -278,243 +277,257 @@
             z-index: 1000;
         }
 
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(-10px);
-        }
+            .back-to-top.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(-10px);
+            }
 
-        .back-to-top:hover {
-            background: var(--dark);
-            transform: translateY(-5px);
-        }
+            .back-to-top:hover {
+                background: var(--dark);
+                transform: translateY(-5px);
+            }
 
         /* Blog Section Styling */
-#blog {
-    background: linear-gradient(rgb(168 227 178)), url('/images/agriculture-bg.jpg') no-repeat center center;
-    background-blend-mode: overlay; 
-    min-height: 100vh; 
-    position: relative;
-    color: #333; 
-}
+        #blog {
+            background: linear-gradient(rgb(168 227 178)), url('/images/agriculture-bg.jpg') no-repeat center center;
+            background-blend-mode: overlay;
+            min-height: 100vh;
+            position: relative;
+            color: #333;
+        }
 
-/* Blog Card Styling */
-.blog-item {
-    transition: all 0.3s ease-in-out; 
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-    position: relative;
-    overflow: hidden;
-}
+        /* Blog Card Styling */
+        .blog-item {
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
 
-.blog-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
-    background-color: #e6f4ea;
-}
+            .blog-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                background-color: #e6f4ea;
+            }
 
-.blog-item .btn-primary {
-    transition: background-color 0.3s ease, transform 0.3s ease-in-out;
-}
+            .blog-item .btn-primary {
+                transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+            }
 
-.blog-item .btn-primary:hover {
-    transform: scale(1.05); 
-    background-color: #218838; 
-}
+                .blog-item .btn-primary:hover {
+                    transform: scale(1.05);
+                    background-color: #218838;
+                }
 
-.blog-item h5 {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
+            .blog-item h5 {
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 0.5rem;
+            }
 
-.blog-item .small {
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-}
+            .blog-item .small {
+                font-size: 0.85rem;
+                letter-spacing: 0.05em;
+            }
 
 
 
-/* Responsive Adjustments */
-@@media (max-width: 768px) {
-    .blog-item {
-        padding: 15px; 
-    }
-    #blog h1 {
-        font: bold;
-        font-size: 2.5rem; 
-    }
-    .blog-item h5 {
-        font-size: 1.1rem; 
-    }
-    .blog-item .btn-primary {
-        font-size: 0.9rem;
-        padding: 8px 16px; 
-    }
-}
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            .blog-item {
+                padding: 15px;
+            }
 
-@@media (max-width: 576px) {
-    .blog-item {
-        padding: 12px; 
-    }
-    .blog-item h5 {
-        font-size: 1rem; 
-    }
-    .blog-item .btn-primary {
-        font-size: 0.85rem; 
-        padding: 6px 12px; 
-    }
-   }
+            #blog h1 {
+                font: bold;
+                font-size: 2.5rem;
+            }
+
+            .blog-item h5 {
+                font-size: 1.1rem;
+            }
+
+            .blog-item .btn-primary {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .blog-item {
+                padding: 12px;
+            }
+
+                .blog-item h5 {
+                    font-size: 1rem;
+                }
+
+                .blog-item .btn-primary {
+                    font-size: 0.85rem;
+                    padding: 6px 12px;
+                }
+        }
 
         /* Services Section Styling */
-#services {
-                background: linear-gradient(rgb(168 227 178));
-                min-height: 100vh; 
-}
+        #services {
+            background: linear-gradient(rgb(168 227 178));
+            min-height: 100vh;
+        }
 
-/* Service Card Styling */
-.service-item {
-    transition: all 0.3s ease-in-out; 
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-    position: relative;
-    overflow: hidden;
-}
+        /* Service Card Styling */
+        .service-item {
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
 
-.service-item:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
-    background-color: #e6f4ea; 
-}
+            .service-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                background-color: #e6f4ea;
+            }
 
-.service-icon {
-    transition: transform 0.3s ease-in-out; 
-}
+        .service-icon {
+            transition: transform 0.3s ease-in-out;
+        }
 
-.service-item:hover .service-icon {
-    transform: scale(1.1); 
-}
+        .service-item:hover .service-icon {
+            transform: scale(1.1);
+        }
 
-.service-item h5 {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
+        .service-item h5 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
 
-.service-item p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0;
-}
+        .service-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
 
 
 
-/* Responsive Adjustments */
-@@media (max-width: 768px) {
-    .service-item {
-        padding: 15px;
-    }
-    #services h1 {
-        font: bold;
-        font-size: 2.5rem; 
-    }
-    .service-item h5 {
-        font-size: 1.1rem; 
-    }
-    .service-icon i {
-        font-size: 2.5rem; 
-    }
-}
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            .service-item {
+                padding: 15px;
+            }
 
-@@media (max-width: 576px) {
-    .service-item {
-        padding: 12px; 
-    }
-    .service-item h5 {
-        font-size: 1rem; 
-    }
-    .service-icon i {
-        font-size: 2rem;
-    }
-}
+            #services h1 {
+                font: bold;
+                font-size: 2.5rem;
+            }
+
+            .service-item h5 {
+                font-size: 1.1rem;
+            }
+
+            .service-icon i {
+                font-size: 2.5rem;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .service-item {
+                padding: 12px;
+            }
+
+                .service-item h5 {
+                    font-size: 1rem;
+                }
+
+            .service-icon i {
+                font-size: 2rem;
+            }
+        }
 
 
         /* Market Section Styling */
-#market {
-    background: linear-gradient(rgb(168 227 178));
-    min-height: 100vh;
-}
-
-/* Table Styling */
-.table-responsive {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-}
-
-.table {
-    margin-bottom: 0;
-    transition: all 0.3s ease-in-out; 
-}
-
-.table-hover tbody tr.market-row:hover {
-    background-color: #e6f4ea; 
-    transform: scale(1.02); 
-    transition: background-color 0.3s ease, transform 0.3s ease-in-out;
-}
-
-.table-success {
-    background-color: #28a745;
-    color: white;
-}
-
-.table-success th {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* Table Row Styling */
-.market-row td {
-    vertical-align: middle;
-    padding: 15px; 
-    transition: all 0.3s ease-in-out; 
-}
-
-
-
-/* Responsive Adjustments */
-@@media (max-width: 768px) {
-    .table {
-        font-size: 0.9rem;
-    }
-    .table-responsive {
-        margin: 0 -15px; 
-    }
-    .table th, .table td {
-        padding: 10px; 
-    }
-    #market h1 {
-        font: bold;
-        font-size: 2.5rem; 
-    }
-}
-
-@@media (max-width: 576px) {
-    .table {
-        font-size: 0.85rem;
-    }
-    .table th, .table td {
-        padding: 8px; 
-    }
-}
-
-    /* -----------------------------  traning ------------------------------------------ */
-        #traning{
+        #market {
             background: linear-gradient(rgb(168 227 178));
-        }  
-        
-    .training-card {
+            min-height: 100vh;
+        }
+
+        /* Table Styling */
+        .table-responsive {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .table {
+            margin-bottom: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .table-hover tbody tr.market-row:hover {
+            background-color: #e6f4ea;
+            transform: scale(1.02);
+            transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+        }
+
+        .table-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+            .table-success th {
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+        /* Table Row Styling */
+        .market-row td {
+            vertical-align: middle;
+            padding: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            .table {
+                font-size: 0.9rem;
+            }
+
+            .table-responsive {
+                margin: 0 -15px;
+            }
+
+            .table th, .table td {
+                padding: 10px;
+            }
+
+            #market h1 {
+                font: bold;
+                font-size: 2.5rem;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .table {
+                font-size: 0.85rem;
+            }
+
+                .table th, .table td {
+                    padding: 8px;
+                }
+        }
+
+        /* -----------------------------  traning ------------------------------------------ */
+        #traning {
+            background: linear-gradient(rgb(168 227 178));
+        }
+
+        .training-card {
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
         }
@@ -688,12 +701,12 @@
             cursor: pointer;
         }
 
-        .video-carousel .video-item video {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            display: block;
-        }
+            .video-carousel .video-item video {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                display: block;
+            }
 
         .video-overlay {
             position: absolute;
@@ -743,10 +756,10 @@
             transition: .4s;
         }
 
-        .play-overlay i {
-            font-size: 3rem;
-            color: white;
-        }
+            .play-overlay i {
+                font-size: 3rem;
+                color: white;
+            }
 
 
         .footer {
@@ -754,15 +767,15 @@
             color: #ddd;
         }
 
-        .footer a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+            .footer a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
 
-        .footer a:hover {
-            color: #fff;
-        }
+                .footer a:hover {
+                    color: #fff;
+                }
 
         @@keyframes flash {
             0%, 100% {
@@ -801,14 +814,14 @@
                         <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
                             <i class="fab fa-facebook-f text-white"></i>
                         </a>
-                        
+
                         <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
                             <i class="fab fa-instagram text-white"></i>
                         </a>
-                        
-                        
+
+
                         <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
-                            class="btn btn-primary btn-square rounded-circle nav-fill me-0">login</a>
+                           class="btn btn-primary btn-square rounded-circle nav-fill me-0">login</a>
                     </div>
                 </div>
             </div>
@@ -833,14 +846,14 @@
                     <a href="#services" class="nav-item nav-link">सेवाहरू</a>
                     <a href="#projects" class="nav-item nav-link">परियोजनाहरू</a>
                     <a href="#gallery" class="nav-item nav-link">ग्यालरी</a>
-                  
+
                     <a href="#contact" class="nav-item nav-link">सम्पर्क</a>
                 </div>
                 <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a>
             </div>
         </nav>
     </div>
-  
+
     <div class="bg-success text-white text-center py-1 fw-bold position-relative overflow-hidden"
          style="font-size: 1rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
 
@@ -866,17 +879,21 @@
             <!-- Slide 1 -->
             <div class="header-carousel-item position-relative">
                 <img src="https://imgs.search.brave.com/q_bnm999Dg83l-bhSVrbKzLIwVmlhRpNMKZGHTi9KnE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjg4MDg1Mjdf/MGU1YzRlYjZlOF9i/LmpwZw"
-                    class="img-fluid w-100 h-100 object-fit-cover" alt="Farm">
+                     class="img-fluid w-100 h-100 object-fit-cover" alt="Farm">
                 <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
                     <div class="p-3" style="max-width:600px;" data-aos="fade-right">
-                        <h1 class="text-white mb-4">“किसानलाई प्रविधिसँग जोड्दै — समृद्ध सिरीजङ्घा तर्फको
-                            यात्रा”</h1>
+                        <h1 class="text-white mb-4">
+                            “किसानलाई प्रविधिसँग जोड्दै — समृद्ध सिरीजङ्घा तर्फको
+                            यात्रा”
+                        </h1>
                         @* <p class="fs-5 text-white mb-4">
                             Your one-stop platform for farming guidance, market prices,
                             government schemes, and more.
                         </p> *@
-                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5 me-3">हाम्रा सेवाहरू
-                            हेर्नुहोस्</a>
+                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5 me-3">
+                            हाम्रा सेवाहरू
+                            हेर्नुहोस्
+                        </a>
                         <a href="#contact" class="btn btn-outline-light rounded-pill py-3 px-5">आजै सदस्य बनौं</a>
                     </div>
                 </div>
@@ -885,7 +902,7 @@
             <!-- Slide 2 -->
             <div class="header-carousel-item position-relative">
                 <img src="https://imgs.search.brave.com/hM-zck5UyjTFEusTc9E-3fGO_YGyiBJeYGavLmD4VuE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjc5OTQzMDNf/ZDEwZGI1YjcwMl9i/LmpwZw"
-                    class="img-fluid w-100 h-100 object-fit-cover" alt="Crops">
+                     class="img-fluid w-100 h-100 object-fit-cover" alt="Crops">
                 <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
                     <div class="p-3 text-center" style="max-width:700px;" data-aos="fade-up">
                         <h1 class="text-white mb-4">“ज्ञान, बजार र अवसर — सबै एकै प्लेटफर्ममा”</h1>
@@ -907,7 +924,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        class="img-fluid rounded shadow" alt="Farmers">
+                         class="img-fluid rounded shadow" alt="Farmers">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <h4 class="text-primary">@org.Name बारेमा</h4>
@@ -1012,7 +1029,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 training-card shadow-sm" data-bs-toggle="modal" data-bs-target="#trainingModal1">
                         <div class="card-body d-flex flex-column">
-                           
+
                             <h5 class="card-title text-primary fw-bold" style="text-shadow: none;">पशुपालन तालिम</h5>  @* शिर्षक *@
 
                             <div class="d-flex flex-wrap gap-2 mt-2 small text-muted">
@@ -1099,7 +1116,7 @@
         <div class="container py-5">
             <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
                 <h4 class="text-primary">बजार मूल्य</h4>
-                <h1 id="market-heading">हाम्रा बजारहरू</h1> 
+                <h1 id="market-heading">हाम्रा बजारहरू</h1>
                 <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
             </div>
             @if (Model.Markets != null && Model.Markets.Any())
@@ -1121,7 +1138,7 @@
                                 <tr data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(300 + (100 * i))" data-aos-easing="ease-in-out" class="market-row">
                                     <td class="text-center">@(i + 1)</td>
                                     <td class="text-center">@item.Name</td>
-        @*--------------------------------------------------------------------------------------------
+                                    @*--------------------------------------------------------------------------------------------
                                     backend data input for this field 
         --------------------------------------------------------------------------------------------*@
                                     <td class="text-center">आलु</td>
@@ -1283,8 +1300,6 @@
                                 <li><a href="#services">Services</a></li>
                             </ul>
                         </div>
-
-
                         <div class="col-12 col-md-8">
                             <div class="card-body">
                                 <form asp-area="Admin" asp-controller="Gunaso" asp-action="CreateGunaso" method="post" enctype="multipart/form-data">
@@ -1333,6 +1348,31 @@
             <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
         </svg>
     </a>
+    <div id="toast"
+         style="
+        display:none;
+        position:fixed;
+        top:30px;
+        right:50px;
+        background:red;
+        color:white;
+        padding:15px 25px;
+        border-radius:8px;
+        box-shadow:0 10px 20px rgba(0,0,0,.2);
+        z-index:9999;">
+        गुनासो सफलतापूर्वक दर्ता भयो !!
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function () {
+            const toast = document.getElementById("toast");
+            toast.style.display = "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+        });
+    </script>
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -1345,145 +1385,145 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+         // Initialize AOS
+         AOS.init({
+             duration: 800,
+             easing: 'ease-in-out',
+             once: true
+         });
 
-        const API_KEY = "e56234b0015d3d7e9703abfcbb3f2aef";
-        const weather = {
-            city: document.getElementById('city'),
-            temp: document.getElementById('temp'),
-            icon: document.getElementById('weather-icon'),
-            desc: document.getElementById('description'),
-            humidity: document.getElementById('humidity'),
-            wind: document.getElementById('wind')
-        };
+         const API_KEY = "e56234b0015d3d7e9703abfcbb3f2aef";
+         const weather = {
+             city: document.getElementById('city'),
+             temp: document.getElementById('temp'),
+             icon: document.getElementById('weather-icon'),
+             desc: document.getElementById('description'),
+             humidity: document.getElementById('humidity'),
+             wind: document.getElementById('wind')
+         };
 
-        // Fetch weather data from OpenWeatherMap
-        async function getWeather(lat, lon) {
-            try {
-                const res = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-                );
-                if (!res.ok) throw new Error('Weather data not available');
-                const data = await res.json();
+         // Fetch weather data from OpenWeatherMap
+         async function getWeather(lat, lon) {
+             try {
+                 const res = await fetch(
+                     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+                 );
+                 if (!res.ok) throw new Error('Weather data not available');
+                 const data = await res.json();
 
-                weather.city.textContent = data.name || "Unknown Location";
-                weather.temp.textContent = Math.round(data.main.temp) + "°C";
-                weather.desc.textContent = data.weather[0].description;
-                weather.humidity.textContent = data.main.humidity + "%";
-                weather.wind.textContent = data.wind.speed + " m/s";
+                 weather.city.textContent = data.name || "Unknown Location";
+                 weather.temp.textContent = Math.round(data.main.temp) + "°C";
+                 weather.desc.textContent = data.weather[0].description;
+                 weather.humidity.textContent = data.main.humidity + "%";
+                 weather.wind.textContent = data.wind.speed + " m/s";
 
-                // Display appropriate weather icon
-                const icon = data.weather[0].icon;
-                weather.icon.className = `fas fa-${getWeatherIcon(icon)} weather-icon me-3`;
-            } catch (error) {
-                console.error(error);
-                weather.city.textContent = "Weather Unavailable";
-                weather.temp.textContent = "--°C";
-                weather.desc.textContent = "N/A";
-                weather.humidity.textContent = "--";
-                weather.wind.textContent = "--";
-            }
-        }
+                 // Display appropriate weather icon
+                 const icon = data.weather[0].icon;
+                 weather.icon.className = `fas fa-${getWeatherIcon(icon)} weather-icon me-3`;
+             } catch (error) {
+                 console.error(error);
+                 weather.city.textContent = "Weather Unavailable";
+                 weather.temp.textContent = "--°C";
+                 weather.desc.textContent = "N/A";
+                 weather.humidity.textContent = "--";
+                 weather.wind.textContent = "--";
+             }
+         }
 
-        // Map OpenWeather icons to Font Awesome icons
-        function getWeatherIcon(code) {
-            if (code.startsWith("01")) return "sun";
-            if (code.startsWith("02")) return "cloud-sun";
-            if (code.startsWith("03") || code.startsWith("04")) return "cloud";
-            if (code.startsWith("09") || code.startsWith("10")) return "cloud-rain";
-            if (code.startsWith("11")) return "bolt";
-            if (code.startsWith("13")) return "snowflake";
-            if (code.startsWith("50")) return "smog";
-            return "cloud";
-        }
+         // Map OpenWeather icons to Font Awesome icons
+         function getWeatherIcon(code) {
+             if (code.startsWith("01")) return "sun";
+             if (code.startsWith("02")) return "cloud-sun";
+             if (code.startsWith("03") || code.startsWith("04")) return "cloud";
+             if (code.startsWith("09") || code.startsWith("10")) return "cloud-rain";
+             if (code.startsWith("11")) return "bolt";
+             if (code.startsWith("13")) return "snowflake";
+             if (code.startsWith("50")) return "smog";
+             return "cloud";
+         }
 
-        // Try to get user's location automatically
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                pos => getWeather(pos.coords.latitude, pos.coords.longitude),
-                err => {
-                    console.warn(err);
-                    weather.city.textContent = "Location Denied";
-                    weather.temp.textContent = "--°C";
-                }
-            );
-        } else {
-            weather.city.textContent = "Geolocation Not Supported";
-        }
+         // Try to get user's location automatically
+         if (navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition(
+                 pos => getWeather(pos.coords.latitude, pos.coords.longitude),
+                 err => {
+                     console.warn(err);
+                     weather.city.textContent = "Location Denied";
+                     weather.temp.textContent = "--°C";
+                 }
+             );
+         } else {
+             weather.city.textContent = "Geolocation Not Supported";
+         }
 
-        // Navbar Scroll
-        window.addEventListener('scroll', () => {
-            document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
-            document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
-        });
+         // Navbar Scroll
+         window.addEventListener('scroll', () => {
+             document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+             document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
+         });
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+         // Smooth Scroll
+         document.querySelectorAll('a[href^="#"]').forEach(a => {
+             a.addEventListener('click', e => {
+                 e.preventDefault();
+                 const target = document.querySelector(a.getAttribute('href'));
+                 if (target) {
+                     window.scrollTo({
+                         top: target.offsetTop - 80,
+                         behavior: 'smooth'
+                     });
+                 }
+             });
+         });
 
-        // Owl Carousel
-        $('.header-carousel').owlCarousel({
-            loop: true, margin: 0, nav: true, autoplay: true, autoplayTimeout: 8000,
-            items: 1, dots: true, animateOut: 'fadeOut', animateIn: 'fadeIn'
-        });
+         // Owl Carousel
+         $('.header-carousel').owlCarousel({
+             loop: true, margin: 0, nav: true, autoplay: true, autoplayTimeout: 8000,
+             items: 1, dots: true, animateOut: 'fadeOut', animateIn: 'fadeIn'
+         });
 
-        $(document).ready(function () {
-            $(".header-carousel").owlCarousel({
-                items: 1,
-                loop: true,
-                autoplay: true,
-                autoplayTimeout: 5000,
-                autoplayHoverPause: true,
-                smartSpeed: 900,
-                nav: true,
-                dots: false,
-                navText: [
-                    '<i class="fas fa-chevron-left"></i>',
-                    '<i class="fas fa-chevron-right"></i>'
-                ]
-            });
-        });
+         $(document).ready(function () {
+             $(".header-carousel").owlCarousel({
+                 items: 1,
+                 loop: true,
+                 autoplay: true,
+                 autoplayTimeout: 5000,
+                 autoplayHoverPause: true,
+                 smartSpeed: 900,
+                 nav: true,
+                 dots: false,
+                 navText: [
+                     '<i class="fas fa-chevron-left"></i>',
+                     '<i class="fas fa-chevron-right"></i>'
+                 ]
+             });
+         });
 
-        // gallery light box
-        function changeModalImage(src, caption) {
-            document.getElementById('modalImage').src = src;
-            document.getElementById('modalCaption').textContent = caption;
-        }
+         // gallery light box
+         function changeModalImage(src, caption) {
+             document.getElementById('modalImage').src = src;
+             document.getElementById('modalCaption').textContent = caption;
+         }
 
-       // Show button only when scrolled down
-        window.onscroll = function() {
-          const btn = document.querySelector('.back-to-top');
-          if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            btn.style.display = "flex";
-          } else {
-            btn.style.display = "none";
-          }
-        };
+        // Show button only when scrolled down
+         window.onscroll = function() {
+           const btn = document.querySelector('.back-to-top');
+           if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+             btn.style.display = "flex";
+           } else {
+             btn.style.display = "none";
+           }
+         };
 
-        // Smooth scroll to top when clicked
-        document.querySelector('.back-to-top').addEventListener('click', function(e) {
-          e.preventDefault();
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        });
-        
+         // Smooth scroll to top when clicked
+         document.querySelector('.back-to-top').addEventListener('click', function(e) {
+           e.preventDefault();
+           window.scrollTo({
+             top: 0,
+             behavior: 'smooth'
+           });
+         });
+
     </script>
 
     @* ---------------------------------------------
@@ -1494,16 +1534,16 @@
         const videos = [
             @foreach (var item in Model.VideoGalleries)
             {
-                    var videoSrc = string.IsNullOrEmpty(item.YoutubeURL)
-                            ? _global.BaseUrl() + item.FilePath
-                            : item.YoutubeURL;
+                            var videoSrc = string.IsNullOrEmpty(item.YoutubeURL)
+                                                            ? _global.BaseUrl() + item.FilePath
+                                                            : item.YoutubeURL;
 
-                    <text>{
-                        src: "@videoSrc",
-                        title: "@Html.Raw(item.Title)",
-            // ------------------------- update the this code in the categories एल्बम for backend code ------------------------------------ //
-                        category: "@Html.Raw(item.Title)"  
-                    },</text>
+                            <text>{
+                                src: "@videoSrc",
+                                title: "@Html.Raw(item.Title)",
+                    // ------------------------- update the this code in the categories एल्बम for backend code ------------------------------------ //
+                                category: "@Html.Raw(item.Title)"
+                            },</text>
             }
         ];
     </script>
@@ -1649,8 +1689,6 @@
         // Load all videos initially
         displayVideos("All");
     </script>
-
-
 
 </body>
 

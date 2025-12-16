@@ -35,6 +35,7 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new GunasoViewModel());
         }
+        [AllowAnonymous]
         public async Task<IActionResult> GunasoDetail(int id)
         {
             var response = await _globalVeriable.GetMethod("Admin/Gunaso/GetGunaosById/" + id);
@@ -47,12 +48,12 @@ namespace AgricultureView.Areas.Admin.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> CreateGunaso(GunasoViewModel model)
+        public async Task<IActionResult> CreateGunaso(LandingPageViewModel model)
         {
-            var response = await _globalVeriable.PostMethod("Admin/Gunaso/CreateGunaso", model);
+            var response = await _globalVeriable.PostMethod("Admin/Gunaso/CreateGunaos", model.Gunaso);
             if (response.Status)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "LandingPage", new { area = "" });
             }
             return View(model);
         }
