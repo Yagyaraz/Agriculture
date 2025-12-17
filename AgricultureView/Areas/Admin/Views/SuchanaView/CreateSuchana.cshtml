@@ -1,0 +1,127 @@
+﻿@model SuchanaViewModel
+@{
+    ViewData["Title"] = "CreateSuchana";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">तालिम थप्नुहोस</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="SuchanaView" asp-action="Suchana">Suchana List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Suchana</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateSuchana" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">तालिम </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>आर्थिक वर्ष </label>
+                                    <select asp-for="FiscalYearId" asp-items="await _Utility.GetFiscalYearSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="FiscalYearId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-12 p-0">
+                                <div class="form-group">
+                                    <label>सूचना विवरण </label>
+                                    <textarea id="Description" name="Description">@Model.Description</textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label> फोटो  </label>
+                                    <input type="file" asp-for="FilePhoto" class="form-control" accept="image/jpeg" />
+                                    <span asp-validation-for="FilePhoto" class="text-danger"></span>
+                                </div>
+                                @if (Model.Id != 0)
+                                {
+                                    <div class="pt-1">
+                                        <img class="user-avatar" src="@(_global.BaseUrl() + Model.FilePath) " style="width:180px;" alt="Photo">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('StartDate'), document.getElementById('StartDateEng'))
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('EndDate'), document.getElementById('EndDateEng'))
+    </script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('Description', {
+                versionCheck: false // Disable version check
+            });
+        });
+
+        // CKEDITOR.editorConfig = function (config) {
+        //     config.versionCheck = false; // Disable version check globally
+        // };
+    </script>
+    <script>
+        $(document).ready(function () {
+            myFunction();
+        });
+        var select = document.getElementById("selectPremium").onchange = function () { myFunction() };
+
+        function myFunction() {
+            var value = $('#selectPremium').val();
+            if (value === "1") {
+                $('#amount').attr('style', 'display:block;');
+            } else if (value === "2") {
+                $('#amount').attr('style', 'display:none;');
+                $('#Amount').val('');
+            } else {
+                $('#amount').attr('style', 'display:none;');
+            }
+        }
+    </script>
+   
+   
+}

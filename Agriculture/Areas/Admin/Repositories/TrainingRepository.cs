@@ -42,7 +42,6 @@ namespace Agriculture.Areas.Admin.Repositories
                     Description = x.Description,
                     Title = x.Title,
                     FilePath = x.FilePath,
-
                    TrainingTypeName =  x.AgriSector.Name,
                    PremiumName = x.PremiumId == 1 ? "प्रीमियम" + " " + "( " + x.Amount + " )" : "नि:शुल्क",
 

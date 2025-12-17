@@ -786,21 +786,57 @@
                 background-color: #c82333;
             }
         }
+
+        /* Overlay to block interaction until notification is closed */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1050;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Custom centered toast (looks like a modal) */
+        .centered-toast {
+            min-width: 200px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- Dark overlay + Centered Notification -->
+    <div id="overlay" class="container-fluid">
+        <div id="welcomeToast" class="toast centered-toast align-items-center text-bg-primary border-0" role="alert">
+            <div class="toast-header bg-primary text-white">
+                <strong class="me-auto fs-4">नमस्कार! स्वागत छ!</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body fs-5 text-white text-center py-4">
+                वेबसाइट पहुँच गर्न कृपया यो सूचना बन्द गर्नुहोस्।
+                <img src="~/assets/img/ag-logo.webp" alt="import notification" width="250px" height="250px">
+            </div>
+        </div>
+    </div>
+
     <!-- Topbar -->
     <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
         <div class="container px-0">
             <div class="row gx-0 align-items-center" style="height:45px;">
-                <div class="col-lg-8 text-center text-lg-start">
+                <div class="col-lg-4 text-center text-lg-start">
                     <div class="d-flex flex-wrap">
-                        <a href="#" class="text-muted me-4">
+                        @* <a href="#" class="text-muted me-4">
                             <i class="fas fa-map-marker-alt text-primary me-2"></i>Find
                             a Farmer
-                        </a>
+                        </a> *@
                         <a href="tel:+01234567890" class="text-muted me-4">
                             <i class="fas fa-phone-alt text-primary me-2"></i>@org.PhoneNo
                         </a>
@@ -809,19 +845,31 @@
                         </a>
                     </div>
                 </div>
+                <div class="col-lg-4 text-center text-lg-center">
+                    <div class="d-inline-flex flex-wrap align-items-center gap-3 gap-md-4 small">
+                        <h1 class="m-0 fs-4 fs-lg-3 lh-1">
+                            सिरीजङ्घा गाउँपालिका
+                        </h1>
+                    </div>
+                </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-flex justify-content-end">
                         <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
                             <i class="fab fa-facebook-f text-white"></i>
                         </a>
 
-                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                        @* <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
                             <i class="fab fa-instagram text-white"></i>
+                        </a> *@
+
+                        <a href="#" class="btn btn-primary btn-sm-square rounded-circle" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube text-white"></i>
                         </a>
 
-
                         <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
-                           class="btn btn-primary btn-square rounded-circle nav-fill me-0">login</a>
+                           class="btn btn-outline-success rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center">
+                            <i class="fas fa-user me-1"></i> लगइन
+                       </a>
                     </div>
                 </div>
             </div>
@@ -847,9 +895,36 @@
                     <a href="#projects" class="nav-item nav-link">परियोजनाहरू</a>
                     <a href="#gallery" class="nav-item nav-link">ग्यालरी</a>
 
+                    <!-- Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle fw-medium" data-bs-toggle="dropdown">थप</a>
+                            <div class="dropdown-menu border-0 shadow rounded-3 mt-2">
+                                <a href="#blog" class="dropdown-item py-2">ब्लग</a>
+                                <a href="#team" class="dropdown-item py-2">टिम</a>
+                                <a href="#testimonial" class="dropdown-item py-2">प्रशंसापत्र</a>
+                                <a href="#faq" class="dropdown-item py-2">सोधिने प्रश्न</a>
+                            </div>
+                        </div>
+
                     <a href="#contact" class="nav-item nav-link">सम्पर्क</a>
                 </div>
-                <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a>
+                @* <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a> *@
+
+                <!-- Action Buttons - Visible on Mobile & Tablet too -->
+                <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-3 align-items-center">
+                    <!-- Login Button (Visible on small screens too) -->
+                    <a asp-area="" asp-controller="Account" asp-action="Index"
+                       class="btn btn-outline-success rounded-pill px-4 order-2 order-lg-1 d-lg-none">
+                        <i class="fas fa-sign-in-alt me-1 d-lg-none"></i>
+                        <span class="d-none d-lg-inline">लगइन</span>
+                        <span class="d-inline d-lg-none">लगइन</span>
+                    </a>
+
+                    <!-- Complaint Button -->
+                    <a href="#complaint" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
+                        <i class="fas fa-headset me-1"></i> गुनासो गर्नुहोस्
+                    </a>
+                </div>
             </div>
         </nav>
     </div>
@@ -1300,7 +1375,7 @@
                                 <li><a href="#services">Services</a></li>
                             </ul>
                         </div>
-                        <div class="col-12 col-md-8">
+                        <div id="complaint" class="col-12 col-md-8">
                             <div class="card-body">
                                 <form asp-area="Admin" asp-controller="Gunaso" asp-action="CreateGunaso" method="post" enctype="multipart/form-data">
                                     <div class="row g-4">
@@ -1383,6 +1458,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const toastEl = document.getElementById("welcomeToast");
+          const overlay = document.getElementById("overlay");
+          // const mainContent = document.getElementById("main-content");
+
+          // Show the centered toast
+          const toast = new bootstrap.Toast(toastEl, {
+            autohide: false
+          });
+          toast.show();
+
+          // When user clicks the close button (×)
+          toastEl.addEventListener("hidden.bs.toast", function () {
+            // Remove overlay + show main content with fade-in
+            overlay.remove();
+            mainContent.classList.add("show");
+          });
+        });
+    </script>
 
     <script>
          // Initialize AOS
