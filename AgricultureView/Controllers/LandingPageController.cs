@@ -168,6 +168,11 @@ namespace AgricultureView.Controllers
             {
                 model.VideoGalleries = JsonConvert.DeserializeObject<List<VideoGalleryViewModel>>(videoGalleryResponse.Data.ToString());
             }
+            var suchanaResponse = await _globalVeriable.GetMethod("Admin/Suchana/GetAllSuchana");
+            if (suchanaResponse.Status)
+            {
+                model.Suchana = JsonConvert.DeserializeObject<List<SuchanaViewModel>>(suchanaResponse.Data.ToString());
+            }
             return View(model);
         }
     }

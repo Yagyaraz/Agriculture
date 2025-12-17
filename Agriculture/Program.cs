@@ -83,7 +83,7 @@ builder.Services.AddScoped<IFarmerService, FarmerServiceRepository>();
 builder.Services.AddScoped<IWeather, WeatherRepository>();
 builder.Services.AddScoped<IDashboard, DashboardRepository>();
 builder.Services.AddScoped<IGunaso, GunasoRepository>();
-
+builder.Services.AddScoped<ISuchana, SuchanaRepository>();
 
 
 /// Add Auth

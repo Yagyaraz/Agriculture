@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 namespace AgricultureView.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class GunasoController : Controller
+    public class GunasoViewController : Controller
     {
         #region Gunaso
         private readonly IGlobalVeriable _globalVeriable;
-        public GunasoController(IGlobalVeriable globalVeriable)
+        public GunasoViewController(IGlobalVeriable globalVeriable)
         {
             _globalVeriable = globalVeriable;
         }

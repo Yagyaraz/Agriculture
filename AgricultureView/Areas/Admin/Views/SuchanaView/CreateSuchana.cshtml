@@ -4,7 +4,7 @@
 }
 <div class="page-inner">
     <div class="page-header">
-        <h3 class="fw-bold mb-3">तालिम थप्नुहोस</h3>
+        <h3 class="fw-bold mb-3">सूचना  थप्नुहोस</h3>
         <ul class="breadcrumbs mb-3">
             <li class="nav-home">
                 <a asp-area="" asp-controller="Home" asp-action="Index">
@@ -30,7 +30,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">तालिम </div>
+                        <div class="card-title">सूचना  </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -46,7 +46,14 @@
                                 </div>
 
                             </div>
-                        
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>सूचना शिर्षक</label>
+                                  <input asp-for="Title" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-12 p-0">

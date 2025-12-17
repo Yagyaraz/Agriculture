@@ -29,6 +29,7 @@ namespace Agriculture.Areas.Admin.Repositories
                     Id = x.Id,
                     Description = x.Description,
                     FilePath = x.FilePath,
+                    Title = x.Title,
                 }).ToListAsync();
         }
 
@@ -40,6 +41,7 @@ namespace Agriculture.Areas.Admin.Repositories
                               Id = x.Id,
                               Description = x.Description,
                               FilePath = x.FilePath,
+                              Title=x.Title
                           }).FirstOrDefaultAsync() ?? new SuchanaViewModel();
         }
 
@@ -65,6 +67,7 @@ namespace Agriculture.Areas.Admin.Repositories
                         {
                             app.FiscalYearId = model.FiscalYearId;
                             app.Description = model.Description;
+                            app.Title = model.Title;
                             app.FilePath = photo == "" ? app.FilePath : photo;
 
                             app.UpdatedBy = _userId;
@@ -89,6 +92,7 @@ namespace Agriculture.Areas.Admin.Repositories
                             FiscalYearId = model.FiscalYearId,
 
                             Description = model.Description,
+                            Title= model.Title,
                             FilePath = photo,
 
                             CreatedWardId = wardId,

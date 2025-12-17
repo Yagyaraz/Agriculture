@@ -1,11 +1,11 @@
-﻿@model TrainingViewModel
+﻿@model SuchanaViewModel
 @{
-    ViewData["Title"] = "Training Details";
+    ViewData["Title"] = "Suchana Details";
 }
 
 <div class="page-inner">
     <div class="page-header">
-        <h3 class="fw-bold mb-3">तालिम विवरण</h3>
+        <h3 class="fw-bold mb-3">सूचना  विवरण</h3>
         <ul class="breadcrumbs mb-3">
             <li class="nav-home">
                 <a asp-controller="Home" asp-action="Index">
@@ -14,74 +14,33 @@
             </li>
             <li class="separator"><i class="icon-arrow-right"></i></li>
             <li class="nav-item">
-                <a asp-controller="TrainingView" asp-action="Training">Training List</a>
+                <a asp-controller="SuchanaView" asp-action="Suchana">Suchana List</a>
             </li>
             <li class="separator"><i class="icon-arrow-right"></i></li>
-            <li class="nav-item"><a href="#">Training Details</a></li>
+            <li class="nav-item"><a href="#">Suchana Details</a></li>
         </ul>
     </div>
 
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">तालिम विवरण</h4>
+            <h4 class="card-title">सूचना  विवरण</h4>
         </div>
 
         <div class="card-body">
 
             <div class="row">
 
-                <div class="col-md-3 mb-3">
+            @*     <div class="col-md-3 mb-3">
                     <strong>आर्थिक वर्ष :</strong>
-                    <div>@Model.FiscalYearId</div>
-                </div>
+                    <div>@Model.FiscalYearName</div>
+                </div> *@
 
                 <div class="col-md-3 mb-3">
                     <strong>शिर्षक :</strong>
                     <div>@Model.Title</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <strong>प्रशिक्षक :</strong>
-                    <div>@Model.TrainerName</div>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <strong>स्थान :</strong>
-                    <div>@Model.TrainingPlace</div>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <strong>प्रिमियम प्रकार :</strong>
-                    <div>@(Model.PremiumId == 1 ? "प्रीमियम" : "नि:शुल्क")</div>
-                </div>
-
-                @if (Model.PremiumId == 1)
-                {
-                    <div class="col-md-3 mb-3">
-                        <strong>ट्रेनिङ शुल्क :</strong>
-                        <div>@Model.Amount</div>
-                    </div>
-                }
-
-                <div class="col-md-3 mb-3">
-                    <strong>ट्रेनिङ प्रकार :</strong>
-                    <div>@Model.TrainingTypeName</div>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <strong>सुरु मिति :</strong>
-                    <div>@Model.StartDate</div>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <strong>अन्तिम मिति :</strong>
-                    <div>@Model.EndDate</div>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <strong>आयोजक :</strong>
-                    <div>@Model.Organizer</div>
-                </div>
+               
 
             </div>
 
@@ -115,7 +74,7 @@
         </div>
 
         <div class="card-action">
-            <a asp-action="Training" asp-controller="TrainingView" class="btn btn-secondary">Back</a>
+            <a asp-action="Suchana" asp-controller="SuchanaView" class="btn btn-secondary">Back</a>
         </div>
     </div>
 </div>

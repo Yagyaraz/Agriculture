@@ -80,6 +80,11 @@
                                     <span class="sub-item">Ward Setup</span>
                                 </a>
                             </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="SuchanaView" asp-action="Suchana">
+                                    <span class="sub-item">Notice</span>
+                                </a>
+                            </li>
                             @* <li>
                                 <a href="~/components/simple-line-icons.html">
                                     <span class="sub-item">Simple Line Icons</span>
@@ -365,6 +370,12 @@
                     <a asp-area="Admin" asp-controller="CommonView" asp-action="Weather">
                         <i class="fas fa-cloud"></i>
                         <p>मौसम</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="GunasoView" asp-action="GunasoList">
+                        <i class="fas fa-cloud"></i>
+                        <p>गुनासो</p>
                     </a>
                 </li>
                 @*  <li class="nav-item">

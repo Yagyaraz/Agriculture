@@ -814,7 +814,7 @@
 <body>
 
     <!-- Dark overlay + Centered Notification -->
-    <div id="overlay" class="container-fluid">
+   @*  <div id="overlay" class="container-fluid">
         <div id="welcomeToast" class="toast centered-toast align-items-center text-bg-primary border-0" role="alert">
             <div class="toast-header bg-primary text-white">
                 <strong class="me-auto fs-4">नमस्कार! स्वागत छ!</strong>
@@ -825,7 +825,36 @@
                 <img src="~/assets/img/ag-logo.webp" alt="import notification" width="250px" height="250px">
             </div>
         </div>
+    </div> *@
+@if (Model.Suchana != null && Model.Suchana.Any())
+{
+    <div id="overlay" class="container-fluid">
+        @foreach (var notice in Model.Suchana)
+        {
+            <div class="toast centered-toast align-items-center text-bg-primary border-0 mb-3" role="alert">
+                <div class="toast-header bg-primary text-white">
+                    <strong class="me-auto fs-4">@notice.Title</strong>
+                    <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                </div>
+
+                <div class="toast-body fs-5 text-white text-center py-4">
+                    <p>@notice.Description</p>
+
+                        @if (!string.IsNullOrEmpty(notice.FilePath))
+                    {
+                            <img src="@(_global.BaseUrl() + notice.FilePath)"
+                             alt="notice image"
+                             width="250"
+                             height="250" />
+                    }
+                </div>
+            </div>
+        }
     </div>
+}
 
     <!-- Topbar -->
     <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
@@ -1377,7 +1406,7 @@
                         </div>
                         <div id="complaint" class="col-12 col-md-8">
                             <div class="card-body">
-                                <form asp-area="Admin" asp-controller="Gunaso" asp-action="CreateGunaso" method="post" enctype="multipart/form-data">
+                                <form asp-area="Admin" asp-controller="GunasoView" asp-action="CreateGunaso" method="post" enctype="multipart/form-data">
                                     <div class="row g-4">
                                         <div class="col-md-6">
                                             <label class="form-label">पुरा नाम <span class="text-danger">*</span></label>
@@ -1784,6 +1813,16 @@
 
         // Load all videos initially
         displayVideos("All");
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            toastElList.forEach(function (toastEl, index) {
+                setTimeout(function () {
+                    new bootstrap.Toast(toastEl, { autohide: false }).show();
+                }, index * 1500);
+            });
+        });
     </script>
 
 </body>
