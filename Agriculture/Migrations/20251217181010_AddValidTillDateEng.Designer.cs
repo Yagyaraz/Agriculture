@@ -4,6 +4,7 @@ using Agriculture.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agriculture.Migrations
 {
     [DbContext(typeof(AgricultureDbContext))]
-    partial class AgricultureDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251217181010_AddValidTillDateEng")]
+    partial class AddValidTillDateEng
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

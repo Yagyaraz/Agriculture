@@ -29,12 +29,12 @@ namespace Agriculture.Areas.Admin.Repositories
                 model.Id = entity.Id;
                 return true;
             }
-            catch (Exception ) 
+            catch (Exception)
             {
                 Console.WriteLine("Failed to insert gunaso");
                 return false;
             }
-            
+
         }
 
         public async Task<GunasoViewModel> GetGunasoById(int id)
@@ -62,8 +62,7 @@ namespace Agriculture.Areas.Admin.Repositories
                            PhoneNumber = c.PhoneNumber,
                            Description = c.Description,
                            Status = c.Status
-                       })
-                       .ToListAsync();
+                       }).ToListAsync();
         }
     }
 }
