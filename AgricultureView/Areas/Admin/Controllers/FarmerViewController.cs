@@ -35,6 +35,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new FarmerViewModel());
         }
+        public async Task<IActionResult> GetFarmerById(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/Farmer/GetFarmerById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<FarmerViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new FarmerViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> Create(FarmerViewModel model)
         {

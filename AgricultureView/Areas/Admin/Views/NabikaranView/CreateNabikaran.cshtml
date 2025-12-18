@@ -1,0 +1,102 @@
+﻿@model NabikaranViewModel
+@{
+    ViewData["Title"] = "CreateNabikaran";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">सूचना  थप्नुहोस</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="NabikaranView" asp-action="Nabikaran">Nabikaran List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create Nabikaran</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateNabikaran" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">सूचना  </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            <input asp-for="FirmId" class="form-control" type="hidden" />
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>नवीकरण गरेको मिति</label>
+                                    <input asp-for="RenewDate" class="form-control" id="StartDate" />
+                                    <span asp-validation-for="RenewDate" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>प्रमाणपत्र वहाल रहेने अवधी</label>
+                                    <input asp-for="ExpireDate" class="form-control" id="EndDate" />
+                                    <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>नवीकरण वापतको रु.</label>
+                                    <input asp-for="ReneweFee" class="form-control" />
+                                    <span asp-validation-for="ReneweFee" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>जरिवाना वापतको रु.</label>
+                                    <input asp-for="Fine" class="form-control" />
+                                    <span asp-validation-for="Fine" class="text-danger"></span>
+                                </div>
+                            </div>                        
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>नवीकरण दस्तुरको रसिद नं.</label>
+                                    <input asp-for="RasidNumber" class="form-control" />
+                                    <span asp-validation-for="RasidNumber" class="text-danger"></span>
+                                </div>
+                            </div>                        
+                       
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('StartDate'), document.getElementById('StartDateEng'))
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('EndDate'), document.getElementById('EndDateEng'))
+    </script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+   
+ 
+}

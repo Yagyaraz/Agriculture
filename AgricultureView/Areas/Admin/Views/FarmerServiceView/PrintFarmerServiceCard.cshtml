@@ -1,0 +1,114 @@
+﻿@model FarmerServiceCardViewModel
+@{
+    ViewData["Title"] = "Farmer Service Card Details";
+}
+
+<div class="page-inner">
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold mb-3">किसान सेवा कार्ड विवरण</h3>
+        <button class="btn btn-secondary" onclick="printCard()">
+            <i class="fa fa-print"></i> Print
+        </button>
+    </div>
+
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" asp-controller="FarmerServiceView" asp-action="FarmerServiceCard">
+                किसान सेवा कार्ड सुची
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a href="#">Details</a>
+        </li>
+    </ul>
+
+    <div class="row mt-2 justify-content-center">
+        <div class="col-md-8">
+            <div id="cardToPrint" class="card shadow-lg border-primary mb-4">
+                <div class="card-header text-center bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0" style="text-align:center">किसान सेवा कार्ड</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Farmer Info -->
+                    <div class="mb-3">
+                        <h5 class="border-bottom pb-1">किसान जानकारी</h5>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <strong>किसान नाम:</strong> <span class="text-muted">@Model.FarmerName</span>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>सेवा लिएको मिति:</strong> <span class="text-muted">@Model.ServiceDate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Services Table -->
+                    <div class="mb-3">
+                        <h5 class="border-bottom pb-1">सेवाहरू</h5>
+                        @if (Model.FarmerServiceCardDetailList != null && Model.FarmerServiceCardDetailList.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mt-2">
+                                    <thead class="table-primary text-center">
+                                        <tr>
+                                            <th>प्रकार</th>
+                                            <th>सेवा</th>
+                                            <th>इकाई</th>
+                                            <th>मात्रा</th>
+                                            <th>विवरण</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.FarmerServiceCardDetailList)
+                                        {
+                                            <tr class="text-center">
+                                                <td>@item.ServiceId</td>
+                                                <td>@item.ServiceId</td>
+                                                <td>@item.UnitId</td>
+                                                <td>@item.Quantity</td>
+                                                <td>@item.Detail</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center mt-2">No services available.</p>
+                        }
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center mt-4">
+    <a asp-action="FarmerServiceCard" class="btn btn-primary">
+        ⬅ Back to List
+    </a>
+</div>
+@section Scripts {
+    <script>
+        function printCard() {
+            var printContents = document.getElementById('cardToPrint').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload(); // reload to restore scripts and styles
+        }
+    </script>
+}

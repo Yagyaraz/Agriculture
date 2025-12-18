@@ -1,0 +1,122 @@
+﻿@model SeedStoreViewModel
+@{
+    ViewData["Title"] = "Seed Store Details";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">बालि पसल विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-action="SeedStore" asp-controller="StoresCenterView">बालि पसल</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <span>विवरण</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">बालि पसल विवरण</div>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- BASIC INFORMATION -->
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <label>नाम</label>
+                            <div class="border p-2">@Model.Name</div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <label>इमेल</label>
+                            <div class="border p-2">@Model.Email</div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <label>फोन नम्बर</label>
+                            <div class="border p-2">@Model.PhoneNo</div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <label>ठेगाना</label>
+                            <div class="border p-2">@Model.Address</div>
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                    <!-- PRODUCTION LIST -->
+                    <h5 class="mt-3">उत्पादन विवरण</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th>प्रकार</th>
+                                <th>उत्पादन श्रेणी</th>
+                                <th>उत्पादन</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SeedStoreProductionViewModelList)
+                            {
+                                <tr>
+                                    <td>@item.TypeId</td>
+                                    <td>@item.CategoryId</td>
+                                    <td>@item.ProductId</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <hr />
+
+                    <!-- CONTACT PERSON LIST -->
+                    <h5 class="mt-3">सम्पर्क व्यक्ति</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th>नाम</th>
+                                <th>फोन नम्बर</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var person in Model.SeedStoreContactPersonViewModelList)
+                            {
+                                <tr>
+                                    <td>@person.Name</td>
+                                    <td>@person.PhoneNo</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="card-action">
+                    <div class="card-footer text-start">
+                        <a asp-action="SeedStore" class="btn btn-primary">⬅ Back to List</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

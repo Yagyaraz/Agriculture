@@ -1,0 +1,123 @@
+﻿@model AgricultureServiceViewModel
+@{
+    ViewData["Title"] = "Service Details";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Service">Service List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Service Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">सेवाको विवरण</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>आर्थिक वर्ष:</label>
+                                <p><strong>@Model.FiscalYearName</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>कार्यक्रम:</label>
+                                <p><strong>@Model.ProgramName</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>योजना:</label>
+                                <p><strong>@Model.ProjectName</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>मान्य समय:</label>
+                                <p><strong>@Model.ValidTillDate (ने)</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3 p-0">
+                            <div class="form-group">
+                                <label>सेवा नाम:</label>
+                                <p><strong>@Model.ServiceName</strong></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>थप प्रश्नहरू</h5>
+
+                            <table class="table table-bordered table-hover mt-2">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>प्रश्न</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.AgricultureServiceAdditionalViewModelList != null &&
+                                                                        Model.AgricultureServiceAdditionalViewModelList.Count > 0)
+                                    {
+                                        foreach (var item in Model.AgricultureServiceAdditionalViewModelList)
+                                        {
+                                            <tr>
+                                                <td>@item.Questions</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="3" class="text-center text-muted">
+                                                कुनै प्रश्न छैन ।
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <a asp-area="Admin" asp-controller="AgriculturePlanView" asp-action="Service" class="btn btn-primary">
+                        Back to List
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

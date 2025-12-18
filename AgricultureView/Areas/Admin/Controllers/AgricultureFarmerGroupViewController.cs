@@ -34,6 +34,26 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new AgricultureFarmerGroupViewModel());
         }
+        public async Task<IActionResult> GetAgricultureFarmerGroupById(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/AgricultureFarmerGroup/GetAgricultureFarmerGroupById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<AgricultureFarmerGroupViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new AgricultureFarmerGroupViewModel());
+        }
+        public async Task<IActionResult> PranamPatra(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/AgricultureFarmerGroup/GetAgricultureFarmerGroupById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<AgricultureFarmerGroupViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new AgricultureFarmerGroupViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> Create(AgricultureFarmerGroupViewModel model)
         {

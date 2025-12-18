@@ -47,8 +47,6 @@ namespace Agriculture.Areas.Admin.Repositories
                     SamuhaAim = x.SamuhaAim,
                     SamuhaDetails = x.SamuhaDetails,
                     SamuhaWardNo = x.SamuhaWardNo,
-
-
                     AgriGroupType = x.AgriGroupType.Name,
                 }).ToListAsync();
         }

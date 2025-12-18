@@ -113,6 +113,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new SubsidyViewModel());
         }
+        public async Task<IActionResult> SubsidyDetails(int id )
+        {
+            var response = await _globalVeriable.GetMethod("Admin/Subsidy/GetSubsidyById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<SubsidyViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new SubsidyViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> CreateSubsidy(SubsidyViewModel model)
         {
@@ -165,7 +175,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new List<OtherSubsidyViewModel>());
         }
-
+        public async Task<IActionResult> OtherSubsidyDetails(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/Subsidy/GetOtherSubsidyById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<OtherSubsidyViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new OtherSubsidyViewModel());
+        }
         public async Task<IActionResult> CreateOtherSubsidy(int id = 0)
         {
             var response = await _globalVeriable.GetMethod("Admin/Subsidy/GetOtherSubsidyById/" + id);

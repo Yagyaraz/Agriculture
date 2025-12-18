@@ -156,7 +156,9 @@ namespace Agriculture.Data
 
 
         public DbSet<Ward> Ward { get; set; }
-
+        public DbSet<Gunaso>Gunasos { get; set; }
+        public DbSet<Suchana> Suchanas { get; set; }
+        public DbSet<Nabikaran> Nabikarans { get;set; }
 
     }
 }

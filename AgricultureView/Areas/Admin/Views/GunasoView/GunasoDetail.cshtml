@@ -1,0 +1,71 @@
+﻿
+@model GunasoViewModel
+
+@{
+    ViewData["Title"] = "Gunaso Detail";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">पुस्तकालय - ज्ञान </h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="GunasoView" asp-action="GunasoList">Gunaso List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Gunaso Details</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">पुस्तकालय </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                <strong>गुनासो कर्ताको नाम; </strong>
+                                @Model.Name
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                <strong>फोन न.:</strong>
+                                @Model.PhoneNumber
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-12 p-0">
+                                <div class="form-group">
+                                <strong>विवरण:</strong>
+                                    @Model.Description
+                                </div>
+
+                            </div>
+                        </div>
+                 
+                    </div>
+                    <div class="card-action">
+                    <a asp-area="Admin" asp-controller="GunasoView" asp-action="GunasoList" class="btn btn-primary">सूचीमा फर्कनुहोस्</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

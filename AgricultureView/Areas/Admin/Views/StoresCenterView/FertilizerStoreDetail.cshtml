@@ -1,0 +1,136 @@
+﻿@model FertilizerStoreViewModel
+@{
+    ViewData["Title"] = "Fertilizer Store Details";
+}
+
+<div class="page-inner">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">खाद्य पसल विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="StoresCenterView" asp-action="FertilizerStore">
+                    खाद्य पसल
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item"><a href="#">Details</a></li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">खाद्य पसल जानकारी</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>नाम</strong>
+                            <p class="text-muted">@Model.Name</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>इमेल</strong>
+                            <p class="text-muted">@Model.Email</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>फोन नम्बर</strong>
+                            <p class="text-muted">@Model.PhoneNo</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>ठेगाना</strong>
+                            <p class="text-muted">@Model.Address</p>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTIONS LIST -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header"><div class="card-title">उत्पादन विवरण</div></div>
+                <div class="card-body">
+                    @if (Model.FertilizerStoreProductionViewModelList != null && Model.FertilizerStoreProductionViewModelList.Any())
+                    {
+                        <table class="table table-bordered table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>प्रकार</th>
+                                    <th>उत्पादन श्रेणी</th>
+                                    <th>उत्पादन</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.FertilizerStoreProductionViewModelList)
+                                {
+                                    <tr>
+                                        <td>@item.TypeId</td>
+                                        <td>@item.CategoryId</td>
+                                        <td>@item.ProductId</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No production details available</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PERSONS LIST -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header"><div class="card-title">सम्पर्क व्यक्ति विवरण</div></div>
+                <div class="card-body">
+                    @if (Model.FertilizerStoreContactPersonViewModelList != null && Model.FertilizerStoreContactPersonViewModelList.Any())
+                    {
+                        <table class="table table-bordered table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>नाम</th>
+                                    <th>फोन नम्बर</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.FertilizerStoreContactPersonViewModelList)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.PhoneNo</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No contact persons available</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-start">
+        <a asp-action="FertilizerStore" class="btn btn-primary">⬅ Back to List</a>
+    </div>
+</div>

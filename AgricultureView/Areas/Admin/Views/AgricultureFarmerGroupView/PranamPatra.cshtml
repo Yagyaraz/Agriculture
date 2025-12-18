@@ -1,0 +1,338 @@
+﻿@model AgricultureFarmerGroupViewModel
+@using AgricultureView.Utility
+@inject AgricultureView.Utility.IGlobalVeriable _global
+@inject IUtility _Utility
+@{
+    ViewData["Title"] = "PranamPatra";
+    var org = await _Utility.GetOfficeDetail();
+    var orgname = org.PalikaName;
+}
+<!DOCTYPE html>
+<html lang="ne">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कृषक समूह दर्ता प्रमाण-पत्र</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Nepali:wght@400;500;700;900&display=swap"
+          rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Nepali', 'Roboto', sans-serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        .certificate-container {
+            max-width: 800px;
+            margin: 10px auto;
+            padding: 10px 30px;
+            border: 4px double #000;
+            background: #fff;
+            min-height: 950px;
+            /* Adjusted for single-page print */
+            box-sizing: border-box;
+        }
+
+        .header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-left {
+            position: absolute;
+            left: 0;
+            /* stick to left edge */
+            top: 50%;
+            transform: translateY(-50%);
+            height: 80px;
+        }
+
+        .logo-right {
+            position: absolute;
+            right: 0;
+            /* stick to right edge */
+            top: 50%;
+            transform: translateY(-50%);
+            height: 80px;
+        }
+
+        .header-text {
+            display: inline-block;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 80px;
+            width: auto;
+            margin: 0 15px;
+        }
+
+        .title-nepali {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+
+        .subtitle-nepali {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 2px 0;
+        }
+
+        .address {
+            font-size: 14px;
+            margin: 1px 0;
+        }
+
+        .certificate-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            margin: 25px 0;
+            padding: 10px;
+            border: 4px solid #000;
+            border-radius: 10px;
+            background: linear-gradient(to bottom, #f8f9fa, #fff);
+            letter-spacing: 1px;
+        }
+
+        .ref-info {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .content-section {
+            margin: 20px 0;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .info-row {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+            .info-row b {
+                min-width: 160px;
+                display: inline-block;
+            }
+
+        .members-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 0 20px;
+            font-size: 15px;
+        }
+
+        .signature-box {
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .signature-line {
+            border-top: 1px solid #000;
+            width: 180px;
+            margin: 40px auto 10px;
+        }
+
+        .notes {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+            .notes ol {
+                padding-left: 20px;
+            }
+
+        @@media print {
+
+            body,
+            .certificate-container {
+                margin: 0;
+                padding: 7mm;
+                border: none;
+                background: white !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            @@page {
+                size: A4 portrait;
+                margin: 7mm;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .title-nepali {
+                font-size: 24px;
+            }
+
+            .subtitle-nepali {
+                font-size: 16px;
+            }
+
+            .certificate-title {
+                border: 5px solid #000 !important;
+                background: #f8f9fa !important;
+            }
+
+            .logo {
+                height: 90px !important;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .logo {
+                height: 60px;
+            }
+
+            .certificate-title {
+                font-size: 26px;
+            }
+
+            .members-row {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .signature-section {
+                flex-direction: row;
+                gap: 30px;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="certificate-container">
+        <!-- Header -->
+        <!-- <div class="header d-flex justify-content-center align-items-center">
+            <img src="./image/logo.png" alt="Nepal Government" class="logo justify-content-right">
+            <div class="text-center mx-3">
+                <h5 class="title-nepali">सिरीजङ्घा गाउँपालिका</h5>
+                <h2 class="subtitle-nepali">गाउँ कार्यपालिकाको कार्यालय</h2>
+                <p class="address">तेल्लोक, ताप्लेजुङ</p>
+                <p class="address">कोशी प्रदेश, नेपाल</p>
+            </div>
+            <img src="./image/Arjunchaupari-logo.png" alt="Local Logo" class="logo justify-content-left">
+        </div> -->
+        <div class="header">
+            <img src="./image/logo.png" alt="Nepal Government" class="logo-left">
+            <div class="header-text">
+                <h5 class="title-nepali">@org.PalikaName</h5>
+                <h2 class="subtitle-nepali">गाउँ कार्यपालिकाको कार्यालय</h2>
+                <p class="address">@org.Address, @org.DistrictName</p>
+                <p class="address">@org.StateName, नेपाल</p>
+            </div>
+            <img src="./image/Arjunchaupari-logo.png" alt="Local Logo" class="logo-right">
+        </div>
+
+        <h1 class="certificate-title">कृषक समूह दर्ता प्रमाण-पत्र</h1>
+
+        <div class="d-flex justify-content-between mt-2 px-4">
+            <div class="ref-info"><strong>दर्ता नं.:</strong>@Model.FirmDartaNo </div>
+            <div class="ref-info"><strong>मितिः</strong> @Model.FirmRegDate</div>
+        </div>
+
+        <div class="content-section">
+            <p>
+                @Model.SamuhaAim उद्देश्यले @org.DistrictName @Model.FirmPalikaName @Model.FirmWardNo
+                @Model.FirmTolName मा संचालित श्री @Model.FirmName लाई सम्बत @Model.FirmRegDate मा यस
+                कार्यालयको अभिलेखमा दर्ता गरी यो प्रमाण-पत्र प्रदान गरीएको छ।
+            </p>
+            <div class="info-row">
+                @{
+                    var chairmanName = Model.OfficialsDetailViewModelList
+                    .FirstOrDefault(x => x.PostId == 1)?.FullName ?? "";
+                }
+
+                <div class="info-row">
+                    <b>संचालक/मुख्य ब्यक्तिको नाम थरः</b>
+                    श्री @chairmanName (अध्यक्ष)
+                </div>
+
+
+            </div>
+            <div class="info-row">
+                <b>ठेगाना：</b>  @Model.FirmPalikaName, @Model.FirmWardNo
+                @Model.FirmTolName, @org.DistrictName
+            </div>
+
+            <div class="members-row">
+                @{
+                    var totalCount = Model.SadsyeMaleCount + Model.SadsyeFemaleCount + Model.SadsyeOtherCount;
+                }
+                <div><b>सदस्य संख्या：@totalCount जना</b></div>
+                <div><b>महिला：</b> @Model.SadsyeFemaleCount जना</div>
+                <div><b>पुरुष：</b> @Model.SadsyeMaleCount जना</div>
+            </div>
+
+            <div class="info-row">
+                <b>उद्देश्य：</b> @Model.SamuhaDetails
+            </div>
+            <div class="info-row"><b>समूहको लगानी (रु. मा)：</b>@Model.FirmHitKoshAmt</div>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <p>फाँटवालाको हस्ताक्षर</p>
+            </div>
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <p>जारी गर्नेको दस्तखत</p>
+                <!-- <small>(कार्यालय प्रमुख)</small> -->
+            </div>
+        </div>
+
+        <div class="notes">
+            <h5><strong>केही महत्वपूर्ण जानकारीहरू：</strong></h5>
+            <ol>
+                <li>यो प्रमाण-पत्र आफ्नो समूह स्थापना भएको ठाउँमा राख्नुपर्नेछ।</li>
+                <li>
+                    प्रत्येक आ.व. को लागी तोकिएको वार्षिक कर उक्त आ.व. समाप्त भएको मितिले ३ महिना भित्र बुझाई
+                    प्रमाण-पत्र नवीकरण गर्नुपर्नेछ। यस प्रमाण-पत्रको मान्य अवधि १ वर्षको हुनेछ।
+                </li>
+                <li>
+                    संचालन गरेको समूह बन्द गर्नुपरेमा ३५ दिन भित्र लिखित जानकारी दिनुपर्नेछ। अन्यथा समूह चालु नै रहेको
+                    मानिनेछ।
+                </li>
+                <li>अन्य कुनै निकायबाट अनुमति लिनुपर्ने भएमा अनुमति लिएर मात्र संचालन गर्नुपर्नेछ।</li>
+                <li>अन्य कुराहरू प्रचलित ऐन, कानुन अनुसार हुनेछन्।</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="text-center my-4 no-print">
+        <button onclick="window.print()" class="btn btn-success btn-lg">
+            🖨️ यो प्रमाण-पत्र प्रिन्ट गर्नुहोस् (Print Certificate)
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

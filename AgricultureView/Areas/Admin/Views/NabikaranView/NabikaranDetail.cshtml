@@ -1,0 +1,182 @@
+﻿@model NabikaranViewModel
+<!DOCTYPE html>
+<html lang="ne" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नविकरण गरेको प्रमाण-पत्र विवरण</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Inter (Latin) + Noto Sans Devanagari (Nepali) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #2563eb;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            /* background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); */
+            min-height: 100vh;
+            padding: 20px 10px;
+            color: #1e293b;
+        }
+
+
+        .report-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            /* box-shadow: var(--shadow); */
+            overflow: hidden;
+        }
+
+        .headers {
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            text-align: center;
+        }
+
+
+            .headers h3 {
+                margin: 15px 0 5px;
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+
+
+        .main-table {
+            margin: 20px;
+            font-size: 0.92rem;
+        }
+
+            .main-table table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .main-table th,
+            .main-table td {
+                border: 1.5px solid #333;
+                padding: 10px 12px;
+                text-align: center;
+            }
+
+            .main-table th {
+                color: rgb(0, 0, 0);
+                font-weight: 600;
+            }
+
+            .main-table tbody tr:hover {
+                background: #f8faff;
+            }
+
+        .sub-headers {
+            background: #dbeafe !important;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+            font-weight: 600;
+            z-index: 1000;
+            border: none;
+        }
+
+        @@media print {
+            body
+
+        {
+            background: white;
+        }
+
+        .print-btn,
+        .no-print {
+            display: none !important;
+        }
+
+        .report-container {
+            box-shadow: none;
+            margin: 0;
+        }
+
+        }
+
+        @@media (max-width: 768px) {
+            .summary-row
+
+        {
+            grid-template-columns: 1fr;
+        }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="report-container">
+        <!-- headers -->
+        <div class="headers">
+            <h3>नविकरण गरेको प्रमाण-पत्र विवरण</h3>
+        </div>
+
+
+
+        <!-- Main Report Table -->
+        <div class="main-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:6%">क्र.सं.</th>
+                        <th>नवीकरण गरेको मिति</th>
+                        <th>प्रमाणपत्र वहाल रहेने अवधी</th>
+                        <th>नवीकरण वापतको रु.</th>
+                        <th>जरिवाना वापतको रु.</th>
+                        <th>नवीकरण दस्तुरको रसिद नं.</th>
+                        <th>प्रमाणित गर्नेको दस्तखत</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>१</td>
+                        <td>@Model.RenewDate</td>
+                        <td>@Model.ExpireDate</td>
+                        <td>@Model.ReneweFee</td>
+                        <td>@Model.Fine</td>
+                        <td>@Model.RasidNumber</td>
+                        <td></td>
+                    </tr>               
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-btn no-print" onclick="window.print()">
+        प्रिन्ट गर्नुहोस्
+    </button>
+
+
+</body>
+
+</html>

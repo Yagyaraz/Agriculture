@@ -190,7 +190,7 @@ namespace Agriculture.Areas.Admin.Repositories
                     FiscalYearName = x.FiscalYear.Name,
                     ProgramName = x.AgricultureProgram.Title,
                     ProjectName = x.AgricultureProject.ProjectName,
-                }).ToListAsync();
+                }).ToListAsync()??new List<AgricultureServiceViewModel>();
         }
         public async Task<AgricultureServiceViewModel> GetServiceById(int id)
         {

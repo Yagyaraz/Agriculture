@@ -1,0 +1,81 @@
+﻿@model AgriCalendarProductViewModel
+@{
+    ViewData["Title"] = "AgriCalendar Product Details";
+}
+
+<div class="page-inner">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">उत्पादन श्रेणी विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin"
+                   asp-controller="AgriCalendarView"
+                   asp-action="AgriCalendarProduct">
+                    उत्पादन श्रेणी
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">उत्पादन श्रेणी जानकारी</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <strong>प्रकार</strong>
+                            <p class="text-muted">@Model.AgriCalendarType</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>उत्पादन श्रेणी</strong>
+                            <p class="text-muted">@Model.AgriCalendarCategoryId</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>उत्पादन</strong>
+                            <p class="text-muted">@Model.Name</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>उत्पादन (eng)</strong>
+                            <p class="text-muted">@Model.NameEng</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-footer text-start">
+                    <a asp-action="AgriCalendarProduct"
+                       class="btn btn-primary">
+                        ⬅ Back to List
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

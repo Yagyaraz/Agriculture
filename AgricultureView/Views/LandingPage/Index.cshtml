@@ -1,125 +1,1830 @@
-﻿@{
+﻿@using AgricultureView.Utility
+@model AgricultureView.Areas.Admin.Models.LandingPageViewModel
+@inject AgricultureView.Utility.IGlobalVeriable _global
+@inject IUtility _Utility
+@{
     Layout = null;
+    var org = await _Utility.GetOfficeDetail();
+    var orgname = org.PalikaName;
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>AgriConnect – Empowering Farmers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishi</title>
-    <link href="~/assets/css/landingpagestyle.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="keywords" content="agriculture, farming, crop advisory, market linkage, farmer community">
+    <meta name="description" content="AgriConnect – One-stop platform for modern farming solutions.">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Owl Carousel & Lightbox -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #28a745;
+            --secondary: #20c997;
+            --dark: #155724;
+            --light: #f8f9fa;
+            --text: #212529;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .bg-primary {
+            background: var(--primary) !important;
+            color: #fff;
+        }
+
+        .text-primary {
+            color: var(--primary) !important;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background: var(--dark);
+                transform: translateY(-2px);
+            }
+
+        .navbar {
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(8px);
+            transition: all .3s ease;
+        }
+
+            .navbar.scrolled {
+                background: #fff;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
+                padding: 0.5rem 0;
+            }
+
+
+
+        /* Hero Section Height */
+        .home {
+            height: 90vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header-carousel-item {
+            height: 90vh;
+            position: relative;
+        }
+
+            .header-carousel-item img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+        /* Carousel Caption Overlay */
+        .carousel-caption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgb(0 0 0 / 15%);
+            z-index: 2;
+        }
+
+        /* Owl Carousel Buttons */
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.356) !important;
+            color: #198754 !important;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 22px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+            .owl-prev:hover,
+            .owl-next:hover {
+                background: #198754 !important;
+                color: #fff !important;
+            }
+
+        .owl-prev {
+            left: 25px;
+        }
+
+        .owl-next {
+            right: 25px;
+        }
+
+        /* Ensure buttons are above caption overlay */
+        .owl-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+        }
+
+            .owl-nav button {
+                pointer-events: all;
+            }
+
+        .service-item,
+        .project-item,
+        .blog-item,
+        .team-item,
+        .testimonial-item,
+        .gallery-item {
+            transition: all .3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+            .service-item:hover,
+            .blog-item:hover,
+            .gallery-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, .15) !important;
+            }
+
+        .project-item {
+            position: relative;
+            min-height: 80vh;
+            background: linear-gradient(135deg, #5ec966c7 0%, #1b6070eb 100%);
+            color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+            .project-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="80" cy="80" r="1.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+                animation: float 25s linear infinite;
+                z-index: 1;
+            }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+            max-width: 70%;
+        }
+
+        .weather-widget {
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+            .weather-widget:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            }
+
+        .temp {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            transition: transform 0.5s ease;
+        }
+
+        .weather-widget:hover .weather-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .counter-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .footer {
+            background: var(--dark);
+            color: #ddd;
+        }
+
+            .footer a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .footer a:hover {
+                    color: #fff;
+                }
+
+        .back-to-top {
+            background: var(--primary);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+            .back-to-top.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(-10px);
+            }
+
+            .back-to-top:hover {
+                background: var(--dark);
+                transform: translateY(-5px);
+            }
+
+        /* Blog Section Styling */
+        #blog {
+            background: linear-gradient(rgb(168 227 178)), url('/images/agriculture-bg.jpg') no-repeat center center;
+            background-blend-mode: overlay;
+            min-height: 100vh;
+            position: relative;
+            color: #333;
+        }
+
+        /* Blog Card Styling */
+        .blog-item {
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .blog-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                background-color: #e6f4ea;
+            }
+
+            .blog-item .btn-primary {
+                transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+            }
+
+                .blog-item .btn-primary:hover {
+                    transform: scale(1.05);
+                    background-color: #218838;
+                }
+
+            .blog-item h5 {
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 0.5rem;
+            }
+
+            .blog-item .small {
+                font-size: 0.85rem;
+                letter-spacing: 0.05em;
+            }
+
+
+
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            .blog-item {
+                padding: 15px;
+            }
+
+            #blog h1 {
+                font: bold;
+                font-size: 2.5rem;
+            }
+
+            .blog-item h5 {
+                font-size: 1.1rem;
+            }
+
+            .blog-item .btn-primary {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .blog-item {
+                padding: 12px;
+            }
+
+                .blog-item h5 {
+                    font-size: 1rem;
+                }
+
+                .blog-item .btn-primary {
+                    font-size: 0.85rem;
+                    padding: 6px 12px;
+                }
+        }
+
+        /* Services Section Styling */
+        #services {
+            background: linear-gradient(rgb(168 227 178));
+            min-height: 100vh;
+        }
+
+        /* Service Card Styling */
+        .service-item {
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .service-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                background-color: #e6f4ea;
+            }
+
+        .service-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .service-item:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-item h5 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+
+
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            .service-item {
+                padding: 15px;
+            }
+
+            #services h1 {
+                font: bold;
+                font-size: 2.5rem;
+            }
+
+            .service-item h5 {
+                font-size: 1.1rem;
+            }
+
+            .service-icon i {
+                font-size: 2.5rem;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .service-item {
+                padding: 12px;
+            }
+
+                .service-item h5 {
+                    font-size: 1rem;
+                }
+
+            .service-icon i {
+                font-size: 2rem;
+            }
+        }
+
+
+        /* Market Section Styling */
+        #market {
+            background: linear-gradient(rgb(168 227 178));
+            min-height: 100vh;
+        }
+
+        /* Table Styling */
+        .table-responsive {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .table {
+            margin-bottom: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .table-hover tbody tr.market-row:hover {
+            background-color: #e6f4ea;
+            transform: scale(1.02);
+            transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+        }
+
+        .table-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+            .table-success th {
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+        /* Table Row Styling */
+        .market-row td {
+            vertical-align: middle;
+            padding: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            .table {
+                font-size: 0.9rem;
+            }
+
+            .table-responsive {
+                margin: 0 -15px;
+            }
+
+            .table th, .table td {
+                padding: 10px;
+            }
+
+            #market h1 {
+                font: bold;
+                font-size: 2.5rem;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .table {
+                font-size: 0.85rem;
+            }
+
+                .table th, .table td {
+                    padding: 8px;
+                }
+        }
+
+        /* -----------------------------  traning ------------------------------------------ */
+        #traning {
+            background: linear-gradient(rgb(168 227 178));
+        }
+
+        .training-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+            .training-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+            }
+
+        .short-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .modal-header {
+            background-color: #1d8820;
+            color: white;
+        }
+
+        .badge-custom {
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Styles */
+        .page-title {
+            color: white;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            font-weight: 800;
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+        }
+
+        /* Gallery Card Styling */
+        .gallery-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            height: 350px;
+            cursor: pointer;
+        }
+
+            .gallery-card:hover {
+                transform: translateY(-15px) scale(1.02);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            }
+
+            .gallery-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+            }
+
+            .gallery-card:hover img {
+                transform: scale(1.12);
+            }
+
+        /* Overlay Caption */
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-card:hover .card-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Lightbox Close Button - Beautiful */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1070;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+            .close-btn:hover {
+                background: rgba(220, 53, 69, 0.9);
+                transform: scale(1.15);
+                border-color: white;
+            }
+
+        /* Modal Enhancements */
+        #modalImage {
+            border-radius: 16px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+            max-height: 80vh;
+            width: auto;
+        }
+
+        #modalCaption {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            .gallery-card {
+                height: 280px;
+            }
+
+            .btn-close-white {
+                width: 44px;
+                height: 44px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+
+        /* ==== NEW: VIDEO SECTION ==== */
+        .video-section {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            overflow: hidden;
+        }
+
+        .video-carousel .video-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+            cursor: pointer;
+        }
+
+            .video-carousel .video-item video {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                display: block;
+            }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 167, 69, .6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .4s ease;
+        }
+
+        .video-item:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, .9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
+            transition: transform .3s ease;
+        }
+
+        .video-item:hover .play-btn {
+            transform: scale(1.15);
+        }
+
+        .video-wrapper:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 167, 69, .7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: .4s;
+        }
+
+            .play-overlay i {
+                font-size: 3rem;
+                color: white;
+            }
+
+
+        .footer {
+            background: var(--dark);
+            color: #ddd;
+        }
+
+            .footer a {
+                color: #adb5bd;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .footer a:hover {
+                    color: #fff;
+                }
+
+        @@keyframes flash {
+            0%, 100% {
+                background-color: #dc3545;
+            }
+
+            50% {
+                background-color: #c82333;
+            }
+        }
+
+        /* Overlay to block interaction until notification is closed */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1050;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Custom centered toast (looks like a modal) */
+        .centered-toast {
+            min-width: 200px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+    </style>
 </head>
+
 <body>
-    <section class="main">
+
+    <!-- Dark overlay + Centered Notification -->
+   @*  <div id="overlay" class="container-fluid">
+        <div id="welcomeToast" class="toast centered-toast align-items-center text-bg-primary border-0" role="alert">
+            <div class="toast-header bg-primary text-white">
+                <strong class="me-auto fs-4">नमस्कार! स्वागत छ!</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body fs-5 text-white text-center py-4">
+                वेबसाइट पहुँच गर्न कृपया यो सूचना बन्द गर्नुहोस्।
+                <img src="~/assets/img/ag-logo.webp" alt="import notification" width="250px" height="250px">
+            </div>
+        </div>
+    </div> *@
+@if (Model.Suchana != null && Model.Suchana.Any())
+{
+    <div id="overlay" class="container-fluid">
+        @foreach (var notice in Model.Suchana)
+        {
+            <div class="toast centered-toast align-items-center text-bg-primary border-0 mb-3" role="alert">
+                <div class="toast-header bg-primary text-white">
+                    <strong class="me-auto fs-4">@notice.Title</strong>
+                    <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                </div>
+
+                <div class="toast-body fs-5 text-white text-center py-4">
+                    <p>@notice.Description</p>
+
+                        @if (!string.IsNullOrEmpty(notice.FilePath))
+                    {
+                            <img src="@(_global.BaseUrl() + notice.FilePath)"
+                             alt="notice image"
+                             width="250"
+                             height="250" />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+
+    <!-- Topbar -->
+    <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
+        <div class="container px-0">
+            <div class="row gx-0 align-items-center" style="height:45px;">
+                <div class="col-lg-4 text-center text-lg-start">
+                    <div class="d-flex flex-wrap">
+                        @* <a href="#" class="text-muted me-4">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>Find
+                            a Farmer
+                        </a> *@
+                        <a href="tel:+01234567890" class="text-muted me-4">
+                            <i class="fas fa-phone-alt text-primary me-2"></i>@org.PhoneNo
+                        </a>
+                        <a href="mailto:info@agriconnect.com" class="text-muted me-0">
+                            <i class="fas fa-envelope text-primary me-2"></i>@org.Email
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-center">
+                    <div class="d-inline-flex flex-wrap align-items-center gap-3 gap-md-4 small">
+                        <h1 class="m-0 fs-4 fs-lg-3 lh-1">
+                            सिरीजङ्घा गाउँपालिका
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+
+                        @* <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a> *@
+
+                        <a href="#" class="btn btn-primary btn-sm-square rounded-circle" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube text-white"></i>
+                        </a>
+
+                        <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
+                           class="btn btn-outline-success rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center">
+                            <i class="fas fa-user me-1"></i> लगइन
+                       </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar & Hero -->
+    <div class="container-fluid px-0 sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-4 ">
+            <a href="#" class="navbar-brand p-0 d-flex">
+                <img src="~/assets/img/ag-logo.webp" alt="logo" width="50" height="50">
+                <h1 class="text-primary m-0">@org.Name</h1>
+                <!-- <h1 class="text-primary m-0"><i class="fas fa-seedling me-2"></i>AgriConnect</h1> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="#home" class="nav-item nav-link active">गृहपिष्ट</a>
+                    <a href="#about" class="nav-item nav-link">हाम्रो बारे</a>
+                    <a href="#services" class="nav-item nav-link">सेवाहरू</a>
+                    <a href="#projects" class="nav-item nav-link">परियोजनाहरू</a>
+                    <a href="#gallery" class="nav-item nav-link">ग्यालरी</a>
+
+                    <!-- Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle fw-medium" data-bs-toggle="dropdown">थप</a>
+                            <div class="dropdown-menu border-0 shadow rounded-3 mt-2">
+                                <a href="#blog" class="dropdown-item py-2">ब्लग</a>
+                                <a href="#team" class="dropdown-item py-2">टिम</a>
+                                <a href="#testimonial" class="dropdown-item py-2">प्रशंसापत्र</a>
+                                <a href="#faq" class="dropdown-item py-2">सोधिने प्रश्न</a>
+                            </div>
+                        </div>
+
+                    <a href="#contact" class="nav-item nav-link">सम्पर्क</a>
+                </div>
+                @* <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a> *@
+
+                <!-- Action Buttons - Visible on Mobile & Tablet too -->
+                <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-3 align-items-center">
+                    <!-- Login Button (Visible on small screens too) -->
+                    <a asp-area="" asp-controller="Account" asp-action="Index"
+                       class="btn btn-outline-success rounded-pill px-4 order-2 order-lg-1 d-lg-none">
+                        <i class="fas fa-sign-in-alt me-1 d-lg-none"></i>
+                        <span class="d-none d-lg-inline">लगइन</span>
+                        <span class="d-inline d-lg-none">लगइन</span>
+                    </a>
+
+                    <!-- Complaint Button -->
+                    <a href="#complaint" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
+                        <i class="fas fa-headset me-1"></i> गुनासो गर्नुहोस्
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="bg-success text-white text-center py-1 fw-bold position-relative overflow-hidden"
+         style="font-size: 1rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+
+        <div class="d-flex align-items-center justify-content-center">
+            @* <i class="bi bi-megaphone-fill fs-1 me-3 animate__animated animate__swing animate__infinite"></i> *@
+            <strong class="me-4">महत्त्वपूर्ण सूचना :</strong>
+
+            <marquee behavior="scroll" direction="left" scrollamount="8"
+                     onmouseover="this.stop();" onmouseout="this.start();"
+                     class="fw-bold">
+                @org.Name ले नयाँ "स्मार्ट खेती तालीम" सुरु गरेको छ !
+                पहिलो ५० जना किसानलाई ५०% छुट !
+                दर्ता मिति: १५ मंसिरसम्म मात्र !
+                फोन: @org.PhoneNo | इमेल: @org.Email
+            </marquee>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="container-fluid home bg-light p-0">
+        <div class="header-carousel owl-carousel owl-theme">
+
+            <!-- Slide 1 -->
+            <div class="header-carousel-item position-relative">
+                <img src="https://imgs.search.brave.com/q_bnm999Dg83l-bhSVrbKzLIwVmlhRpNMKZGHTi9KnE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjg4MDg1Mjdf/MGU1YzRlYjZlOF9i/LmpwZw"
+                     class="img-fluid w-100 h-100 object-fit-cover" alt="Farm">
+                <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
+                    <div class="p-3" style="max-width:600px;" data-aos="fade-right">
+                        <h1 class="text-white mb-4">
+                            “किसानलाई प्रविधिसँग जोड्दै — समृद्ध सिरीजङ्घा तर्फको
+                            यात्रा”
+                        </h1>
+                        @* <p class="fs-5 text-white mb-4">
+                            Your one-stop platform for farming guidance, market prices,
+                            government schemes, and more.
+                        </p> *@
+                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5 me-3">
+                            हाम्रा सेवाहरू
+                            हेर्नुहोस्
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light rounded-pill py-3 px-5">आजै सदस्य बनौं</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="header-carousel-item position-relative">
+                <img src="https://imgs.search.brave.com/hM-zck5UyjTFEusTc9E-3fGO_YGyiBJeYGavLmD4VuE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vNjU1MzUv/NTAxNjc5OTQzMDNf/ZDEwZGI1YjcwMl9i/LmpwZw"
+                     class="img-fluid w-100 h-100 object-fit-cover" alt="Crops">
+                <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
+                    <div class="p-3 text-center" style="max-width:700px;" data-aos="fade-up">
+                        <h1 class="text-white mb-4">“ज्ञान, बजार र अवसर — सबै एकै प्लेटफर्ममा”</h1>
+                        @* <p class="fs-5 text-white mb-4">
+                            Real-time crop advisory, market prices, and community support.
+                        </p> *@
+                        <a href="#services" class="btn btn-light rounded-pill py-3 px-5">थप जान्नुहोस्</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- About -->
+    <section id="about" class="container-fluid about bg-success-subtle py-5">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                         class="img-fluid rounded shadow" alt="Farmers">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h4 class="text-primary">@org.Name बारेमा</h4>
+                    <h1 class="mb-4">@org.PalikaName - कृषि संजाल</h1>
+                    <p class="mb-4">
+                        @org.Name, @org.DistrictName जिल्लाको @org.PalikaName को एक डिजिटल पहल हो, जसको उद्देश्य
+                        किसानहरूलाई प्रविधि–आधारित कृषि सेवासँग जोड्नु हो।
+                        नेपालको पूर्वी पहाडी क्षेत्रस्थित @org.PalikaName प्राकृतिक सौन्दर्य, सांस्कृतिक विविधता र मेहनती कृषक
+                        समुदायका लागि परिचित छ।
+                        यस प्लेटफर्ममार्फत किसानहरूले बालीसम्बन्धी सल्लाह, बजार पहुँच, मौसम सूचना र वित्तीय सहयोगका
+                        माध्यमबाट दिगो तथा नाफामुखी कृषि अभ्यास गर्न सक्नेछन्।
+                    </p>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> बाली परामर्श र तालिम</p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> बजार पहुँच र मूल्य जानकारी</p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> मौसम अपडेट र चेतावनी</p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fas fa-check-circle text-primary me-2"></i> किसान समुदाय मंच</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary rounded-pill py-3 px-5">सुरु गर्नुहोस्</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="container-fluid py-5 bg-success-subtle">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                <h4 class="text-primary">नवीनतम जानकारी</h4>
+                <h1 id="blog-heading">कृषि कार्यक्रम</h1>
+                <p class="text-muted">हाम्रा नवीनतम कृषि कार्यक्रमहरू बारे जानकारी प्राप्त गर्नुहोस् जसले किसानहरूलाई सशक्त बनाउँछ।</p>
+            </div>
+            @if (Model.Programs != null && Model.Programs.Any())
+            {
+                <div class="row g-4">
+                    @foreach (var program in Model.Programs)
+                    {
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Programs.IndexOf(program))" data-aos-easing="ease-in-out">
+                            <div class="blog-item rounded shadow overflow-hidden bg-white">
+                                <div class="p-4">
+                                    <span class="text-primary small">@program.FiscalYearName</span>
+                                    <h5 class="mt-2">@program.Title</h5>
+                                    <a href="#" class="btn btn-primary rounded-pill py-2 px-4 mt-3" aria-label="Read more about @program.Title">थप पढ्नुहोस्</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि कार्यक्रम उपलब्ध छैन</p>
+            }
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="container-fluid py-5 bg-success-subtle">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                <h4 class="text-primary">हाम्रा सेवाहरू</h4>
+                <h1 id="services-heading">कृषि प्रवर्द्धनका प्रमुख विशेषताहरू</h1>
+                <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                @if (Model.Services != null && Model.Services.Any())
+                {
+                    @foreach (var service in Model.Services)
+                    {
+                        <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Services.IndexOf(service))" data-aos-easing="ease-in-out">
+                            <div class="service-item bg-white rounded shadow p-4 text-center h-100">
+                                <div class="service-icon mb-3">
+                                    <i class="fas fa-seedling fa-3x text-primary"></i>
+                                </div>
+                                <h5>@service.ServiceName</h5>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि सेवा उपलब्ध छैन</p>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section id="traning" class="container-fluid py-5">
         <div class="container">
-            <div class="d-flex justify-content-between mt-3">
-                <div class="logo">
-                    <img src="~/assets/img/ag-logo.webp" width="80" height="80">
+            <h1 class="text-center mb-5 fw-bold text-success">तालिम विवरण</h1>
+
+            <div class="row g-4">
+                <!-- Training Card 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 training-card shadow-sm" data-bs-toggle="modal" data-bs-target="#trainingModal1">
+                        <div class="card-body d-flex flex-column">
+
+                            <h5 class="card-title text-primary fw-bold" style="text-shadow: none;">पशुपालन तालिम</h5>  @* शिर्षक *@
+
+                            <div class="d-flex flex-wrap gap-2 mt-2 small text-muted">
+                                <span><i class="bi bi-calendar3"></i> सुरु: २०८२-०४-०१</span>  @* सुरु मिति *@
+                                <span><i class="bi bi-calendar-x"></i> अन्त्य: २०८२-०४-१५</span>  @* अन्तिम मिति *@
+                            </div>
+
+                            <div class="mt-2">
+                                <span class="badge bg-success badge-custom">स्थान: काठमाडौँ</span> @* स्थान *@
+                                <span class="badge bg-info text-dark badge-custom">प्रिमियम</span>  @* प्रिमियम प्रकार *@
+                                <span class="badge bg-warning text-dark badge-custom">पशुपालन तालिम</span>  @* ट्रेनिङ प्रकार *@
+                            </div>
+
+                            <p class="short-desc mt-3 flex-grow-1">
+                                @* विवरण *@
+                                यो तालिमले सहभागीहरूलाई कम्प्युटरको आधारभूत प्रयोग, इन्टरनेटको सुरक्षित प्रयोग, एमएस अफिसका
+                                आधारभूत सफ्टवेयरहरू (Word, Excel, PowerPoint), इ-मेल र सामाजिक सञ्जालको उचित प्रयोग, डिजिटल
+                                सुरक्षा र गोपनीयता सम्बन्धी ज्ञान प्रदान गर्दछ।
+                                तालिम अवधिभर ह्यान्ड्स-अन अभ्यास, प्रोजेक्ट वर्क र प्रमाणपत्र वितरण गरिनेछ।
+                            </p>
+
+                            <div class="text-end mt-2">
+                                <a href="javascript:void(0)" class="text-primary fw-bold">
+                                    थप पढ्नुहोस् <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="button">
-                    <a type="button" class="btn" asp-area="" asp-controller="Account" asp-action="Index">login</a>
-                    @* <a type="button" class="btn">Register</a> *@
-                </div>
+
             </div>
-            <div class="mt50">
-                <div>
-                    <h1>Empowering Farmers with Smart Agriculture Solutions</h1>
-                    <p>Your one-stop platform for farming guidance, market prices, government schemes, and more.</p>
+        </div>
+
+        <!-- Modal (Lightbox) -->
+        <div class="modal fade" id="trainingModal1" tabindex="-1" aria-labelledby="trainingModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="trainingModalLabel1">डिजिटल साक्षरता तथा आधारभूत कम्प्युटर तालिम</h5>  @* शिर्षक *@
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="fw-bold text-success">आयोजक: नेपाल सरकार, सूचना प्रविधि मन्त्रालय</h6>  @* आयोजक *@
+
+                        <div class="row mt-3 text-muted small">
+                            <div class="col-6"><strong>सुरु मिति:</strong> २०८२-०४-०१</div>  @* सुरु मिति *@
+                            <div class="col-6"><strong>अन्तिम मिति:</strong> २०८२-०४-१५</div>  @* अन्तिम मिति *@
+                            <div class="col-6"><strong>आर्थिक वर्ष:</strong> २०८२/८३</div>  @* आर्थिक वर्ष *@
+                            <div class="col-6"><strong>स्थान:</strong> काठमाडौँ, नेपाल</div>  @* स्थान *@
+                            <div class="col-6"><strong>प्रशिक्षक:</strong> श्री रामबहादुर थापा</div>  @* प्रशिक्षक *@
+                            <div class="col-6"><strong>प्रिमियम प्रकार:</strong> प्रिमियम</div>  @* प्रिमियम प्रकार *@
+                            <div class="col-6"><strong>ट्रेनिङ प्रकार:</strong> आधारभूत तालिम</div>  @* ट्रेनिङ प्रकार *@
+                        </div>
+
+                        <hr>
+
+                        <h6 class="fw-bold">विवरण</h6>  @* विवरण *@
+                        <p>
+                            यो तालिमले सहभागीहरूलाई कम्प्युटरको आधारभूत प्रयोग, इन्टरनेटको सुरक्षित प्रयोग, एमएस अफिसका
+                            आधारभूत सफ्टवेयरहरू (Word, Excel, PowerPoint), इ-मेल र सामाजिक सञ्जालको उचित प्रयोग, डिजिटल
+                            सुरक्षा र गोपनीयता सम्बन्धी ज्ञान प्रदान गर्दछ।
+                            तालिम अवधिभर ह्यान्ड्स-अन अभ्यास, प्रोजेक्ट वर्क र प्रमाणपत्र वितरण गरिनेछ।
+                        </p>
+
+                        <div class="text-center my-4">
+                            @* फोटो *@
+                            <img src="https://imgs.search.brave.com/_7PApOFXoueFNjtQ12trK8ESVPyD8M3OPVvsFlTM95A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9zdW5z/ZXQtc29saXR1ZGUt/bG9uZS10cmVlLXN0/YW5kcy1kcnktY3Jh/Y2tlZC1lYXJ0aC1s/YW5kc2NhcGUtdW5k/ZXItZHJhbWF0aWMt/c2t5LWdlbmVyYXRp/dmUtYWktYmVhdXRp/ZnVsbHktY3JhZnRl/ZC1kaWdpdGFsLTM3/MzQxMTQ3Ni5qcGc"
+                                 class="img-fluid rounded shadow" style="height: 350px; width: 500px;" alt="तालिमको फोटो">
+                            <small class="text-muted d-block mt-2">तालिम उद्घाटन समारोहको फोटो</small>
+                        </div>
+                    </div>
+                    @* ---------------------- change to the apply the form ---------------------------------- *@
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="main">
+    <!-- market -->
+    <section id="market" class="container-fluid py-5 bg-success-subtle">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                <h4 class="text-primary">बजार मूल्य</h4>
+                <h1 id="market-heading">हाम्रा बजारहरू</h1>
+                <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
+            </div>
+            @if (Model.Markets != null && Model.Markets.Any())
+            {
+                <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-in-out">
+                    <table class="table table-bordered table-striped table-hover" role="grid" aria-describedby="market-heading">
+                        <thead class="table-success">
+                            <tr>
+                                <th scope="col" class="text-center">क्र.स.</th>
+                                <th scope="col" class="text-center">बजारको नाम</th>
+                                <th scope="col" class="text-center">सामानको नाम</th>
+                                <th scope="col" class="text-center">सामानको मूल्य</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Markets.Count; i++)
+                            {
+                                var item = Model.Markets[i];
+                                <tr data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(300 + (100 * i))" data-aos-easing="ease-in-out" class="market-row">
+                                    <td class="text-center">@(i + 1)</td>
+                                    <td class="text-center">@item.Name</td>
+                                    @*--------------------------------------------------------------------------------------------
+                                    backend data input for this field 
+        --------------------------------------------------------------------------------------------*@
+                                    <td class="text-center">आलु</td>
+                                    <td class="text-center">८०</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">No markets found.</p>
+            }
+        </div>
+    </section>
+
+    <!-- Projects ( Weather) -->
+    <section id="projects" class="project-item container-fluid py-5">
+        <div class="container project-content">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <h1>कृषि मार्फत जानकारीमा रहनुहोस्</h1>
+                    <p>
+                        वास्तविक समयको बाली सल्लाह, प्रत्यक्ष बजार पहुँच, मौसम सूचना र सक्रिय किसान समुदाय — सबै सेवा
+                        एउटै प्लेटफर्ममा।
+                    </p>
+                    <div>
+                        <a href="#services" class="btn btn-light btn-lg me-3">हाम्रा सेवाहरू हेर्नुहोस्</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">आजै सदस्य बनौं</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-5 mt-lg-0">
+                    <div class="weather-widget" data-aos="fade-left">
+                        <h4 class="text-white">प्रत्यक्ष मौसम अपडेट</h4>
+                        <h5><i class="fas fa-map-marker-alt"></i> <span id="city">स्थान पत्ता लगाइँदै...</span></h5>
+                        <div class="d-flex align-items-center justify-content-center my-3">
+                            <i id="weather-icon" class="fas fa-sun weather-icon"></i>
+                            <div class="temp ms-3" id="temp">--°C</div>
+                        </div>
+                        <p id="description" class="mb-1">मौसम विवरण लोड हुँदै...</p>
+                        <p class="small mb-0">
+                            <i class="fas fa-tint"></i> <span id="humidity">--%</span> • <i class="fas fa-wind"></i>
+                            <span id="wind">-- m/s</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="container-fluid py-5 bg-success-subtle">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-primary">हाम्रो ग्यालरी</h1>
+                <h1> </h1>
+            </div>
+            <div class="row g-4">
+                @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
+                {
+                    @foreach (var item in Model.ImageGalleries)
+                    {
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
+                               onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
+                                <img src="@(_global.BaseUrl() + item.FilePath)"
+                                     alt="@item.Title">
+                                <div class="card-overlay">
+                                    <div class="card-title">@item.Title</div>
+                                    @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p data-aos="fade-in" data-aos-duration="800">No images found.</p>
+                }
+            </div>
+        </div>
+        <!-- Modal Lightbox with Close Button -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+                <div class="modal-content bg-transparent border-0 shadow-none">
+                    <div class="modal-body text-center position-relative p-4">
+
+                        <!-- Close Button (X) -->
+                        <div class="close-btn" data-bs-dismiss="modal">×</div>
+                        <div class="row justify-content-center">
+                            <img id="modalImage" src="" alt="Full view" class="img-fluid">
+                            <h4 id="modalCaption" class="mt-4" style="width: 50%;"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- video Section -->
+    <section id="videos" class="container-fluid py-5 bg-success-subtle">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5">
+                <h4 class="text-primary">हेर्नुहोस् र सिक्नुहोस्</h4>
+                <h1>किसानका कथाहरू</h1>
+                <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p>
+            </div>
+
+            <div class="category-buttons text-center mb-4" id="categoryButtons"></div>
+
+            <div class="container py-4">
+                <div class="row g-4" id="videoList"></div>
+            </div>
+
+            <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title text-white" id="modalTitle"></h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body p-0" id="modalBodyContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <h2 class="mt-5">Stay Updated with Dynamic Krishi</h2>
-                    <div class="mt-5 mt-10">
-                        <div class="krisi-update">
-                            <div class="box1">1</div>
-                            <div class="box-desc">
-                                <h3>Weather Forecast</h3>
-                                <p>Get real-time updates and plan your activities.</p>
-                            </div>
-                        </div>
-                        <div class="krisi-update">
-                            <div class="box1">2</div>
-                            <div class="box-desc">
-                                <h3>Market Prices</h3>
-                                <p>Track crop prices and make informed decisions.</p>
-                            </div>
-                        </div>
-                        <div class="krisi-update">
-                            <div class="box1">3</div>
-                            <div class="box-desc">
-                                <h3>Government Schemes</h3>
-                                <p>Access relevant schemes and maximize benefits.</p>
-                            </div>
-                        </div>
-                        <div class="krisi-update">
-                            <div class="box1">4</div>
-                            <div class="box-desc">
-                                <h3>Training Programs</h3>
-                                <p>Enhance your knowledge with expert-led webinars.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="krisi-update-photo">
-                        <img src="~/assets/img/krishi-update-Photoroom.png" alt="krishi">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <h1 class="text-white"><i class="fas fa-seedling me-2"></i>AgriConnect</h1>
+                    <p class="text-light">Empowering farmers with technology and community.</p>
 
-    <section class="main-feature mt-5 pt-5">
-        <div class="container krishi-feature">
-            <div class="">
-                <h2>Explore Key Features & Services</h2>
-                <div class="row mt-5">
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-seedling" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Farming Guidelines</h3>
-                            <p>Access best practices for improved yields.</p>
-                        </div>
+                    <div class="mt-5">
+                        <h5 class="text-white text-center">social Media Links</h5>
+                        <ul class="list-unstyled text-center">
+                            <li class="data-flex mt-4"><a href="#"><i class="fa-solid fa-envelope"></i> E-mail:@org.Email</a></li>
+                            <li class="mt-4"><a href="#"><i class="fa-solid fa-phone"></i> Phone No:@org.PhoneNo</a></li>
+                            <li class="mt-4"><a href="#"><i class="fa-solid fa-globe"></i> WebSite:sirijanghamun.gov.np/</a></li>
+                        </ul>
                     </div>
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-wheat-awn" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Cooperative Farming</h3>
-                            <p>Collaborate for better resource management.</p>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row g-5 ">
+                        <div class="col-6 col-md-4">
+                            <h5 class="text-white text-center">Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#services">Services</a></li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-money-bill" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Financial Assistance</h3>
-                            <p>Find schemes and loans for your needs.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <i class="fa-solid fa-cart-shopping" style="color: green; font-size: 40px;"></i>
-                        <div class="feature-desc">
-                            <h3>Market Access</h3>
-                            <p>Connect with buyers and sell your produce.</p>
+                        <div id="complaint" class="col-12 col-md-8">
+                            <div class="card-body">
+                                <form asp-area="Admin" asp-controller="GunasoView" asp-action="CreateGunaso" method="post" enctype="multipart/form-data">
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <label class="form-label">पुरा नाम <span class="text-danger">*</span></label>
+                                            <input type="text" asp-for="Gunaso.Name" class="form-control form-control-lg" required />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">मोबाइल नम्बर <span class="text-danger">*</span></label>
+                                            <input type="tel" asp-for="Gunaso.PhoneNumber" class="form-control form-control-lg" required />
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label">गुनासोको विस्तृत विवरण <span class="text-danger">*</span></label>
+                                            <textarea asp-for="Gunaso.Description" class="form-control" rows="8" placeholder="कृपया सत्य र स्पष्ट कुरा मात्र लेख्नुहोस्..." required></textarea>
+                                        </div>
+
+                                        <div class="text-center my-5">
+                                            <button type="submit" class="btn btn-danger btn-lg text-white btn-submit shadow-lg">
+                                                गुनासो दर्ता गर्नुहोस्
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <footer class="mt-5">
-        <div class="bg-footer">
-            <p>© 2025 Krishi. All rights reserved.</p>
+            <hr class="my-4">
+            <p class="text-center text-light mb-0">&copy; 2025 AgriConnect. All Rights Reserved.</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Back to Top -->
+    <a href="#"
+       class="btn btn-lg btn-success back-to-top
+          position-fixed bottom-0 end-0
+          m-4 shadow-lg rounded-circle
+          d-flex align-items-center justify-content-center
+          text-white"
+       style="width: 56px; height: 56px; z-index: 1050; display: none;"
+       aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+        </svg>
+    </a>
+    <div id="toast"
+         style="
+        display:none;
+        position:fixed;
+        top:30px;
+        right:50px;
+        background:red;
+        color:white;
+        padding:15px 25px;
+        border-radius:8px;
+        box-shadow:0 10px 20px rgba(0,0,0,.2);
+        z-index:9999;">
+        गुनासो सफलतापूर्वक दर्ता भयो !!
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function () {
+            const toast = document.getElementById("toast");
+            toast.style.display = "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const toastEl = document.getElementById("welcomeToast");
+          const overlay = document.getElementById("overlay");
+          // const mainContent = document.getElementById("main-content");
+
+          // Show the centered toast
+          const toast = new bootstrap.Toast(toastEl, {
+            autohide: false
+          });
+          toast.show();
+
+          // When user clicks the close button (×)
+          toastEl.addEventListener("hidden.bs.toast", function () {
+            // Remove overlay + show main content with fade-in
+            overlay.remove();
+            mainContent.classList.add("show");
+          });
+        });
+    </script>
+
+    <script>
+         // Initialize AOS
+         AOS.init({
+             duration: 800,
+             easing: 'ease-in-out',
+             once: true
+         });
+
+         const API_KEY = "e56234b0015d3d7e9703abfcbb3f2aef";
+         const weather = {
+             city: document.getElementById('city'),
+             temp: document.getElementById('temp'),
+             icon: document.getElementById('weather-icon'),
+             desc: document.getElementById('description'),
+             humidity: document.getElementById('humidity'),
+             wind: document.getElementById('wind')
+         };
+
+         // Fetch weather data from OpenWeatherMap
+         async function getWeather(lat, lon) {
+             try {
+                 const res = await fetch(
+                     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+                 );
+                 if (!res.ok) throw new Error('Weather data not available');
+                 const data = await res.json();
+
+                 weather.city.textContent = data.name || "Unknown Location";
+                 weather.temp.textContent = Math.round(data.main.temp) + "°C";
+                 weather.desc.textContent = data.weather[0].description;
+                 weather.humidity.textContent = data.main.humidity + "%";
+                 weather.wind.textContent = data.wind.speed + " m/s";
+
+                 // Display appropriate weather icon
+                 const icon = data.weather[0].icon;
+                 weather.icon.className = `fas fa-${getWeatherIcon(icon)} weather-icon me-3`;
+             } catch (error) {
+                 console.error(error);
+                 weather.city.textContent = "Weather Unavailable";
+                 weather.temp.textContent = "--°C";
+                 weather.desc.textContent = "N/A";
+                 weather.humidity.textContent = "--";
+                 weather.wind.textContent = "--";
+             }
+         }
+
+         // Map OpenWeather icons to Font Awesome icons
+         function getWeatherIcon(code) {
+             if (code.startsWith("01")) return "sun";
+             if (code.startsWith("02")) return "cloud-sun";
+             if (code.startsWith("03") || code.startsWith("04")) return "cloud";
+             if (code.startsWith("09") || code.startsWith("10")) return "cloud-rain";
+             if (code.startsWith("11")) return "bolt";
+             if (code.startsWith("13")) return "snowflake";
+             if (code.startsWith("50")) return "smog";
+             return "cloud";
+         }
+
+         // Try to get user's location automatically
+         if (navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition(
+                 pos => getWeather(pos.coords.latitude, pos.coords.longitude),
+                 err => {
+                     console.warn(err);
+                     weather.city.textContent = "Location Denied";
+                     weather.temp.textContent = "--°C";
+                 }
+             );
+         } else {
+             weather.city.textContent = "Geolocation Not Supported";
+         }
+
+         // Navbar Scroll
+         window.addEventListener('scroll', () => {
+             document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+             document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
+         });
+
+         // Smooth Scroll
+         document.querySelectorAll('a[href^="#"]').forEach(a => {
+             a.addEventListener('click', e => {
+                 e.preventDefault();
+                 const target = document.querySelector(a.getAttribute('href'));
+                 if (target) {
+                     window.scrollTo({
+                         top: target.offsetTop - 80,
+                         behavior: 'smooth'
+                     });
+                 }
+             });
+         });
+
+         // Owl Carousel
+         $('.header-carousel').owlCarousel({
+             loop: true, margin: 0, nav: true, autoplay: true, autoplayTimeout: 8000,
+             items: 1, dots: true, animateOut: 'fadeOut', animateIn: 'fadeIn'
+         });
+
+         $(document).ready(function () {
+             $(".header-carousel").owlCarousel({
+                 items: 1,
+                 loop: true,
+                 autoplay: true,
+                 autoplayTimeout: 5000,
+                 autoplayHoverPause: true,
+                 smartSpeed: 900,
+                 nav: true,
+                 dots: false,
+                 navText: [
+                     '<i class="fas fa-chevron-left"></i>',
+                     '<i class="fas fa-chevron-right"></i>'
+                 ]
+             });
+         });
+
+         // gallery light box
+         function changeModalImage(src, caption) {
+             document.getElementById('modalImage').src = src;
+             document.getElementById('modalCaption').textContent = caption;
+         }
+
+        // Show button only when scrolled down
+         window.onscroll = function() {
+           const btn = document.querySelector('.back-to-top');
+           if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+             btn.style.display = "flex";
+           } else {
+             btn.style.display = "none";
+           }
+         };
+
+         // Smooth scroll to top when clicked
+         document.querySelector('.back-to-top').addEventListener('click', function(e) {
+           e.preventDefault();
+           window.scrollTo({
+             top: 0,
+             behavior: 'smooth'
+           });
+         });
+
+    </script>
+
+    @* ---------------------------------------------
+   BUILD JAVASCRIPT VIDEO ARRAY FROM MODEL
+---------------------------------------------- *@
+    @* Build JavaScript Array From Model *@
+    <script>
+        const videos = [
+            @foreach (var item in Model.VideoGalleries)
+            {
+                            var videoSrc = string.IsNullOrEmpty(item.YoutubeURL)
+                                                            ? _global.BaseUrl() + item.FilePath
+                                                            : item.YoutubeURL;
+
+                            <text>{
+                                src: "@videoSrc",
+                                title: "@Html.Raw(item.Title)",
+                    // ------------------------- update the this code in the categories एल्बम for backend code ------------------------------------ //
+                                category: "@Html.Raw(item.Title)"
+                            },</text>
+            }
+        ];
+    </script>
+
+    <script>
+        const categoryButtons = document.getElementById('categoryButtons');
+        const videoList = document.getElementById('videoList');
+        const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBodyContainer");
+
+        // ------------------- GET UNIQUE CATEGORIES -------------------
+        const categories = ["All", ...new Set(videos.map(v => v.category))];
+
+        // ------------------- RENDER CATEGORY BUTTONS -------------------
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-outline-dark m-1';
+            btn.textContent = cat;
+
+            btn.addEventListener('click', () => {
+                displayVideos(cat);
+            });
+
+            categoryButtons.appendChild(btn);
+        });
+
+        // ------------------- DISPLAY VIDEOS -------------------
+        function displayVideos(selectedCategory) {
+            videoList.innerHTML = "";
+
+            const filtered = selectedCategory === "All"
+                ? videos
+                : videos.filter(v => v.category === selectedCategory);
+
+            filtered.forEach(v => {
+                const html = `
+                    <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                        <div class="ratio ratio-16x9 rounded shadow overflow-hidden position-relative cursor-pointer video-item"
+                             data-src="${v.src}" data-title="${v.title}">
+                            <img class="video-thumb w-100 h-100 object-fit-cover" src="/image/video-placeholder.png" />
+                        </div>
+                        <div class="video-card shadow rounded overflow-hidden local-play">
+                            <p class="text-center fw-bold">${v.title}</p>
+                        </div>
+                    </div>
+                `;
+                videoList.insertAdjacentHTML("beforeend", html);
+            });
+
+            loadThumbnails();
+            enableVideoClicks();
+        }
+
+        // ------------------- GET YOUTUBE THUMBNAIL -------------------
+        function getYoutubeThumbnail(url) {
+            let id = "";
+            if (url.includes("watch?v=")) id = url.split("watch?v=")[1].split("&")[0];
+            else if (url.includes("youtu.be/")) id = url.split("youtu.be/")[1].split("?")[0];
+            return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+        }
+
+        // ------------------- CREATE LOCAL VIDEO THUMBNAIL -------------------
+        function createLocalThumbnail(videoSrc, imgElement) {
+            const video = document.createElement("video");
+            video.src = videoSrc;
+            video.preload = "metadata";
+            video.muted = true;
+            video.crossOrigin = "anonymous";
+
+            video.addEventListener("loadedmetadata", () => {
+                video.currentTime = 0.5;
+            });
+
+            video.addEventListener("seeked", () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                imgElement.src = canvas.toDataURL("image/jpeg");
+            });
+
+            video.onerror = () => {
+                imgElement.src = "/image/video-placeholder.png";
+            };
+        }
+
+        // ------------------- THUMBNAIL LOADER -------------------
+        function loadThumbnails() {
+            document.querySelectorAll('.video-item').forEach(item => {
+                const img = item.querySelector(".video-thumb");
+                const src = item.dataset.src;
+
+                if (src.includes("youtu")) {
+                    img.src = getYoutubeThumbnail(src);
+                } else {
+                    createLocalThumbnail(src, img);
+                }
+            });
+        }
+
+        // ------------------- ENABLE VIDEO CLICK -------------------
+        function enableVideoClicks() {
+            document.querySelectorAll(".video-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    const src = item.dataset.src;
+                    const title = item.dataset.title;
+
+                    modalTitle.textContent = title;
+                    modalBody.innerHTML = "";
+
+                    if (src.includes("youtu")) {
+                        let id = "";
+                        if (src.includes("watch?v=")) id = src.split("watch?v=")[1].split("&")[0];
+                        else if (src.includes("youtu.be/")) id = src.split("youtu.be/")[1].split("?")[0];
+
+                        modalBody.innerHTML = `
+                            <iframe width="100%" height="600"
+                                src="https://www.youtube.com/embed/${id}?autoplay=1"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media; fullscreen"
+                                allowfullscreen></iframe>
+                        `;
+                    } else {
+                        modalBody.innerHTML = `
+                            <video controls autoplay muted playsinline class="w-100" style="max-height:80vh;">
+                                <source src="${src}" type="video/mp4">
+                            </video>
+                        `;
+                    }
+
+                    modal.show();
+                });
+            });
+        }
+
+        // Stop video on close
+        document.getElementById("videoModal").addEventListener("hidden.bs.modal", () => {
+            modalBody.innerHTML = "";
+        });
+
+        // Load all videos initially
+        displayVideos("All");
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            toastElList.forEach(function (toastEl, index) {
+                setTimeout(function () {
+                    new bootstrap.Toast(toastEl, { autohide: false }).show();
+                }, index * 1500);
+            });
+        });
+    </script>
+
 </body>
+
 </html>

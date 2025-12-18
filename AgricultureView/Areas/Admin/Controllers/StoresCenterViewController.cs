@@ -36,6 +36,26 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new FertilizerStoreViewModel());
         }
+        public async Task<IActionResult> FertilizerStoreDetail(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/StoresCenter/GetFertilizerStoreById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<FertilizerStoreViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new FertilizerStoreViewModel());
+        }
+        public async Task<IActionResult>StoreDetail(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/StoresCenter/GetFertilizerStoreById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<FertilizerStoreViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new FertilizerStoreViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> CreateFertilizerStore(FertilizerStoreViewModel model)
         {
@@ -104,6 +124,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new SeedStoreViewModel());
         }
+        public async Task<IActionResult> SeedStoreDetail(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/StoresCenter/GetSeedStoreById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<SeedStoreViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new SeedStoreViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> CreateSeedStore(SeedStoreViewModel model)
         {
@@ -142,6 +172,16 @@ namespace AgricultureView.Areas.Admin.Controllers
             }
             return View(new InsuranceCenterViewModel());
         }
+        public async Task<IActionResult> InsuranceCenterDetail(int id)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/StoresCenter/GetInsuranceCenterById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<InsuranceCenterViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new InsuranceCenterViewModel());
+        }
         [HttpPost]
         public async Task<IActionResult> CreateInsuranceCenter(InsuranceCenterViewModel model)
         {
@@ -167,6 +207,16 @@ namespace AgricultureView.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> CreateAgricultureEquipment(int id = 0)
+        {
+            var response = await _globalVeriable.GetMethod("Admin/StoresCenter/GetAgricultureEquipmentById/" + id);
+            if (response.Status)
+            {
+                var dataa = JsonConvert.DeserializeObject<AgricultureEquipmentViewModel>(response.Data.ToString());
+                return View(dataa);
+            }
+            return View(new AgricultureEquipmentViewModel());
+        }
+        public async Task<IActionResult> AgricultureEquipmentDetail(int id )
         {
             var response = await _globalVeriable.GetMethod("Admin/StoresCenter/GetAgricultureEquipmentById/" + id);
             if (response.Status)

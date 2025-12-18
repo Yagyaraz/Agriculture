@@ -1,0 +1,64 @@
+﻿@model AgricultureEquipmentViewModel
+@{
+    ViewData["Title"] = "Agriculture Equipment Store Details";
+}
+
+<div class="page-inner">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">कृषि औजार पसल विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="StoresCenterView" asp-action="AgricultureEquipment">
+                    कृषि औजार पसल
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item"><a href="#">Details</a></li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">कृषि औजार पसल जानकारी</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>नाम</strong>
+                            <p class="text-muted">@Model.Name</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>इमेल</strong>
+                            <p class="text-muted">@Model.Email</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>फोन नम्बर</strong>
+                            <p class="text-muted">@Model.PhoneNo</p>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>ठेगाना</strong>
+                            <p class="text-muted">@Model.Address</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer text-start">
+                    <a asp-action="AgricultureEquipment" class="btn btn-primary">⬅ Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

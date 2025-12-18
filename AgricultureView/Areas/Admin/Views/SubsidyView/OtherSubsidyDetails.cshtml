@@ -1,0 +1,127 @@
+﻿@model OtherSubsidyViewModel
+@{
+    ViewData["Title"] = "Other Subsidy Details";
+}
+
+<div class="page-inner">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">अनुदान विवरण</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a asp-area="Admin"
+                   asp-controller="OtherSubsidyView"
+                   asp-action="OtherSubsidy">
+                    OtherSubsidy List
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a href="#">Details</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">अनुदान जानकारी</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <strong>शीर्षक</strong>
+                            <p class="text-muted">@Model.Title</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>सुरु मिति</strong>
+                            <p class="text-muted">@Model.StartDate</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>अन्तिम मिति</strong>
+                            <p class="text-muted">@Model.EndDate</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <strong>द्वारा प्रदान गरिएको</strong>
+                            <p class="text-muted">@Model.ProvidedBy</p>
+                        </div>
+
+                        <div class="col-md-12 mt-3">
+                            <strong>विवरण</strong>
+                            <div class="border p-2">
+                                @Html.Raw(Model.Description)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUESTIONS LIST -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">थप प्रश्नहरू</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>थप प्रश्न</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.OtherSubsidyQnsViewModelList != null &&
+                                                                Model.OtherSubsidyQnsViewModelList.Any())
+                                {
+                                    foreach (var qn in Model.OtherSubsidyQnsViewModelList)
+                                    {
+                                        <tr>
+                                            <td>@qn.Qns</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td class="text-center text-muted">
+                                            No questions available
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card-footer text-start">
+                    <a asp-action="OtherSubsidy"
+                       class="btn btn-primary">
+                        ⬅ Back to List
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

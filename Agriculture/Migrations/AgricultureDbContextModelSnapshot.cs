@@ -2270,6 +2270,31 @@ namespace Agriculture.Migrations
                     b.ToTable("GoruInfromation");
                 });
 
+            modelBuilder.Entity("Agriculture.Data.Gunaso", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gunasos");
+                });
+
             modelBuilder.Entity("Agriculture.Data.HenInfromation", b =>
                 {
                     b.Property<int>("Id")
@@ -2963,6 +2988,39 @@ namespace Agriculture.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MushroomType");
+                });
+
+            modelBuilder.Entity("Agriculture.Data.Nabikaran", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ExpireDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fine")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FirmId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RasidNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RenewDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReneweFee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FirmId");
+
+                    b.ToTable("Nabikarans");
                 });
 
             modelBuilder.Entity("Agriculture.Data.Office", b =>
@@ -3859,6 +3917,46 @@ namespace Agriculture.Migrations
                     b.HasIndex("SubsidyId");
 
                     b.ToTable("SubsidyDetail");
+                });
+
+            modelBuilder.Entity("Agriculture.Data.Suchana", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedWardId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FiscalYearId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Suchanas");
                 });
 
             modelBuilder.Entity("Agriculture.Data.Training", b =>
@@ -5148,6 +5246,17 @@ namespace Agriculture.Migrations
                     b.Navigation("CropsInformation");
 
                     b.Navigation("MushroomType");
+                });
+
+            modelBuilder.Entity("Agriculture.Data.Nabikaran", b =>
+                {
+                    b.HasOne("Agriculture.Data.AgricultureFarmerGroup", "FarmerGroup")
+                        .WithMany()
+                        .HasForeignKey("FirmId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("FarmerGroup");
                 });
 
             modelBuilder.Entity("Agriculture.Data.Office", b =>
