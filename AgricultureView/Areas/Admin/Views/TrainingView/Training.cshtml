@@ -41,11 +41,11 @@
                                         <td>@Html.DisplayFor(modelItem => item.PremiumName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TrainingPlace)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TrainingTypeName)</td>
-                                        <td>
-                                            <a asp-action="CreateTraining" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        <td class="text-center">
+                                            <a asp-action="CreateTraining" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
                                         </td>
-                                        <td>
-                                            <a asp-action="TrainingDetail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Details</a>
+                                        <td class="text-center">
+                                            <a asp-action="TrainingDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

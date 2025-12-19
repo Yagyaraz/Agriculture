@@ -28,7 +28,7 @@
 
         .certificate-container {
             max-width: 800px;
-            margin: 10px auto;
+            margin: 50px auto;
             padding: 10px 30px;
             border: 4px double #000;
             background: #fff;
@@ -161,45 +161,58 @@
 
         @@media print {
 
-            body,
-            .certificate-container {
-                margin: 0;
-                padding: 7mm;
-                border: none;
-                background: white !important;
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
+            /* Hide everything */
+            body * {
+                visibility: hidden;
             }
 
+            /* Show only certificate */
+            .certificate-container,
+            .certificate-container * {
+                visibility: visible;
+            }
+            /* A4 exact size */
+            .certificate-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom:0;
+                width: 210mm;
+                height: 297mm;
+                padding: 12mm;
+                margin: 0;
+                border: 4px double #000;
+                box-sizing: border-box;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+
+            .content-section{
+                margin-top: 10px;
+            }
+
+            .signature-section {
+                margin-top: 10px;
+            }
+            .notes {
+            margin-top: 10px;
+
+        }
+            /* Page setup */
             @@page {
                 size: A4 portrait;
-                margin: 7mm;
+                margin: 0;
             }
 
+            /* Remove buttons etc */
             .no-print {
                 display: none !important;
             }
 
-            .title-nepali {
-                font-size: 24px;
-            }
-
-            .subtitle-nepali {
-                font-size: 16px;
-            }
-
-            .certificate-title {
-                border: 5px solid #000 !important;
-                background: #f8f9fa !important;
-            }
-
-            .logo {
-                height: 90px !important;
-            }
-
+            /* Force exact colors */
             body {
-                -webkit-print-color-adjust: exact;
-                color-adjust: exact;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
         }
 
