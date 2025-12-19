@@ -36,10 +36,10 @@
                                         <td>@Html.DisplayFor(modelItem => item.ProjectName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.ProgramName)</td>
                                         <td>
-                                            <a asp-action="CreateService" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                            <a asp-action="CreateService" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
                                         </td>
                                         <td>
-                                            <a asp-action="ServiceDetails" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Details</a>
+                                            <a asp-action="ServiceDetails" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

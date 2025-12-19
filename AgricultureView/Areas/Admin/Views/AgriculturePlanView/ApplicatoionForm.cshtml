@@ -42,10 +42,10 @@
                                         <td>@Html.DisplayFor(modelItem => item.ServiceName)</td>
                                         <td></td>
                                         <td>
-                                            <a asp-action="CreateApplicatoionForm" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                            <a asp-action="CreateApplicatoionForm" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
                                         </td>
                                         <td>
-                                            <a asp-action="ApplicationDetails" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Details</a>
+                                            <a asp-action="ApplicationDetails" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

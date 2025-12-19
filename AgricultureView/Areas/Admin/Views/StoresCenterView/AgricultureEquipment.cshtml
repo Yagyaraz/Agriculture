@@ -34,8 +34,8 @@
                                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Address)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                        <td> <a asp-action="CreateAgricultureEquipment" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></td>
-                                        <td> <a asp-action="AgricultureEquipmentDetail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Detail</a></td>
+                                        <td class="text-center"> <a asp-action="CreateAgricultureEquipment" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a></td>
+                                        <td class="text-center"> <a asp-action="AgricultureEquipmentDetail" title="Detail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a></td>
                                     </tr>
                                 }
                             </tbody>

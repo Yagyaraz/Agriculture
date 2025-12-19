@@ -35,13 +35,18 @@
                                         <td>@Html.DisplayFor(modelItem => item.ProjectName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
                                         <td>@Html.DisplayFor(modelItem => item.EndDate)</td>
-                                        <td>
-                                            <a asp-action="CreateSubsidy" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
-                                            <a asp-action="SubsidyDetails" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Detail</a>
-                                            <span id="checkData">
+                                        <td class="text-center justify-content-evenly">
+                                            <a asp-action="CreateSubsidy" title="Edit" asp-route-id="@item.Id" class="me-4"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                            <a asp-action="SubsidyDetails" title="Detail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                            @* <span id="checkData">
                                             <a class="btn btn-primary" onclick="Darta(this, '@item.Id')">
                                                 <i class="fa fa-thumbs-up"> दर्ता </i>
                                             </a>
+                                            </span> *@
+                                            <span id="checkData">
+                                                <a class="btn btn-lg" title="दर्ता" onclick="Darta(this, '@item.Id')">
+                                                    <i class="fas fa-thumbs-up" style="color: #1572e8;"></i>
+                                                </a>
                                             </span>
                                         </td>
                                     </tr>
