@@ -33,8 +33,8 @@
                                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                         <td>@Html.DisplayFor(modelItem => item.AlbumName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Publised)</td>
-                                        <td>
-                                            <a asp-action="CreateImageGallery" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        <td class="text-center">
+                                            <a asp-action="CreateImageGallery" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

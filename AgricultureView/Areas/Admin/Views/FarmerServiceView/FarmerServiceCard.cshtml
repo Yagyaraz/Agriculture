@@ -40,11 +40,11 @@
                                         <td>@Html.DisplayFor(modelItem => item.FiscalYearName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.FarmerName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.FarmerAddress)</td>
-                                        <td>
-                                            <a asp-action="CreateFarmerServiceCard" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        <td class="text-center">
+                                            <a asp-action="CreateFarmerServiceCard" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
                                         </td>
-                                        <td>
-                                            <a asp-action="PrintFarmerServiceCard" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Detail</a>
+                                        <td class="text-center">
+                                            <a asp-action="PrintFarmerServiceCard" title="Detail" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

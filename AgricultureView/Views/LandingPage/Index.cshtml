@@ -39,8 +39,20 @@
 
     <!-- Custom Styles -->
     <style>
+        @@font-face {
+            font-family: 'Kalimati Regular';
+            src: 
+                url('/fonts/Kalimati.woff2') format('woff2'), 
+                url('/fonts/Kalimati.woff') format('woff'), 
+                url('/fonts/Kalimati.ttf') format('truetype');
+            font-display: swap;
+        }
+
+
         :root {
             --primary: #28a745;
+            --primary-secandory: #d58b3a;
+            --primary-secandory-dark: #704a20;
             --secondary: #20c997;
             --dark: #155724;
             --light: #f8f9fa;
@@ -48,7 +60,8 @@
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
+            /* font-family: 'Open Sans', sans-serif; */
+            font-family: "Kalimati regular";
             color: var(--text);
             scroll-behavior: smooth;
             overflow-x: hidden;
@@ -73,6 +86,17 @@
                 background: var(--dark);
                 transform: translateY(-2px);
             }
+
+        .btn-primary-secandory{
+            background: var(--primary-secandory);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary-secandory:hover {
+                background: var(--primary-secandory-dark);
+            transform: translateY(-2px);
+        }
 
         .navbar {
             background: rgba(255, 255, 255, .95);
@@ -787,26 +811,97 @@
             }
         }
 
-        /* Overlay to block interaction until notification is closed */
+        /* ========== Overlay ========== */
         #overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(3px);
             z-index: 1050;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 1rem; /* spacing on small screens */
         }
 
-        /* Custom centered toast (looks like a modal) */
+        /* ========== Toast (Mobile First) ========== */
         .centered-toast {
-            min-width: 200px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 100%;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            animation: toastFadeIn 0.3s ease-out;
+        }
+
+            /* Header */
+            .centered-toast .toast-header {
+                padding: 0.75rem 1rem;
+            }
+
+            /* Body */
+            .centered-toast .toast-body {
+                padding: 1.5rem 1rem;
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            /* Image */
+            .centered-toast img {
+                display: block;
+                margin: 1rem auto 0;
+                max-width: 140px;
+                height: auto;
+            }
+
+        /* ========== Tablet (≥768px) ========== */
+        @@media (min-width: 768px) {
+            .centered-toast
+
+        {
+            max-width: 520px;
+            border-radius: 16px;
+        }
+
+        .centered-toast .toast-body {
+            font-size: 1.1rem;
+            padding: 2rem 1.5rem;
+        }
+
+        .centered-toast img {
+            max-width: 170px;
+        }
+
+        }
+
+        /* ========== Desktop (≥992px) ========== */
+        @@media (min-width: 992px) {
+            .centered-toast
+
+        {
+            max-width: 600px;
+        }
+
+        .centered-toast img {
+            max-width: 190px;
+        }
+
+        }
+
+        /* ========== Animation ========== */
+        @@keyframes toastFadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
         }
     </style>
 </head>
@@ -831,7 +926,7 @@
     <div id="overlay" class="container-fluid">
         @foreach (var notice in Model.Suchana)
         {
-            <div class="toast centered-toast align-items-center text-bg-primary border-0 mb-3" role="alert">
+                <div id="welcomeToast" class="toast centered-toast align-items-center text-bg-primary border-0 mb-3" role="alert">
                 <div class="toast-header bg-primary text-white">
                     <strong class="me-auto fs-4">@notice.Title</strong>
                     <button type="button"
@@ -949,6 +1044,10 @@
                         <span class="d-inline d-lg-none">लगइन</span>
                     </a>
 
+                    <!-- appllycation  Button -->
+                    <a href="#appllycation" class="btn btn-primary-secandory rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
+                        अनलाईन आवेदन
+                    </a>
                     <!-- Complaint Button -->
                     <a href="#complaint" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
                         <i class="fas fa-headset me-1"></i> गुनासो गर्नुहोस्
