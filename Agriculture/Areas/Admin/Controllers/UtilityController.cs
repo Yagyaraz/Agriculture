@@ -310,5 +310,59 @@ namespace Agriculture.Areas.Admin.Controllers
             var data = await _Utility.GetOfficeDetails();
             return Ok(new ApiResponse { Status = data.Id>0, Message = data.Id>0 ? "Successfully Generated All List of GetSelectListRoles" : "GetSelectListRoles List Not Generated Try Again", Data = data });
         }
+        private IActionResult BuildResponse(string data, string entityName)
+        {
+            return Ok(new ApiResponse
+            {
+                Status = !string.IsNullOrEmpty(data),
+                Message = !string.IsNullOrEmpty(data) ? $"{entityName} retrieved successfully" : $"{entityName} not found",
+                Data = data
+            });
+        }
+
+        [HttpGet("GetGenderName/{id}")] public async Task<IActionResult> GetGenderName(int id) => BuildResponse(await _Utility.GetGenderNameById(id), "Gender");
+        [HttpGet("GetEducationName/{id}")] public async Task<IActionResult> GetEducationName(int id) => BuildResponse(await _Utility.GetEducationNameById(id), "Education");
+        [HttpGet("GetEducationLevelName/{id}")] public async Task<IActionResult> GetEducationLevelName(int id) => BuildResponse(await _Utility.GetEducationLevelNameById(id), "Education Level");
+        [HttpGet("GetFarmerGroupName/{id}")] public async Task<IActionResult> GetFarmerGroupName(int id) => BuildResponse(await _Utility.GetFarmerGroupNameById(id), "Farmer Group");
+        [HttpGet("GetFarmerCategoryName/{id}")] public async Task<IActionResult> GetFarmerCategoryName(int id) => BuildResponse(await _Utility.GetFarmerCategoryNameById(id), "Farmer Category");
+        [HttpGet("GetDistrictName/{id}")] public async Task<IActionResult> GetDistrictName(int id) => BuildResponse(await _Utility.GetDistrictNameById(id), "District");
+        [HttpGet("GetPalikaName/{id}")] public async Task<IActionResult> GetPalikaName(int id) => BuildResponse(await _Utility.GetPalikaNameById(id), "Palika");
+        [HttpGet("GetAvgMonthName/{id}")] public async Task<IActionResult> GetAvgMonthName(int id) => BuildResponse(await _Utility.GetAvgMonthNameById(id), "Average Month");
+        [HttpGet("GetAgriSectorName/{id}")] public async Task<IActionResult> GetAgriSectorName(int id) => BuildResponse(await _Utility.GetAgriSectorNameById(id), "Agri Sector");
+        [HttpGet("GetAgriServiceName/{id}")] public async Task<IActionResult> GetAgriServiceName(int id) => BuildResponse(await _Utility.GetAgriServiceNameById(id), "Agri Service");
+        [HttpGet("GetRelationName/{id}")] public async Task<IActionResult> GetRelationName(int id) => BuildResponse(await _Utility.GetRelationNameById(id), "Relation");
+        [HttpGet("GetWorkingAreaName/{id}")] public async Task<IActionResult> GetWorkingAreaName(int id) => BuildResponse(await _Utility.GetWorkingAreaNameById(id), "Working Area");
+        [HttpGet("GetOwnershipName/{id}")] public async Task<IActionResult> GetOwnershipName(int id) => BuildResponse(await _Utility.GetOwnershipNameById(id), "Ownership");
+        [HttpGet("GetLandTypeName/{id}")] public async Task<IActionResult> GetLandTypeName(int id) => BuildResponse(await _Utility.GetLandTypeNameById(id), "Land Type");
+        [HttpGet("GetIrrigationSourceName/{id}")] public async Task<IActionResult> GetIrrigationSourceName(int id) => BuildResponse(await _Utility.GetIrrigationSourceNameById(id), "Irrigation Source");
+        [HttpGet("GetCropsTypeName/{id}")] public async Task<IActionResult> GetCropsTypeName(int id) => BuildResponse(await _Utility.GetCropsTypeNameById(id), "Crops Type");
+        [HttpGet("GetFruitsTypeName/{id}")] public async Task<IActionResult> GetFruitsTypeName(int id) => BuildResponse(await _Utility.GetFruitsTypeNameById(id), "Fruits Type");
+        [HttpGet("GetSeedsTypeName/{id}")] public async Task<IActionResult> GetSeedsTypeName(int id) => BuildResponse(await _Utility.GetSeedsTypeNameById(id), "Seeds Type");
+        [HttpGet("GetMushroomTypeName/{id}")] public async Task<IActionResult> GetMushroomTypeName(int id) => BuildResponse(await _Utility.GetMushroomTypeNameById(id), "Mushroom Type");
+        [HttpGet("GetSilkTypeName/{id}")] public async Task<IActionResult> GetSilkTypeName(int id) => BuildResponse(await _Utility.GetSilkTypeNameById(id), "Silk Type");
+        [HttpGet("GetBeeTypeName/{id}")] public async Task<IActionResult> GetBeeTypeName(int id) => BuildResponse(await _Utility.GetBeeTypeNameById(id), "Bee Type");
+        [HttpGet("GetProcustionMeasurementName/{id}")] public async Task<IActionResult> GetProcustionMeasurementName(int id) => BuildResponse(await _Utility.GetProcustionMeasurementNameById(id), "Procustion Measurement");
+        [HttpGet("GetProcustionUseName/{id}")] public async Task<IActionResult> GetProcustionUseName(int id) => BuildResponse(await _Utility.GetProcustionUseNameById(id), "Procustion Use");
+        [HttpGet("GetKrishiFarmTypeName/{id}")] public async Task<IActionResult> GetKrishiFarmTypeName(int id) => BuildResponse(await _Utility.GetKrishiFarmTypeNameById(id), "Krishi Farm Type");
+        [HttpGet("GetPostName/{id}")] public async Task<IActionResult> GetPostName(int id) => BuildResponse(await _Utility.GetPostNameById(id), "Post");
+        [HttpGet("GetAgriGroupTypeName/{id}")] public async Task<IActionResult> GetAgriGroupTypeName(int id) => BuildResponse(await _Utility.GetAgriGroupTypeNameById(id), "Agri Group Type");
+        [HttpGet("GetProgramName/{id}")] public async Task<IActionResult> GetProgramName(int id) => BuildResponse(await _Utility.GetProgramNameById(id), "Program");
+        [HttpGet("GetMeasuringUnitName/{id}")] public async Task<IActionResult> GetMeasuringUnitName(int id) => BuildResponse(await _Utility.GetMeasuringUnitNameById(id), "Measuring Unit");
+        [HttpGet("GetCategoryName/{id}")] public async Task<IActionResult> GetCategoryName(int id) => BuildResponse(await _Utility.GetCategoryNameById(id), "Category");
+        [HttpGet("GetSubCategoryName/{id}")] public async Task<IActionResult> GetSubCategoryName(int id) => BuildResponse(await _Utility.GetSubCategoryNameById(id), "SubCategory");
+        [HttpGet("GetProjectName/{id}")] public async Task<IActionResult> GetProjectName(int id) => BuildResponse(await _Utility.GetProjectNameById(id), "Project");
+        [HttpGet("GetServiceName/{id}")] public async Task<IActionResult> GetServiceName(int id) => BuildResponse(await _Utility.GetServiceNameById(id), "Service");
+        [HttpGet("GetAgriCalendarTypeName/{id}")] public async Task<IActionResult> GetAgriCalendarTypeName(int id) => BuildResponse(await _Utility.GetAgriCalendarTypeNameById(id), "Agri Calendar Type");
+        [HttpGet("GetAgriCalendarCategoryName/{id}")] public async Task<IActionResult> GetAgriCalendarCategoryName(int id) => BuildResponse(await _Utility.GetAgriCalendarCategoryNameById(id), "Agri Calendar Category");
+        [HttpGet("GetAgriCalendarProductName/{id}")] public async Task<IActionResult> GetAgriCalendarProductName(int id) => BuildResponse(await _Utility.GetAgriCalendarProductNameById(id), "Agri Calendar Product");
+        [HttpGet("GetMonthName/{id}")] public async Task<IActionResult> GetMonthName(int id) => BuildResponse(await _Utility.GetMonthNameById(id), "Month");
+        [HttpGet("GetWeekName/{id}")] public async Task<IActionResult> GetWeekName(int id) => BuildResponse(await _Utility.GetWeekNameById(id), "Week");
+        [HttpGet("GetEcologicalAreaName/{id}")] public async Task<IActionResult> GetEcologicalAreaName(int id) => BuildResponse(await _Utility.GetEcologicalAreaNameById(id), "Ecological Area");
+        [HttpGet("GetMarketName/{id}")] public async Task<IActionResult> GetMarketName(int id) => BuildResponse(await _Utility.GetMarketNameById(id), "Market");
+        [HttpGet("GetAlbumName/{id}")] public async Task<IActionResult> GetAlbumName(int id) => BuildResponse(await _Utility.GetAlbumNameById(id), "Album");
+        [HttpGet("GetPlaylistName/{id}")] public async Task<IActionResult> GetPlaylistName(int id) => BuildResponse(await _Utility.GetPlaylistNameById(id), "Playlist");
+        [HttpGet("GetStateName/{id}")] public async Task<IActionResult> GetStateName(int id) => BuildResponse(await _Utility.GetStateNameById(id), "State");
+        [HttpGet("GetFiscalYearName/{id}")] public async Task<IActionResult> GetFiscalYearName(int id) => BuildResponse(await _Utility.GetFiscalYearNameById(id), "Fiscal Year");
     }
 }
+

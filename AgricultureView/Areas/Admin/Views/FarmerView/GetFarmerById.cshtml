@@ -1,4 +1,5 @@
 ﻿@model FarmerViewModel
+@inject IUtility _utility
 @{
     ViewData["Title"] = "Farmer Details";
 }
@@ -30,10 +31,10 @@
                     </div>
 
                     <!-- PROVINCE -->
-                    @*  <div class="col-md-6 col-lg-3 p-0">
+                      <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>प्रदेश</label>
-                                <p class="form-control-static">@Model.StateName</p>
+                                <p class="form-control-static">@await _utility.GetStateNameById(Model.StateId)</p>
                             </div>
                         </div>
 
@@ -41,7 +42,7 @@
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>जिल्ला</label>
-                                <p class="form-control-static">@Model.DistrictName</p>
+                            <p class="form-control-static">@await _utility.GetDistrictNameById(Model.DistrictId)</p>
                             </div>
                         </div>
 
@@ -49,9 +50,9 @@
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>पालिका</label>
-                                <p class="form-control-static">@Model.PalikaName</p>
+                                <p class="form-control-static">@await _utility.GetPalikaNameById(Model.PalikaId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
                     <!-- WARD NO -->
                     <div class="col-md-6 col-lg-3 p-0">
@@ -94,10 +95,10 @@
                     </div>
 
                     <!-- EDUCATION -->
-                    @*  <div class="col-md-6 col-lg-3 p-0">
+                     <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>शिक्षा योग्यता</label>
-                                <p class="form-control-static">@Model.EducationName</p>
+                                <p class="form-control-static">@await _utility.GetEducationNameById(Model.EducationId)</p>
                             </div>
                         </div>
 
@@ -105,9 +106,9 @@
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>साक्षर योग्यता</label>
-                                <p class="form-control-static">@Model.EducationLevelName</p>
+                                <p class="form-control-static">@await _utility.GetEducationLevelNameById(Model.EducationLevelId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
                     <!-- TOL NAME -->
                     <div class="col-md-6 col-lg-3 p-0">
@@ -126,12 +127,12 @@
                     </div>
 
                     <!-- CITIZEN DISTRICT -->
-                    @*  <div class="col-md-6 col-lg-3 p-0">
+                      <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>नागरिकता जारी जिल्ला</label>
-                                <p class="form-control-static">@Model.CitizenDistrictName</p>
+                                <p class="form-control-static">@await _utility.GetDistrictNameById(Model.CitizenDistricrId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
                     <!-- CITIZEN ISSUE DATE -->
                     <div class="col-md-6 col-lg-3 p-0">
@@ -142,20 +143,20 @@
                     </div>
 
                     <!-- FARMER GROUP -->
-                    @*  <div class="col-md-6 col-lg-3 p-0">
+                     <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>कृषक समूह</label>
-                                <p class="form-control-static">@Model.FarmerGroupName</p>
+                                <p class="form-control-static">@await _utility.GetFarmerGroupNameById(Model.FarmerGroupId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
                     <!-- FARMER CATEGORY -->
-                    @*  <div class="col-md-6 col-lg-3 p-0">
+                     <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>कृषक श्रेणी</label>
-                                <p class="form-control-static">@Model.FarmerCategoryName</p>
+                                <p class="form-control-static">@await _utility.GetFarmerCategoryNameById(Model.FarmerCategoryId)</p>
                             </div>
-                        </div> *@
+                        </div>
 
                     <!-- HOUSE NO -->
                     <div class="col-md-6 col-lg-3 p-0">

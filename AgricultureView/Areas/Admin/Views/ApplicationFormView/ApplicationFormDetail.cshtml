@@ -1,122 +1,108 @@
-﻿@* @model ApplicationFormViewModel
+﻿@model ApplicationFormViewModel
 @{
-    ViewData["Title"] = "ApplicationForm Details";
+    ViewData["Title"] = "Application Details";
 }
 
 <div class="page-inner">
     <div class="page-header">
-        <h3 class="fw-bold mb-3">तालिम विवरण</h3>
-        <ul class="breadcrumbs mb-3">
-            <li class="nav-home">
-                <a asp-controller="Home" asp-action="Index">
-                    <i class="icon-home"></i>
-                </a>
-            </li>
-            <li class="separator"><i class="icon-arrow-right"></i></li>
-            <li class="nav-item">
-                <a asp-controller="ApplicationFormView" asp-action="ApplicationForm">ApplicationForm List</a>
-            </li>
-            <li class="separator"><i class="icon-arrow-right"></i></li>
-            <li class="nav-item"><a href="#">ApplicationForm Details</a></li>
-        </ul>
+        <h3 class="fw-bold mb-3">आवेदन विवरण</h3>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">तालिम विवरण</h4>
-        </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
 
-        <div class="card-body">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
 
-            <div class="row">
+                        <h4 class="text-success mb-4">व्यक्तिगत जानकारी</h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>पुरा नाम</th>
+                                <td>@Model.FullName</td>
+                            </tr>
+                            <tr>
+                                <th>इमेल</th>
+                                <td>@Model.Email</td>
+                            </tr>
+                            <tr>
+                                <th>मोबाइल नम्बर</th>
+                                <td>@Model.Phone</td>
+                            </tr>
+                            <tr>
+                                <th>जन्म मिति</th>
+                                <td>@Model.Dob</td>
+                            </tr>
+                            <tr>
+                                <th>ठेगाना</th>
+                                <td>@Model.Address</td>
+                            </tr>
+                        </table>
 
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>आर्थिक वर्ष :</strong>
-                    <div>@Model.FiscalYearId</div>
-                </div>
+                        <h4 class="text-success mt-5 mb-4">तालीम विवरण</h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>कार्यक्रम</th>
+                                <td>@Model.Program</td>
+                            </tr>
+                            <tr>
+                                <th>ब्याच</th>
+                                <td>@Model.Batch</td>
+                            </tr>
+                        </table>
 
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>शिर्षक :</strong>
-                    <div>@Model.Title</div>
-                </div>
+                        <h4 class="text-success mt-5 mb-4">शिक्षा र अनुभव</h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>योग्यता</th>
+                                <td>@Model.Qualification</td>
+                            </tr>
+                            <tr>
+                                <th>संस्था</th>
+                                <td>@Model.Institution</td>
+                            </tr>
+                            <tr>
+                                <th>अनुभव</th>
+                                <td>@Model.Experience</td>
+                            </tr>
+                            <tr>
+                                <th>Resume</th>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(Model.ResumePath))
+                                    {
+                                        <a href="~/resumes/@Model.ResumePath" target="_blank"
+                                           class="btn btn-sm btn-primary">
+                                            Download Resume
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
 
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>प्रशिक्षक :</strong>
-                    <div>@Model.TrainerName</div>
-                </div>
+                        <h4 class="text-success mt-5 mb-4">थप जानकारी</h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Source</th>
+                                <td>@Model.Source</td>
+                            </tr>
+                            <tr>
+                                <th>Message</th>
+                                <td>@Model.Message</td>
+                            </tr>
+                        </table>
 
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>स्थान :</strong>
-                    <div>@Model.ApplicationFormPlace</div>
-                </div>
+                        <div class="text-center mt-4">
+                            <a asp-action="ApplicationForm"
+                               asp-controller="ApplicationFormView"
+                               class="btn btn-secondary">
+                                Back to List
+                            </a>
+                        </div>
 
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>प्रिमियम प्रकार :</strong>
-                    <div>@(Model.PremiumId == 1 ? "प्रीमियम" : "नि:शुल्क")</div>
-                </div>
-
-                @if (Model.PremiumId == 1)
-                {
-                    <div class="col-md-3 mb-3 d-flex gap-2">
-                        <strong>ट्रेनिङ शुल्क :</strong>
-                        <div>@Model.Amount</div>
                     </div>
-                }
-
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>ट्रेनिङ प्रकार :</strong>
-                    <div>@Model.ApplicationFormTypeName</div>
-                </div>
-
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>सुरु मिति :</strong>
-                    <div>@Model.StartDate</div>
-                </div>
-
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>अन्तिम मिति :</strong>
-                    <div>@Model.EndDate</div>
-                </div>
-
-                <div class="col-md-3 mb-3 d-flex gap-2">
-                    <strong>आयोजक :</strong>
-                    <div>@Model.Organizer</div>
                 </div>
 
             </div>
-
-            <hr />
-
-            <div class="mb-3">
-                <strong>विवरण :</strong>
-                <div class="border p-2" style="min-height: 120px;">
-                    @Html.Raw(Model.Description)
-                </div>
-            </div>
-
-            <hr />
-
-            <div class="mb-3">
-                <strong>फोटो :</strong>
-                <div class="pt-2">
-                    @if (!string.IsNullOrEmpty(Model.FilePath))
-                    {
-                        <img src="@(_global.BaseUrl() + Model.FilePath)"
-                             class="img-thumbnail"
-                             style="width:220px;" />
-                    }
-                    else
-                    {
-                        <div class="text-muted">No photo available</div>
-                    }
-                </div>
-            </div>
-
-        </div>
-
-        <div class="card-action">
-            <a asp-action="ApplicationForm" asp-controller="ApplicationFormView" class="btn btn-secondary">Back</a>
         </div>
     </div>
 </div>
- *@
