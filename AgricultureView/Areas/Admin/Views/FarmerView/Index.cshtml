@@ -32,11 +32,12 @@
                                         <td>@Html.DisplayFor(modelItem => item.FullName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Gender)</td>
                                         <td>@Html.DisplayFor(modelItem => item.PhoneNo)</td>
-                                        <td>
-                                            <a asp-action="Create" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
-                                        </td>
-                                        <td>
-                                            <a asp-action="GetFarmerById" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i>Details</a>
+                                        <td class="text-center d-flex justify-content-around">
+                                            <a asp-action="Create" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                        
+                                            <a asp-action="GetFarmerById" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                       
+                                            <a asp-action="GetFarmerById" title="Delete" asp-route-id="@item.Id"><i class="fas fa-trash aria-hidden=" true""></i></a>
                                         </td>
                                     </tr>
                                 }

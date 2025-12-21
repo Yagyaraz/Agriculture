@@ -33,8 +33,9 @@
                                         <td>@Html.DisplayFor(modelItem => item.FiscalYearName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.ProgramName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.ProjectName)</td>
-                                        <td>
+                                        <td class="text-center d-flex justify-content-around">
                                             <a asp-action="CreateProject" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                            <a asp-action="CreateProject" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

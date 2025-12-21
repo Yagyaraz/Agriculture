@@ -37,7 +37,7 @@
             box-sizing: border-box;
         }
 
-        .header {
+        .headers {
             position: relative;
             text-align: center;
             margin-bottom: 15px;
@@ -160,59 +160,54 @@
             }
 
         @@media print {
-
             /* Hide everything */
             body * {
                 visibility: hidden;
             }
-
             /* Show only certificate */
             .certificate-container,
             .certificate-container * {
                 visibility: visible;
             }
-            /* A4 exact size */
+            /* Position certificate at top-left */
             .certificate-container {
                 position: fixed;
-                top: 0;
                 left: 0;
-                bottom:0;
-                width: 210mm;
-                height: 297mm;
-                padding: 12mm;
+                top: 0;
+                width: 100%;
                 margin: 0;
+                padding: 20px;
                 border: 4px double #000;
-                box-sizing: border-box;
-                page-break-after: avoid;
                 page-break-inside: avoid;
             }
-
-            .content-section{
-                margin-top: 10px;
-            }
-
-            .signature-section {
-                margin-top: 10px;
-            }
-            .notes {
-            margin-top: 10px;
-
-        }
-            /* Page setup */
-            @@page {
-                size: A4 portrait;
-                margin: 0;
-            }
-
-            /* Remove buttons etc */
+            /* Hide print button */
             .no-print {
                 display: none !important;
             }
 
-            /* Force exact colors */
-            body {
+
+            .certificate-title, .content-section {
+                margin: 5px 0;
+            }
+
+            .signature-section {
+            margin-top: 10px;
+            }
+
+            .notes {
+                margin-top: 5px;
+            }
+            /* Remove background colors for clean print */
+            * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+            }
+            /* Avoid page breaks inside important sections */
+            .headers
+            .content-section,
+            .signature-section,
+            .notes {
+                page-break-inside: avoid;
             }
         }
 
@@ -252,7 +247,7 @@
             </div>
             <img src="./image/Arjunchaupari-logo.png" alt="Local Logo" class="logo justify-content-left">
         </div> -->
-        <div class="header">
+        <div class="headers">
             <img src="./image/logo.png" alt="Nepal Government" class="logo-left">
             <div class="header-text">
                 <h5 class="title-nepali">@org.PalikaName</h5>

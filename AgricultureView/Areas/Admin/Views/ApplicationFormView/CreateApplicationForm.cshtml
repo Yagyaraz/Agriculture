@@ -1,0 +1,196 @@
+﻿@* @model ApplicationFormViewModel
+@{
+    ViewData["Title"] = "CreateApplicationForm";
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">तालिम थप्नुहोस</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="ApplicationFormView" asp-action="ApplicationForm">ApplicationForm List</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Create ApplicationForm</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <form asp-action="CreateApplicationForm" enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">तालिम </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" class="form-control" type="hidden" />
+                            
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>शिर्षक</label>
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>प्रशिक्षक</label>
+                                    <input asp-for="TrainerName" class="form-control" />
+                                    <span asp-validation-for="TrainerName" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>स्थान</label>
+                                    <input asp-for="ApplicationFormPlace" class="form-control" />
+                                    <span asp-validation-for="ApplicationFormPlace" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>प्रिमियम प्रकार</label>
+                                    <select asp-for="PremiumId" class="form-select form-control" required="" id="selectPremium">
+                                        <option value="">--Select--</option>
+                                        <option value="1">प्रीमियम</option>
+                                        <option value="2">नि:शुल्क</option>
+                                    </select>
+                                    <span asp-validation-for="PremiumId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0" id="amount">
+                                <div class="form-group">
+                                    <label>ट्रेनिङ शुल्क </label>
+                                    <input asp-for="Amount" class="form-control" min="0" />
+                                    <span asp-validation-for="Amount" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>ट्रेनिङ प्रकार</label>
+                                    <select asp-for="ApplicationFormTypeId" asp-items="await _Utility.GetAgriSectorSelectListItems()" class="form-select form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                    <span asp-validation-for="ApplicationFormTypeId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>सुरु मिति</label>
+                                    <input asp-for="StartDate" class="form-control" />
+                                    <input asp-for="StartDateEng" class="form-control" type="hidden"/>
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>अन्तिम मिति</label>
+                                    <input asp-for="EndDate" class="form-control" />
+                                    <input asp-for="EndDateEng" class="form-control" type="hidden"/>
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-3 p-0">
+                                <div class="form-group">
+                                    <label>आयोजक</label>
+                                    <input asp-for="Organizer" class="form-control" />
+                                    <span asp-validation-for="Organizer" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-12 p-0">
+                                <div class="form-group">
+                                    <label>विवरण </label>
+                                    <textarea id="Description" name="Description">@Model.Description</textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 p-0">
+                                <div class="form-group">
+                                    <label> फोटो  </label>
+                                    <input type="file" asp-for="FilePoto" class="form-control" accept="image/jpeg" />
+                                    <span asp-validation-for="FilePoto" class="text-danger"></span>
+                                </div>
+                                @if (Model.Id != 0)
+                                {
+                                    <div class="pt-1">
+                                        <img class="user-avatar" src="@(_global.BaseUrl() + Model.FilePath) " style="width:180px;" alt="Photo">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('StartDate'), document.getElementById('StartDateEng'))
+        NepaliDatePickerCalWithAdDateWithDisableNextDate(document.getElementById('EndDate'), document.getElementById('EndDateEng'))
+    </script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('Description', {
+                versionCheck: false // Disable version check
+            });
+        });
+
+        // CKEDITOR.editorConfig = function (config) {
+        //     config.versionCheck = false; // Disable version check globally
+        // };
+    </script>
+    <script>
+        $(document).ready(function () {
+            myFunction();
+        });
+        var select = document.getElementById("selectPremium").onchange = function () { myFunction() };
+
+        function myFunction() {
+            var value = $('#selectPremium').val();
+            if (value === "1") {
+                $('#amount').attr('style', 'display:block;');
+            } else if (value === "2") {
+                $('#amount').attr('style', 'display:none;');
+                $('#Amount').val('');
+            } else {
+                $('#amount').attr('style', 'display:none;');
+            }
+        }
+    </script>
+   
+   
+} *@
