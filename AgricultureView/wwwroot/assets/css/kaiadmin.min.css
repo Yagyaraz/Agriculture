@@ -84,11 +84,21 @@ warning-color : #ffa534
 danger-color : #f3545d
 
 -------------------------------------------------------------------*/
+@font-face {
+    font-family: 'Kalimati Regular';
+    src: url('/fonts/Kalimati.woff2') format('woff2'), url('/fonts/Kalimati.woff') format('woff'), url('/fonts/Kalimati.ttf') format('truetype');
+    font-display: swap;
+}
 
 .alert, .brand, .btn-simple, .h1, .h2, .h3, .h4, .h5, .h6, .navbar, .td-name, a, body, button.close, h1, h2, h3, h4, h5, h6, p, td {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Public Sans',sans-serif
+    /*    font-family: 'Public Sans',sans-serif*/
+    font-family: "Kalimati regular";
+}
+
+.form-control {
+    font-family: 'Public Sans', sans-serif;
 }
 
 body, html {
@@ -9458,5 +9468,16 @@ body {
 
     .wrapper.not-found .desc {
         font-size: 18px !important
+    }
+}
+
+@media print {
+    .navbar,
+    nav,
+    footer,
+    .footer,
+    .sidebar,
+    .no-print {
+        display: none !important;
     }
 }

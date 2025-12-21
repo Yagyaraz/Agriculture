@@ -34,19 +34,19 @@
                                         <td>@Html.DisplayFor(modelItem => item.FirmDartaNo)</td>
                                          <td>@Html.DisplayFor(modelItem => item.FirmName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.FirmPalikaName)</td>
-                                        <td>
+                                        <td class="text-center d-flex justify-content-between">
                                             <a asp-action="Create" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-                                        </td>
-                                        <td>
+                                        
                                             <a asp-action="GetAgricultureFarmerGroupById" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                            <a asp-action="GetAgricultureFarmerGroupById" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a asp-action="PranamPatra" title="PramanPatr" asp-route-id="@item.Id"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a asp-controller="NabikaranView" asp-action="CreateNabikaran" asp-route-id="@item.Id"><i class="fa fa-dollar-sign " aria-hidden="true"></i></a>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a asp-controller="NabikaranView" asp-action="NabikaranDetail" asp-route-id="@item.Id"><i class="fa fa-dollar-sign " aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
