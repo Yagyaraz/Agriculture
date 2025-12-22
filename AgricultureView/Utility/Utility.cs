@@ -1119,6 +1119,11 @@ namespace AgricultureView.Utility
         public async Task<string> GetBeeTypeNameById(int id)
        =>await GetStringFromApi($"Admin/Utility/GetBeeTypeNameById/{id}");
 
+        public Task<bool> Delete(string tableName, int id)
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
     }

@@ -7,6 +7,7 @@ namespace Agriculture.Utilities
 {
     public interface IUtility
     {
+        Task<bool> Delete(string tableName, int id);
         Task<SelectList> GetFarmerSelectListItems();
         Task<SelectList> GetWardNoSelectListItems();
         Task<SelectList> GetStateSelectListItems();

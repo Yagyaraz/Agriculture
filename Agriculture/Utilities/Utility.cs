@@ -24,6 +24,18 @@ namespace Agriculture.Utilities
             _logger = logger;
             _userId = httpContextAccessor.HttpContext!.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
+        public async Task<bool> Delete(string tableName, int id)
+        {
+            if (!AllowedTables.Contains(tableName))
+                throw new UnauthorizedAccessException("Invalid table name");
+            if (string.IsNullOrWhiteSpace(tableName))
+                return false;
+            var sql = $"UPDATE [{tableName}] SET IsDeleted = 1 WHERE Id = @p0";
+
+            var affectedRows = await _context.Database.ExecuteSqlRawAsync(sql, id);
+            return affectedRows > 0;
+
+        }
         public async Task<SelectList> GetFarmerSelectListItems()
         {
             return new SelectList(await _context.Farmer.ToListAsync(), "Id", "FullName");
@@ -452,5 +464,12 @@ namespace Agriculture.Utilities
         public async Task<string> GetFiscalYearNameById(int id) =>
             (await _context.FiscalYear.FirstOrDefaultAsync(x => x.Id == id))?.Name;
         #endregion
+        private static readonly HashSet<string> AllowedTables = new()
+        {
+            "Users",
+            "Farmers",
+            "Products"
+        };
     }
+
 }

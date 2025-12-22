@@ -8,7 +8,7 @@ namespace AgricultureView.Utility
     public interface IUtility
     {
         Task<LoginResponse> GetSessionDetails();
-
+        Task<bool> Delete(string tableName, int id);
         Task<SelectList> GetFarmerSelectListItems();
         Task<SelectList> GetWardNoSelectListItems();
         Task<SelectList> GetStateSelectListItems();

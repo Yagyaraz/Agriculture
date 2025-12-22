@@ -14,6 +14,18 @@ namespace Agriculture.Areas.Admin.Controllers
         {
             _Utility = utility;
         }
+        [HttpDelete("delete")]
+        public async Task<IActionResult> SoftDelete(
+      [FromQuery] string tableName,
+      [FromQuery] int id)
+        {
+            var result = await _Utility.Delete(tableName, id);
+
+            if (!result)
+                return BadRequest(new { message = "Soft delete failed" });
+
+            return Ok(new { message = "Soft deleted successfully" });
+        }
         [HttpGet("GetFarmerSelectListItems")]
         public async Task<IActionResult> GetFarmerSelectListItems()
         {
@@ -219,7 +231,7 @@ namespace Agriculture.Areas.Admin.Controllers
             var data = await _Utility.GetMeasuringUnitSelectListItems();
             return Ok(new ApiResponse { Status = data.Any(), Message = data.Any() ? "Successfully Generated All List of Measuring Unit" : "Measuring Unit Type Area Not Generated Try Again", Data = data });
         }
-       
+
         [HttpGet("GetProjectSelectListItems/{id}")]
         public async Task<IActionResult> GetProjectSelectListItems(int id)
         {
@@ -308,7 +320,7 @@ namespace Agriculture.Areas.Admin.Controllers
         public async Task<IActionResult> GetOfficeDetails()
         {
             var data = await _Utility.GetOfficeDetails();
-            return Ok(new ApiResponse { Status = data.Id>0, Message = data.Id>0 ? "Successfully Generated All List of GetSelectListRoles" : "GetSelectListRoles List Not Generated Try Again", Data = data });
+            return Ok(new ApiResponse { Status = data.Id > 0, Message = data.Id > 0 ? "Successfully Generated All List of GetSelectListRoles" : "GetSelectListRoles List Not Generated Try Again", Data = data });
         }
         private IActionResult BuildResponse(string data, string entityName)
         {
