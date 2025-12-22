@@ -41,10 +41,10 @@
                                         <td>@Html.DisplayFor(modelItem => item.ProgramName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.ServiceName)</td>
                                         <td></td>
-                                        <td class="text-center d-flex justify-content-between  g-4" style="width: 50px; height: 100%;">
+                                        <td class="text-center d-flex justify-content-between py-5  g-4" style="width: 50px; height: 50px;">
                                             <a asp-action="CreateApplicatoionForm" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
                                         
-                                            <a asp-action="ApplicationDetails" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
+                                            <a asp-action="ApplicationDetails" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
                                         
                                             <a asp-action="ApplicationDetails" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
                                         </td>

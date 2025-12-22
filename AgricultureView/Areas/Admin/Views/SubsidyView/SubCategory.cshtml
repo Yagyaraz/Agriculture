@@ -33,8 +33,9 @@
                                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                         <td>@Html.DisplayFor(modelItem => item.CategoryUnit)</td>
                                         <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
-                                        <td class="text-center">
+                                        <td class="text-center d-flex justify-content-evenly">
                                             <a asp-action="CreateSubCategory" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                            <a asp-action="CreateSubCategory" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }
