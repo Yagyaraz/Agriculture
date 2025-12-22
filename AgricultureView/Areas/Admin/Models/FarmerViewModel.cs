@@ -28,6 +28,11 @@ namespace AgricultureView.Areas.Admin.Models
         public int FarmerGroupId { get; set; }
         public int FarmerCategoryId { get; set; }
         public string HouseNo { get; set; }
+        public KrishiDetailsViewModel krishi {  get; set; }=new KrishiDetailsViewModel();
+        public FamilyDetailssViewModel Family {  get; set; }=new FamilyDetailssViewModel();
+        public FieldDetailsViewModel Field {  get; set; }=new FieldDetailsViewModel();
+        public CropsInformationViewModel CropsInformation {  get; set; }=new CropsInformationViewModel();
+        public AnimalHusbandryViewModel Animal {  get; set; }=new AnimalHusbandryViewModel();
     }
     public class KrishiDetailsViewModel
     {

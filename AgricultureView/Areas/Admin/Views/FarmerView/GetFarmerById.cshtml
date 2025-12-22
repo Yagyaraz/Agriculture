@@ -1,64 +1,40 @@
 ﻿@model FarmerViewModel
+@inject IUtility _utility
 @{
     ViewData["Title"] = "Farmer Details";
 }
+<div class="row">
+    <div class="col-md-12">
 
-<div class="page-inner">
-    <div class="page-header">
-        <h3 class="fw-bold mb-3">Farmer Details</h3>
-        <ul class="breadcrumbs mb-3">
-            <li class="nav-home">
-                <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="icon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="icon-arrow-right"></i>
-            </li>
-            <li class="nav-item">
-                <a asp-area="Admin" asp-controller="FarmerView" asp-action="Index">Farmer List</a>
-            </li>
-            <li class="separator">
-                <i class="icon-arrow-right"></i>
-            </li>
-            <li class="nav-item">
-                <a href="#">Farmer Details</a>
-            </li>
-        </ul>
-    </div>
+        <div class="card">
+            <div class="card-header ps-5">
+                <div class="card-title">Farmer Information</div>
+            </div>
 
-    <div class="row">
-        <div class="col-md-12">
+            <div class="card-body ps-3">
+                <div class="row ps-5">
 
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Farmer Information</div>
-                </div>
-
-                <div class="card-body">
-                    <div class="row">
-
-                        <!-- FULL NAME -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>पुरा नाम</label>
-                                <p class="form-control-static fw-bold">@Model.FullName</p>
-                            </div>
+                    <!-- FULL NAME --> 
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>पुरा नाम</label>
+                            <p class="form-control-static fw-bold">@Model.FullName</p>
                         </div>
+                    </div>
 
-                        <!-- FULL NAME ENG -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>पुरा नाम(Eng)</label>
-                                <p class="form-control-static">@Model.FullNameEng</p>
-                            </div>
+                    <!-- FULL NAME ENG -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>पुरा नाम(Eng)</label>
+                            <p class="form-control-static">@Model.FullNameEng</p>
                         </div>
+                    </div>
 
-                        <!-- PROVINCE -->
-                       @*  <div class="col-md-6 col-lg-3 p-0">
+                    <!-- PROVINCE -->
+                      <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>प्रदेश</label>
-                                <p class="form-control-static">@Model.StateName</p>
+                                <p class="form-control-static">@await _utility.GetStateNameById(Model.StateId)</p>
                             </div>
                         </div>
 
@@ -66,7 +42,7 @@
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>जिल्ला</label>
-                                <p class="form-control-static">@Model.DistrictName</p>
+                            <p class="form-control-static">@await _utility.GetDistrictNameById(Model.DistrictId)</p>
                             </div>
                         </div>
 
@@ -74,55 +50,55 @@
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>पालिका</label>
-                                <p class="form-control-static">@Model.PalikaName</p>
+                                <p class="form-control-static">@await _utility.GetPalikaNameById(Model.PalikaId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
-                        <!-- WARD NO -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>वार्ड नं</label>
-                                <p class="form-control-static">@Model.WardNo</p>
-                            </div>
+                    <!-- WARD NO -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>वार्ड नं</label>
+                            <p class="form-control-static">@Model.WardNo</p>
                         </div>
+                    </div>
 
-                        <!-- PHONE -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>फोन नम्बर</label>
-                                <p class="form-control-static">@Model.PhoneNo</p>
-                            </div>
+                    <!-- PHONE -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>फोन नम्बर</label>
+                            <p class="form-control-static">@Model.PhoneNo</p>
                         </div>
+                    </div>
 
-                        <!-- EMAIL -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>इमेल</label>
-                                <p class="form-control-static">@Model.Email</p>
-                            </div>
+                    <!-- EMAIL -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>इमेल</label>
+                            <p class="form-control-static">@Model.Email</p>
                         </div>
+                    </div>
 
-                        <!-- GENDER -->
-                      @*   <div class="col-md-6 col-lg-3 p-0">
+                    <!-- GENDER -->
+                    @*   <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>लिङ्ग</label>
                                 <p class="form-control-static">@Model.GenderName</p>
                             </div>
                         </div> *@
 
-                        <!-- DOB -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>जन्म मिति (बि.सं.)</label>
-                                <p class="form-control-static">@Model.DOBNep</p>
-                            </div>
+                    <!-- DOB -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>जन्म मिति (बि.सं.)</label>
+                            <p class="form-control-static">@Model.DOBNep</p>
                         </div>
+                    </div>
 
-                        <!-- EDUCATION -->
-                       @*  <div class="col-md-6 col-lg-3 p-0">
+                    <!-- EDUCATION -->
+                     <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>शिक्षा योग्यता</label>
-                                <p class="form-control-static">@Model.EducationName</p>
+                                <p class="form-control-static">@await _utility.GetEducationNameById(Model.EducationId)</p>
                             </div>
                         </div>
 
@@ -130,75 +106,1790 @@
                         <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>साक्षर योग्यता</label>
-                                <p class="form-control-static">@Model.EducationLevelName</p>
+                                <p class="form-control-static">@await _utility.GetEducationLevelNameById(Model.EducationLevelId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
-                        <!-- TOL NAME -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>गाउँ / टोल नाम</label>
-                                <p class="form-control-static">@Model.TolName</p>
-                            </div>
+                    <!-- TOL NAME -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>गाउँ / टोल नाम</label>
+                            <p class="form-control-static">@Model.TolName</p>
                         </div>
+                    </div>
 
-                        <!-- CITIZEN NO -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>नागरिकता नम्बर</label>
-                                <p class="form-control-static">@Model.CitizenNo</p>
-                            </div>
+                    <!-- CITIZEN NO -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>नागरिकता नम्बर</label>
+                            <p class="form-control-static">@Model.CitizenNo</p>
                         </div>
+                    </div>
 
-                        <!-- CITIZEN DISTRICT -->
-                       @*  <div class="col-md-6 col-lg-3 p-0">
+                    <!-- CITIZEN DISTRICT -->
+                      <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>नागरिकता जारी जिल्ला</label>
-                                <p class="form-control-static">@Model.CitizenDistrictName</p>
+                                <p class="form-control-static">@await _utility.GetDistrictNameById(Model.CitizenDistricrId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
-                        <!-- CITIZEN ISSUE DATE -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>नागरिकता जारी मिति (बि.सं.)</label>
-                                <p class="form-control-static">@Model.CitizenIssueDate</p>
-                            </div>
+                    <!-- CITIZEN ISSUE DATE -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>नागरिकता जारी मिति (बि.सं.)</label>
+                            <p class="form-control-static">@Model.CitizenIssueDate</p>
                         </div>
+                    </div>
 
-                        <!-- FARMER GROUP -->
-                       @*  <div class="col-md-6 col-lg-3 p-0">
+                    <!-- FARMER GROUP -->
+                     <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>कृषक समूह</label>
-                                <p class="form-control-static">@Model.FarmerGroupName</p>
+                                <p class="form-control-static">@await _utility.GetFarmerGroupNameById(Model.FarmerGroupId)</p>
                             </div>
-                        </div> *@
+                        </div> 
 
-                        <!-- FARMER CATEGORY -->
-                       @*  <div class="col-md-6 col-lg-3 p-0">
+                    <!-- FARMER CATEGORY -->
+                     <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>कृषक श्रेणी</label>
-                                <p class="form-control-static">@Model.FarmerCategoryName</p>
-                            </div>
-                        </div> *@
-
-                        <!-- HOUSE NO -->
-                        <div class="col-md-6 col-lg-3 p-0">
-                            <div class="form-group">
-                                <label>घरपरिवार नम्बर</label>
-                                <p class="form-control-static">@Model.HouseNo</p>
+                                <p class="form-control-static">@await _utility.GetFarmerCategoryNameById(Model.FarmerCategoryId)</p>
                             </div>
                         </div>
 
+                    <!-- HOUSE NO -->
+                    <div class="col-md-6 col-lg-3 p-0">
+                        <div class="form-group">
+                            <label>घरपरिवार नम्बर</label>
+                            <p class="form-control-static">@Model.HouseNo</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card-footer">
-                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
                 </div>
-
             </div>
 
         </div>
+
     </div>
 </div>
+<div class="row">
+    <div class="card">
+        <div class="card-header ps-5">
+            <div class="card-title">Basic Information</div>
+        </div>
+
+        <div class="card-body">
+            <div class="row ps-5">
+
+
+
+                <div class="col-md-3">
+                    <label class="fw-bold">जग्गा आफ्नो छ</label>
+                    <p>@(Model.krishi.IsSelfJagga ? "हो" : "होइन")</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">कृषि आम्दानी</label>
+                    <p>रु. @Model.krishi.IncomeFromAgri</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">गैर कृषि आम्दानी</label>
+                    <p>रु. @Model.krishi.IncomeFromNonAgri</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">कुल आम्दानी</label>
+                    <p>रु. @Model.krishi.TotalIncome</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">संलग्न समय</label>
+                    <p>@Model.krishi.AvgMonthForAgriId</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Agriculture Detail Table -->
+    <div class="card ps-5 mt-3">
+        <div class="card-header">
+            <div class="card-title">Agriculture Area Details</div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>वडा नं</th>
+                            <th>गाउँ</th>
+                            <th>क्षेत्र</th>
+                            <th>उप-क्षेत्र</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.krishi.AgricultureDetailViewModelList)
+                        {
+                            <tr>
+                                <td>@item.AgriWardNo</td>
+                                <td>@item.AgriAddress</td>
+                                <td>@item.AgriSectorId</td>
+                                <td>@item.AgriSubSector</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Land Area Section -->
+    @if (Model.krishi.IsSelfJagga)
+    {
+        <div class="card ps-5 mt-3">
+            <div class="card-header">
+                <div class="card-title">Land Area Detail</div>
+            </div>
+            <div class="card-body">
+
+                @if (Model.krishi.ChooseLand == "")
+                {
+                    <p>
+                        <strong>रोपनी:</strong> @Model.krishi.TotalRopani ,
+                        <strong>आना:</strong> @Model.krishi.TotalAana ,
+                        <strong>पैसा:</strong> @Model.krishi.TotalPaisa ,
+                        <strong>दाम:</strong> @Model.krishi.TotalDam <br />
+                        <strong>वर्ग मिटर:</strong> @Model.krishi.TotalRopaniSquareMiter
+                    </p>
+                }
+                else if (Model.krishi.ChooseLand == "")
+                {
+                    <p>
+                        <strong>बिगाह:</strong> @Model.krishi.TotalBigaha ,
+                        <strong>कट्ठा:</strong> @Model.krishi.TotalKattha ,
+                        <strong>धुर:</strong> @Model.krishi.TotalDhur <br />
+                        <strong>वर्ग मिटर:</strong> @Model.krishi.TotalBigaSquareMiter
+                    </p>
+                }
+
+            </div>
+        </div>
+    }
+</div>
+
+<div class="page-inner">
+
+    <!-- BASIC INFO -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">आधारभूत विवरण</div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label class="fw-bold">आर्थिक वर्ष</label>
+                    <p>@Model.Family.FiscalYearId</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">कृषि पेशा संलग्न वर्ष</label>
+                    <p>@Model.Family.TotalInvolvedinAgi</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TOTAL FAMILY MEMBERS -->
+    <div class="row mt-3 ps-5 pt-3">
+
+        <div class="col-6">
+            <h5 class="text-center mb-2">कुल परिवार सदस्य</h5>
+            <div class="card d-flex flex-row text-center">
+
+                <div class="p-2 flex-fill">
+                    <label class="fw-bold">पुरुष</label>
+                    <p>@Model.Family.TotalMale</p>
+                </div>
+
+                <div class="p-2 flex-fill">
+                    <label class="fw-bold">महिला</label>
+                    <p>@Model.Family.TotalFemale</p>
+                </div>
+
+                <div class="p-2 flex-fill">
+                    <label class="fw-bold">कुल</label>
+                    <p>@Model.Family.TotalMember</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-6">
+            <h5 class="text-center mb-2">कृषि कार्यमा संलग्न सदस्य</h5>
+            <div class="card d-flex flex-row text-center">
+
+                <div class="p-2 flex-fill">
+                    <label class="fw-bold">पुरुष</label>
+                    <p>@Model.Family.TotalMaleInAgri</p>
+                </div>
+
+                <div class="p-2 flex-fill">
+                    <label class="fw-bold">महिला</label>
+                    <p>@Model.Family.TotalFemaleInAgri</p>
+                </div>
+
+                <div class="p-2 flex-fill">
+                    <label class="fw-bold">कुल</label>
+                    <p>@Model.Family.TotalMemberInAgri</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- AGRICULTURE INVOLVED FAMILY DETAILS -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="card-title">कृषि कार्यमा संलग्न परिवार सदस्यहरुको विवरण</div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="text-center">
+                        <tr>
+                            <th>सम्बन्ध</th>
+                            <th>पुरा नाम</th>
+                            <th>उमेर</th>
+                            <th>लिङ्ग</th>
+                            <th>काम गर्ने क्षेत्र</th>
+                            <th>नागरिकता नं</th>
+                            <th>फोन नं</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Family.FamilyDetailInvolveList)
+                        {
+                            <tr>
+                                <td>@item.RelationId</td>
+                                <td>@item.FullName</td>
+                                <td class="text-center">@item.Age</td>
+                                <td class="text-center">@item.GenderId</td>
+                                <td>@item.WorkingAreaId</td>
+                                <td>@item.CitizenNo</td>
+                                <td>@item.PhoneNumbar</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-inner">
+
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">खेतको जानकारी</h3>
+
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-controller="Home" asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator"><i class="icon-arrow-right"></i></li>
+            <li class="nav-item">
+                <a href="#">खेतको जानकारी</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">आधारभूत विवरण</div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label class="fw-bold">आर्थिक वर्ष</label>
+                    <p>@Model.Field.FiscalYearId</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- LAND OWNERSHIP DETAILS -->
+    <div class="card mt-3">
+        <div class="card-header">
+            <div class="card-title">जमिन स्वामित्वको विवरण</div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="3">जग्गाको विवरण</th>
+                            <th colspan="3">सिँचाइको विवरण</th>
+                        </tr>
+                        <tr>
+                            <th>स्वामित्व</th>
+                            <th>जमिनको किसिम</th>
+                            <th>क्षेत्रफल</th>
+                            <th>सिँचाइ उपलब्धता</th>
+                            <th>सिँचाइ क्षेत्रफल</th>
+                            <th>सिँचाइ स्रोत</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Field.LandOwnershipViewModelList)
+                        {
+                            <tr>
+                                <td>@item.OwnershipId</td>
+                                <td>@item.LandTypeId</td>
+                                <td>@item.Area</td>
+                                <td>@item.IsIrrigartionAvilable</td>
+                                <td>@item.IrrigartionArea</td>
+                                <td>@item.IrrigationSourceId</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MULTIPLE LOCAL LEVEL FARM -->
+    <div class="card mt-3">
+        <div class="card-header">
+            <div class="card-title">एक भन्दा बढी स्थानीय तहमा रहेको खेत विवरण</div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>ठेगाना</th>
+                            <th>क्षेत्रफल</th>
+                            <th>सिँचाइ उपलब्धता</th>
+                            <th>कृषि क्षेत्र</th>
+                            <th>उप क्षेत्र</th>
+                            <th>स्वामित्व</th>
+                            <th>करार भए जग्गा धनी</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Field.AgriFarmMoreThanOneLocalLevelViewModelList)
+                        {
+                            <tr>
+                                <td>@item.Address</td>
+                                <td>@item.Area</td>
+                                <td>@item.IsIrrigationAvailiable</td>
+                                <td>@item.Area</td>
+                                <td>@item.SubSector</td>
+                                <td>@item.OwnershipId</td>
+                                <td>@item.DetailOfLandOwner</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEASED LAND DETAILS -->
+    <div class="card mt-3">
+        <div class="card-header">
+            <div class="card-title">अन्य व्यक्तिलाई करारमा दिएको जग्गा</div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="3">जग्गाको विवरण</th>
+                            <th colspan="3">सिँचाइको विवरण</th>
+                        </tr>
+                        <tr>
+                            <th>स्वामित्व</th>
+                            <th>जमिन किसिम</th>
+                            <th>क्षेत्रफल</th>
+                            <th>सिँचाइ उपलब्धता</th>
+                            <th>सिँचाइ क्षेत्रफल</th>
+                            <th>सिँचाइ स्रोत</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Field.LeasedLandDetailViewModelList)
+                        {
+                            <tr>
+                                <td>@item.OwnershipId</td>
+                                <td>@item.LandTypeId</td>
+                                <td>@item.Area</td>
+                                <td>@item.IsIrrigartionAvilable</td>
+                                <td>@item.IrrigartionArea</td>
+                                <td>@item.IrrigationSourceId</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- FARMER REGISTRATION DETAILS -->
+    <div class="card mt-3">
+        <div class="card-header">
+            <div class="card-title">कृषक विवरण</div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label class="fw-bold">कृषक दर्ता</label>
+                    <p>@(Model.Field.IsKrishakDarta ? "छ" : "छैन")</p>
+                </div>
+
+                @if (Model.Field.IsKrishakDarta)
+                {
+                    <div class="col-md-3">
+                        <label class="fw-bold">दर्ता नम्बर</label>
+                        <p>@Model.Field.DartaNo</p>
+                    </div>
+                }
+
+                <div class="col-md-3">
+                    <label class="fw-bold">पुरा नाम</label>
+                    <p>@Model.Field.FullName</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">फोन नम्बर</label>
+                    <p>@Model.Field.PhoneNo</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">ठेगाना</label>
+                    <p>@Model.Field.Address</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">सम्झौता मिति</label>
+                    <p>@Model.Field.SanjhutaMiti</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">सम्झौता समाप्त मिति</label>
+                    <p>@Model.Field.SamjhutaEndMiti</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">नागरिकता नं</label>
+                    <p>@Model.Field.CitizenNo</p>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw-bold">हालको ठेगाना</label>
+                    <p>@Model.Field.CurrentAddress</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="page-inner">
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">बाली सम्बन्धी विवरण</div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="fw-bold">आर्थिक वर्ष</label>
+                    <p>@Model.CropsInformation.FiscalYearId</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- खाद्य बाली -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="card-title">खाधन्न / तरकारी / दलहन / मसलाबाली</div>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>बालीको नाम</th>
+                        <th>क्षेत्रफल</th>
+                        <th>उत्पादन परिमाण (के.जि)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CropsInformation.EatableCropsViewModelList)
+                    {
+                        <tr>
+                            <td>@item.CropsTypeId</td>
+                            <td>@item.Area</td>
+                            <td>@item.Quantity</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- फलफूल -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="card-title">फलफुल बाली</div>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>बालीको नाम</th>
+                        <th>बोट संख्या</th>
+                        <th>क्षेत्रफल</th>
+                        <th>उत्पादन परिमाण (के.जि)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CropsInformation.FruitCropsViewModelList)
+                    {
+                        <tr>
+                            <td>@await _utility.GetCropsTypeNameById(item.CropsInformationId)</td>
+                            <td>@item.TotalPlant</td>
+                            <td>@item.Area</td>
+                            <td>@item.Quantity</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- बिउ / बेर्ना -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="card-title">बिउ / बेर्ना / नर्सरी</div>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>बालीको नाम</th>
+                        <th>जात</th>
+                        <th>क्षेत्रफल</th>
+                        <th>उत्पादन परिमाण (के.जि)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CropsInformation.SeedCropsViewModelList)
+                    {
+                        <tr>
+                            <td>@await _utility.GetCropsTypeNameById(item.CropsInformationId)</td>
+                            <td>@item.SeedsTypeId</td>
+                            <td>@item.Area</td>
+                            <td>@item.Quantity</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- च्याउ -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="card-title">च्याउ</div>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>च्याउको जात</th>
+                        <th>टनेल संख्या</th>
+                        <th>क्षेत्रफल (वर्ग मिटर)</th>
+                        <th>उत्पादन परिमाण (के.जि)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CropsInformation.MushroomCrposViewModelList)
+                    {
+                        <tr>
+                            <td>@await _utility.GetCropsTypeNameById(item.CropsInformationId)</td>
+                            <td>@item.TotalCount</td>
+                            <td>@item.Area</td>
+                            <td>@item.Quantity</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- रेशम -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="card-title">रेशम</div>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>किम्बु क्षेत्रफल (वर्ग मिटर)</th>
+                        <th>रेशम किरा जात</th>
+                        <th>किरा संख्या</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CropsInformation.SilkCropsViewModelList)
+                    {
+                        <tr>
+                            <td>@item.Area</td>
+                            <td>@await _utility.GetSilkTypeNameById(item.SilkTypeId)</td>
+                            <td>@item.TotalCount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- मौरी -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <div class="card-title">मौरी</div>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>मौरीको जात</th>
+                        <th>घार संख्या</th>
+                        <th>उत्पादन परिमाण (के.जि)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CropsInformation.BeeCropsViewModelList)
+                    {
+                        <tr>
+                            <td>@await _utility.GetBeeTypeNameById(item.BeeTypeId)</td>
+                            <td>@item.TotalCount</td>
+                            <td>@item.Quantity</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="row" id="Gaipalan" style="display:none">
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">गाईपालन</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">स्थानीय</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.CowInfromationViewModelList.CowLocCount</td>
+                        </tr>
+                        <tr>
+                            <th>बार्षिक औसत दुध दिने महिना</th>
+                            <td>@Model.Animal.CowInfromationViewModelList.CowLocMilkMonth</td>
+                        </tr>
+                        <tr>
+                            <th>दैनिक दुध उत्पादन लिटर</th>
+                            <td>@Model.Animal.CowInfromationViewModelList.CowLocMilkDaily</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">उन्नत</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.CowInfromationViewModelList.CowUnnatCount</td>
+                        </tr>
+                        <tr>
+                            <th>बार्षिक औसत दुध दिने महिना</th>
+                            <td>@Model.Animal.CowInfromationViewModelList.CowUnnatMilkMonth</td>
+                        </tr>
+                        <tr>
+                            <th>दैनिक दुध उत्पादन लिटर</th>
+                            <td>@Model.Animal.CowInfromationViewModelList.CowUnnatMilkDaily</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- भैसीपालन Detail -->
+<div class="row" id="Bhaisipalan" style="display:none">
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">भैसीपालन</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">स्थानीय</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.BuffaloInfromationViewModelList.BuffLocCount</td>
+                        </tr>
+                        <tr>
+                            <th>बार्षिक औसत दुध दिने महिना</th>
+                            <td>@Model.Animal.BuffaloInfromationViewModelList.BuffLocMilkMonth</td>
+                        </tr>
+                        <tr>
+                            <th>दैनिक दुध उत्पादन लिटर</th>
+                            <td>@Model.Animal.BuffaloInfromationViewModelList.BuffLocMilkDaily</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">उन्नत</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.BuffaloInfromationViewModelList.BuffUnnatCount</td>
+                        </tr>
+                        <tr>
+                            <th>बार्षिक औसत दुध दिने महिना</th>
+                            <td>@Model.Animal.BuffaloInfromationViewModelList.BuffUnnatMilkMonth</td>
+                        </tr>
+                        <tr>
+                            <th>दैनिक दुध उत्पादन लिटर</th>
+                            <td>@Model.Animal.BuffaloInfromationViewModelList.BuffUnnatMilkDaily</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- चौरी/याक पालन Detail -->
+<div class="row" id="Chauri" style="display:none">
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">चौरी/याक पालन</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">चौरी</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.CharuiYakInfromationViewModelList.ChauriCount</td>
+                        </tr>
+                        <tr>
+                            <th>बार्षिक औसत दुध दिने महिना</th>
+                            <td>@Model.Animal.CharuiYakInfromationViewModelList.ChauriMilkMonth</td>
+                        </tr>
+                        <tr>
+                            <th>दैनिक दुध उत्पादन लिटर</th>
+                            <td>@Model.Animal.CharuiYakInfromationViewModelList.ChauriMilkDaily</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">याक</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.CharuiYakInfromationViewModelList.YakCount</td>
+                        </tr>
+                        <tr>
+                            <th>बार्षिक औसत दुध दिने महिना</th>
+                            <td>@Model.Animal.CharuiYakInfromationViewModelList.YakMilkMonth</td>
+                        </tr>
+                        <tr>
+                            <th>दैनिक दुध उत्पादन लिटर</th>
+                            <td>@Model.Animal.CharuiYakInfromationViewModelList.YakMilkDaily</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- गोरु/रांगा पालन Detail -->
+<div class="row" id="Goru" style="display:none">
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">गोरु/रांगा पालन</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>गोरु</th>
+                            <td>@Model.Animal.GoruInfromationViewModelList.GoruCount</td>
+                        </tr>
+                        <tr>
+                            <th>रांगा</th>
+                            <td>@Model.Animal.GoruInfromationViewModelList.RagaCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- भेडा/बाख्रा/च्या्ङ्ग्रा पालन Detail -->
+<div class="row" id="Beda" style="display:none">
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">भेडा/बाख्रा/च्या्ङ्ग्रा पालन</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">भेडा</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>माउको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BhedaCount</td>
+                        </tr>
+                        <tr>
+                            <th>खसिको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BhedaKasiCount</td>
+                        </tr>
+                        <tr>
+                            <th>बोकाको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BhedaBokaCount</td>
+                        </tr>
+                        <tr>
+                            <th>पठा/पाठि संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BhedaPathaCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">बाख्रा</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>माउको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BakhraCount</td>
+                        </tr>
+                        <tr>
+                            <th>खसिको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BakhraKasiCount</td>
+                        </tr>
+                        <tr>
+                            <th>बोकाको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BakhraBokaCount</td>
+                        </tr>
+                        <tr>
+                            <th>पठा/पाठि संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.BakhraPathaCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">च्या्ङ्ग्रा</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>माउको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.ChangraCount</td>
+                        </tr>
+                        <tr>
+                            <th>खसिको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.ChangraKasiCount</td>
+                        </tr>
+                        <tr>
+                            <th>बोकाको संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.ChangraBokaCount</td>
+                        </tr>
+                        <tr>
+                            <th>पठा/पाठि संख्या</th>
+                            <td>@Model.Animal.BhedaBakhraInfromationViewModelList.ChangraPathaCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- बङ्गुर/सुङ्गुर/बंदेल पालन Detail -->
+<div class="row" id="Bungur" style="display:none">
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">बङ्गुर/सुङ्गुर/बंदेल पालन</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">बङ्गुर</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>माउको संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.BungurCount</td>
+                        </tr>
+                        <tr>
+                            <th>भालेको संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.BungurMaleCount</td>
+                        </tr>
+                        <tr>
+                            <th>पठा/पाठि संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.BungurPathaCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">सुङ्गुर</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>माउको संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.SungurCount</td>
+                        </tr>
+                        <tr>
+                            <th>भालेको संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.SungurMaleCount</td>
+                        </tr>
+                        <tr>
+                            <th>पठा/पाठि संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.SungurPathaCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">बंदेल</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>माउको संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.BadelCount</td>
+                        </tr>
+                        <tr>
+                            <th>भालेको संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.BadelMaleCount</td>
+                        </tr>
+                        <tr>
+                            <th>पठा/पाठि संख्या</th>
+                            <td>@Model.Animal.BungurSungurInfromationViewModelList.BadelPathaCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- कुखुरा पालन Detail -->
+<div class="row" id="Hen" style="display:none">
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">कुखुरा पालन</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">लेयर्स कुखुरा</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>पालन गरिएको छ ?</th>
+                            <td>@(Model.Animal.HenInfromationViewModelList.IsLayers ? "छ" : "छैन")</td>
+                        </tr>
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.HenInfromationViewModelList.LayersCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.HenInfromationViewModelList.LayersEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत कुखुरा उत्पादन संख्या</th>
+                            <td>@Model.Animal.HenInfromationViewModelList.LayersChickenProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">ब्रोईलर कुखुरा</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>पालन गरिएको छ ?</th>
+                            <td>@(Model.Animal.HenInfromationViewModelList.IsBoiler ? "छ" : "छैन")</td>
+                        </tr>
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.HenInfromationViewModelList.BoilerCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.HenInfromationViewModelList.BoilerEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत कुखुरा उत्पादन संख्या</th>
+                            <td>@Model.Animal.HenInfromationViewModelList.BoilerChickenProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- अन्य पन्छीहरु Detail -->
+    <div class="card-sub p-0 m-0">
+        <h6 class="text-center">अन्य पन्छीहरु</h6>
+    </div>
+<div class="row" id="otherBird" style="display:none">
+    <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">हांस</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.DuckCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.DuckEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.DuckProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">बट्टाई</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.BattaiCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.BattaiEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.BattaiProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">अस्ट्रिच</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.AustrichCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.AustrichEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.AustrichProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">कालिज</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.KalijCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.KalijEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.KalijProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">टर्की</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.TurkeyCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.TurkeyEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.TurkeyProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">लौकाट</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.LaukatCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.LaukatEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.LaukatProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">परेवा</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.LaukatCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.LaukatEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.LaukatProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-sub p-0 m-0">
+                        <h6 class="text-center">अन्य</h6>
+                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.OtherCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत अण्डा उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.OtherEggCount</td>
+                        </tr>
+                        <tr>
+                            <th>वार्षिक औषत उत्पादन संख्या</th>
+                            <td>@Model.Animal.OtherBirdInfromationViewModelList.OtherProductionCount</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- मत्स्य पालन Detail -->
+    <div class="row" id="Fish" style="display:none">
+        <div class="card-sub p-0 m-0">
+            <h6 class="text-center">मत्स्य पालन</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-sub p-0 m-0">
+                            <h6 class="text-center">प्रजाति</h6>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <strong>प्रजातिहरू:</strong>
+                                <div class="mt-2">
+                                    @if (Model.Animal.FishInfromationViewModelList.IsRahu)
+                                    {
+                                        <span class="badge bg-info me-2">रहु</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsNaini)
+                                    {
+                                        <span class="badge bg-info me-2">नैनी</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsSilvercarp)
+                                    {
+                                        <span class="badge bg-info me-2">सिल्भर कार्प</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsNaibigheadkarpni)
+                                    {
+                                        <span class="badge bg-info me-2">नैबिगहेड कार्पनी</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsGrasscarp)
+                                    {
+                                        <span class="badge bg-info me-2">ग्रास कार्प</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsComoncarp)
+                                    {
+                                        <span class="badge bg-info me-2">कमन कार्पनी</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsTrout)
+                                    {
+                                        <span class="badge bg-info me-2">ट्राउट</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.Ischadi)
+                                    {
+                                        <span class="badge bg-info me-2">छडी</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsTilapiya)
+                                    {
+                                        <span class="badge bg-info me-2">टिलापिया</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsPangas)
+                                    {
+                                        <span class="badge bg-info me-2">पंगास</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsLocal)
+                                    {
+                                        <span class="badge bg-info me-2">स्थानीय</span>
+                                    }
+                                    @if (Model.Animal.FishInfromationViewModelList.IsOther)
+                                    {
+                                        <span class="badge bg-info me-2">अन्य</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>उत्पादन एकाइ</th>
+                                <td>@Model.Animal.FishInfromationViewModelList.ProcustionMeasurementId</td>
+                            </tr>
+                            <tr>
+                                <th>उत्पादन परिमाण (के.जि) मा</th>
+                                <td>@Model.Animal.FishInfromationViewModelList.ProcustionQuantity</td>
+                            </tr>
+                            <tr>
+                                <th>पोखरीको क्षेत्रफल</th>
+                                <td>@Model.Animal.FishInfromationViewModelList.PondArea</td>
+                            </tr>
+                            <tr>
+                                <th>संख्या</th>
+                                <td>@Model.Animal.FishInfromationViewModelList.TotalCount</td>
+                            </tr>
+                            <tr>
+                                <th>उत्पादन प्रयोजन</th>
+                                <td>@await _utility.GetProcustionUseNameById((int)Model.Animal.FishInfromationViewModelList.ProcustionUseId)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- अन्य पशुपालन Detail -->
+    <div class="row" id="otherPashu" style="display:none">
+        <div class="card-sub p-0 m-0">
+            <h6 class="text-center">अन्य पशुपालन</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>घोडाको संख्या</th>
+                                <td>@Model.Animal.OtherAnimalInfromationViewModelList.GhodaCount</td>
+                            </tr>
+                            <tr>
+                                <th>खच्चडको संख्या</th>
+                                <td>@Model.Animal.OtherAnimalInfromationViewModelList.KhaccedCount</td>
+                            </tr>
+                            <tr>
+                                <th>गधाको संख्या</th>
+                                <td>@Model.Animal.OtherAnimalInfromationViewModelList.GadhaCount</td>
+                            </tr>
+                            <tr>
+                                <th>खरायोको संख्या</th>
+                                <td>@Model.Animal.OtherAnimalInfromationViewModelList.RabbitCount</td>
+                            </tr>
+                            <tr>
+                                <th>कुकुरको संख्या</th>
+                                <td>@Model.Animal.OtherAnimalInfromationViewModelList.DogCount</td>
+                            </tr>
+                            <tr>
+                                <th>बिरालोको संख्या</th>
+                                <td>@Model.Animal.OtherAnimalInfromationViewModelList.CatCount</td>
+                            </tr>
+                            <tr>
+                                <th>अन्य</th>
+                                <td>@Model.Animal.OtherAnimalInfromationViewModelList.OtherCount</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- हुउंदे बर्षे बहुवर्षे घांसेबालीको विवरण Detail -->
+    <div class="row" id="Grass" style="display:none">
+        <div class="card-sub p-0 m-0">
+            <h6 class="text-center">हुउंदे बर्षे बहुवर्षे घांसेबालीको विवरण</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-sub p-0 m-0">
+                            <h6 class="text-center">हिउंदे</h6>
+                        </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>जात</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.HudeJaat</td>
+                            </tr>
+                            <tr>
+                                <th>क्षेत्रफल</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.HudeArea</td>
+                            </tr>
+                            <tr>
+                                <th>हरियो घांस उत्पादन (मे.टन)</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.HudeGrassProd</td>
+                            </tr>
+                            <tr>
+                                <th>बिउ उत्पादन</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.HudeSeedProd</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-sub p-0 m-0">
+                            <h6 class="text-center">बर्षे</h6>
+                        </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>जात</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BarshaJaat</td>
+                            </tr>
+                            <tr>
+                                <th>क्षेत्रफल</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BarshaArea</td>
+                            </tr>
+                            <tr>
+                                <th>हरियो घांस उत्पादन (मे.टन)</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BarshaGrassProd</td>
+                            </tr>
+                            <tr>
+                                <th>बिउ उत्पादन</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BarshaSeedProd</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-sub p-0 m-0">
+                            <h6 class="text-center">बहु बर्षे</h6>
+                        </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>जात</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BahuBarshaJaat</td>
+                            </tr>
+                            <tr>
+                                <th>क्षेत्रफल</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BahuBarshaArea</td>
+                            </tr>
+                            <tr>
+                                <th>हरियो घांस उत्पादन (मे.टन)</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BahuBarshaGrassProd</td>
+                            </tr>
+                            <tr>
+                                <th>बिउ उत्पादन</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.BahuBarshaSeedProd</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-sub p-0 m-0">
+                            <h6 class="text-center">डाले घांस</h6>
+                        </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>जात</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.DaleJaat</td>
+                            </tr>
+                            <tr>
+                                <th>क्षेत्रफल</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.DaleArea</td>
+                            </tr>
+                            <tr>
+                                <th>हरियो घांस उत्पादन (मे.टन)</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.DaleGrassProd</td>
+                            </tr>
+                            <tr>
+                                <th>बिउ उत्पादन</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.DaleSeedProd</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-sub p-0 m-0">
+                            <h6 class="text-center">नर्सरी</h6>
+                        </div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>जात</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.NurseryJaat</td>
+                            </tr>
+                            <tr>
+                                <th>क्षेत्रफल</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.NurseryArea</td>
+                            </tr>
+                            <tr>
+                                <th>हरियो घांस उत्पादन (मे.टन)</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.NurseryGrassProd</td>
+                            </tr>
+                            <tr>
+                                <th>बिउ उत्पादन</th>
+                                <td>@Model.Animal.GhaseBaliInfromationViewModelList.NurserySeedProd</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- कृषि व्यावसाय / फर्म / उधम विवरण Detail -->
+    <div class="row" id="farmDet" style="display:none">
+        <div class="card-sub p-0 m-0">
+            <h6 class="text-center">कृषि व्यावसाय / फर्म / उधम विवरण</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>व्यावसाय / फर्म / उधम दर्ता नम्बर</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.DartaNo</td>
+                            </tr>
+                            <tr>
+                                <th>दर्ता मिति</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.DartaMiti</td>
+                            </tr>
+                            <tr>
+                                <th>व्यावसाय / फर्म / उधमको नाम</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.Name</td>
+                            </tr>
+                            <tr>
+                                <th>दर्ता भएको कार्यालय</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.KaryalayeName</td>
+                            </tr>
+                            <tr>
+                                <th>प्यान / भ्याट नं.</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.PanNo</td>
+                            </tr>
+                            <tr>
+                                <th>अध्यक्ष/संचालकको नाम</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.ChairpersonName</td>
+                            </tr>
+                            <tr>
+                                <th>किसिम</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.KrishiFarmTypeId</td>
+                            </tr>
+                            <tr>
+                                <th>सदस्य संख्या</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.MemberCount</td>
+                            </tr>
+                            <tr>
+                                <th>बार्षिक रोजगारी सृजना संख्या</th>
+                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.EmploymentCount</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- कृषि / पशूपन्छी / मत्स्यपालन संग सम्बन्धित मेशिनरी प्रयोग विवरण Detail -->
+    <div class="row" id="meachineDet" style="display:none">
+        <div class="card-sub p-0 m-0">
+            <h6 class="text-center">कृषि / पशूपन्छी / मत्स्यपालन संग सम्बन्धित मेशिनरी प्रयोग विवरण</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>क्र.स.</th>
+                                        <th>मेसिनरीको नाम</th>
+                                        <th>स्वामित्व</th>
+                                        <th>क्षमता</th>
+                                        <th>संख्या</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Animal.KrishiMechinaryInfromationViewModelList != null && Model.Animal.KrishiMechinaryInfromationViewModelList.Count > 0)
+                                    {
+                                        int serialNo = 1;
+                                        foreach (var item in Model.Animal.KrishiMechinaryInfromationViewModelList)
+                                        {
+                                            <tr>
+                                                <td>@serialNo</td>
+                                                <td>@item.MechinaryName</td>
+                                                <td>@item.AnimalHusbandryId</td>
+                                                <td>@item.TotalCount</td>
+                                                <td>@item.TotalCount</td>
+                                            </tr>
+                                            serialNo++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">कुनै डाटा उपलब्ध छैन</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- कृषि / पशुपालन / मत्स्यपालनसंग सम्बन्धित संरचनाको विवरण Detail -->
+    <div class="row" id="sanrachDet" style="display:none">
+        <div class="card-sub p-0 m-0">
+            <h6 class="text-center">कृषि / पशुपालन / मत्स्यपालनसंग सम्बन्धित संरचनाको विवरण</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>क्र.स.</th>
+                                        <th>संरचनाको प्रकार</th>
+                                        <th>संख्या</th>
+                                        <th>क्षेत्रफल</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Animal.KrishiSanrachanaInfromationViewModelList != null && Model.Animal.KrishiSanrachanaInfromationViewModelList.Count > 0)
+                                    {
+                                        int serialNo = 1;
+                                        foreach (var item in Model.Animal.KrishiSanrachanaInfromationViewModelList)
+                                        {
+                                            <tr>
+                                                <td>@serialNo</td>
+                                                <td>@item.SanrachanaType</td>
+                                                <td>@item.ToalCount</td>
+                                                <td>@item.Area</td>
+                                            </tr>
+                                            serialNo++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="4" class="text-center">कुनै डाटा उपलब्ध छैन</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetAllActiveAgriculture", "FarmerView")',
+                success: function (result) {
+                    const sections = {
+                        1: '#Gaipalan',
+                        2: '#Bhaisipalan',
+                        3: '#Chauri',
+                        4: '#Goru',
+                        5: '#Beda',
+                        6: '#Bungur',
+                        7: '#Hen',
+                        8: '#otherBird',
+                        9: '#Fish',
+                        10: '#otherPashu',
+                        11: '#Grass',
+                        12: '#farmDet',
+                        13: '#meachineDet',
+                        14: '#sanrachDet'
+                    };
+
+                    result.forEach(function (item) {
+                        const sectionId = sections[item.value];
+                        if (sectionId) {
+                            $(sectionId).show();
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+}

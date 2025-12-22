@@ -159,6 +159,7 @@ namespace Agriculture.Data
         public DbSet<Gunaso>Gunasos { get; set; }
         public DbSet<Suchana> Suchanas { get; set; }
         public DbSet<Nabikaran> Nabikarans { get;set; }
+        public DbSet<ApplicationForm> ApplicationForms {  get; set; }
 
     }
 }

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ne">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>तालीमका लागि आवेदन - Conatus</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Preeti', 'Kalimati', sans-serif;
+        }
+
+        .application-card {
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            background: white;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            padding: 3.5rem 0;
+            text-align: center;
+        }
+
+        .header-section h1 {
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #1b5e20;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 4rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #1b5e20, #388e3c);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.5);
+        }
+
+        .required-star {
+            color: #e74c3c;
+        }
+
+        h4 {
+            font-weight: 700;
+            color: #1b5e20;
+        }
+    </style>
+</head>
+
+<body class="py-5">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="application-card">
+
+                    <!-- Header in Nepali -->
+                    <div class="header-section">
+                        <h1>तालीमका लागि आवेदन</h1>
+                        <p class="lead mb-0 fs-4">Conatus प्रोफेसनल तालीम कार्यक्रममा सहभागी हुनुहोस्</p>
+                    </div>
+
+                    <!-- Form Body -->
+                    <div class="card-body p-5">
+                        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+                            <!-- Replace YOUR_FORM_ID with your Formspree ID for live submission -->
+
+                            <!-- 1. व्यक्तिगत जानकारी -->
+                            <h4 class="mb-4 text-success">व्यक्तिगत जानकारी</h4>
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-6">
+                                    <label class="form-label">पुरा नाम <span class="required-star">*</span></label>
+                                    <input type="text" name="full_name" class="form-control"
+                                        placeholder="जस्तै: राम बहादुर थापा" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">इमेल ठेगाना <span class="required-star">*</span></label>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="जस्तै: rambahadur@gmail.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">मोबाइल नम्बर <span class="required-star">*</span></label>
+                                    <input type="tel" name="phone" class="form-control" placeholder="जस्तै: 98xxxxxxxx"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">जन्म मिति <span class="required-star">*</span></label>
+                                    <input type="date" name="dob" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">पुरा ठेगाना</label>
+                                    <textarea name="address" class="form-control" rows="2"
+                                        placeholder="गाउँ/शहर, वडा नं., जिल्ला"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- 2. तालीम छनोट -->
+                            <h4 class="mb-4 text-success">तालीम कार्यक्रम छनोट</h4>
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-8">
+                                    <label class="form-label">तालीम कार्यक्रम छनोट गर्नुहोस् <span
+                                            class="required-star">*</span></label>
+                                    <select name="program" class="form-select" required>
+                                        <option value="">-- छनोट गर्नुहोस् --</option>
+                                        <option>वेब डेभलपमेन्ट बुटक्याम्प</option>
+                                        <option>डाटा साइन्स र मेसिन लर्निङ</option>
+                                        <option>डिजिटल मार्केटिङ मास्टरी</option>
+                                        <option>UI/UX डिजाइन प्रोफेसनल</option>
+                                        <option>साइबर सुरक्षा आधारभूत</option>
+                                        <option>क्लाउड कम्प्युटिङ (AWS/Azure)</option>
+                                        <option>मोबाइल एप डेभलपमेन्ट</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">मनपर्ने ब्याच <span class="required-star">*</span></label>
+                                    <select name="batch" class="form-select" required>
+                                        <option>बिहान ९–१२ बजे</option>
+                                        <option>दिउँसो २–५ बजे</option>
+                                        <option>बेलुका ६–९ बजे</option>
+                                        <option>हप्तान्त ब्याच</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 3. शिक्षा र अनुभव -->
+                            <h4 class="mb-4 text-success">शिक्षा र अनुभव</h4>
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-6">
+                                    <label class="form-label">उच्चतम शैक्षिक योग्यता</label>
+                                    <input type="text" name="qualification" class="form-control"
+                                        placeholder="जस्तै: +2 पास, स्न्स">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">शिक्षण संस्थाको नाम</label>
+                                    <input type="text" name="institution" class="form-control">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">सम्बन्धित अनुभव (यदि छ भने)</label>
+                                    <textarea name="experience" class="form-control" rows="3"
+                                        placeholder="आफ्नो प्रोजेक्ट वा अनुभव छोटकरीमा लेख्नुहोस्..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">रिज्युमे/CV अपलोड गर्नुहोस् (PDF मात्र) <span
+                                            class="required-star">*</span></label>
+                                    <input type="file" name="resume" class="form-control" accept=".pdf" required>
+                                </div>
+                            </div>
+
+                            <!-- 4. थप जानकारी -->
+                            <h4 class="mb-4 text-success">थप जानकारी</h4>
+                            <div class="mb-4">
+                                <label class="form-label">हाम्रोबारे कसरी थाहा पाउनुभयो?</label>
+                                <select name="source" class="form-select">
+                                    <option>हाम्रो वेबसाइट</option>
+                                    <option>सोसल मिडिया (Facebook, Instagram)</option>
+                                    <option>साथी/परिवारबाट</option>
+                                    <option>गुगलबाट खोज्दा</option>
+                                    <option>विज्ञापनबाट</option>
+                                    <option>अन्य</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">सन्देश / कभर लेटर (ऐच्छिक)</label>
+                                <textarea name="message" class="form-control" rows="4"
+                                    placeholder="यो तालीममा किन सामेल हुन चाहनुहुन्छ? आफ्नो रुचि लेख्नुहोस्..."></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-success btn-lg text-white btn-submit shadow">
+                                    आवेदन पेश गर्नुहोस्
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+<!-- 
+
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>आवेदन सफल भयो - Conatus</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Preeti', 'Kalimati', sans-serif;
+            display: flex;
+            align-items: center;
+        }
+        .thankyou-card {
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .header i {
+            font-size: 5rem;
+            color: #c8e6c9;
+            margin-bottom: 1rem;
+        }
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        .content {
+            padding: 3rem 2.5rem;
+            text-align: center;
+            background: white;
+        }
+        .content p {
+            font-size: 1.3rem;
+            color: #1b5e20;
+            line-height: 1.8;
+        }
+        .btn-home {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+        .btn-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.4);
+        }
+        .footer-text {
+            margin-top: 3rem;
+            color: #388e3c;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="thankyou-card">
+
+        <div class="header">
+            <i class="bi bi-check-circle-fill"></i>
+            <h1>धन्यवाद!</h1>
+            <p class="lead fs-3">तपाईंको आवेदन सफलतापूर्वक प्राप्त भयो</p>
+        </div>
+
+
+        <div class="content">
+            <h2>तपाईंको तालीम आवेदन हामीकहाँ सुरक्षित प्राप्त भएको छ</h2>
+            <p>
+                नमस्ते,<br><br>
+                तपाईंले Conatus को प्रोफेसनल तालीम कार्यक्रमका लागि पेश गर्नुभएको आवेदन हामीले सफलतापूर्वक प्राप्त गरेका छौं।  
+                हाम्रो टिमले तपाईंको आवेदनको समीक्षा गरेर अबको <strong>२४–४८ घण्टाभित्र</strong> तपाईंको इमेल र फोनम्बरमा सम्पर्क गर्नेछ।
+            </p>
+            <p>
+                कृपया आफ्नो इमेल (स्प्याम/प्रमोशन फोल्डर पनि) जाँच गर्नुहोला।<br>
+                हामी तपाईंसँग छिट्टै जोडिन आतुर छौं!
+            </p>
+
+            <a href="index.html" class="btn btn-success btn-lg text-white btn-home">
+                मुख्य पेजमा फर्कनुहोस्
+            </a>
+
+            <div class="footer-text">
+                <p><strong>Conatus Nepal</strong><br>
+                फोन: +977 98xxxxxxxx | इमेल: hello@conatusnepal.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> -->

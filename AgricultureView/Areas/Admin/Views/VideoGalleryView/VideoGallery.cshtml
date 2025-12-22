@@ -33,8 +33,9 @@
                                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                         <td>@Html.DisplayFor(modelItem => item.PlaylistName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Publised)</td>
-                                        <td>
-                                            <a asp-action="CreateVideoGallery" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        <td class="text-center d-flex justify-content-around">
+                                            <a asp-action="CreateVideoGallery" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                            <a asp-action="CreateVideoGallery" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

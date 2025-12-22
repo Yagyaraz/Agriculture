@@ -30,55 +30,55 @@
 
             <div class="row">
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>आर्थिक वर्ष :</strong>
                     <div>@Model.FiscalYearId</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>शिर्षक :</strong>
                     <div>@Model.Title</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>प्रशिक्षक :</strong>
                     <div>@Model.TrainerName</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>स्थान :</strong>
                     <div>@Model.TrainingPlace</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>प्रिमियम प्रकार :</strong>
                     <div>@(Model.PremiumId == 1 ? "प्रीमियम" : "नि:शुल्क")</div>
                 </div>
 
                 @if (Model.PremiumId == 1)
                 {
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3 d-flex gap-2">
                         <strong>ट्रेनिङ शुल्क :</strong>
                         <div>@Model.Amount</div>
                     </div>
                 }
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>ट्रेनिङ प्रकार :</strong>
                     <div>@Model.TrainingTypeName</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>सुरु मिति :</strong>
                     <div>@Model.StartDate</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>अन्तिम मिति :</strong>
                     <div>@Model.EndDate</div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 d-flex gap-2">
                     <strong>आयोजक :</strong>
                     <div>@Model.Organizer</div>
                 </div>

@@ -37,21 +37,70 @@ namespace AgricultureView.Areas.Admin.Controllers
         }
         public async Task<IActionResult> GetFarmerById(int id)
         {
-            var response = await _globalVeriable.GetMethod("Admin/Farmer/GetFarmerById/" + id);
-            if (response.Status)
+            var model = new FarmerViewModel();
+
+            var farmerResponse = await _globalVeriable.GetMethod("Admin/Farmer/GetFarmerById/" + id);
+            if (farmerResponse.Status && farmerResponse.Data != null)
             {
-                var dataa = JsonConvert.DeserializeObject<FarmerViewModel>(response.Data.ToString());
-                return View(dataa);
+                model = JsonConvert.DeserializeObject<FarmerViewModel>(
+                    farmerResponse.Data.ToString()
+                );
             }
-            return View(new FarmerViewModel());
+            else
+            {
+                return View(new FarmerViewModel());
+            }
+
+            var krishiResponse = await _globalVeriable.GetMethod("Admin/Farmer/GetKrishiDetail/" + id);
+            if (krishiResponse.Status && krishiResponse.Data != null)
+            {
+                model.krishi = JsonConvert.DeserializeObject<KrishiDetailsViewModel>(
+                    krishiResponse.Data.ToString()
+                );
+            }
+
+            var familyResponse = await _globalVeriable.GetMethod("Admin/Farmer/GetFamilyDetails/" + id);
+            if (familyResponse.Status && familyResponse.Data != null)
+            {
+                model.Family = JsonConvert.DeserializeObject<FamilyDetailssViewModel>(
+                    familyResponse.Data.ToString()
+                );
+            }
+
+            var fieldResponse = await _globalVeriable.GetMethod("Admin/Farmer/GetFieldDetails/" + id);
+            if (fieldResponse.Status && fieldResponse.Data != null)
+            {
+                model.Field = JsonConvert.DeserializeObject<FieldDetailsViewModel>(
+                    fieldResponse.Data.ToString()
+                );
+            }
+
+            var cropsResponse = await _globalVeriable.GetMethod("Admin/Farmer/GetCropsInformation/" + id);
+            if (cropsResponse.Status && cropsResponse.Data != null)
+            {
+                model.CropsInformation = JsonConvert.DeserializeObject<CropsInformationViewModel>(
+                    cropsResponse.Data.ToString()
+                );
+            }
+
+            var animalResponse = await _globalVeriable.GetMethod("Admin/Farmer/GetAnimalHusbandry/" + id);
+            if (animalResponse.Status && animalResponse.Data != null)
+            {
+                model.Animal = JsonConvert.DeserializeObject<AnimalHusbandryViewModel>(
+                    animalResponse.Data.ToString()
+                );
+            }
+
+            return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(FarmerViewModel model)
         {
             var response = await _globalVeriable.PostMethod("Admin/Farmer/CreateFarmer", model);
             if (response.Status)
             {
-                return RedirectToAction("CreateKrishiDetails", new {FarmerId = response.Data});
+                return RedirectToAction("CreateKrishiDetails", new { FarmerId = response.Data });
             }
             return View(model);
         }
