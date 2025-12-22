@@ -16,19 +16,19 @@ namespace AgricultureView.Utility
         }
 
 
-        public async Task<LoginResponse> GetSessionDetails()
+        public async Task<LoginResponse?> GetSessionDetails()
         {
-            try
-            {
-                var session = _httpContextAccessor.HttpContext.Session.GetString("user");
-                var data = JsonConvert.DeserializeObject<LoginResponse>(session.ToString());
-                return data;
-            }
-            catch (Exception ex)
-            {
+            var httpContext = _httpContextAccessor.HttpContext;
+            if (httpContext == null)
                 return null;
-            }
+
+            var session = httpContext.Session.GetString("user");
+            if (string.IsNullOrEmpty(session))
+                return null;
+
+            return JsonConvert.DeserializeObject<LoginResponse>(session);
         }
+
         public async Task<SelectList> GetFarmerSelectListItems()
         {
             try
@@ -967,5 +967,164 @@ namespace AgricultureView.Utility
             return new OfficeMVCViewModel();
 
         }
+        private async Task<string> GetStringFromApi(string apiUrl)
+        {
+            try
+            {
+                var response = await _globalVeriable.GetMethod(apiUrl);
+                if (response.Status)
+                {
+                    return response.Data?.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching string from API: {ex.Message}");
+            }
+
+            return string.Empty;
+        }
+
+        #region By ID Utilities
+
+        public async Task<string> GetGenderNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetGenderName/{id}");
+
+        public async Task<string> GetEducationNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetEducationName/{id}");
+
+        public async Task<string> GetEducationLevelNameById(int? id) =>
+            await GetStringFromApi($"Admin/Utility/GetEducationLevelName/{id}");
+
+        public async Task<string> GetFarmerGroupNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetFarmerGroupName/{id}");
+
+        public async Task<string> GetFarmerCategoryNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetFarmerCategoryName/{id}");
+
+        public async Task<string> GetDistrictNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetDistrictName/{id}");
+
+        public async Task<string> GetPalikaNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetPalikaName/{id}");
+
+        public async Task<string> GetAvgMonthNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAvgMonthName/{id}");
+
+        public async Task<string> GetAgriSectorNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAgriSectorName/{id}");
+
+        public async Task<string> GetAgriServiceNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAgriServiceName/{id}");
+
+        public async Task<string> GetRelationNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetRelationName/{id}");
+
+        public async Task<string> GetWorkingAreaNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetWorkingAreaName/{id}");
+
+        public async Task<string> GetOwnershipNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetOwnershipName/{id}");
+
+        public async Task<string> GetLandTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetLandTypeName/{id}");
+
+        public async Task<string> GetIrrigationSourceNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetIrrigationSourceName/{id}");
+
+        public async Task<string> GetCropsTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetCropsTypeName/{id}");
+
+        public async Task<string> GetFruitsTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetFruitsTypeName/{id}");
+
+        public async Task<string> GetSeedsTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetSeedsTypeName/{id}");
+
+        public async Task<string> GetMushroomTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetMushroomTypeName/{id}");
+
+        public async Task<string> GetSilkTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetSilkTypeName/{id}");
+
+        public async Task<string> GetBeeTypeById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetBeeTypeName/{id}");
+
+        public async Task<string> GetProcustionMeasurementNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetProcustionMeasurementName/{id}");
+
+        public async Task<string> GetProcustionUseNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetProcustionUseName/{id}");
+
+        public async Task<string> GetKrishiFarmTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetKrishiFarmTypeName/{id}");
+
+        public async Task<string> GetPostNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetPostName/{id}");
+
+        public async Task<string> GetAgriGroupTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAgriGroupTypeName/{id}");
+
+        public async Task<string> GetProgramNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetProgramName/{id}");
+
+        public async Task<string> GetMeasuringUnitNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetMeasuringUnitName/{id}");
+
+        public async Task<string> GetCategoryNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetCategoryName/{id}");
+
+        public async Task<string> GetSubCategoryNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetSubCategoryName/{id}");
+
+        public async Task<string> GetProjectNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetProjectName/{id}");
+
+        public async Task<string> GetServiceNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetServiceName/{id}");
+
+        public async Task<string> GetAgriCalendarTypeNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAgriCalendarTypeName/{id}");
+
+        public async Task<string> GetAgriCalendarCategoryNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAgriCalendarCategoryName/{id}");
+
+        public async Task<string> GetAgriCalendarProductNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAgriCalendarProductName/{id}");
+
+        public async Task<string> GetMonthNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetMonthName/{id}");
+
+        public async Task<string> GetWeekNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetWeekName/{id}");
+
+        public async Task<string> GetEcologicalAreaNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetEcologicalAreaName/{id}");
+
+        public async Task<string> GetMarketNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetMarketName/{id}");
+
+        public async Task<string> GetAlbumNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetAlbumName/{id}");
+
+        public async Task<string> GetPlaylistNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetPlaylistName/{id}");
+
+        public async Task<string> GetStateNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetStateName/{id}");
+
+        public async Task<string> GetFiscalYearNameById(int id) =>
+            await GetStringFromApi($"Admin/Utility/GetFiscalYearName/{id}");
+
+        public async Task<string> GetBeeTypeNameById(int id)
+       =>await GetStringFromApi($"Admin/Utility/GetBeeTypeNameById/{id}");
+
+        public Task<bool> Delete(string tableName, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ApplicationFormViewModel>
+@inject IUtility _utility;
 @{
     ViewData["Title"] = "ApplicationForm";
 }
@@ -19,13 +20,10 @@
                             <thead>
                                 <tr>
                                     <th>क्र.सं.</th>
-                                    <th>शिर्षक</th>
-                                    <th>सुरु मिति</th>
-                                    <th>अन्तिम मिति</th>
-                                    <th>प्रशिक्षक</th>
-                                    <th>प्रीमियम प्रकार/ तालिम शुल्क</th>
-                                    <th>स्थान</th>
-                                    <th>प्रशिक्षण प्रकार</th>
+                                    <th>आवेदकको पुरा नाम </th>
+                                    <th>ई-मेल</th>
+                                    <th>फोन न.</th>
+                                    <th>तालिम/कार्यक्रम</th>
                                     <th>कार्य</th>
                                 </tr>
                             </thead>
@@ -37,12 +35,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.FullName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Phone)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Batch)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Program)</td>
-                                       
-                                        <td class="text-center">
-                                            <a asp-action="CreateApplicationForm" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-                                        </td>
+                                        <td>@await _utility.GetProgramNameById(Convert.ToInt32(item.Program))</td>
                                         <td class="text-center">
                                             <a asp-action="ApplicationFormDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
                                         </td>

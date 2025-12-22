@@ -24,6 +24,7 @@ namespace Agriculture.Areas.Admin.Controllers
             return Ok(new ApiResponse { Status = data.Any(), Message = data.Any() ? "Successfully Generated All List" : "Not Generated Try Again", Data = data });
 
         }
+        [AllowAnonymous]
         [HttpGet("GetApplicationFormById/{id}")]
         public async Task<IActionResult> GetApplicationFormById(int id = 0)
         {
@@ -31,6 +32,7 @@ namespace Agriculture.Areas.Admin.Controllers
             return Ok(new ApiResponse { Status = data != null, Message = data != null ? "Successfully Fetched data According to Id" : "Not Fetched Try Again", Data = data });
         }
         [HttpPost("CreateApplicationForm")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateApplicationForm([FromForm] ApplicationFormViewModel model)
         {
             var data = await _ApplicationForm.InsertUpdateApplicationForm(model);
