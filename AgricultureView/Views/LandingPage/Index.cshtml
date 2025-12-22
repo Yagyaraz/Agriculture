@@ -950,111 +950,113 @@
         }
     </div>
 }
-
-    <!-- Topbar -->
-    <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
-        <div class="container px-0">
-            <div class="row gx-0 align-items-center" style="height:45px;">
-                <div class="col-lg-4 text-center text-lg-start">
-                    <div class="d-flex flex-wrap">
-                        @* <a href="#" class="text-muted me-4">
-                            <i class="fas fa-map-marker-alt text-primary me-2"></i>Find
-                            a Farmer
-                        </a> *@
-                        <a href="tel:+01234567890" class="text-muted me-4">
-                            <i class="fas fa-phone-alt text-primary me-2"></i>@org.PhoneNo
-                        </a>
-                        <a href="mailto:info@agriconnect.com" class="text-muted me-0">
-                            <i class="fas fa-envelope text-primary me-2"></i>@org.Email
-                        </a>
+    
+    <div class="sticky-top">
+        <!-- Topbar -->
+        <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
+            <div class="container px-0">
+                <div class="row gx-0 align-items-center" style="height:45px;">
+                    <div class="col-lg-4 text-center text-lg-start">
+                        <div class="d-flex flex-wrap">
+                            @* <a href="#" class="text-muted me-4">
+                                <i class="fas fa-map-marker-alt text-primary me-2"></i>Find
+                                a Farmer
+                            </a> *@
+                            <a href="tel:+01234567890" class="text-muted me-4">
+                                <i class="fas fa-phone-alt text-primary me-2"></i>@org.PhoneNo
+                            </a>
+                            <a href="mailto:info@agriconnect.com" class="text-muted me-0">
+                                <i class="fas fa-envelope text-primary me-2"></i>@org.Email
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-center">
-                    <div class="d-inline-flex flex-wrap align-items-center gap-3 gap-md-4 small">
-                        <h1 class="m-0 fs-4 fs-lg-3 lh-1">
-                            सिरीजङ्घा गाउँपालिका
-                        </h1>
+                    <div class="col-lg-4 text-center text-lg-center">
+                        <div class="d-inline-flex flex-wrap align-items-center gap-3 gap-md-4 small">
+                            <h1 class="m-0 fs-4 fs-lg-3 lh-1">
+                                सिरीजङ्घा गाउँपालिका
+                            </h1>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-end">
-                    <div class="d-flex justify-content-end">
-                        <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
-                            <i class="fab fa-facebook-f text-white"></i>
-                        </a>
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <div class="d-flex justify-content-end">
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                                <i class="fab fa-facebook-f text-white"></i>
+                            </a>
 
-                        @* <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
-                            <i class="fab fa-instagram text-white"></i>
-                        </a> *@
+                            @* <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-2">
+                                <i class="fab fa-instagram text-white"></i>
+                            </a> *@
 
-                        <a href="#" class="btn btn-primary btn-sm-square rounded-circle" target="_blank" aria-label="YouTube">
-                            <i class="fab fa-youtube text-white"></i>
-                        </a>
+                            <a href="#" class="btn btn-primary btn-sm-square rounded-circle" target="_blank" aria-label="YouTube">
+                                <i class="fab fa-youtube text-white"></i>
+                            </a>
 
-                        <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
-                           class="btn btn-outline-success rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center">
-                            <i class="fas fa-user me-1"></i> लगइन
-                       </a>
+                            <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
+                               class="btn btn-outline-success rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center">
+                                <i class="fas fa-user me-1"></i> लगइन
+                           </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Navbar & Hero -->
-    <div class="container-fluid px-0 sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-4 ">
-            <a href="#" class="navbar-brand p-0 d-flex">
-                <img src="~/assets/img/ag-logo.webp" alt="logo" width="50" height="50">
-                <h1 class="text-primary m-0">@org.Name</h1>
-                <!-- <h1 class="text-primary m-0"><i class="fas fa-seedling me-2"></i>AgriConnect</h1> -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="#home" class="nav-item nav-link active">गृहपिष्ट</a>
-                    <a href="#about" class="nav-item nav-link">हाम्रो बारे</a>
-                    <a href="#services" class="nav-item nav-link">सेवाहरू</a>
-                    <a href="#projects" class="nav-item nav-link">परियोजनाहरू</a>
-                    <a href="#gallery" class="nav-item nav-link">ग्यालरी</a>
+        <!-- Navbar & Hero -->
+        <div class="container-fluid px-0 ">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-4 ">
+                <a href="#" class="navbar-brand p-0 d-flex">
+                    <img src="~/assets/img/ag-logo.webp" alt="logo" width="50" height="50">
+                    <h1 class="text-primary m-0">@org.Name</h1>
+                    <!-- <h1 class="text-primary m-0"><i class="fas fa-seedling me-2"></i>AgriConnect</h1> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="#home" class="nav-item nav-link active">गृहपिष्ट</a>
+                        <a href="#about" class="nav-item nav-link">हाम्रो बारे</a>
+                        <a href="#services" class="nav-item nav-link">सेवाहरू</a>
+                        <a href="#projects" class="nav-item nav-link">परियोजनाहरू</a>
+                        <a href="#gallery" class="nav-item nav-link">ग्यालरी</a>
 
-                    <!-- Dropdown -->
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle fw-medium" data-bs-toggle="dropdown">थप</a>
-                            <div class="dropdown-menu border-0 shadow rounded-3 mt-2">
-                                <a href="#blog" class="dropdown-item py-2">ब्लग</a>
-                                <a href="#team" class="dropdown-item py-2">टिम</a>
-                                <a href="#testimonial" class="dropdown-item py-2">प्रशंसापत्र</a>
-                                <a href="#faq" class="dropdown-item py-2">सोधिने प्रश्न</a>
+                        <!-- Dropdown -->
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle fw-medium" data-bs-toggle="dropdown">थप</a>
+                                <div class="dropdown-menu border-0 shadow rounded-3 mt-2">
+                                    <a href="#blog" class="dropdown-item py-2">ब्लग</a>
+                                    <a href="#team" class="dropdown-item py-2">टिम</a>
+                                    <a href="#testimonial" class="dropdown-item py-2">प्रशंसापत्र</a>
+                                    <a href="#faq" class="dropdown-item py-2">सोधिने प्रश्न</a>
+                                </div>
                             </div>
-                        </div>
 
-                    <a href="#contact" class="nav-item nav-link">सम्पर्क</a>
+                        <a href="#contact" class="nav-item nav-link">सम्पर्क</a>
+                    </div>
+                    @* <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a> *@
+
+                    <!-- Action Buttons - Visible on Mobile & Tablet too -->
+                    <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-3 align-items-center">
+                        <!-- Login Button (Visible on small screens too) -->
+                        <a asp-area="" asp-controller="Account" asp-action="Index"
+                           class="btn btn-outline-success rounded-pill px-4 order-2 order-lg-1 d-lg-none">
+                            <i class="fas fa-sign-in-alt me-1 d-lg-none"></i>
+                            <span class="d-none d-lg-inline">लगइन</span>
+                            <span class="d-inline d-lg-none">लगइन</span>
+                        </a>
+
+                        <!-- appllycation  Button -->
+                        <a href="#appllycation" class="btn btn-primary-secandory rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
+                            अनलाईन आवेदन
+                        </a>
+                        <!-- Complaint Button -->
+                        <a href="#complaint" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
+                            <i class="fas fa-headset me-1"></i> गुनासो गर्नुहोस्
+                        </a>
+                    </div>
                 </div>
-                @* <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a> *@
-
-                <!-- Action Buttons - Visible on Mobile & Tablet too -->
-                <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-3 align-items-center">
-                    <!-- Login Button (Visible on small screens too) -->
-                    <a asp-area="" asp-controller="Account" asp-action="Index"
-                       class="btn btn-outline-success rounded-pill px-4 order-2 order-lg-1 d-lg-none">
-                        <i class="fas fa-sign-in-alt me-1 d-lg-none"></i>
-                        <span class="d-none d-lg-inline">लगइन</span>
-                        <span class="d-inline d-lg-none">लगइन</span>
-                    </a>
-
-                    <!-- appllycation  Button -->
-                    <a href="#appllycation" class="btn btn-primary-secandory rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
-                        अनलाईन आवेदन
-                    </a>
-                    <!-- Complaint Button -->
-                    <a href="#complaint" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
-                        <i class="fas fa-headset me-1"></i> गुनासो गर्नुहोस्
-                    </a>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </div>
 
     <div class="bg-success text-white text-center py-1 fw-bold position-relative overflow-hidden"

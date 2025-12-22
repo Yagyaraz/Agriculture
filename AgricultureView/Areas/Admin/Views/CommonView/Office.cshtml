@@ -36,7 +36,11 @@
                                         <td>@Html.DisplayFor(modelItem => item.Address)</td>
                                         <td>@Html.DisplayFor(modelItem => item.PhoneNo)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Url)</td>
-                                        <td> <a asp-action="OfficeCreate" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a></td>
+                                        <td class="d-flex justify-content-around"> 
+                                            <a asp-action="OfficeCreate" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                           
+                                            <a asp-action="OfficeCreate" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
