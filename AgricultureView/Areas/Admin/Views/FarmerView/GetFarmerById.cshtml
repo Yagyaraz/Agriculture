@@ -678,7 +678,7 @@
                     @foreach (var item in Model.CropsInformation.FruitCropsViewModelList)
                     {
                         <tr>
-                            <td>@item.CropsInformationId</td>
+                            <td>@await _utility.GetCropsTypeNameById(item.CropsInformationId)</td>
                             <td>@item.TotalPlant</td>
                             <td>@item.Area</td>
                             <td>@item.Quantity</td>
@@ -708,7 +708,7 @@
                     @foreach (var item in Model.CropsInformation.SeedCropsViewModelList)
                     {
                         <tr>
-                            <td>@item.CropsInformationId</td>
+                            <td>@await _utility.GetCropsTypeNameById(item.CropsInformationId)</td>
                             <td>@item.SeedsTypeId</td>
                             <td>@item.Area</td>
                             <td>@item.Quantity</td>
@@ -738,7 +738,7 @@
                     @foreach (var item in Model.CropsInformation.MushroomCrposViewModelList)
                     {
                         <tr>
-                            <td>@item.CropsInformationId</td>
+                            <td>@await _utility.GetCropsTypeNameById(item.CropsInformationId)</td>
                             <td>@item.TotalCount</td>
                             <td>@item.Area</td>
                             <td>@item.Quantity</td>
@@ -768,7 +768,7 @@
                     {
                         <tr>
                             <td>@item.Area</td>
-                            <td>@item.SilkTypeId</td>
+                            <td>@await _utility.GetSilkTypeNameById(item.SilkTypeId)</td>
                             <td>@item.TotalCount</td>
                         </tr>
                     }
@@ -795,7 +795,7 @@
                     @foreach (var item in Model.CropsInformation.BeeCropsViewModelList)
                     {
                         <tr>
-                            <td>@item.BeeTypeId</td>
+                            <td>@await _utility.GetBeeTypeNameById(item.BeeTypeId)</td>
                             <td>@item.TotalCount</td>
                             <td>@item.Quantity</td>
                         </tr>
@@ -1503,7 +1503,7 @@
                             </tr>
                             <tr>
                                 <th>उत्पादन प्रयोजन</th>
-                                <td>@Model.Animal.FishInfromationViewModelList.ProcustionUseId</td>
+                                <td>@await _utility.GetProcustionUseNameById((int)Model.Animal.FishInfromationViewModelList.ProcustionUseId)</td>
                             </tr>
                         </table>
                     </div>
