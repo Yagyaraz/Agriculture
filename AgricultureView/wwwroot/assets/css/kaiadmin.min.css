@@ -97,7 +97,7 @@ danger-color : #f3545d
     font-family: "Kalimati regular";
 }
 
-.form-control {
+input, .form-control {
     font-family: 'Public Sans', sans-serif;
 }
 
