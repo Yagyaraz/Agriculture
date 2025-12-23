@@ -40,11 +40,8 @@
     <!-- Custom Styles -->
     <style>
         @@font-face {
-            font-family: 'Kalimati Regular';
-            src: 
-                url('/fonts/Kalimati.woff2') format('woff2'), 
-                url('/fonts/Kalimati.woff') format('woff'), 
-                url('/fonts/Kalimati.ttf') format('truetype');
+            font-family: 'Kalimati';
+            src: url('/fonts/Kalimati.woff2') format('woff2');
             font-display: swap;
         }
 
@@ -318,7 +315,7 @@
 
         /* Blog Section Styling */
         #blog {
-            background: linear-gradient(rgb(168 227 178)), url('/images/agriculture-bg.jpg') no-repeat center center;
+            /* background: linear-gradient(rgb(168 227 178)), url('/images/agriculture-bg.jpg') no-repeat center center; */
             background-blend-mode: overlay;
             min-height: 100vh;
             position: relative;
@@ -805,7 +802,8 @@
                     color: #fff;
                 }
 
-        @@keyframes flash {
+
+        /* @@keyframes flash {
             0%, 100% {
                 background-color: #dc3545;
             }
@@ -813,7 +811,7 @@
             50% {
                 background-color: #c82333;
             }
-        }
+        } */
 
         /* ========== Overlay ========== */
         #overlay {
@@ -954,7 +952,7 @@
         }
     </div>
 }
-    
+    <div id="main-content">
     <div class="sticky-top">
         <!-- Topbar -->
         <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
@@ -1025,7 +1023,7 @@
                         <a href="#gallery" class="nav-item nav-link">ग्यालरी</a>
 
                         <!-- Dropdown -->
-                            <div class="nav-item dropdown">
+                            @* <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle fw-medium" data-bs-toggle="dropdown">थप</a>
                                 <div class="dropdown-menu border-0 shadow rounded-3 mt-2">
                                     <a href="#blog" class="dropdown-item py-2">ब्लग</a>
@@ -1033,9 +1031,9 @@
                                     <a href="#testimonial" class="dropdown-item py-2">प्रशंसापत्र</a>
                                     <a href="#faq" class="dropdown-item py-2">सोधिने प्रश्न</a>
                                 </div>
-                            </div>
+                            </div> *@
 
-                        <a href="#contact" class="nav-item nav-link">सम्पर्क</a>
+                        @* <a href="#contact" class="nav-item nav-link">सम्पर्क</a> *@
                     </div>
                     @* <a href="#contact" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2">सुरु गर्नुहोस्</a> *@
 
@@ -1166,68 +1164,109 @@
         </div>
     </section>
 
-    <!-- Blog -->
-    <section id="blog" class="container-fluid py-5 bg-success-subtle">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                <h4 class="text-primary">नवीनतम जानकारी</h4>
-                <h1 id="blog-heading">कृषि कार्यक्रम</h1>
-                <p class="text-muted">हाम्रा नवीनतम कृषि कार्यक्रमहरू बारे जानकारी प्राप्त गर्नुहोस् जसले किसानहरूलाई सशक्त बनाउँछ।</p>
-            </div>
-            @if (Model.Programs != null && Model.Programs.Any())
-            {
-                <div class="row g-4">
-                    @foreach (var program in Model.Programs)
-                    {
-                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Programs.IndexOf(program))" data-aos-easing="ease-in-out">
-                            <div class="blog-item rounded shadow overflow-hidden bg-white">
-                                <div class="p-4">
-                                    <span class="text-primary small">@program.FiscalYearName</span>
-                                    <h5 class="mt-2">@program.Title</h5>
-                                    @* <a href="#" class="btn btn-primary rounded-pill py-2 px-4 mt-3" aria-label="Read more about @program.Title">थप पढ्नुहोस्</a> *@
+        <!-- Blog Section -->
+        <section id="blog" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <h4 class="text-primary">नवीनतम जानकारी</h4>
+                    <h1 id="blog-heading">कृषि कार्यक्रम</h1>
+                    <p class="text-muted">हाम्रा नवीनतम कृषि कार्यक्रमहरू बारे जानकारी प्राप्त गर्नुहोस् जसले किसानहरूलाई सशक्त बनाउँछ।</p>
+                </div>
+
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-4">
+                    <div class="text-center col-3">
+                        <input type="text" class="program-search form-control w-100" placeholder="कार्यक्रम खोज्नुहोस्..." />
+                    </div>
+                    <div class="text-center col-4">
+                        <select class="program-dropdown form-select w-100">
+                            <option value="">सबै कार्यक्रम देखाउनुहोस्</option>
+                            @if (Model.Programs != null && Model.Programs.Any())
+                            {
+                                @foreach (var program in Model.Programs)
+                                {
+                                    <option value="@program.Title.ToLower()">@program.Title</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Program Items -->
+                @if (Model.Programs != null && Model.Programs.Any())
+                {
+                    <div class="row g-4 blog-items">
+                        @foreach (var program in Model.Programs)
+                        {
+                            <div class="col-md-6 col-lg-4 program-item" data-title="@program.Title.ToLower()" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Programs.IndexOf(program))" data-aos-easing="ease-in-out">
+                                <div class="blog-item rounded shadow overflow-hidden bg-white">
+                                    <div class="p-4">
+                                        <span class="text-primary small">@program.FiscalYearName</span>
+                                        <h5 class="mt-2">@program.Title</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                </div>
-            }
-            else
-            {
-                <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि कार्यक्रम उपलब्ध छैन</p>
-            }
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="container-fluid py-5 bg-success-subtle">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                <h4 class="text-primary">हाम्रा सेवाहरू</h4>
-                <h1 id="services-heading">कृषि प्रवर्द्धनका प्रमुख विशेषताहरू</h1>
-                <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि कार्यक्रम उपलब्ध छैन</p>
+                }
             </div>
-            <div class="row g-4 justify-content-center">
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <h4 class="text-primary">हाम्रा सेवाहरू</h4>
+                    <h1 id="services-heading">कृषि प्रवर्द्धनका प्रमुख विशेषताहरू</h1>
+                    <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
+                </div>
+
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-4">
+                    <div class="text-center col-3">
+                        <input type="text" class="service-search form-control w-100" placeholder="सेवा खोज्नुहोस्..." />
+                    </div>
+                    <div class="text-center col-4">
+                        <select class="service-dropdown form-select w-100">
+                            <option value="">सबै सेवाहरू देखाउनुहोस्</option>
+                            @if (Model.Services != null && Model.Services.Any())
+                            {
+                                @foreach (var service in Model.Services)
+                                {
+                                    <option value="@service.ServiceName.ToLower()">@service.ServiceName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Service Items -->
                 @if (Model.Services != null && Model.Services.Any())
                 {
-                    @foreach (var service in Model.Services)
-                    {
-                        <div class="col-md-6 col-lg-4 col-xl-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Services.IndexOf(service))" data-aos-easing="ease-in-out">
-                            <div class="service-item bg-white rounded shadow p-4 text-center h-100">
-                                <div class="service-icon mb-3">
-                                    <i class="fas fa-seedling fa-3x text-primary"></i>
+                    <div class="row g-4 justify-content-center service-items">
+                        @foreach (var service in Model.Services)
+                        {
+                            <div class="col-md-6 col-lg-4 col-xl-3 service-item-card" data-title="@service.ServiceName.ToLower()" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Services.IndexOf(service))" data-aos-easing="ease-in-out">
+                                <div class="service-item bg-white rounded shadow p-4 text-center h-100">
+                                    <div class="service-icon mb-3">
+                                        <i class="fas fa-seedling fa-3x text-primary"></i>
+                                    </div>
+                                    <h5>@service.ServiceName</h5>
                                 </div>
-                                <h5>@service.ServiceName</h5>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 }
                 else
                 {
                     <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि सेवा उपलब्ध छैन</p>
                 }
             </div>
-        </div>
-    </section>
+        </section>
 
     <section id="traning" class="container-fluid py-5">
         <div class="container">
@@ -1321,49 +1360,68 @@
     </section>
 
     <!-- market -->
-    <section id="market" class="container-fluid py-5 bg-success-subtle">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                <h4 class="text-primary">बजार मूल्य</h4>
-                <h1 id="market-heading">हाम्रा बजारहरू</h1>
-                <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
-            </div>
-            @if (Model.Markets != null && Model.Markets.Any())
-            {
-                <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-in-out">
-                    <table class="table table-bordered table-striped table-hover" role="grid" aria-describedby="market-heading">
-                        <thead class="table-success">
-                            <tr>
-                                <th scope="col" class="text-center">क्र.स.</th>
-                                <th scope="col" class="text-center">बजारको नाम</th>
-                                <th scope="col" class="text-center">सामानको नाम</th>
-                                <th scope="col" class="text-center">सामानको मूल्य</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int i = 0; i < Model.Markets.Count; i++)
+        <section id="market" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <h4 class="text-primary">बजार मूल्य</h4>
+                    <h1 id="market-heading">हाम्रा बजारहरू</h1>
+                    <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
+                </div>
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-4">
+                    <div class="text-center col-3">
+                        <input type="text" class="market-search form-control w-100" placeholder="सेवा खोज्नुहोस्..." />
+                    </div>
+                    <div class="text-center col-4">
+                        <select class="market-dropdown form-select w-100">
+                            <option value="">सबै बजार मूल्य देखाउनुहोस्</option>
+                            @if (Model.Markets != null && Model.Markets.Any())
                             {
-                                var item = Model.Markets[i];
-                                <tr data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(300 + (100 * i))" data-aos-easing="ease-in-out" class="market-row">
-                                    <td class="text-center">@(i + 1)</td>
-                                    <td class="text-center">@item.Name</td>
-                                    @*--------------------------------------------------------------------------------------------
+                                @foreach (var markets in Model.Markets)
+                                {
+                                    <option value="@markets.Name.ToLower()">@markets.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                @if (Model.Markets != null && Model.Markets.Any())
+                {
+                    <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-in-out">
+                        <table class="table table-bordered table-striped table-hover" role="grid" aria-describedby="market-heading">
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col" class="text-center">क्र.स.</th>
+                                    <th scope="col" class="text-center">बजारको नाम</th>
+                                    <th scope="col" class="text-center">सामानको नाम</th>
+                                    <th scope="col" class="text-center">सामानको मूल्य</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Markets.Count; i++)
+                                {
+                                    var item = Model.Markets[i];
+                                    <tr data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(300 + (100 * i))" data-aos-easing="ease-in-out" class="market-row">
+                                        <td class="text-center">@(i + 1)</td>
+                                        <td class="text-center">@item.Name</td>
+                                        @*--------------------------------------------------------------------------------------------
                                     backend data input for this field 
         --------------------------------------------------------------------------------------------*@
-                                    <td class="text-center">आलु</td>
-                                    <td class="text-center">८०</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            }
-            else
-            {
-                <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">No markets found.</p>
-            }
-        </div>
-    </section>
+                                        <td class="text-center">आलु</td>
+                                        <td class="text-center">८०</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">No markets found.</p>
+                }
+            </div>
+        </section>
 
     <!-- Projects ( Weather) -->
     <section id="projects" class="project-item container-fluid py-5">
@@ -1401,53 +1459,53 @@
 
 
     <!-- Gallery Section -->
-    <section id="gallery" class="container-fluid py-5 bg-success-subtle">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
-                <h1 class="text-primary">हाम्रो ग्यालरी</h1>
-                <h1> </h1>
-            </div>
-            <div class="row g-4">
-                @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
-                {
-                    @foreach (var item in Model.ImageGalleries)
+        <section id="gallery" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="text-primary">हाम्रो ग्यालरी</h1>
+                    <h1> </h1>
+                </div>
+                <div class="row g-4">
+                    @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
                     {
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
-                               onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
-                                <img src="@(_global.BaseUrl() + item.FilePath)"
-                                     alt="@item.Title">
-                                <div class="card-overlay">
-                                    <div class="card-title">@item.Title</div>
-                                    @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
-                                </div>
-                            </a>
-                        </div>
+                        @foreach (var item in Model.ImageGalleries)
+                        {
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
+                                   onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
+                                    <img src="@(_global.BaseUrl() + item.FilePath)"
+                                         alt="@item.Title">
+                                    <div class="card-overlay">
+                                        <div class="card-title">@item.Title</div>
+                                        @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
+                                    </div>
+                                </a>
+                            </div>
+                        }
                     }
-                }
-                else
-                {
-                    <p data-aos="fade-in" data-aos-duration="800">No images found.</p>
-                }
+                    else
+                    {
+                        <p data-aos="fade-in" data-aos-duration="800">No images found.</p>
+                    }
+                </div>
             </div>
-        </div>
-        <!-- Modal Lightbox with Close Button -->
-        <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-                <div class="modal-content bg-transparent border-0 shadow-none">
-                    <div class="modal-body text-center position-relative p-4">
+            <!-- Modal Lightbox with Close Button -->
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+                    <div class="modal-content bg-transparent border-0 shadow-none">
+                        <div class="modal-body text-center position-relative p-4">
 
-                        <!-- Close Button (X) -->
-                        <div class="close-btn" data-bs-dismiss="modal">×</div>
-                        <div class="row justify-content-center">
-                            <img id="modalImage" src="" alt="Full view" class="img-fluid">
-                            <h4 id="modalCaption" class="mt-4" style="width: 50%;"></h4>
+                            <!-- Close Button (X) -->
+                            <div class="close-btn" data-bs-dismiss="modal">×</div>
+                            <div class="row justify-content-center">
+                                <img id="modalImage" src="" alt="Full view" class="img-fluid">
+                                <h4 id="modalCaption" class="mt-4" style="width: 50%;"></h4>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
     <!-- video Section -->
@@ -1543,6 +1601,7 @@
             <p class="text-center text-light mb-0">&copy; 2025 AgriConnect. All Rights Reserved.</p>
         </div>
     </footer>
+    </div>
 
     <!-- Back to Top -->
     <a href="#"
@@ -1597,22 +1656,31 @@
         document.addEventListener("DOMContentLoaded", function () {
           const toastEl = document.getElementById("welcomeToast");
           const overlay = document.getElementById("overlay");
-          // const mainContent = document.getElementById("main-content");
+          const mainContent = document.getElementById("main-content");
 
-          // Show the centered toast
+          
+          if (!toastEl) {
+            console.error("welcomeToast element not found");
+            return;
+          }
+
           const toast = new bootstrap.Toast(toastEl, {
             autohide: false
           });
           toast.show();
 
-          // When user clicks the close button (×)
           toastEl.addEventListener("hidden.bs.toast", function () {
-            // Remove overlay + show main content with fade-in
-            overlay.remove();
-            mainContent.classList.add("show");
+            if (overlay) {
+              overlay.remove();
+            }
+
+            if (mainContent) {
+              mainContent.classList.add("show");
+            }
           });
         });
     </script>
+
 
     <script>
          // Initialize AOS
@@ -1775,7 +1843,9 @@
                                 category: "@Html.Raw(item.Title)"
                             },</text>
             }
+            
         ];
+        console.log("video :", videos)
     </script>
 
     <script>
@@ -1927,6 +1997,83 @@
                     new bootstrap.Toast(toastEl, { autohide: false }).show();
                 }, index * 1500);
             });
+        });
+    </script>
+
+
+    <!-- Filtering Script -->
+    <script>
+        $(document).ready(function(){
+
+            // Blog programs search
+            $(".program-search").on("keyup", function(){
+                var search = $(this).val().toLowerCase();
+                $(".program-item").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(title.includes(search));
+                });
+            });
+
+            // Blog programs dropdown
+            $(".program-dropdown").on("change", function(){
+                var selected = $(this).val();
+                $(".program-item").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(selected === "" || title === selected);
+                });
+            });
+
+            // Services search
+            $(".service-search").on("keyup", function(){
+                var search = $(this).val().toLowerCase();
+                $(".service-item-card").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(title.includes(search));
+                });
+            });
+
+            // Services dropdown
+            $(".service-dropdown").on("change", function(){
+                var selected = $(this).val();
+                $(".service-item-card").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(selected === "" || title === selected);
+                });
+            });
+
+                 // Search filter for table
+        $(".market-search").on("keyup", function(){
+            var search = $(this).val().toLowerCase();
+
+            $(".market-row").each(function(){
+                var name = $(this).find("td:eq(1)").text().toLowerCase(); // Market Name column
+                $(this).toggle(name.includes(search));
+            });
+        });
+
+        // Dropdown filter for table
+        $(".market-dropdown").on("change", function(){
+            var selected = $(this).val().toLowerCase();
+
+            $(".market-row").each(function(){
+                var name = $(this).find("td:eq(1)").text().toLowerCase(); // Market Name column
+                $(this).toggle(selected === "" || name === selected);
+            });
+        });
+
+        // Optional: Combine search + dropdown simultaneously
+        $(".market-search, .market-dropdown").on("input change", function(){
+            var search = $(".market-search").val().toLowerCase();
+            var selected = $(".market-dropdown").val().toLowerCase();
+
+            $(".market-row").each(function(){
+                var name = $(this).find("td:eq(1)").text().toLowerCase();
+                var matchSearch = name.includes(search);
+                var matchDropdown = (selected === "" || name === selected);
+                $(this).toggle(matchSearch && matchDropdown);
+            });
+        });
+
         });
     </script>
 
