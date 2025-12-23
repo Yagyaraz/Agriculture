@@ -1503,7 +1503,16 @@
                             </tr>
                             <tr>
                                 <th>उत्पादन प्रयोजन</th>
-                                <td>@await _utility.GetProcustionUseNameById((int)Model.Animal.FishInfromationViewModelList.ProcustionUseId)</td>
+                            <td>
+                                @if (Model.Animal?.FishInfromationViewModelList?.ProcustionUseId != null)
+                                {
+                                    @await _utility.GetProcustionUseNameById(Model.Animal.FishInfromationViewModelList.ProcustionUseId.Value)
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                            </td>
                             </tr>
                         </table>
                     </div>
