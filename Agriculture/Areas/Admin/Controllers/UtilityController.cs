@@ -352,7 +352,7 @@ namespace Agriculture.Areas.Admin.Controllers
         [HttpGet("GetSeedsTypeName/{id}")] public async Task<IActionResult> GetSeedsTypeName(int id) => BuildResponse(await _Utility.GetSeedsTypeNameById(id), "Seeds Type");
         [HttpGet("GetMushroomTypeName/{id}")] public async Task<IActionResult> GetMushroomTypeName(int id) => BuildResponse(await _Utility.GetMushroomTypeNameById(id), "Mushroom Type");
         [HttpGet("GetSilkTypeName/{id}")] public async Task<IActionResult> GetSilkTypeName(int id) => BuildResponse(await _Utility.GetSilkTypeNameById(id), "Silk Type");
-        [HttpGet("GetBeeTypeName/{id}")] public async Task<IActionResult> GetBeeTypeName(int id) => BuildResponse(await _Utility.GetBeeTypeNameById(id), "Bee Type");
+        [HttpGet("GetBeeTypeNameById/{id}")] public async Task<IActionResult> GetBeeTypeName(int id) => BuildResponse(await _Utility.GetBeeTypeNameById(id), "Bee Type");
         [HttpGet("GetProcustionMeasurementName/{id}")] public async Task<IActionResult> GetProcustionMeasurementName(int id) => BuildResponse(await _Utility.GetProcustionMeasurementNameById(id), "Procustion Measurement");
         [HttpGet("GetProcustionUseName/{id}")] public async Task<IActionResult> GetProcustionUseName(int id) => BuildResponse(await _Utility.GetProcustionUseNameById(id), "Procustion Use");
         [HttpGet("GetKrishiFarmTypeName/{id}")] public async Task<IActionResult> GetKrishiFarmTypeName(int id) => BuildResponse(await _Utility.GetKrishiFarmTypeNameById(id), "Krishi Farm Type");
