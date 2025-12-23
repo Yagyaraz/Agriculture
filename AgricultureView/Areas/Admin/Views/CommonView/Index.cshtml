@@ -48,8 +48,9 @@
                                         <td>@Html.DisplayFor(modelItem => item.DateFrom)</td>
                                         <td>@Html.DisplayFor(modelItem => item.DateTo)</td>
                                         <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
-                                        <td>
-                                            <a asp-action="Create" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        <td class="d-flex justify-content-between">
+                                            <a asp-action="Create" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                            <a asp-action="Create" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

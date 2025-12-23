@@ -34,8 +34,11 @@
                                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                         <td>@Html.DisplayFor(modelItem => item.NameEng)</td>
                                         <td>@Html.DisplayFor(modelItem => item.AgriCalendarCategory)</td>
-                                        <td class="text-center"> <a asp-action="AgriCalendarProductCreate" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"> <a asp-action="AgriCalendarProductDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a></td>
+                                        <td class="text-center d-flex justify-content-evenly"> 
+                                            <a asp-action="AgriCalendarProductCreate" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                        <a asp-action="AgriCalendarProductDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
+                                        <a asp-action="AgriCalendarProductDetail" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+                                    </td>
                                     </tr>
                                 }
                             </tbody>
