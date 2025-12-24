@@ -40,6 +40,7 @@ namespace Agriculture.Data
         public Farmer Farmer { get; set; }
         [ForeignKey(nameof(AvgMonthForAgriId))]
         public AvgMonth AvgMonth { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
     public class AgricultureDetail
     {
@@ -77,7 +78,7 @@ namespace Agriculture.Data
         public int AgriSectorId { get; set; }
         public string Name { get; set; }
         public string NameEng { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }

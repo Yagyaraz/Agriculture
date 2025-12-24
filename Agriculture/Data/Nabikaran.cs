@@ -9,7 +9,8 @@ namespace Agriculture.Data
         public string ExpireDate {  get; set; }
         public string ReneweFee { get; set; }
         public string Fine { get; set; }
-        public string RasidNumber {  get; set; }
+        public string RasidNumber { get; set; }
+        public bool IsDeleted { get; set; } = false;
         public int FirmId {  get; set; }
         [ForeignKey(nameof(FirmId))]
         public AgricultureFarmerGroup FarmerGroup { get; set; }

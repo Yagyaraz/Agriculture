@@ -27,7 +27,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<FertilizerStoreViewModel>> GetAllFertilizerStore()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.FertilizerStore.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.FertilizerStore.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new FertilizerStoreViewModel()
                 {
                     Id = x.Id,
@@ -269,7 +270,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<SeedStoreViewModel>> GetAllSeedStore()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.SeedStore.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.SeedStore.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new SeedStoreViewModel()
                 {
                     Id = x.Id,
@@ -509,7 +511,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<InsuranceCenterViewModel>> GetAllInsuranceCenter()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.InsuranceCenter.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.InsuranceCenter.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new InsuranceCenterViewModel()
                 {
                     Id = x.Id,

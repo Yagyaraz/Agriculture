@@ -9,7 +9,7 @@ namespace Agriculture.Data
         public int Id { get; set; }
         public int FarmerId { get; set; }
         public int FiscalYearId { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }

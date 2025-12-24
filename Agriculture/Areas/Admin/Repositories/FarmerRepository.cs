@@ -29,7 +29,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<FarmerViewModel>> GetAllFarmer()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.Farmer.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.Farmer.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new FarmerViewModel()
                 {
                     Id = x.Id,

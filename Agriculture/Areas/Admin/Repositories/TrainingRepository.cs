@@ -24,7 +24,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<TrainingViewModel>> GetAllTraining()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.Training.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.Training.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new TrainingViewModel()
                 {
                     Id = x.Id,

@@ -984,147 +984,191 @@ namespace AgricultureView.Utility
 
             return string.Empty;
         }
-
         #region By ID Utilities
 
-        public async Task<string> GetGenderNameById(int id) =>
+        public async Task<string> GetGenderNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetGenderName/{id}");
 
-        public async Task<string> GetEducationNameById(int id) =>
+        public async Task<string> GetEducationNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetEducationName/{id}");
 
         public async Task<string> GetEducationLevelNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetEducationLevelName/{id}");
 
-        public async Task<string> GetFarmerGroupNameById(int id) =>
+        public async Task<string> GetFarmerGroupNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetFarmerGroupName/{id}");
 
-        public async Task<string> GetFarmerCategoryNameById(int id) =>
+        public async Task<string> GetFarmerCategoryNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetFarmerCategoryName/{id}");
 
-        public async Task<string> GetDistrictNameById(int id) =>
+        public async Task<string> GetDistrictNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetDistrictName/{id}");
 
-        public async Task<string> GetPalikaNameById(int id) =>
+        public async Task<string> GetPalikaNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetPalikaName/{id}");
 
-        public async Task<string> GetAvgMonthNameById(int id) =>
+        public async Task<string> GetAvgMonthNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAvgMonthName/{id}");
 
-        public async Task<string> GetAgriSectorNameById(int id) =>
+        public async Task<string> GetAgriSectorNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAgriSectorName/{id}");
 
-        public async Task<string> GetAgriServiceNameById(int id) =>
+        public async Task<string> GetAgriServiceNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAgriServiceName/{id}");
 
-        public async Task<string> GetRelationNameById(int id) =>
+        public async Task<string> GetRelationNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetRelationName/{id}");
 
-        public async Task<string> GetWorkingAreaNameById(int id) =>
+        public async Task<string> GetWorkingAreaNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetWorkingAreaName/{id}");
 
-        public async Task<string> GetOwnershipNameById(int id) =>
+        public async Task<string> GetOwnershipNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetOwnershipName/{id}");
 
-        public async Task<string> GetLandTypeNameById(int id) =>
+        public async Task<string> GetLandTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetLandTypeName/{id}");
 
-        public async Task<string> GetIrrigationSourceNameById(int id) =>
+        public async Task<string> GetIrrigationSourceNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetIrrigationSourceName/{id}");
 
-        public async Task<string> GetCropsTypeNameById(int id) =>
+        public async Task<string> GetCropsTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetCropsTypeName/{id}");
 
-        public async Task<string> GetFruitsTypeNameById(int id) =>
+        public async Task<string> GetFruitsTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetFruitsTypeName/{id}");
 
-        public async Task<string> GetSeedsTypeNameById(int id) =>
+        public async Task<string> GetSeedsTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetSeedsTypeName/{id}");
 
-        public async Task<string> GetMushroomTypeNameById(int id) =>
+        public async Task<string> GetMushroomTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetMushroomTypeName/{id}");
 
-        public async Task<string> GetSilkTypeNameById(int id) =>
+        public async Task<string> GetSilkTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetSilkTypeName/{id}");
 
-        public async Task<string> GetBeeTypeById(int id) =>
+        public async Task<string> GetBeeTypeById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetBeeTypeName/{id}");
 
-        public async Task<string> GetProcustionMeasurementNameById(int id) =>
+        public async Task<string> GetProcustionMeasurementNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetProcustionMeasurementName/{id}");
 
-        public async Task<string> GetProcustionUseNameById(int id) =>
+        public async Task<string> GetProcustionUseNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetProcustionUseName/{id}");
 
-        public async Task<string> GetKrishiFarmTypeNameById(int id) =>
+        public async Task<string> GetKrishiFarmTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetKrishiFarmTypeName/{id}");
 
-        public async Task<string> GetPostNameById(int id) =>
+        public async Task<string> GetPostNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetPostName/{id}");
 
-        public async Task<string> GetAgriGroupTypeNameById(int id) =>
+        public async Task<string> GetAgriGroupTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAgriGroupTypeName/{id}");
 
-        public async Task<string> GetProgramNameById(int id) =>
+        public async Task<string> GetProgramNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetProgramName/{id}");
 
-        public async Task<string> GetMeasuringUnitNameById(int id) =>
+        public async Task<string> GetMeasuringUnitNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetMeasuringUnitName/{id}");
 
-        public async Task<string> GetCategoryNameById(int id) =>
+        public async Task<string> GetCategoryNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetCategoryName/{id}");
 
-        public async Task<string> GetSubCategoryNameById(int id) =>
+        public async Task<string> GetSubCategoryNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetSubCategoryName/{id}");
 
-        public async Task<string> GetProjectNameById(int id) =>
+        public async Task<string> GetProjectNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetProjectName/{id}");
 
-        public async Task<string> GetServiceNameById(int id) =>
+        public async Task<string> GetServiceNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetServiceName/{id}");
 
-        public async Task<string> GetAgriCalendarTypeNameById(int id) =>
+        public async Task<string> GetAgriCalendarTypeNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAgriCalendarTypeName/{id}");
 
-        public async Task<string> GetAgriCalendarCategoryNameById(int id) =>
+        public async Task<string> GetAgriCalendarCategoryNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAgriCalendarCategoryName/{id}");
 
-        public async Task<string> GetAgriCalendarProductNameById(int id) =>
+        public async Task<string> GetAgriCalendarProductNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAgriCalendarProductName/{id}");
 
-        public async Task<string> GetMonthNameById(int id) =>
+        public async Task<string> GetMonthNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetMonthName/{id}");
 
-        public async Task<string> GetWeekNameById(int id) =>
+        public async Task<string> GetWeekNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetWeekName/{id}");
 
-        public async Task<string> GetEcologicalAreaNameById(int id) =>
+        public async Task<string> GetEcologicalAreaNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetEcologicalAreaName/{id}");
 
-        public async Task<string> GetMarketNameById(int id) =>
+        public async Task<string> GetMarketNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetMarketName/{id}");
 
-        public async Task<string> GetAlbumNameById(int id) =>
+        public async Task<string> GetAlbumNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetAlbumName/{id}");
 
-        public async Task<string> GetPlaylistNameById(int id) =>
+        public async Task<string> GetPlaylistNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetPlaylistName/{id}");
 
-        public async Task<string> GetStateNameById(int id) =>
+        public async Task<string> GetStateNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetStateName/{id}");
 
-        public async Task<string> GetFiscalYearNameById(int id) =>
+        public async Task<string> GetFiscalYearNameById(int? id) =>
+            id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetFiscalYearName/{id}");
 
-        public async Task<string> GetBeeTypeNameById(int id)
-       =>await GetStringFromApi($"Admin/Utility/GetBeeTypeNameById/{id}");
+        public async Task<string> GetBeeTypeNameById(int? id) =>
+            id == null ? string.Empty :
+            await GetStringFromApi($"Admin/Utility/GetBeeTypeNameById/{id}");
 
         public Task<bool> Delete(string tableName, int id)
         {
             throw new NotImplementedException();
         }
 
-
         #endregion
+
+
     }
 }

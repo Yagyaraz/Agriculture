@@ -27,7 +27,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<CategoryViewModel>> GetAllCategory()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.Category.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.Category.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new CategoryViewModel()
                 {
                     Id = x.Id,
@@ -86,7 +87,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<SubCategoryViewModel>> GetAllSubCategory()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.SubCategory.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.SubCategory.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new SubCategoryViewModel()
                 {
                     Id = x.Id,
@@ -156,7 +158,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<SubsidyViewModel>> GetAllSubsidy()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.Subsidy.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.Subsidy.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new SubsidyViewModel()
                 {
                     Id = x.Id,
@@ -422,7 +425,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<OtherSubsidyViewModel>> GetAllOtherSubsidy()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.OtherSubsidy.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.OtherSubsidy.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new OtherSubsidyViewModel()
                 {
                     Id = x.Id,

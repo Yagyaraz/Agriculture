@@ -14,7 +14,7 @@ namespace Agriculture.Data
         public int PremiumId { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal? Amount { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public int TrainingTypeId { get; set; }
         public string StartDate { get; set; }
         [DataType(DataType.Date)]

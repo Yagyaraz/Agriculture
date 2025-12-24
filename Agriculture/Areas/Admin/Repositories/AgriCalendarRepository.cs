@@ -25,7 +25,7 @@ namespace Agriculture.Areas.Admin.Repositories
         #region AgriCalendarType
         public async Task<List<AgriCalendarTypeViewModel>> GetAllAgriCalendarType()
         {
-            return await _context.AgriCalendarType
+            return await _context.AgriCalendarType.Where(x=>!x.IsDeleted)
                 .Select(x => new AgriCalendarTypeViewModel()
                 {
                     Id = x.Id,
@@ -76,7 +76,7 @@ namespace Agriculture.Areas.Admin.Repositories
         #region AgriCalendarCategory
         public async Task<List<AgriCalendarCategoryViewModel>> GetAllAgriCalendarCategory()
         {
-            return await _context.AgriCalendarCategory
+            return await _context.AgriCalendarCategory.Where(x => !x.IsDeleted)
                 .Select(x => new AgriCalendarCategoryViewModel()
                 {
                     Id = x.Id,
@@ -132,7 +132,7 @@ namespace Agriculture.Areas.Admin.Repositories
         #region AgriCalendarProduct
         public async Task<List<AgriCalendarProductViewModel>> GetAllAgriCalendarProduct()
         {
-            return await _context.AgriCalendarProduct
+            return await _context.AgriCalendarProduct.Where(x => !x.IsDeleted)
                 .Select(x => new AgriCalendarProductViewModel()
                 {
                     Id = x.Id,

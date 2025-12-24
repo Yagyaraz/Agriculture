@@ -334,136 +334,182 @@ namespace Agriculture.Utilities
             }).FirstOrDefaultAsync();
             return data ?? new OfficeViewModel();
         }
-        #region by id utility
-        public async Task<string> GetGenderNameById(int id) =>
-      (await _context.Gender.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        #region by id utility (nullable)
 
-        public async Task<string> GetEducationNameById(int id) =>
-            (await _context.Education.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetGenderNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Gender.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetEducationLevelNameById(int id) =>
-            (await _context.EducationLevel.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetEducationNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Education.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetFarmerGroupNameById(int id) =>
-            (await _context.FarmerGroup.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetEducationLevelNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.EducationLevel.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetFarmerCategoryNameById(int id) =>
-            (await _context.FarmerCategory.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetFarmerGroupNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.FarmerGroup.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetDistrictNameById(int id) =>
-            (await _context.District.FirstOrDefaultAsync(x => x.DistrictId == id))?.DistrictNameNep;
+        public async Task<string> GetFarmerCategoryNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.FarmerCategory.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetPalikaNameById(int id) =>
-            (await _context.Palika.FirstOrDefaultAsync(x => x.PalikaId == id))?.PalikaNameNep;
+        public async Task<string> GetDistrictNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.District.FirstOrDefaultAsync(x => x.DistrictId == id))?.DistrictNameNep ?? "-";
 
-        public async Task<string> GetAvgMonthNameById(int id) =>
-            (await _context.AvgMonth.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetPalikaNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Palika.FirstOrDefaultAsync(x => x.PalikaId == id))?.PalikaNameNep ?? "-";
 
-        public async Task<string> GetAgriSectorNameById(int id) =>
-            (await _context.AgriSector.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetAvgMonthNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AvgMonth.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetAgriServiceNameById(int id) =>
-            (await _context.AgriService.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetAgriSectorNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgriSector.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetRelationNameById(int id) =>
-            (await _context.Relation.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetAgriServiceNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgriService.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetWorkingAreaNameById(int id) =>
-            (await _context.WorkingArea.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetRelationNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Relation.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetOwnershipNameById(int id) =>
-            (await _context.OwnershipType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetWorkingAreaNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.WorkingArea.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetLandTypeNameById(int id) =>
-            (await _context.LandType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetOwnershipNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.OwnershipType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetIrrigationSourceNameById(int id) =>
-            (await _context.IrrigationSource.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetLandTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.LandType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetCropsTypeNameById(int id) =>
-            (await _context.CropsType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetIrrigationSourceNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.IrrigationSource.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetFruitsTypeNameById(int id) =>
-            (await _context.FruitsType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetCropsTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.CropsType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetSeedsTypeNameById(int id) =>
-            (await _context.SeedsType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetFruitsTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.FruitsType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetMushroomTypeNameById(int id) =>
-            (await _context.MushroomType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetSeedsTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.SeedsType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetSilkTypeNameById(int id) =>
-            (await _context.SilkType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetMushroomTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.MushroomType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetBeeTypeNameById(int id) =>
-            (await _context.BeeType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetSilkTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.SilkType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetProcustionMeasurementNameById(int id) =>
-            (await _context.ProcustionMeasurement.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetBeeTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.BeeType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetProcustionUseNameById(int id) =>
-            (await _context.ProcustionUse.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetProcustionMeasurementNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.ProcustionMeasurement.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetKrishiFarmTypeNameById(int id) =>
-            (await _context.KrishiFarmType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetProcustionUseNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.ProcustionUse.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetPostNameById(int id) =>
-            (await _context.Post.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetKrishiFarmTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.KrishiFarmType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetAgriGroupTypeNameById(int id) =>
-            (await _context.AgriGroupType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetPostNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Post.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetProgramNameById(int id) =>
-            (await _context.AgricultureProgram.FirstOrDefaultAsync(x => x.Id == id))?.Title;
+        public async Task<string> GetAgriGroupTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgriGroupType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetMeasuringUnitNameById(int id) =>
-            (await _context.MeasuringUnit.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetProgramNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgricultureProgram.FirstOrDefaultAsync(x => x.Id == id))?.Title ?? "-";
 
-        public async Task<string> GetCategoryNameById(int id) =>
-            (await _context.Category.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetMeasuringUnitNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.MeasuringUnit.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetSubCategoryNameById(int id) =>
-            (await _context.SubCategory.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetCategoryNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Category.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetProjectNameById(int id) =>
-            (await _context.AgricultureProject.FirstOrDefaultAsync(x => x.Id == id))?.ProjectName;
+        public async Task<string> GetSubCategoryNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.SubCategory.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetServiceNameById(int id) =>
-            (await _context.AgricultureService.FirstOrDefaultAsync(x => x.Id == id))?.ServiceName;
+        public async Task<string> GetProjectNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgricultureProject.FirstOrDefaultAsync(x => x.Id == id))?.ProjectName ?? "-";
 
-        public async Task<string> GetAgriCalendarTypeNameById(int id) =>
-            (await _context.AgriCalendarType.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetServiceNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgricultureService.FirstOrDefaultAsync(x => x.Id == id))?.ServiceName ?? "-";
 
-        public async Task<string> GetAgriCalendarCategoryNameById(int id) =>
-            (await _context.AgriCalendarCategory.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetAgriCalendarTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgriCalendarType.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetAgriCalendarProductNameById(int id) =>
-            (await _context.AgriCalendarProduct.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetAgriCalendarCategoryNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgriCalendarCategory.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetMonthNameById(int id) =>
-            (await _context.Month.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetAgriCalendarProductNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.AgriCalendarProduct.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetWeekNameById(int id) =>
-            (await _context.Week.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetMonthNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Month.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetEcologicalAreaNameById(int id) =>
-            (await _context.EcologicalArea.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetWeekNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Week.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetMarketNameById(int id) =>
-            (await _context.Market.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetEcologicalAreaNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.EcologicalArea.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetAlbumNameById(int id) =>
-            (await _context.Album.FirstOrDefaultAsync(x => x.Id == id && x.IsPublised))?.Name;
+        public async Task<string> GetMarketNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Market.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
 
-        public async Task<string> GetPlaylistNameById(int id) =>
-            (await _context.Playlist.FirstOrDefaultAsync(x => x.Id == id && x.IsPublised))?.Name;
+        public async Task<string> GetAlbumNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Album.FirstOrDefaultAsync(x => x.Id == id && x.IsPublised))?.Name ?? "-";
 
-        public async Task<string> GetStateNameById(int id) =>
-            (await _context.State.FirstOrDefaultAsync(x => x.StateId == id))?.StateNameNep;
+        public async Task<string> GetPlaylistNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Playlist.FirstOrDefaultAsync(x => x.Id == id && x.IsPublised))?.Name ?? "-";
 
-        public async Task<string> GetFiscalYearNameById(int id) =>
-            (await _context.FiscalYear.FirstOrDefaultAsync(x => x.Id == id))?.Name;
+        public async Task<string> GetStateNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.State.FirstOrDefaultAsync(x => x.StateId == id))?.StateNameNep ?? "-";
+
+        public async Task<string> GetFiscalYearNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.FiscalYear.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
+
         #endregion
+
         private static readonly HashSet<string> AllowedTables = new()
         {
             "Users",

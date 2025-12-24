@@ -18,7 +18,7 @@ namespace Agriculture.Data
         public int TotalMemberInAgri { get; set; }
 
         public int TotalInvolvedinAgi { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }

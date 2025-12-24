@@ -33,7 +33,7 @@ namespace Agriculture.Data
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int CreatedWardId { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
 
         [ForeignKey(nameof(AgriGroupTypeId))]
         public AgriGroupType AgriGroupType { get; set; }

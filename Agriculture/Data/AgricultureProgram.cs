@@ -17,6 +17,7 @@ namespace Agriculture.Data
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int CreatedWardId { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
 
         [ForeignKey(nameof(FiscalYearId))]
@@ -30,7 +31,7 @@ namespace Agriculture.Data
         public int ProgramId { get; set; }
         public string ProjectName { get; set; }
         public int CreatedWardId { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
 
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -53,7 +54,7 @@ namespace Agriculture.Data
         public DateTime? ValidTillDateEng { get; set; }
         public string ServiceName { get; set; }
         public int CreatedWardId { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
 
 
         public string CreatedBy { get; set; }
@@ -74,7 +75,7 @@ namespace Agriculture.Data
         public int Id { get; set; }
         public int ServiceId { get; set; }
         public string Questions { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
 
         [ForeignKey(nameof(ServiceId))]
         public AgricultureService AgricultureService { get; set; }
@@ -113,7 +114,7 @@ namespace Agriculture.Data
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int CreatedWardId { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
 
         [ForeignKey(nameof(FiscalYearId))]
         public FiscalYear FiscalYear { get; set; }

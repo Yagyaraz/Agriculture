@@ -54,7 +54,7 @@ namespace Agriculture.Areas.Admin.Repositories
 
         public async Task<List<NabikaranViewModel>> NabikaranList()
         {
-            return await _dbContext.Nabikarans
+            return await _dbContext.Nabikarans.Where(x => !x.IsDeleted)
                        .Select(model => new NabikaranViewModel
                        {
                            RenewDate = model.RenewDate,

@@ -11,7 +11,7 @@ namespace Agriculture.Data
         public int TotalRequired { get; set; }
         public int CreatedWardId { get; set; }
         public int FarmerId { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
