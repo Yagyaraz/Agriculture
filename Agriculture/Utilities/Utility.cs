@@ -1,4 +1,5 @@
 ﻿using Agriculture.Areas.Admin.Models;
+using Agriculture.Constants;
 using Agriculture.Data;
 using Agriculture.Models;
 using Agriculture.Security;
@@ -510,12 +511,125 @@ namespace Agriculture.Utilities
 
         #endregion
 
-        private static readonly HashSet<string> AllowedTables = new()
-        {
-            "Users",
-            "Farmers",
-            "Products"
-        };
+        private static readonly HashSet<string> AllowedTables = new(StringComparer.OrdinalIgnoreCase)
+    {
+        TableNameConstants.FarmerCategory,
+        TableNameConstants.Farmer,
+        TableNameConstants.FarmerFile,
+        TableNameConstants.KrishiDetails,
+        TableNameConstants.AgricultureDetail,
+        TableNameConstants.AvgMonth,
+        TableNameConstants.AgriSector,
+        TableNameConstants.AgriService,
+        TableNameConstants.Relation,
+        TableNameConstants.WorkingArea,
+        TableNameConstants.FamilyDetails,
+        TableNameConstants.FamilyDetailsInvolvedInAgri,
+        TableNameConstants.FieldDetails,
+        TableNameConstants.LandOwnership,
+        TableNameConstants.AgriFarmMoreThanOneLocalLevel,
+        TableNameConstants.LeasedLandDetail,
+        TableNameConstants.OwnershipType,
+        TableNameConstants.LandType,
+        TableNameConstants.IrrigationSource,
+
+        TableNameConstants.CropsInformation,
+        TableNameConstants.EatableCrops,
+        TableNameConstants.FruitCrops,
+        TableNameConstants.SeedCrops,
+        TableNameConstants.MushroomCrpos,
+        TableNameConstants.SilkCrops,
+        TableNameConstants.BeeCrops,
+        TableNameConstants.CropsType,
+        TableNameConstants.FruitsType,
+        TableNameConstants.SeedsType,
+        TableNameConstants.MushroomType,
+        TableNameConstants.SilkType,
+        TableNameConstants.BeeType,
+
+        TableNameConstants.AnimalSetup,
+        TableNameConstants.AnimalHusbandry,
+        TableNameConstants.CowInfromation,
+        TableNameConstants.BuffaloInfromation,
+        TableNameConstants.CharuiYakInfromation,
+        TableNameConstants.GoruInfromation,
+        TableNameConstants.BhedaBakhraInfromation,
+        TableNameConstants.BungurSungurInfromation,
+        TableNameConstants.HenInfromation,
+        TableNameConstants.OtherBirdInfromation,
+        TableNameConstants.FishInfromation,
+        TableNameConstants.OtherAnimalInfromation,
+        TableNameConstants.GhaseBaliInfromation,
+        TableNameConstants.KrishiFarmInfromation,
+        TableNameConstants.KrishiMechinaryInfromation,
+        TableNameConstants.KrishiSanrachanaInfromation,
+        TableNameConstants.KrishiFarmType,
+        TableNameConstants.ProcustionUse,
+        TableNameConstants.ProcustionMeasurement,
+
+        TableNameConstants.AgricultureFarmerGroup,
+        TableNameConstants.OfficialsDetail,
+        TableNameConstants.AgriGroupType,
+        TableNameConstants.Post,
+
+        TableNameConstants.AgricultureProgram,
+        TableNameConstants.AgricultureProject,
+        TableNameConstants.AgricultureService,
+        TableNameConstants.AgricultureServiceAdditional,
+        TableNameConstants.AgricultureApplicatoionForm,
+
+        TableNameConstants.Category,
+        TableNameConstants.SubCategory,
+        TableNameConstants.MeasuringUnit,
+        TableNameConstants.Subsidy,
+        TableNameConstants.SubsidyDetail,
+        TableNameConstants.SaveRequestedSubsidy,
+        TableNameConstants.OtherSubsidy,
+        TableNameConstants.OtherSubsidyQns,
+
+        TableNameConstants.Library,
+        TableNameConstants.Training,
+
+        TableNameConstants.AgriCalendar,
+        TableNameConstants.AgriCalendarDetail,
+        TableNameConstants.AgriCalendarType,
+        TableNameConstants.AgriCalendarCategory,
+        TableNameConstants.AgriCalendarProduct,
+        TableNameConstants.EcologicalArea,
+        TableNameConstants.Month,
+        TableNameConstants.Week,
+
+        TableNameConstants.FertilizerStore,
+        TableNameConstants.FertilizerStoreProduction,
+        TableNameConstants.FertilizerStoreContactPerson,
+
+        TableNameConstants.SeedStore,
+        TableNameConstants.SeedStoreProduction,
+        TableNameConstants.SeedStoreContactPerson,
+
+        TableNameConstants.InsuranceCenter,
+        TableNameConstants.AgricultureEquipment,
+
+        TableNameConstants.Market,
+        TableNameConstants.MarketPrice,
+        TableNameConstants.MarketPriceDetails,
+
+        TableNameConstants.Album,
+        TableNameConstants.ImageGallery,
+
+        TableNameConstants.Playlist,
+        TableNameConstants.VideoGallery,
+
+        TableNameConstants.FarmerServiceCard,
+        TableNameConstants.FarmerServiceCardDetail,
+
+        TableNameConstants.Ward,
+        TableNameConstants.Gunaso,
+        TableNameConstants.Suchana,
+        TableNameConstants.Nabikaran,
+        TableNameConstants.ApplicationForm
+    };
+
     }
 
 }

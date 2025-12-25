@@ -14,18 +14,18 @@ namespace Agriculture.Areas.Admin.Controllers
         {
             _Utility = utility;
         }
-        [HttpDelete("delete")]
-        public async Task<IActionResult> SoftDelete(
-      [FromQuery] string tableName,
-      [FromQuery] int id)
+        [HttpDelete("delete/{tableName}/{id:int}")]
+        public async Task<IActionResult> SoftDelete(string tableName, int id)
         {
             var result = await _Utility.Delete(tableName, id);
 
-            if (!result)
-                return BadRequest(new { message = "Soft delete failed" });
-
-            return Ok(new { message = "Soft deleted successfully" });
+            return Ok(new
+            {
+                Status = result,
+                Message = result ? "Deleted successfully" : "Delete failed"
+            });
         }
+
         [HttpGet("GetFarmerSelectListItems")]
         public async Task<IActionResult> GetFarmerSelectListItems()
         {
@@ -322,7 +322,7 @@ namespace Agriculture.Areas.Admin.Controllers
             var data = await _Utility.GetOfficeDetails();
             return Ok(new ApiResponse { Status = data.Id > 0, Message = data.Id > 0 ? "Successfully Generated All List of GetSelectListRoles" : "GetSelectListRoles List Not Generated Try Again", Data = data });
         }
-       
+
 
         [HttpGet("GetGenderName/{id}")]
         public async Task<IActionResult> GetGenderName(int? id) =>

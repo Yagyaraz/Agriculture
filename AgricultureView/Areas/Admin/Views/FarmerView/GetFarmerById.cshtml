@@ -79,12 +79,12 @@
                     </div>
 
                     <!-- GENDER -->
-                    @*   <div class="col-md-6 col-lg-3 p-0">
+                      <div class="col-md-6 col-lg-3 p-0">
                             <div class="form-group">
                                 <label>लिङ्ग</label>
-                                <p class="form-control-static">@Model.GenderName</p>
+                            <p class="form-control-static">@await _utility.GetPalikaNameById(Model.GenderId)</p>
                             </div>
-                        </div> *@
+                        </div>
 
                     <!-- DOB -->
                     <div class="col-md-6 col-lg-3 p-0">
@@ -206,7 +206,7 @@
 
                 <div class="col-md-3">
                     <label class="fw-bold">संलग्न समय</label>
-                    <p>@Model.krishi.AvgMonthForAgriId</p>
+                    <p>@await _utility.GetAvgMonthNameById(Model.krishi.AvgMonthForAgriId)</p>
                 </div>
 
             </div>
@@ -236,7 +236,7 @@
                             <tr>
                                 <td>@item.AgriWardNo</td>
                                 <td>@item.AgriAddress</td>
-                                <td>@item.AgriSectorId</td>
+                                <td>@await _utility.GetAgriSectorNameById(item.AgriSectorId)</td>
                                 <td>@item.AgriSubSector</td>
                             </tr>
                         }
@@ -378,11 +378,11 @@
                         @foreach (var item in Model.Family.FamilyDetailInvolveList)
                         {
                             <tr>
-                                <td>@item.RelationId</td>
+                                <td>@await _utility.GetRelationNameById(item.RelationId)<td>
                                 <td>@item.FullName</td>
                                 <td class="text-center">@item.Age</td>
-                                <td class="text-center">@item.GenderId</td>
-                                <td>@item.WorkingAreaId</td>
+                                <td class="text-center">@await _utility.GetPalikaNameById(item.GenderId)</td>
+                                <td>@await _utility.GetPalikaNameById(item.WorkingAreaId)</td>
                                 <td>@item.CitizenNo</td>
                                 <td>@item.PhoneNumbar</td>
                             </tr>
@@ -423,7 +423,7 @@
 
                 <div class="col-md-3">
                     <label class="fw-bold">आर्थिक वर्ष</label>
-                    <p>@Model.Field.FiscalYearId</p>
+                    <p>@await _utility.GetPalikaNameById(Model.Field.FiscalYearId)</p>
                 </div>
 
             </div>
@@ -457,12 +457,12 @@
                         @foreach (var item in Model.Field.LandOwnershipViewModelList)
                         {
                             <tr>
-                                <td>@item.OwnershipId</td>
-                                <td>@item.LandTypeId</td>
+                                <td>@await _utility.GetOwnershipNameById(item.OwnershipId)</td>
+                                <td>@await _utility.GetLandTypeNameById(item.LandTypeId)</td>
                                 <td>@item.Area</td>
                                 <td>@item.IsIrrigartionAvilable</td>
                                 <td>@item.IrrigartionArea</td>
-                                <td>@item.IrrigationSourceId</td>
+                                <td>@await _utility.GetIrrigationSourceNameById(item.IrrigationSourceId)</td>
                             </tr>
                         }
                     </tbody>
@@ -500,7 +500,7 @@
                                 <td>@item.IsIrrigationAvailiable</td>
                                 <td>@item.Area</td>
                                 <td>@item.SubSector</td>
-                                <td>@item.OwnershipId</td>
+                                <td>@await _utility.GetOwnershipNameById(item.OwnershipId)</td>
                                 <td>@item.DetailOfLandOwner</td>
                             </tr>
                         }
@@ -537,12 +537,12 @@
                         @foreach (var item in Model.Field.LeasedLandDetailViewModelList)
                         {
                             <tr>
-                                <td>@item.OwnershipId</td>
-                                <td>@item.LandTypeId</td>
+                                <td>@await _utility.GetOwnershipNameById(item.OwnershipId)</td>
+                                <td>@await _utility.GetLandTypeNameById(item.LandTypeId)</td>
                                 <td>@item.Area</td>
                                 <td>@item.IsIrrigartionAvilable</td>
                                 <td>@item.IrrigartionArea</td>
-                                <td>@item.IrrigationSourceId</td>
+                                <td>@await _utility.GetIrrigationSourceNameById(item.IrrigationSourceId)</td>
                             </tr>
                         }
                     </tbody>
@@ -649,7 +649,7 @@
                     @foreach (var item in Model.CropsInformation.EatableCropsViewModelList)
                     {
                         <tr>
-                            <td>@item.CropsTypeId</td>
+                            <td>@await _utility.GetCropsTypeNameById(item.CropsTypeId)</td>
                             <td>@item.Area</td>
                             <td>@item.Quantity</td>
                         </tr>
@@ -709,7 +709,7 @@
                     {
                         <tr>
                             <td>@await _utility.GetCropsTypeNameById(item.CropsInformationId)</td>
-                            <td>@item.SeedsTypeId</td>
+                            <td>@await _utility.GetSeedsTypeNameById(item.SeedsTypeId)</td>
                             <td>@item.Area</td>
                             <td>@item.Quantity</td>
                         </tr>
@@ -1487,7 +1487,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>उत्पादन एकाइ</th>
-                                <td>@Model.Animal.FishInfromationViewModelList.ProcustionMeasurementId</td>
+                                <td>@await _utility.GetProcustionMeasurementNameById(Model.Animal.FishInfromationViewModelList.ProcustionMeasurementId)</td>
                             </tr>
                             <tr>
                                 <th>उत्पादन परिमाण (के.जि) मा</th>
@@ -1746,7 +1746,7 @@
                             </tr>
                             <tr>
                                 <th>किसिम</th>
-                                <td>@Model.Animal.KrishiFarmInfromationViewModelList.KrishiFarmTypeId</td>
+                                <td>@await _utility.GetKrishiFarmTypeNameById(Model.Animal.KrishiFarmInfromationViewModelList.KrishiFarmTypeId)</td>
                             </tr>
                             <tr>
                                 <th>सदस्य संख्या</th>

@@ -1,7 +1,9 @@
 ﻿using AgricultureView.Areas.Admin.Models;
 using AgricultureView.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
+using static System.Net.WebRequestMethods;
 
 namespace AgricultureView.Utility
 {
@@ -47,7 +49,7 @@ namespace AgricultureView.Utility
             }
 
             return new SelectList(new List<CommonTexValViewModel>());
-        } 
+        }
         public async Task<SelectList> GetWardNoSelectListItems()
         {
             try
@@ -86,7 +88,7 @@ namespace AgricultureView.Utility
 
             return new SelectList(new List<CommonTexValViewModel>());
         }
-       
+
         public async Task<SelectList> GetDistrictSelectListItems(int id = 0)
         {
             try
@@ -1162,11 +1164,14 @@ namespace AgricultureView.Utility
             id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetBeeTypeNameById/{id}");
 
-        public Task<bool> Delete(string tableName, int id)
+        public async Task<bool> Delete(string tableName, int id)
         {
-            throw new NotImplementedException();
-        }
+            var url = $"Admin/Utility/Delete/{tableName}/{id}";
 
+            var response = await _globalVeriable.DeleteMethod(url);
+
+            return response.Status;
+        }
         #endregion
 
 
