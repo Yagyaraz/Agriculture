@@ -8,9 +8,11 @@ namespace AgricultureView.Controllers
     public class AjaxMVCController : Controller
     {
         private readonly IGlobalVeriable _globalVeriable;
-        public AjaxMVCController(IGlobalVeriable globalVeriable)
+        private readonly IUtility _utility;
+        public AjaxMVCController(IGlobalVeriable globalVeriable, IUtility utility)
         {
             _globalVeriable = globalVeriable;
+            _utility = utility;
         }
         public async Task<JsonResult> GetDistrictByStateId(int id)
         {
@@ -165,5 +167,16 @@ namespace AgricultureView.Controllers
 
             return Json(new List<CommonTexValViewModel>());
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(string table, int id)
+        {
+            var result = await _utility.Delete(table, id);
+
+            TempData["DeleteSuccess"] = result
+                ? "Deleted successfully."
+                : "Delete failed.";
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
     }
 }

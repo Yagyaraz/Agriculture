@@ -293,7 +293,7 @@
 
                 <div class="col-md-3">
                     <label class="fw-bold">आर्थिक वर्ष</label>
-                    <p>@Model.Family.FiscalYearId</p>
+                    <p>@await _utility.GetFiscalYearNameById(Model.Family.FiscalYearId)</p>
                 </div>
 
                 <div class="col-md-3">
@@ -423,7 +423,7 @@
 
                 <div class="col-md-3">
                     <label class="fw-bold">आर्थिक वर्ष</label>
-                    <p>@await _utility.GetPalikaNameById(Model.Field.FiscalYearId)</p>
+                    <p>@await _utility.GetFiscalYearNameById(Model.Field.FiscalYearId)</p>
                 </div>
 
             </div>

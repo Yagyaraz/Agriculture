@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ApplicationFormViewModel>
+﻿@using AgricultureView.Constants
+@model IEnumerable<ApplicationFormViewModel>
 @inject IUtility _utility;
 @{
     ViewData["Title"] = "ApplicationForm";
@@ -39,6 +40,18 @@
                                         <td class="text-center">
                                             <a asp-action="ApplicationFormDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
                                         </td>
+                                        <form asp-area=""
+                                              asp-controller="AjaxMVC"
+                                              asp-action="Delete"
+                                              asp-route-table="@TableNameConstants.ApplicationForm"
+                                              asp-route-id="@item.Id"
+                                              method="post"
+                                              onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
+
+                                            <button type="submit" class="btn btn-link">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                     </tr>
                                 }
                             </tbody>

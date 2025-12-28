@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GunasoViewModel>
+﻿@using AgricultureView.Constants
+@model IEnumerable<GunasoViewModel>
 @{
     ViewData["Title"] = "Gunaso";
 }
@@ -30,6 +31,18 @@
                                         <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
                                         <td class="text-center">
                                             <a asp-action="GunasoDetail" title="Detail" asp-route-id="@item.Id"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                            <form asp-area=""
+                                                  asp-controller="AjaxMVC"
+                                                  asp-action="Delete"
+                                                  asp-route-table="@TableNameConstants.Gunaso"
+                                                  asp-route-id="@item.Id"
+                                                  method="post"
+                                                  onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
+
+                                                <button type="submit" class="btn btn-link">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 }

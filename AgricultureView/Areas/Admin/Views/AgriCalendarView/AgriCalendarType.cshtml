@@ -1,4 +1,5 @@
-﻿@model IEnumerable<AgriCalendarTypeViewModel>
+﻿@using AgricultureView.Constants
+@model IEnumerable<AgriCalendarTypeViewModel>
 @{
     ViewData["Title"] = "AgriCalendarType";
 }
@@ -33,7 +34,18 @@
                                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                         <td>@Html.DisplayFor(modelItem => item.NameEng)</td>
                                         <td class="text-center"> <a asp-action="AgriCalendarTypeCreate" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a></td>
-                                        <td class="text-center"> <a asp-action="AgriCalendarTypeCreate" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a></td>
+                                        <form asp-area=""
+                                              asp-controller="AjaxMVC"
+                                              asp-action="Delete"
+                                              asp-route-table="@TableNameConstants.AgriCalendarType"
+                                              asp-route-id="@item.Id"
+                                              method="post"
+                                              onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
+
+                                            <button type="submit" class="btn btn-link">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                     </tr>
                                 }
                             </tbody>
