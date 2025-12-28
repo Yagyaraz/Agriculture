@@ -508,6 +508,9 @@ namespace Agriculture.Utilities
         public async Task<string> GetFiscalYearNameById(int? id) =>
             id == null ? "-" :
             (await _context.FiscalYear.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? "-";
+        public async Task<string> GetTrainingTypeNameById(int? id) =>
+            id == null ? "-" :
+            (await _context.Training.FirstOrDefaultAsync(x => x.Id == id))?.Title ?? "-";
 
         #endregion
 

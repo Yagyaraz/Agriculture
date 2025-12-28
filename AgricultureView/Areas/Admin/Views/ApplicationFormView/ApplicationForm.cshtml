@@ -37,21 +37,23 @@
                                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Phone)</td>
                                         <td>@await _utility.GetProgramNameById(Convert.ToInt32(item.Program))</td>
-                                        <td class="text-center">
-                                            <a asp-action="ApplicationFormDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file" aria-hidden="true"></i></a>
-                                        </td>
-                                        <form asp-area=""
-                                              asp-controller="AjaxMVC"
-                                              asp-action="Delete"
-                                              asp-route-table="@TableNameConstants.ApplicationForm"
-                                              asp-route-id="@item.Id"
-                                              method="post"
-                                              onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
+                                        <td class="text-center d-flex justify-content-between align-items-center">
+                                            <a asp-action="ApplicationFormDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
+                                            <form asp-area=""
+                                                  asp-controller="AjaxMVC"
+                                                  asp-action="Delete"
+                                                  title="Delete"
+                                                  asp-route-table="@TableNameConstants.ApplicationForm"
+                                                  asp-route-id="@item.Id"
+                                                  method="post"
+                                                  onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
 
-                                            <button type="submit" class="btn btn-link">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
+                                                <button type="submit" class="btn btn-link">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                       
                                     </tr>
                                 }
                             </tbody>

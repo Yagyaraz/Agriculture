@@ -109,6 +109,7 @@ namespace Agriculture.Utilities
         Task<string> GetAlbumNameById(int? id);
         Task<string> GetPlaylistNameById(int? id);
         Task<string> GetStateNameById(int? id);
+        Task<string> GetTrainingTypeNameById(int? id);
         Task<string> GetFiscalYearNameById(int? id);
 
     }

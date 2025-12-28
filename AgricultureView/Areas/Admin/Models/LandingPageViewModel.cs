@@ -18,7 +18,7 @@
         public List<AlbumViewModel> Albums { get; set; } = new List<AlbumViewModel>();
         public List<ImageGalleryViewModel> ImageGalleries { get; set; } = new List<ImageGalleryViewModel>();
         public List<LibraryViewModel> Libraries { get; set; } = new List<LibraryViewModel>();
-        public List<CommonViewModel> Markets { get; set; } = new List<CommonViewModel>();
+        public List<CommonViewModel> Common { get; set; } = new List<CommonViewModel>();
         public List<MarketPriceViewModel> MarketPrices { get; set; } = new List<MarketPriceViewModel>();
         public List<FertilizerStoreViewModel> FertilizerStores { get; set; } = new List<FertilizerStoreViewModel>();
         public List<SeedStoreViewModel> SeedStores { get; set; } = new List<SeedStoreViewModel>();

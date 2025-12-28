@@ -35,7 +35,8 @@
                                         <td>@Html.DisplayFor(modelItem => item.FirmDartaNo)</td>
                                          <td>@Html.DisplayFor(modelItem => item.FirmName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.FirmPalikaName)</td>
-                                        <td class="text-center d-flex justify-content-between">
+                                        <td class="text-center my-auto h-align-middle px-2">
+                                            <div class="text-center d-flex justify-content-between h-full">
                                             <a asp-action="Create" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
                                         
                                             <a asp-action="GetAgricultureFarmerGroupById" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
@@ -47,10 +48,11 @@
                                                   method="post"
                                                   onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
 
-                                                <button type="submit" class="btn btn-link">
+                                                <button type="submit" class="btn btn-link p-0">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
+                                            </div>
                                         </td>
                                         <td class="text-center">
                                             <a asp-action="PranamPatra" title="PramanPatr" asp-route-id="@item.Id"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
