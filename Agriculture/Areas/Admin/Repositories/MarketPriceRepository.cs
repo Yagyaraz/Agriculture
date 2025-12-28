@@ -98,6 +98,16 @@ namespace Agriculture.Areas.Admin.Repositories
                      DateEng = x.DateEng,
                      MarketId = x.MarketId,
                      MarketName = x.Market.Name,
+                     MarketPriceDetailsViewModelList = _context.MarketPriceDetails.Where(z => z.MarketPriceId == x.Id)
+                    .Select(z => new MarketPriceDetailsViewModel()
+                    {
+                        Id = z.Id,
+                        MarketPriceId = z.MarketPriceId,
+                        AveragePrice = z.AveragePrice,
+                        ProductName = z.ProductName,
+                        RetailPrice = z.RetailPrice,
+                        WholesalePrice = z.WholesalePrice
+                    }).ToList() ?? new List<MarketPriceDetailsViewModel>(),
                  }).ToListAsync();
         }
         public async Task<MarketPriceViewModel> GetMarketPriceById(int id)

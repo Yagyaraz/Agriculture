@@ -495,6 +495,9 @@ namespace Agriculture.Areas.Admin.Controllers
         [HttpGet("GetFiscalYearName/{id}")]
         public async Task<IActionResult> GetFiscalYearName(int? id) =>
             BuildResponse(await _Utility.GetFiscalYearNameById(id), "Fiscal Year");
+        [HttpGet("GetTrainingTypeName/{id}")]
+        public async Task<IActionResult> GetTrainingName(int? id) =>
+        BuildResponse(await _Utility.GetTrainingTypeNameById(id), "Training Name");
         private IActionResult BuildResponse(string data, string entityName)
         {
             return Ok(new ApiResponse

@@ -1163,6 +1163,9 @@ namespace AgricultureView.Utility
         public async Task<string> GetBeeTypeNameById(int? id) =>
             id == null ? string.Empty :
             await GetStringFromApi($"Admin/Utility/GetBeeTypeNameById/{id}");
+        public async Task<string> GetTrainingTypeNameById(int? id) =>
+            id == null ? string.Empty :
+            await GetStringFromApi($"Admin/Utility/GetTrainingTypeName/{id}");
 
         public async Task<bool> Delete(string tableName, int id)
         {

@@ -109,6 +109,7 @@ namespace AgricultureView.Utility
             Task<string> GetPlaylistNameById(int? id);
             Task<string> GetStateNameById(int? id);
             Task<string> GetFiscalYearNameById(int? id);        
+            Task<string> GetTrainingTypeNameById(int? id);        
 
     }
 }

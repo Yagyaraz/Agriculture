@@ -25,7 +25,7 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<PlaylistViewModel>> GetAllPlaylist()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.Playlist.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.Playlist.Where(x => !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new PlaylistViewModel()
                 {
                     Id = x.Id,

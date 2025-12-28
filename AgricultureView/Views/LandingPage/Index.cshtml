@@ -40,9 +40,29 @@
     <!-- Custom Styles -->
     <style>
         @@font-face {
-            font-family: 'Kalimati';
-            src: url('/fonts/Kalimati.woff2') format('woff2');
+            font-family: 'KokilaRegular';
+            src: url('/assets/fonts/kokila/kokila-regular.ttf') format('truetype');
             font-display: swap;
+        }
+
+        @@font -face {
+            font-family: 'Kokila';
+            src: url('/assets/fonts/kokila/kokila.ttf') format('truetype');
+        }
+
+        @@font -face {
+            font-family: 'KokilaBold';
+            src: url('/assets/fonts/kokila/kokilab.ttf') format('truetype');
+        }
+
+        @@font -face {
+            font-family: 'KokilaBoldItalic';
+            src: url('/assets/fonts/kokila/kokilabi.ttf') format('truetype');
+        }
+
+        @@font -face {
+            font-family: 'KokilaItalic';
+            src: url('/assets/fonts/kokila/kokilai.ttf') format('truetype');
         }
 
 
@@ -54,11 +74,12 @@
             --dark: #155724;
             --light: #f8f9fa;
             --text: #212529;
+            --nepalitext: 'Kokila';
         }
 
         body {
             /* font-family: 'Open Sans', sans-serif; */
-            font-family: "Kalimati regular";
+            font-family: 'Kokila';
             color: var(--text);
             scroll-behavior: smooth;
             overflow-x: hidden;
@@ -954,7 +975,7 @@
         {
                 <div id="welcomeToast" class="toast centered-toast align-items-center text-bg-primary border-0 mb-3" role="alert">
                 <div class="toast-header bg-primary text-white">
-                    <strong class="me-auto fs-4">@notice.Title</strong>
+                    <strong class="me-auto fs-4">@Html.Raw(notice.Title)</strong>
                     <button type="button"
                             class="btn-close btn-close-white"
                             data-bs-dismiss="toast"
@@ -962,7 +983,7 @@
                 </div>
 
                 <div class="toast-body fs-5 text-white text-center py-4">
-                    <p>@notice.Description</p>
+                    <p>@Html.Raw(notice.Description)</p>
 
                         @if (!string.IsNullOrEmpty(notice.FilePath))
                     {
@@ -1399,42 +1420,54 @@
                     <div class="text-center col-4">
                         <select class="market-dropdown form-select w-100">
                             <option value="">सबै बजार मूल्य देखाउनुहोस्</option>
-                            @if (Model.Markets != null && Model.Markets.Any())
+                            @if (Model.MarketPrices != null && Model.MarketPrices.Any())
                             {
-                                @foreach (var markets in Model.Markets)
+                                @foreach (var markets in Model.MarketPrices)
                                 {
-                                    <option value="@markets.Name.ToLower()">@markets.Name</option>
+                                    <option value="@markets.MarketName.ToLower()">@markets.MarketName</option>
                                 }
                             }
                         </select>
                     </div>
                 </div>
-
-                @if (Model.Markets != null && Model.Markets.Any())
+                @if (Model.MarketPrices != null && Model.MarketPrices.Any())
                 {
-                    <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-in-out">
-                        <table class="table table-bordered table-striped table-hover" role="grid" aria-describedby="market-heading">
+                    <div class="table-responsive" data-aos="fade-up" data-aos-duration="800">
+                        <table class="table table-bordered table-striped table-hover">
                             <thead class="table-success">
                                 <tr>
-                                    <th scope="col" class="text-center">क्र.स.</th>
-                                    <th scope="col" class="text-center">बजारको नाम</th>
-                                    <th scope="col" class="text-center">सामानको नाम</th>
-                                    <th scope="col" class="text-center">सामानको मूल्य</th>
+                                    <th class="text-center">क्र.स.</th>
+                                    <th class="text-center">बजारको नाम</th>
+                                    <th class="text-center">सामानको नाम</th>
+                                    <th class="text-center">सामानको मूल्य</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @for (int i = 0; i < Model.Markets.Count; i++)
+                                @{
+                                    int serial = 1;
+                                }
+
+                                @foreach (var market in Model.MarketPrices)
                                 {
-                                    var item = Model.Markets[i];
-                                    <tr data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(300 + (100 * i))" data-aos-easing="ease-in-out" class="market-row">
-                                        <td class="text-center">@(i + 1)</td>
-                                        <td class="text-center">@item.Name</td>
-                                        @*--------------------------------------------------------------------------------------------
-                                    backend data input for this field 
-        --------------------------------------------------------------------------------------------*@
-                                        <td class="text-center">आलु</td>
-                                        <td class="text-center">८०</td>
-                                    </tr>
+                                    if (market.MarketPriceDetailsViewModelList != null &&
+                                    market.MarketPriceDetailsViewModelList.Any())
+                                    {
+                                        foreach (var detail in market.MarketPriceDetailsViewModelList)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@serial</td>
+                                                <td class="text-center">@market.MarketName</td>
+                                                <td class="text-center">@detail.ProductName</td>
+
+                                                @* choose which price you want *@
+                                                <td class="text-center">@detail.RetailPrice</td>
+                                                @* OR *@
+                                                @* <td class="text-center">@detail.WholesalePrice</td> *@
+                                                @* <td class="text-center">@detail.AveragePrice</td> *@
+                                            </tr>
+                                            serial++;
+                                        }
+                                    }
                                 }
                             </tbody>
                         </table>
@@ -1442,7 +1475,7 @@
                 }
                 else
                 {
-                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">No markets found.</p>
+                    <p class="text-center text-muted">No markets found.</p>
                 }
             </div>
         </section>
