@@ -698,6 +698,30 @@
             display: inline-block;
         }
 
+        .gallery-modal {
+    width: 900px;
+    height: 600px;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.gallery-modal-img {
+    max-width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+
+}
         /* Responsive Adjustments */
         @@media (max-width: 768px) {
             .gallery-card {
@@ -1465,6 +1489,24 @@
                     <h1 class="text-primary">हाम्रो ग्यालरी</h1>
                     <h1> </h1>
                 </div>
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-4">
+                    <div class="text-center col-3">
+                        <input type="text" class="gallery-search form-control w-100" placeholder="सेवा खोज्नुहोस्..." />
+                    </div>
+                   <div class="text-center col-4">
+                        <select class="gallery-dropdown form-select w-100">
+                            <option value="">सबै ग्यालरी देखाउनुहोस्</option>
+                            @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
+                            {
+                                @foreach (var gallery in Model.ImageGalleries)
+                                {
+                                    <option value="@gallery.Title.ToLower()">@gallery.Title</option>
+                                }
+                            }
+                        </select>
+                   </div> 
+                </div>
                 <div class="row g-4">
                     @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
                     {
@@ -1491,16 +1533,20 @@
             </div>
             <!-- Modal Lightbox with Close Button -->
             <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-                    <div class="modal-content bg-transparent border-0 shadow-none">
-                        <div class="modal-body text-center position-relative p-4">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-contents gallery-modal">
+                        <div class="modal-body text-center position-relative">
 
-                            <!-- Close Button (X) -->
-                            <div class="close-btn" data-bs-dismiss="modal">×</div>
-                            <div class="row justify-content-center">
-                                <img id="modalImage" src="" alt="Full view" class="img-fluid">
-                                <h4 id="modalCaption" class="mt-4" style="width: 50%;"></h4>
-                            </div>
+                            <!-- Close Button -->
+                            <button class="close-btn" data-bs-dismiss="modal">×</button>
+
+                            <!-- Image -->
+                            <img id="modalImage" class="gallery-modal-img" />
+
+                        </div>
+                        <div class="text-center">
+                            <!-- Title as Button -->
+                            <button id="modalCaption" class="btn btn-primary mt-3 text-center"></button>
                         </div>
                     </div>
                 </div>
@@ -1798,10 +1844,14 @@
          });
 
          // gallery light box
-         function changeModalImage(src, caption) {
-             document.getElementById('modalImage').src = src;
-             document.getElementById('modalCaption').textContent = caption;
-         }
+         // function changeModalImage(src, caption) {
+         //     document.getElementById('modalImage').src = src;
+         //     document.getElementById('modalCaption').textContent = caption;
+         // }
+                 function changeModalImage(src, title) {
+            $("#modalImage").attr("src", src);
+            $("#modalCaption").text(title);
+        }
 
         // Show button only when scrolled down
          window.onscroll = function() {
@@ -2071,6 +2121,31 @@
                 var matchSearch = name.includes(search);
                 var matchDropdown = (selected === "" || name === selected);
                 $(this).toggle(matchSearch && matchDropdown);
+            });
+        });
+
+        // Dropdown filter for card
+                $(".gallery-search").on("input", function () {
+            let search = $(this).val().toLowerCase();
+
+            $(".gallery-card").each(function () {
+                let title = $(this).find(".card-title").text().toLowerCase();
+                $(this).closest(".col-12").toggle(title.includes(search));
+            });
+        });
+
+        // Optional: Combine search + dropdown simultaneously
+                 $(".gallery-search, .gallery-dropdown").on("input change", function () {
+            let searchText = $(".gallery-search").val().toLowerCase();
+            let selectedTitle = $(".gallery-dropdown").val().toLowerCase();
+
+            $(".gallery-card").each(function () {
+                let title = $(this).find(".card-title").text().toLowerCase(); 
+
+                let matchSearch = title.includes(searchText);
+                let matchDropdown = selectedTitle === "" || title === selectedTitle;
+
+                $(this).closest(".col-12").toggle(matchSearch && matchDropdown);
             });
         });
 
