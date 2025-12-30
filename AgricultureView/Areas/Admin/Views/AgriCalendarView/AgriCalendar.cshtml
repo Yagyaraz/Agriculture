@@ -35,9 +35,10 @@
                                         <td>@Html.DisplayFor(modelItem => item.TypeName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
-                                        <td class="text-center d-flex justify-content-evenly"> 
-                                            <a asp-action="AgriCalendarCreate" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-                                          <a asp-action="AgriCalendarDetails" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
+                                        <td class="text-center align-middle p-2">
+                                            <div class=" d-flex justify-content-between align-items-center">
+                                            <a asp-action="AgriCalendarCreate" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt me-3" aria-hidden="true"></i></a>
+                                          <a asp-action="AgriCalendarDetails" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt me-3" aria-hidden="true"></i></a>
                                             <form asp-area=""
                                                   asp-controller="AjaxMVC"
                                                   asp-action="Delete"
@@ -50,6 +51,7 @@
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 }

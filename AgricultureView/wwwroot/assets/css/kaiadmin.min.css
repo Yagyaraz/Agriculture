@@ -9488,6 +9488,14 @@ body {
             animation-delay: 2.5s
         }
 
+.Details-file {
+    text-indent: 50px;
+    word-wrap: break-word;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.5;
+    margin: 0 20px;
+}
 @media screen and (max-width:576px) {
     .wrapper.not-found h1 {
         font-size: 65px !important
