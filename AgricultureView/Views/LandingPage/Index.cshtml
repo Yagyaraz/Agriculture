@@ -54,7 +54,9 @@
             --dark: #155724;
             --light: #f8f9fa;
             --text: #212529;
+            --bg-success-subtle: linear-gradient(rgb(168 227 178));
             --nepalitext: 'KokilaRegular';
+           
         }
 
         body {
@@ -65,10 +67,14 @@
             overflow-x: hidden;
         }
 
+
         input, .form-control{
             font-family: 'Open Sans', sans-serif;
         }
 
+        .bg-success-subtle{
+            background: linear-gradient(rgb(103 205 120 )) !important;
+        }
         .bg-primary {
             background: var(--primary) !important;
             color: #fff;
@@ -842,6 +848,9 @@
                 }
 
 
+        .hover-text-success:hover {
+            color: #000000 !important;
+        }
         /* @@keyframes flash {
             0%, 100% {
                 background-color: #dc3545;
@@ -994,7 +1003,7 @@
     <div id="main-content">
     <div class="sticky-top">
         <!-- Topbar -->
-        <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
+        <div class="container-fluid topbar px-0 d-none d-lg-block bg-success">
             <div class="container px-0">
                 <div class="row gx-0 align-items-center" style="height:45px;">
                     <div class="col-lg-4 text-center text-lg-start">
@@ -1003,19 +1012,19 @@
                                 <i class="fas fa-map-marker-alt text-primary me-2"></i>Find
                                 a Farmer
                             </a> *@
-                                <a href="tel:@org.PhoneNo" class="text-muted me-4">
-                                <i class="fas fa-phone-alt text-primary me-2"></i>@org.PhoneNo
+                                <a href="tel:@org.PhoneNo" class="text-white me-4">
+                                <i class="fas fa-phone-alt text-white me-2"></i>@org.PhoneNo
                             </a>
                                 <a href="mailto:@(string.IsNullOrWhiteSpace(org.Email) ? "sirijangharuralmunicipality@gmail.com" : org.Email)"
-                                   class="text-muted me-0">
-                                    <i class="fas fa-envelope text-primary me-2"></i>
+                                   class="text-white me-0">
+                                    <i class="fas fa-envelope text-white me-2"></i>
                                     @(string.IsNullOrWhiteSpace(org.Email) ? "sirijangharuralmunicipality@gmail.com" : org.Email)
                                 </a>
                         </div>
                     </div>
                     <div class="col-lg-4 text-center text-lg-center">
                         <div class="d-inline-flex flex-wrap align-items-center gap-3 gap-md-4 small">
-                            <h1 class="m-0 fs-3 fs-lg-5 lh-1 fw-bold">
+                            <h1 class="m-0 fs-3 fs-lg-5 lh-1 fw-bold text-white">
                                 सिरीजङ्घा गाउँपालिका
                             </h1>
                         </div>
@@ -1034,10 +1043,11 @@
                                 <i class="fab fa-youtube text-white"></i>
                             </a>
 
-                            <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
-                               class="btn btn-outline-success rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center">
-                                <i class="fas fa-user me-1"></i> लगइन
-                           </a>
+                                <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
+                                   class="btn btn-outline-light text-white rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center
+                                    hover-text-success">
+                                    <i class="fas fa-user me-1"></i> लगइन
+                                </a>
                         </div>
                     </div>
                 </div>
@@ -1089,7 +1099,7 @@
                         </a>
 
                         <!-- appllycation  Button -->
-                            <a asp-area="Admin" asp-controller="ApplicationFormView" asp-action="CreateApplicationForm" class="btn btn-primary-secandory rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
+                            <a asp-area="Admin" asp-controller="ApplicationFormView" asp-action="CreateApplicationForm" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
                             अनलाईन आवेदन
                             </a>
                         <!-- Complaint Button -->
@@ -1175,9 +1185,9 @@
                          class="img-fluid rounded shadow" alt="Farmers">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <h4 class="text-primary">@org.Name बारेमा</h4>
+                    <h4 class="text-black fw-semibold">@org.Name बारेमा</h4>
                     <h1 class="mb-4">@org.PalikaName - कृषि संजाल</h1>
-                    <p class="mb-4">
+                        <p class="mb-4 Details-file">
                             यस सिरीजङ्घा गाउँपालिकाको कार्यालयलाई  कृषि पोर्टल व्यवस्थापन सूचना प्रणाली (Agriculture Portal Management Information System) को प्रयोगले कृषि क्षेत्रलाई व्यवस्थित, प्रविधिमैत्री र तथ्यमा आधारित बनाउन महत्वपूर्ण भूमिका खेल्दछ। यस प्रणालीमार्फत किसान विवरण, खेती क्षेत्र, उत्पादन अवस्था, कृषि कार्यक्रम, अनुदान तथा सेवासुविधाको एकीकृत अभिलेख व्यवस्थापन भई योजना तर्जुमा, बजेट विनियोजन र सेवा प्रवाह प्रभावकारी हुन्छ। साथै, किसान र गाउँपालिकाबीच सूचना आदान–प्रदान सहज भई पारदर्शिता, उत्तरदायित्व र कृषि विकासको गति तीव्र हुन्छ।
                     </p>
                    @*  <p class="mb-4">
@@ -1189,7 +1199,7 @@
                             माध्यमबाट दिगो तथा नाफामुखी कृषि अभ्यास गर्न सक्नेछन्।
                     </p>  *@
                     <div class="row g-3 mb-4">
-                        <div class="col-6 pt-0  ">
+                        @* <div class="col-6 pt-0  ">
                             <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> बाली परामर्श र तालिम</div>
                         </div>
                             <div class="col-6 pt-0  ">
@@ -1197,7 +1207,7 @@
                         </div>
                             <div class="col-6 pt-0  ">
                                 <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> मौसम अपडेट र चेतावनी</div>
-                        </div>
+                        </div> *@
                         @*     <div class="col-6 pt-0  ">
                                 <p class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> किसान समुदाय मंच</p>
                         </div> *@
@@ -1246,12 +1256,116 @@
             </div>
         </div>
     </section>
+        <hr class="m-0" />
+
+    <!-- Gallery Section -->
+        <section id="gallery" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="text-black fw-semibold">हाम्रो ग्यालरी</h1>
+                    <h1> </h1>
+                </div>
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-4">
+                    <div class="text-center col-3">
+                        <input type="text" class="gallery-search form-control w-100" placeholder="ग्यालरी खोज्नुहोस्..." />
+                    </div>
+                   <div class="text-center col-4">
+                        <select class="gallery-dropdown form-select w-100">
+                            <option value="">सबै ग्यालरी देखाउनुहोस्</option>
+                            @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
+                            {
+                                @foreach (var gallery in Model.ImageGalleries)
+                                {
+                                    <option value="@gallery.Title.ToLower()">@gallery.Title</option>
+                                }
+                            }
+                        </select>
+                   </div> 
+                </div>
+                <div class="row g-4">
+                    @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
+                    {
+                        @foreach (var item in Model.ImageGalleries)
+                        {
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
+                                   onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
+                                    <img src="@(_global.BaseUrl() + item.FilePath)"
+                                         alt="@item.Title">
+                                    <div class="card-overlay">
+                                        <div class="card-title">@item.Title</div>
+                                        @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p data-aos="fade-in" data-aos-duration="800">No images found.</p>
+                    }
+                </div>
+            </div>
+            <!-- Modal Lightbox with Close Button -->
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-contents gallery-modal">
+                        <div class="modal-body text-center position-relative">
+
+                            <!-- Close Button -->
+                            <button class="close-btn" data-bs-dismiss="modal">×</button>
+
+                            <!-- Image -->
+                            <img id="modalImage" class="gallery-modal-img" />
+
+                        </div>
+                        <div class="text-center">
+                            <!-- Title as Button -->
+                            <button id="modalCaption" class="btn btn-primary mt-3 text-center"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+
+
+    <!-- video Section -->
+    <section id="videos" class="container-fluid py-5 bg-success-subtle">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5">
+                <h4 class="text-black fw-semibold">हाम्रो भिडियो</h4>
+                @* <h4 class="text-black fw-semibold">हेर्नुहोस् र सिक्नुहोस्</h4> *@
+                @* <h1>किसानका कथाहरू</h1>
+                <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p> *@
+            </div>
+
+            <div class="category-buttons text-center mb-4" id="categoryButtons"></div>
+
+            <div class="container py-4">
+                <div class="row g-4" id="videoList"></div>
+            </div>
+
+            <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title text-white" id="modalTitle"></h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body p-0" id="modalBodyContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <!-- Blog Section -->
-        <section id="blog" class="container-fluid py-5 bg-success-subtle">
+        @* <section id="blog" class="container-fluid py-5 bg-success-subtle">
             <div class="container py-5">
                 <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                    <h4 class="text-primary">नवीनतम जानकारी</h4>
+                    <h4 class="text-black fw-semibold">नवीनतम जानकारी</h4>
                     <h1 id="blog-heading">कृषि कार्यक्रम</h1>
                     <p class="text-muted">हाम्रा नवीनतम कृषि कार्यक्रमहरू बारे जानकारी प्राप्त गर्नुहोस् जसले किसानहरूलाई सशक्त बनाउँछ।</p>
                 </div>
@@ -1273,7 +1387,7 @@
                             }
                         </select>
                     </div>
-                </div>
+                </div> 
 
                 <!-- Program Items -->
                 @if (Model.Programs != null && Model.Programs.Any())
@@ -1297,13 +1411,14 @@
                     <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि कार्यक्रम उपलब्ध छैन</p>
                 }
             </div>
-        </section>
+        </section>*@
 
+        <hr class="m-0" />
         <!-- Services Section -->
         <section id="services" class="container-fluid py-5 bg-success-subtle">
             <div class="container py-5">
                 <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                    <h4 class="text-primary">हाम्रा सेवाहरू</h4>
+                    <h4 class="text-black fw-semibold">हाम्रा सेवाहरू</h4>
                     <h1 id="services-heading">कृषि प्रवर्द्धनका प्रमुख विशेषताहरू</h1>
                     <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
                 </div>
@@ -1335,10 +1450,64 @@
                         {
                             <div class="col-md-6 col-lg-4 col-xl-3 service-item-card" data-title="@service.ServiceName.ToLower()" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Services.IndexOf(service))" data-aos-easing="ease-in-out">
                                 <div class="service-item bg-white rounded shadow p-4 text-center h-100">
-                                    <div class="service-icon mb-3">
-                                        <i class="fas fa-seedling fa-3x text-primary"></i>
+                                    <a href="#service-modal-@service.Id" data-bs-toggle="modal">
+                                        <div class="service-icon mb-3">
+                                            <i class="fas fa-seedling fa-3x text-primary"></i>
+                                        </div>
+                                        <h5>@service.ServiceName</h5>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Lightbox Modal for each service -->
+                            <div class="modal fade" id="service-modal-@service.Id" tabindex="-1" aria-labelledby="serviceModalLabel-@service.Id" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="serviceModalLabel-@service.Id">@service.ServiceName</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p> आर्थिक वर्ष: @(service.FiscalYearName ?? "81/82")</p>
+                                            <i class="fas fa-seedling fa-2x text-primary mb-4"></i>
+                                            <p>योजना:  @(service.ProgramName ?? "यहाँ सेवाको विस्तृत विवरण राख्नुहोस्।")</p>
+                                            <p> कार्यक्रम: @(service.ProjectName ?? "यहाँ सेवाको विस्तृत विवरण राख्नुहोस्।")</p>
+                                            <table class="table table-bordered table-hover mt-2">
+                                                <thead>
+                                                    <tr class="text-center">
+                                                        <th>सेवा र सुविधाहरु</th>
+                                                    </tr>
+                                                </thead>
+                                                @* backend data laod for question *@
+                                                <tbody>
+                                                    @if (service.AgricultureServiceAdditionalViewModelList != null
+                                                                                                && service.AgricultureServiceAdditionalViewModelList.Any())
+                                                    {
+                                                        foreach (var item in service.AgricultureServiceAdditionalViewModelList)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.Questions</td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center text-muted">
+                                                                कुनै थप सेवाहरू छैन ।
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+
+                                            </table>
+                                            <!-- If you have an image for the service, add it here -->
+                                            @* <!-- <img src="@service.ImageUrl" class="img-fluid" alt="@service.ServiceName"> --> *@
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
+                                        </div>
                                     </div>
-                                    <h5>@service.ServiceName</h5>
                                 </div>
                             </div>
                         }
@@ -1350,10 +1519,11 @@
                 }
             </div>
         </section>
+        <hr class="m-0" />
 
     <section id="traning" class="container-fluid py-5">
         <div class="container">
-            <h1 class="text-center mb-5 fw-bold text-success">तालिम विवरण</h1>
+            <h1 class="text-center mb-5 fw-bold text-black">तालिम विवरण</h1>
 
             <div class="row g-4">
                 <!-- Training Card 1 -->
@@ -1441,19 +1611,20 @@
             </div>
         </div>
     </section>
+        <hr class="m-0" />
 
     <!-- market -->
         <section id="market" class="container-fluid py-5 bg-success-subtle">
             <div class="container py-5">
                 <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                    <h4 class="text-primary">बजार मूल्य</h4>
+                    <h4 class="text-black fw-semibold">बजार मूल्य</h4>
                     <h1 id="market-heading">हाम्रा बजारहरू</h1>
                     <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
                 </div>
                 <!-- Search + Dropdown -->
                 <div class="row justify-content-center gap-4 mb-4">
                     <div class="text-center col-3">
-                        <input type="text" class="market-search form-control w-100" placeholder="बजार मूल्य खोज्नुहोस्..." />
+                        <input type="text" class="market-search form-control w-100" placeholder="सामानको मूल्य खोज्नुहोस्..." />
                     </div>
                     <div class="text-center col-4">
                         <select class="market-dropdown form-select w-100">
@@ -1576,106 +1747,7 @@
     </section>
 
 
-    <!-- Gallery Section -->
-        <section id="gallery" class="container-fluid py-5 bg-success-subtle">
-            <div class="container py-5">
-                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
-                    <h1 class="text-primary">हाम्रो ग्यालरी</h1>
-                    <h1> </h1>
-                </div>
-                <!-- Search + Dropdown -->
-                <div class="row justify-content-center gap-4 mb-4">
-                    <div class="text-center col-3">
-                        <input type="text" class="gallery-search form-control w-100" placeholder="ग्यालरी खोज्नुहोस्..." />
-                    </div>
-                   <div class="text-center col-4">
-                        <select class="gallery-dropdown form-select w-100">
-                            <option value="">सबै ग्यालरी देखाउनुहोस्</option>
-                            @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
-                            {
-                                @foreach (var gallery in Model.ImageGalleries)
-                                {
-                                    <option value="@gallery.Title.ToLower()">@gallery.Title</option>
-                                }
-                            }
-                        </select>
-                   </div> 
-                </div>
-                <div class="row g-4">
-                    @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
-                    {
-                        @foreach (var item in Model.ImageGalleries)
-                        {
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
-                                   onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
-                                    <img src="@(_global.BaseUrl() + item.FilePath)"
-                                         alt="@item.Title">
-                                    <div class="card-overlay">
-                                        <div class="card-title">@item.Title</div>
-                                        @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
-                                    </div>
-                                </a>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <p data-aos="fade-in" data-aos-duration="800">No images found.</p>
-                    }
-                </div>
-            </div>
-            <!-- Modal Lightbox with Close Button -->
-            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-contents gallery-modal">
-                        <div class="modal-body text-center position-relative">
-
-                            <!-- Close Button -->
-                            <button class="close-btn" data-bs-dismiss="modal">×</button>
-
-                            <!-- Image -->
-                            <img id="modalImage" class="gallery-modal-img" />
-
-                        </div>
-                        <div class="text-center">
-                            <!-- Title as Button -->
-                            <button id="modalCaption" class="btn btn-primary mt-3 text-center"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-    <!-- video Section -->
-    <section id="videos" class="container-fluid py-5 bg-success-subtle">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5">
-                <h4 class="text-primary">हेर्नुहोस् र सिक्नुहोस्</h4>
-                <h1>किसानका कथाहरू</h1>
-                <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p>
-            </div>
-
-            <div class="category-buttons text-center mb-4" id="categoryButtons"></div>
-
-            <div class="container py-4">
-                <div class="row g-4" id="videoList"></div>
-            </div>
-
-            <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content bg-dark">
-                        <div class="modal-header border-0">
-                            <h5 class="modal-title text-white" id="modalTitle"></h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body p-0" id="modalBodyContainer"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
 
 
@@ -2038,7 +2110,7 @@
                              data-src="${v.src}" data-title="${v.title}">
                             <img class="video-thumb w-100 h-100 object-fit-cover" src="/image/video-placeholder.png" />
                         </div>
-                        <div class="video-card shadow rounded overflow-hidden local-play">
+                        <div class="video-card shadow rounded overflow-hidden local-play  mt-2">
                             <p class="text-center fw-bold">${v.title}</p>
                         </div>
                     </div>
