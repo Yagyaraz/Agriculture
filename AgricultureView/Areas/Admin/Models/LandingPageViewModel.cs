@@ -6,7 +6,7 @@
         public List<AgricultureProgramViewModel>Programs { get; set; }=new List<AgricultureProgramViewModel>();
         public List<AgricultureProjectViewModel> Projects { get; set; } = new List<AgricultureProjectViewModel>();
         public List<AgricultureServiceViewModel> Services { get; set; } = new List<AgricultureServiceViewModel>();
-        public List<AgricultureServiceAdditionalViewModel> AdditionalServices { get; set; } = new List<AgricultureServiceAdditionalViewModel>();
+        //public List<AgricultureServiceAdditionalViewModel> AdditionalServices { get; set; } = new List<AgricultureServiceAdditionalViewModel>();
         public List<AgricultureFarmerGroupViewModel> FarmerGroups { get; set; } = new List<AgricultureFarmerGroupViewModel>();
         public List<AgriCalendarTypeViewModel> CalenderTypes { get; set; } = new List<AgriCalendarTypeViewModel>();
         public List<AgriCalendarTypeViewModel> AgriCalendarTypes { get; set; } = new List<AgriCalendarTypeViewModel>();

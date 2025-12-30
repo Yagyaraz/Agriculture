@@ -193,6 +193,13 @@ namespace Agriculture.Areas.Admin.Repositories
                     FiscalYearName = x.FiscalYear.Name,
                     ProgramName = x.AgricultureProgram.Title,
                     ProjectName = x.AgricultureProject.ProjectName,
+                    AgricultureServiceAdditionalViewModelList = _context.AgricultureServiceAdditional.Where(z => z.ServiceId == x.Id)
+                    .Select(z => new AgricultureServiceAdditionalViewModel()
+                    {
+                        Id = z.Id,
+                        ServiceId = z.ServiceId,
+                        Questions = z.Questions,
+                    }).ToList() ?? new List<AgricultureServiceAdditionalViewModel>(),
                 }).ToListAsync()??new List<AgricultureServiceViewModel>();
         }
         public async Task<AgricultureServiceViewModel> GetServiceById(int id)
