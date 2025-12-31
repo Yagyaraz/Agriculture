@@ -90,25 +90,6 @@ danger-color : #f3545d
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Kokila';
-    src: url('/assets/fonts/kokila/kokila.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'KokilaBold';
-    src: url('/assets/fonts/kokila/kokilab.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'KokilaBoldItalic';
-    src: url('/assets/fonts/kokila/kokilabi.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'KokilaItalic';
-    src: url('/assets/fonts/kokila/kokilai.ttf') format('truetype');
-}
 
 /*   Typography    */
 body, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, .btn-simple, .alert, a, .td-name, td, button.close {
@@ -118,13 +99,6 @@ body, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, 
     font-family: 'KokilaRegular', Arial, sans-serif;
 }
 
-strong, b {
-    font-family: 'KokilaBold';
-}
-
-em, i {
-    font-family: 'KokilaItalic';
-}
 
 input, .form-control {
     font-family: 'Public Sans', sans-serif;

@@ -599,6 +599,16 @@
         .badge-custom {
             font-size: 0.9rem;
         }
+        /* --------------------------------------- anudan ------------------------------------*/
+        .anudhan-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
 
         /* Gallery Styles */
         .page-title {
@@ -1614,6 +1624,112 @@
     </section>
         <hr class="m-0" />
 
+        <!-- SubsidyView anudhan Section -->
+        <section id="anudhan" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <!-- Section Header -->
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <h4 class="text-black fw-semibold">हाम्रा अनुदान</h4>
+                    <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
+                </div>
+
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-5">
+                    <div class="col-md-4">
+                        <input type="text" id="anudhanSearch" class="form-control" placeholder="अनुदान खोज्नुहोस्..." />
+                    </div>
+                    <div class="col-md-4">
+                        <select id="anudhanFilter" class="form-select">
+                            <option value="">सबै अनुदान देखाउनुहोस्</option>
+                            @if (Model.Subsidies != null && Model.Subsidies.Any())
+                            {
+                                foreach (var anudhan in Model.Subsidies)
+                                {
+                                    <option value="@anudhan.ProgramName.ToLower()">@anudhan.ProjectName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Anudhan Items -->
+                @if (Model.Subsidies != null && Model.Subsidies.Any())
+                {
+                    <div class="row g-4 justify-content-center anudhan-items">
+                        @foreach (var anudhan in Model.Subsidies)
+                        {
+                            <div class="col-md-6 col-lg-4 col-xl-3 anudhan-item-card" data-title="@anudhan.ProjectName.ToLower()" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Subsidies.IndexOf(anudhan))" data-aos-easing="ease-in-out">
+                                <div class="anudhan-item bg-white rounded shadow-sm p-4 text-center h-100 hover-shadow cursor-pointer" data-bs-toggle="modal" data-bs-target="#anudhan-modal-@anudhan.Id">
+                                    <div class="anudhan-icon mb-3">
+                                        <i class="fas fa-seedling fa-3x text-success"></i>
+                                    </div>
+                                    <h5 class="fw-semibold">@anudhan.ProgramName</h5>
+                                    <p class="text-muted">@anudhan.ProjectName</p>
+                                </div>
+                            </div>
+
+                            <!-- Modal / Lightbox -->
+                            <div class="modal fade" id="anudhan-modal-@anudhan.Id" tabindex="-1" aria-labelledby="anudhanModalLabel-@anudhan.Id" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content rounded-4 shadow">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="anudhanModalLabel-@anudhan.Id">@anudhan.ProgramName</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <i class="fas fa-seedling fa-2x text-success mb-3"></i>
+                                            @* <p><strong>आर्थिक वर्ष:</strong> @(anudhan.FiscalYearId ?? "81/82")</p> *@
+                                            <p><strong>योजना:</strong> @(anudhan.ProgramName ?? "यहाँ थप अनुदान विस्तृत विवरण राख्नुहोस्।")</p>
+                                            <p><strong>कार्यक्रम:</strong> @(anudhan.ProjectName ?? "यहाँ थप अनुदान विस्तृत विवरण राख्नुहोस्।")</p>
+
+                                            <table class="table table-bordered table-hover mt-3">
+                                                <thead class="table-success text-center">
+                                                    <tr>
+                                                        <th>अनुदान श्रेणी</th>
+                                                        <th>उप-श्रेणी</th>
+                                                        <th>अनुदान संख्या</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (anudhan.SubsidyDetailViewModelList != null && anudhan.SubsidyDetailViewModelList.Any())
+                                                    {
+                                                        foreach (var item in anudhan.SubsidyDetailViewModelList)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.CategoryId</td>
+                                                                <td>@item.SubCategoryId</td>
+                                                                <td>
+                                                                    <span class="badge badge-primary">@item.Quantity</span>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center text-muted">कुनै थप अनुदान छैन ।</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer border-0 justify-content-center">
+                                            <button type="button" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800">कृषि सेवा उपलब्ध छैन</p>
+                }
+            </div>
+        </section>
+        <hr class="m-0" />
+
     <!-- market -->
         <section id="market" class="container-fluid py-5 bg-success-subtle">
             <div class="container py-5">
@@ -2314,8 +2430,28 @@
             });
         });
 
+        // anudhan search
+            $(".anudhan-search").on("keyup", function(){
+                var search = $(this).val().toLowerCase();
+                $(".anudhan-item-card").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(title.includes(search));
+                });
+            });
+
+            // anudhan dropdown
+            $(".anudhan-dropdown").on("change", function(){
+                var selected = $(this).val();
+                $(".anudhan-item-card").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(selected === "" || title === selected);
+                });
+            });
+
         });
     </script>
+
+  
 
 </body>
 
