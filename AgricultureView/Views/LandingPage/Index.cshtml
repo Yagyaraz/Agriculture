@@ -569,7 +569,7 @@
         }
 
         /* -----------------------------  traning ------------------------------------------ */
-        #traning {
+        #traning, #library {
             background: linear-gradient(rgb(168 227 178));
         }
 
@@ -1230,9 +1230,7 @@
                             <div class="col-6 pt-0  ">
                                 <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> प्रमाणपत्र तथा नवीकरण</div>
                         </div>
-                            <div class="col-6 pt-0  ">
-                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि कार्यक्रम,योजना तथा सेवा सुबिधा सम्बन्धि जानकारी</div>
-                        </div>
+                            
                             <div class="col-6 pt-0  ">
                                 <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि तालिम सम्बन्धि जानकारी</div>
                         </div>
@@ -1260,6 +1258,9 @@
                             <div class="col-6 pt-0  ">
                                 <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि सम्बन्धि रोगको पहिचान तथा नियन्त्रण</div>
                         </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि कार्यक्रम,योजना तथा सेवा सुबिधा सम्बन्धि जानकारी</div>
+                            </div>
                     </div>
                     @* <a href="#contact" class="btn btn-primary rounded-pill py-3 px-5">सुरु गर्नुहोस्</a> *@
                 </div>
@@ -1462,7 +1463,7 @@
                                 <div class="service-item bg-white rounded shadow p-4 text-center h-100">
                                     <a href="#service-modal-@service.Id" data-bs-toggle="modal">
                                         <div class="service-icon mb-3">
-                                            <i class="fas fa-seedling fa-3x text-primary"></i>
+                                            <i class="fas fa-seedling fa-1x text-primary"></i>
                                         </div>
                                         <h5>@service.ServiceName</h5>
                                     </a>
@@ -1479,7 +1480,7 @@
                                         </div>
                                         <div class="modal-body text-center">
                                             <p> आर्थिक वर्ष: @(service.FiscalYearName ?? "81/82")</p>
-                                            <i class="fas fa-seedling fa-2x text-primary mb-4"></i>
+                                            <i class="fas fa-seedling fa-1x text-primary mb-4"></i>
                                             <p>योजना:  @(service.ProgramName ?? "यहाँ सेवाको विस्तृत विवरण राख्नुहोस्।")</p>
                                             <p> कार्यक्रम: @(service.ProjectName ?? "यहाँ सेवाको विस्तृत विवरण राख्नुहोस्।")</p>
                                             <table class="table table-bordered table-hover mt-2">
@@ -1532,6 +1533,7 @@
         </section>
         <hr class="m-0" />
 
+        @* Training  *@
     <section id="traning" class="container-fluid py-5">
         <div class="container">
             <h1 class="text-center mb-5 fw-bold text-black">तालिम विवरण</h1>
@@ -1661,7 +1663,7 @@
                             <div class="col-md-6 col-lg-4 col-xl-3 anudhan-item-card" data-title="@anudhan.ProjectName.ToLower()" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Subsidies.IndexOf(anudhan))" data-aos-easing="ease-in-out">
                                 <div class="anudhan-item bg-white rounded shadow-sm p-4 text-center h-100 hover-shadow cursor-pointer" data-bs-toggle="modal" data-bs-target="#anudhan-modal-@anudhan.Id">
                                     <div class="anudhan-icon mb-3">
-                                        <i class="fas fa-sack-dollar fa-3x text-success"></i>
+                                        <i class="fas fa-sack-dollar fa-1x text-success"></i>
                                     </div>
                                     <h5 class="fw-semibold">@anudhan.ProgramName</h5>
                                     <p class="text-muted">@anudhan.ProjectName</p>
@@ -1677,7 +1679,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body text-center">
-                                            <i class="fas fa-sack-dollar fa-2x text-success mb-3"></i>
+                                            <i class="fas fa-sack-dollar fa-1x text-success mb-3"></i>
                                             @* <p><strong>आर्थिक वर्ष:</strong> @(anudhan.FiscalYearId ?? "81/82")</p> *@
                                             <p><strong>योजना:</strong> @(anudhan.ProgramName ?? "यहाँ थप अनुदान विस्तृत विवरण राख्नुहोस्।")</p>
                                             <p><strong>कार्यक्रम:</strong> @(anudhan.ProjectName ?? "यहाँ थप अनुदान विस्तृत विवरण राख्नुहोस्।")</p>
@@ -1728,6 +1730,115 @@
                 }
             </div>
         </section>
+        <hr class="m-0" />
+
+        @* पुस्तकालय Library *@
+        <section id="library" class="container-fluid py-5">
+            <div class="container">
+                <h1 class="text-center mb-5 fw-bold text-black">पुस्तकालय सूची</h1>
+
+                @if (Model.Libraries != null && Model.Libraries.Any())
+                {
+                    <div class="row g-4 justify-content-center anudhan-items">
+                        @{
+                            var delay = 0;
+                        }
+
+                        @foreach (var library in Model.Libraries)
+                        {
+                            <div class="col-md-6 col-lg-4 col-xl-3 anudhan-item-card"
+                                 data-title="@(library.Title?.ToLower() ?? "")"
+                                 data-aos="fade-up"
+                                 data-aos-duration="800"
+                                 data-aos-delay="@delay"
+                                 data-aos-easing="ease-in-out">
+
+                                <div class="anudhan-item bg-white rounded shadow-sm p-4 text-center h-100 hover-shadow cursor-pointer"
+                                     data-bs-toggle="modal"
+                                     data-bs-target="#library-modal-@library.Id">
+
+                                    <div class="anudhan-icon mb-3">
+                                        <i class="fas fa-book fa-1x text-success"></i>
+                                    </div>
+
+                                    <h5 class="fw-semibold">@library.Title</h5>
+                                    <p class="text-muted">@library.TypeId</p>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade"
+                                 id="library-modal-@library.Id"
+                                 tabindex="-1"
+                                 aria-labelledby="libraryModalLabel-@library.Id"
+                                 aria-hidden="true">
+
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content rounded-4 shadow">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="libraryModalLabel-@library.Id">
+                                                @library.Title
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body text-center">
+                                            <i class="fas fa-book fa-1x text-success mb-3"></i>
+
+                                            <p>
+                                                <strong>शीर्षक:</strong>
+                                                @(library.Title ?? "शीर्षक उपलब्ध छैन")
+                                            </p>
+                                            @* <p>
+                                                <strong>प्रकार:</strong>
+                                                @(library.TypeId ?? "प्रकार उपलब्ध छैन")
+                                            </p> *@
+
+                                            <p class="Details-file">
+                                                <strong>विवरण:</strong>
+                                                @Html.Raw(library.Description ?? "यहाँ पुस्तकालयको विस्तृत विवरण राख्नुहोस्।")
+                                            </p>
+                                            @* Image section *@
+                                            @if (!string.IsNullOrEmpty(library.FilePhotoPath))
+                                            {
+                                                <div class="text-center my-4">
+                                                    <img src="@(_global.BaseUrl() + library.FilePhotoPath)"
+                                                         class="img-fluid rounded shadow"
+                                                         style="max-height: 350px; max-width: 100%;"
+                                                         alt="पुस्तकालयको फोटो" />
+
+                                                    <small class="text-muted d-block mt-2">
+                                                        पुस्तकालयको फोटो
+                                                    </small>
+                                                </div>
+                                            }
+                                            
+                                        </div>
+
+                                        <div class="modal-footer border-0 justify-content-center">
+                                            <button type="button"
+                                                    class="btn btn-success rounded-pill px-4"
+                                                    data-bs-dismiss="modal">
+                                                बन्द गर्नुहोस्
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            delay += 100;
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800">
+                        पुस्तकालय सूची उपलब्ध छैन
+                    </p>
+                }
+            </div>
+        </section>
+
         <hr class="m-0" />
 
     <!-- market -->
@@ -1829,7 +1940,11 @@
             </div>
         </section>
 
-    <!-- Projects ( Weather) -->
+        
+
+
+
+        <!-- Projects ( Weather) -->
     <section id="projects" class="project-item container-fluid py-5">
         <div class="container project-content">
             <div class="row align-items-center">
