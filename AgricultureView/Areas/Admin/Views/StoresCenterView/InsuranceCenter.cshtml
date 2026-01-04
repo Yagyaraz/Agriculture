@@ -1,4 +1,5 @@
-﻿@model IEnumerable<InsuranceCenterViewModel>
+﻿@using AgricultureView.Constants
+@model IEnumerable<InsuranceCenterViewModel>
 @{
     ViewData["Title"] = "InsuranceCenter";
 }
@@ -34,11 +35,26 @@
                                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Address)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                        <td class="text-center d-flex justify-content-between"> 
-                                            <a asp-action="CreateInsuranceCenter" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-                                            <a asp-action="InsuranceCenterDetail" title="Detail" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
-                                            <a asp-action="InsuranceCenterDetail" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
-                                            </td>
+                                        <td class="text-center align-middle p-2"> 
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <a asp-action="CreateInsuranceCenter" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                                <a asp-action="InsuranceCenterDetail" title="Detail" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
+                                                @* <a asp-action="InsuranceCenterDetail" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a> *@
+                                                <form asp-area=""
+                                                      asp-controller="AjaxMVC"
+                                                      asp-action="Delete"
+                                                      title="Delete"
+                                                      asp-route-table="@TableNameConstants.InsuranceCenter"
+                                                      asp-route-id="@item.Id"
+                                                      method="post"
+                                                      onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
+
+                                                    <button type="submit" class="btn btn-link">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>

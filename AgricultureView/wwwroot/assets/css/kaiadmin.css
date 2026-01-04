@@ -85,18 +85,20 @@ danger-color : #f3545d
 
 -------------------------------------------------------------------*/
 @font-face {
-    font-family: 'Kalimati Regular';
-    src: url('/fonts/Kalimati.woff2') format('woff2'), url('/fonts/Kalimati.woff') format('woff'), url('/fonts/Kalimati.ttf') format('truetype');
+    font-family: 'KokilaRegular';
+    src: url('/assets/fonts/kokila/kokila-regular.ttf') format('truetype');
     font-display: swap;
 }
+
 
 /*   Typography    */
 body, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, .btn-simple, .alert, a, .td-name, td, button.close {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     /*    font-family: 'Public Sans', sans-serif;*/
-    font-family: "Kalimati regular";
+    font-family: 'KokilaRegular', Arial, sans-serif;
 }
+
 
 input, .form-control {
     font-family: 'Public Sans', sans-serif;
@@ -9982,6 +9984,15 @@ body {
             padding: 13px 25px;
             animation-delay: 2.5s;
         }
+
+.Details-file {
+    text-indent: 50px;
+    word-wrap: break-word;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.5;
+    margin: 0 20px;
+}
 
 @media screen and (max-width: 576px) {
     .wrapper.not-found h1 {

@@ -1,4 +1,5 @@
 ﻿@model FertilizerStoreViewModel
+@inject IUtility _utility
 @{
     ViewData["Title"] = "Fertilizer Store Details";
 }
@@ -79,9 +80,9 @@
                                 @foreach (var item in Model.FertilizerStoreProductionViewModelList)
                                 {
                                     <tr>
-                                        <td>@item.TypeId</td>
-                                        <td>@item.CategoryId</td>
-                                        <td>@item.ProductId</td>
+                                        <td>@(item.TypeId)</td>
+                                        <td>@await _utility.GetCategoryNameById(item.CategoryId)</td>
+                                        <td>@await _utility.GetAgriCalendarProductNameById(item.ProductId)</td>
                                     </tr>
                                 }
                             </tbody>

@@ -27,7 +27,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<CommonViewModel>> GetAllMarket()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.Market.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.Market.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new CommonViewModel()
                 {
                     Id = x.Id,
@@ -97,6 +98,16 @@ namespace Agriculture.Areas.Admin.Repositories
                      DateEng = x.DateEng,
                      MarketId = x.MarketId,
                      MarketName = x.Market.Name,
+                     MarketPriceDetailsViewModelList = _context.MarketPriceDetails.Where(z => z.MarketPriceId == x.Id)
+                    .Select(z => new MarketPriceDetailsViewModel()
+                    {
+                        Id = z.Id,
+                        MarketPriceId = z.MarketPriceId,
+                        AveragePrice = z.AveragePrice,
+                        ProductName = z.ProductName,
+                        RetailPrice = z.RetailPrice,
+                        WholesalePrice = z.WholesalePrice
+                    }).ToList() ?? new List<MarketPriceDetailsViewModel>(),
                  }).ToListAsync();
         }
         public async Task<MarketPriceViewModel> GetMarketPriceById(int id)

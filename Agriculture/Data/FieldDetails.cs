@@ -22,7 +22,7 @@ namespace Agriculture.Data
         public DateTime SamjhutaEndDate{ get; set; }
         public string CitizenNo { get; set; }
         public string CurrentAddress { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
 
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -75,8 +75,8 @@ namespace AgricultureView.Areas.Admin.Controllers
                 formData.Add(new StringContent(model.Id.ToString()), "Id");
                 formData.Add(new StringContent(model.PlaylistId.ToString()), "PlaylistId");
                 formData.Add(new StringContent(model.Title), "Title");
-                formData.Add(new StringContent(model.YoutubeURL), "YoutubeURL");
-                formData.Add(new StringContent(model.Description), "Description");
+                formData.Add(new StringContent(model.YoutubeURL??string.Empty), "YoutubeURL");
+                formData.Add(new StringContent(model.Description??string.Empty), "Description");
                 formData.Add(new StringContent(model.IsPublised.ToString()), "IsPublised");
 
 

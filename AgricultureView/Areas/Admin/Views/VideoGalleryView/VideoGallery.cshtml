@@ -1,4 +1,6 @@
-﻿@model IEnumerable<VideoGalleryViewModel>
+﻿@using AgricultureView.Constants
+
+@model IEnumerable<VideoGalleryViewModel>
 @{
     ViewData["Title"] = "VideoGallery";
 }
@@ -33,9 +35,24 @@
                                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                         <td>@Html.DisplayFor(modelItem => item.PlaylistName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Publised)</td>
-                                        <td class="text-center d-flex justify-content-around">
+                                        <td class="text-center align-middle p-2">
+                                            <div class="d-flex justify-content-around align-items-center">
                                             <a asp-action="CreateVideoGallery" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-                                            <a asp-action="CreateVideoGallery" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+                                            @* <a asp-action="DeleteVideoGallery" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a> *@
+                                            <form asp-area=""
+                                                  asp-controller="AjaxMVC"
+                                                  asp-action="Delete"
+                                                  title="Delete"
+                                                  asp-route-table="@TableNameConstants.VideoGallery"
+                                                  asp-route-id="@item.Id"
+                                                  method="post"
+                                                  onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
+
+                                                <button type="submit" class="btn btn-link p-0">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 }

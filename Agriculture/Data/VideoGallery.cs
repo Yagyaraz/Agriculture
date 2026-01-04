@@ -9,7 +9,7 @@ namespace Agriculture.Data
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsPublised { get; set; }
-
+        public bool IsDeleted { get; set; }
 
         public int CreatedWardId { get; set; }
         public string CreatedBy { get; set; }

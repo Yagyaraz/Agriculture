@@ -1,7 +1,10 @@
 ﻿@model AgricultureView.Models.LoginViewModel
+@inject AgricultureView.Utility.IUtility _Utility
 @{
     Layout = null;
-}
+    var org = await _Utility.GetOfficeDetail();
+    var orgname = org.PalikaName;
+} 
 @* <partial name="_AllCSSfiles" />
 <partial name="_AllScriptFiles" />
 <div class="card p-5">
@@ -20,7 +23,7 @@
 </div>
  *@
 
-<!DOCTYPE html>
+@* <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,9 +62,9 @@
                 </div>
                 <div class="col-md-10 col-10 text-center" style="font-weight:bold">
                     <h2 style="color: green;">कृषि तथा पशुपन्छी पोर्टल</h2>
-                   @*  <h5>काठमाडौँ नगरपालिका </h5>
+                     <h5>काठमाडौँ नगरपालिका </h5>
                     <h5>नगर कार्यपालिकाको कार्यालय </h5>
-                    <h5>काठमाडौँ, बागमती प्रदेश</h5> *@
+                    <h5>काठमाडौँ, बागमती प्रदेश</h5>
                 </div>
             </div>
             <div class="form-group">
@@ -99,4 +102,579 @@
     </form>
 
 </body>
-</html>
+</html> *@
+<!DOCTYPE html>
+<html lang="ne">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>लगइन | कृषि तथा पशुपन्छी पोर्टल</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url("/assets/img/login$register_bg_img.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            color: #333;
+        }
+
+            body::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.35);
+                z-index: 1;
+            }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 980px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+            backdrop-filter: blur(6px);
+        }
+
+        .form-box {
+            flex: 1;
+            padding: 3.5rem 3rem;
+            z-index: 2;
+        }
+
+            .form-box h1 {
+                font-size: 2.1rem;
+                color: #1a5c38; 
+                margin-bottom: 2rem;
+                font-weight: 600;
+            }
+
+            .form-box label {
+                display: block;
+                margin-top: 18px;
+                color: #444;
+                font-weight: 500;
+            }
+
+            .form-box input[type="email"],
+            .form-box input[type="password"] {
+                width: 100%;
+                padding: 0.9rem 1.1rem;
+                margin-top: 8px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: all 0.3s;
+            }
+
+            .form-box input:focus {
+                border-color: #2e7d32;
+                box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+                outline: none;
+            }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+            .options label {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .options .form-check {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+        .form-box button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 1rem;
+            background: #2e7d32;
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .form-box button:hover {
+                background: #5760d4;
+                transform: scale(1.03);
+            }
+
+        .form-box p {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+            .form-box p a {
+                color: #6B73FF;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                .form-box p a:hover {
+                    text-decoration: underline;
+                }
+
+        .right {
+            flex: 1;
+            background: linear-gradient(rgba(26, 92, 56, 0.5), rgba(30, 70, 40, 0.7)), url('https://codervent.com/rocker/demo/vertical/assets/images/login-images/login-cover.svg') center/cover no-repeat;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .right h3 {
+            font-size: 1.9rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .right h6 {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+
+       
+
+        @@media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin: 1rem;
+            }
+
+            .form-box,
+            .right {
+                padding: 2.5rem 1.8rem;
+            }
+
+            .right {
+                order: -1;
+                min-height: 320px;
+            }
+
+            .form-box h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .form-box
+
+        {
+            padding: 2rem 1.4rem;
+        }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Login Container -->
+    <div class="container">
+        <div class="form-box">
+            <h1>लगइन गर्नुहोस्</h1>
+            <form asp-action="Index">
+                <label for="username">प्रयोगकर्ताको इमेल लेखनुहोस्</label>
+                <input asp-for="Username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@gmail.com" required />
+
+                <label for="password">पासवर्ड</label>
+                <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required data-val="true" />
+
+                <div class="options checkbox form-group mt-3">
+                    <div class="form-check d-flex">
+                        <label class="form-check-label text-muted" for="remember">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            पासवर्ड याद राखनुहोस्
+                        </label>
+                        
+                        
+                    </div>
+                </div>
+
+                <button type="submit">लगइन गर्नुहोस्</button>
+
+                <p class="text-center mx-auto">खाता छैन? <a href="./RegisterPage.html">यहाँ दर्ता गर्नुहोस्</a></p> 
+            </form>
+        </div>
+
+        <div class="right">
+            <h3>@org.Name</h3>
+            <h6>सिरीजङ्घा गाउँपालिका<br> गाँउ कार्यपालिकाको कार्यालय <br> ताप्लेजुङ्ग, कोशी प्रदेश, नेपाल ,<br /> "सिरीजङ्घाको गौरव कञ्चनजङ्गा" </h6>
+        </div>
+    </div>
+
+</body>
+
+</html> 
+
+@* register page create and past for this coment code  *@
+
+@* @using AgricultureView.Utility
+@model AgricultureView.Models.RegisterViewModel
+@inject AgricultureView.Utility.IUtility _Utility
+@{
+    Layout = null;
+    var org = await _Utility.GetOfficeDetail();
+    var orgname = org.PalikaName;
+}
+
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>दर्ता | कृषि तथा पशुपन्छी पोर्टल - सिरीजङ्घा गाउँपालिका</title>
+
+    <!-- Noto Sans Devanagari -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+            background: url("/assets/img/login$register_bg_img.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c3e50;
+            position: relative;
+        }
+
+            body::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.30);
+                z-index: 1;
+            }
+
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 960px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 16px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+            z-index: 2;
+            backdrop-filter: blur(5px);
+        }
+
+        .left {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(26, 92, 56, 0.85) 0%, rgba(30, 70, 40, 0.92) 100%), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80') center/cover no-repeat;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+            .left::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: rgba(26, 92, 56, 0.25);
+                z-index: 1;
+            }
+
+            .left > * {
+                position: relative;
+                z-index: 2;
+            }
+
+            .left h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+                color: #fff;
+                text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            }
+
+            .left img {
+                max-width: 80%;
+                height: auto;
+                filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+            }
+
+        .form-box {
+            flex: 1;
+            padding: 4rem 3rem;
+        }
+
+            .form-box h1 {
+                font-size: 2.1rem;
+                color: #1a5c38;
+                margin-bottom: 2.2rem;
+                font-weight: 600;
+            }
+
+            .form-box label {
+                display: block;
+                margin: 1.4rem 0 0.5rem;
+                font-weight: 500;
+                color: #2c3e50;
+            }
+
+            .form-box input[type="text"],
+            .form-box input[type="email"],
+            .form-box input[type="password"] {
+                width: 100%;
+                padding: 0.95rem 1.3rem;
+                border: 1px solid #c0d0c0;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: all 0.25s ease;
+            }
+
+            .form-box input:focus {
+                border-color: #2e7d32;
+                box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+                outline: none;
+            }
+
+            .form-box button {
+                margin-top: 2.2rem;
+                width: 100%;
+                padding: 1.1rem;
+                background: #2e7d32;
+                color: white;
+                font-size: 1.1rem;
+                font-weight: 600;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+                .form-box button:hover {
+                    background: #1b5e20;
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.35);
+                }
+
+            .form-box p {
+                margin-top: 1.8rem;
+                text-align: center;
+                font-size: 0.95rem;
+            }
+
+                .form-box p a {
+                    color: #2e7d32;
+                    text-decoration: none;
+                    font-weight: 500;
+                }
+
+                    .form-box p a:hover {
+                        text-decoration: underline;
+                    }
+
+        /* Responsive */
+       @@media (max-width: 768px) {
+            .container
+
+        {
+            flex-direction: column;
+            margin: 1.5rem;
+        }
+
+        .left {
+            order: -1;
+            padding: 2.5rem 1.5rem;
+            min-height: 320px;
+        }
+
+            .left img {
+                max-width: 260px;
+            }
+
+        .form-box {
+            padding: 3rem 2rem;
+        }
+
+            .form-box h1 {
+                font-size: 1.9rem;
+            }
+
+        }
+
+        @@media (max-width: 480px) {
+            .form-box
+
+        {
+            padding: 2.2rem 1.5rem;
+        }
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="left">
+            <h1>@org.Name</h1>
+            <img src="https://codervent.com/rocker/demo/vertical/assets/images/login-images/register-cover.svg"
+                 alt="दर्ता छवि">
+        </div>
+
+        <div class="form-box">
+            <h1>प्रयोगकर्ता खाता खोल्नुहोस्</h1>
+
+                <form asp-action="Register" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label for="fullname">पुरा नाम</label>
+                    <input asp-for="fullname" />
+                    <span asp-validation-for="fullname" class="text-danger"></span>
+                    <input type="text" id="fullname" placeholder="पुरा नाम / थर सहित" required />
+
+                    <label asp-for="Email">इमेल</label>
+                    <input asp-for="Email" type="email" placeholder="example@gmail.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                    <label asp-for="Password">पासवर्ड</label>
+                    <input asp-for="Password" type="password" placeholder="नयाँ पासवर्ड" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+
+                    <label asp-for="ConfirmPassword">पासवर्ड पुनः</label>
+                    <input asp-for="ConfirmPassword" type="password" placeholder="पासवर्ड दोहोर्‍याउनुहोस्" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                    <label asp-for="Role">भूमिका</label>
+                    <select asp-for="Role" asp-items="await _Utility.GetSelectListRoles()">
+                        <option value="">भूमिका छान्नुहोस्</option>
+                    </select>
+
+                    <!-- ADMIN -->
+                    <div id="adminRow" style="display:none">
+                        <label asp-for="FullName">पूरा नाम</label>
+                        <input asp-for="FullName" />
+
+                        <label asp-for="FullNameNep">नेपाली नाम</label>
+                        <input asp-for="FullNameNep" />
+
+                        <label asp-for="WardId">वडा नं</label>
+                        <input asp-for="WardId" />
+
+                        <label asp-for="PhoneNo">फोन नं</label>
+                        <input asp-for="PhoneNo" />
+                    </div>
+
+                    <!-- FARMER -->
+                    <div id="farmerRow" style="display:none">
+                        <label asp-for="FarmerId">किसान छान्नुहोस्</label>
+                        <select asp-for="FarmerId" asp-items="await _Utility.GetFarmerSelectListItems()">
+                            <option value="">किसान चयन</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">दर्ता गर्नुहोस्</button>
+                <p>पहिले नै खाता छ ? <a href="./Loginpage.html">लगइन गर्नुहोस्</a></p>
+                </form>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+        <script>
+            $(document).ready(function () {
+                RoleBaseControll();
+
+            });
+            $('#Role').change(function () {
+                RoleBaseControll();
+            });
+
+            function RoleBaseControll() {
+                debugger
+                var value = $('#Role').val();
+                if (value.includes("Admin")) {
+                    $('#adminRow').attr('style', 'display:flex;');
+                    $('#farmerRow').attr('style', 'display:none;');
+                    $('#FullName').attr('required', 'required');
+                    $('#FullNameNep').attr('required', 'required');
+                    $('#WardId').attr('required', 'required');
+                    $('#PhoneNo').attr('required', 'required');
+                    $('#FarmerId').val("");
+
+                } else if (value.includes("User")) {
+                    $('#farmerRow').attr('style', 'display:flex;');
+                    $('#adminRow').attr('style', 'display:none;');
+                    $('#FarmerId').attr('required', 'required');
+                    $('#FullName').val("");
+                    $('#FullNameNep').val("");
+                    $('#WardId').val("");
+                    $('#PhoneNo').val("");
+                } else{
+                    $('#adminRow').attr('style', 'display:none;');
+                    $('#farmerRow').attr('style', 'display:none;');
+                    $('#FullName').removeAttr('required', 'required');
+                    $('#FullNameNep').removeAttr('required', 'required');
+                    $('#WardId').removeAttr('required', 'required');
+                    $('#PhoneNo').removeAttr('required', 'required');
+                    $('#FarmerId').removeAttr('required', 'required');
+                    $('#FullName').val("");
+                    $('#FullNameNep').val("");
+                    $('#WardId').val("");
+                    $('#PhoneNo').val("");
+                    $('#FarmerId').val("");
+
+                }
+            }
+        </script>
+    }
+</body>
+</html> *@

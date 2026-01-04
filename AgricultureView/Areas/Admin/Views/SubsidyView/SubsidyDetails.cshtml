@@ -1,4 +1,5 @@
 ﻿@model SubsidyViewModel
+@inject IUtility _utility
 @{
     ViewData["Title"] = "Subsidy Details";
 }
@@ -36,15 +37,15 @@
                     <div class="row">
                         <div class="col-md-3">
                             <strong>आर्थिक वर्ष</strong>
-                            <p class="text-muted">@Model.FiscalYearId</p>
+                            <p class="text-muted">@await _utility.GetFiscalYearNameById(Model.FiscalYearId)</p>
                         </div>
                         <div class="col-md-3">
                             <strong>कार्यक्रम</strong>
-                            <p class="text-muted">@Model.ProgramName</p>
+                            <p class="text-muted">@await _utility.GetProgramNameById(Model.ProgramId)</p>
                         </div>
                         <div class="col-md-3">
                             <strong>योजना</strong>
-                            <p class="text-muted">@Model.ProjectName</p>
+                            <p class="text-muted">@await _utility.GetProgramNameById(Model.ProjectId)</p>
                         </div>
                         <div class="col-md-3">
                             <strong>सुरु मिति</strong>
@@ -83,8 +84,8 @@
                                     foreach (var item in Model.SubsidyDetailViewModelList)
                                     {
                                         <tr>
-                                            <td>@item.CategoryId</td>
-                                            <td>@item.SubCategoryId</td>
+                                            <td>@await _utility.GetCategoryNameById(item.CategoryId)</td>
+                                            <td>@await _utility.GetSubCategoryNameById(item.SubCategoryId)</td>
                                             <td>
                                                 <span class="badge badge-primary">@item.Quantity</span>
                                             </td>

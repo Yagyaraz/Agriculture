@@ -1,4 +1,5 @@
 ﻿@model AgriCalendarProductViewModel
+@inject IUtility _utility
 @{
     ViewData["Title"] = "AgriCalendar Product Details";
 }
@@ -46,12 +47,12 @@
 
                         <div class="col-md-3">
                             <strong>प्रकार</strong>
-                            <p class="text-muted">@Model.AgriCalendarType</p>
+                            <p class="text-muted">@await _utility.GetAgriCalendarTypeNameById(Model.AgriCalendarTypeId)</p>
                         </div>
 
                         <div class="col-md-3">
                             <strong>उत्पादन श्रेणी</strong>
-                            <p class="text-muted">@Model.AgriCalendarCategoryId</p>
+                            <p class="text-muted">@await _utility.GetAgriCalendarCategoryNameById(Model.AgriCalendarCategoryId)</p>
                         </div>
 
                         <div class="col-md-3">

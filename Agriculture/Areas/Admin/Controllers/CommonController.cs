@@ -1,6 +1,7 @@
 ﻿using Agriculture.Areas.Admin.Interface;
 using Agriculture.Areas.Admin.Models;
 using Agriculture.Models;
+using Agriculture.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +12,6 @@ namespace Agriculture.Areas.Admin.Controllers
     public class CommonController : ControllerBase
     {
         private readonly ICommon _Common;
-
         public CommonController(ICommon common)
         {
             _Common = common;
@@ -180,5 +180,7 @@ namespace Agriculture.Areas.Admin.Controllers
             return Ok(new ApiResponse { Status = data, Message = data ? "Successfully Created Ward" : "WardSetup Not Created Try Again", Data = data });
         }
         #endregion
+       
+
     }
 }

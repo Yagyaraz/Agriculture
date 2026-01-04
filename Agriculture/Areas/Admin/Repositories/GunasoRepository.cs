@@ -54,7 +54,7 @@ namespace Agriculture.Areas.Admin.Repositories
 
         public async Task<List<GunasoViewModel>> GunasoList()
         {
-            return await _dbContext.Gunasos
+            return await _dbContext.Gunasos.Where(x => !x.IsDeleted)
                        .Select(c => new GunasoViewModel
                        {
                            Id = c.Id,

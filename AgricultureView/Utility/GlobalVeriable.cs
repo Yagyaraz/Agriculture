@@ -57,6 +57,25 @@ namespace AgricultureView.Utility
             var data = JsonConvert.DeserializeObject<ApiResponse>(response);
             return data;
         }
+        public async Task<ApiResponse> DeleteMethod(string url)
+        {
+            _httpClient.DefaultRequestHeaders.Accept
+                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var token = _httpContextAccessor.HttpContext.Session.GetString("token");
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+            }
+
+            var httpResponse = await _httpClient.DeleteAsync(url);
+
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<ApiResponse>(responseString);
+        }
+
         public async Task<ApiResponse> PostFileMethodWithPartial(string url, HttpContent content)
         {
             // Set headers for JSON

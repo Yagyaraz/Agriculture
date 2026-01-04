@@ -23,7 +23,7 @@ namespace Agriculture.Areas.Admin.Repositories
 
         public async Task<List<ApplicationFormViewModel>> GetAllApplicationForm()
         {
-            return await _context.ApplicationForms
+            return await _context.ApplicationForms.Where(x => !x.IsDeleted)
                 .Select(x => new ApplicationFormViewModel()
                 {
                     Id = x.Id,

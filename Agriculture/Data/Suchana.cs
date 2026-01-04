@@ -14,5 +14,6 @@ namespace Agriculture.Data
         public DateTime? UpdatedDate { get; set; }
         public int CreatedWardId { get; set; }
         public int FiscalYearId {  get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

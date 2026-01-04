@@ -1,4 +1,5 @@
-﻿@model SeedStoreViewModel
+﻿@inject IUtility _utility
+@model SeedStoreViewModel
 @{
     ViewData["Title"] = "Seed Store Details";
 }
@@ -78,9 +79,9 @@
                             @foreach (var item in Model.SeedStoreProductionViewModelList)
                             {
                                 <tr>
-                                    <td>@item.TypeId</td>
-                                    <td>@item.CategoryId</td>
-                                    <td>@item.ProductId</td>
+                                    <td>@await _utility.GetTrainingTypeNameById(item.TypeId)</td>
+                                    <td>@await _utility.GetCategoryNameById(item.CategoryId)</td>
+                                    <td>@await _utility.GetCategoryNameById(item.ProductId)</td>
                                 </tr>
                             }
                         </tbody>

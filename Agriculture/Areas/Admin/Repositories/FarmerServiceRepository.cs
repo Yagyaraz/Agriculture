@@ -26,7 +26,7 @@ namespace Agriculture.Areas.Admin.Repositories
 
         public async Task<List<FarmerServiceViewModel>> GetAllFarmerService()
         {
-            return await _context.AgriService
+            return await _context.AgriService.Where(x => !x.IsDeleted)
                 .Select(x => new FarmerServiceViewModel()
                 {
                     Id = x.Id,
@@ -106,7 +106,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<FarmerServiceCardViewModel>> GetAllFarmerServiceCard()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            var data = await _context.FarmerServiceCard.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            var data = await _context.FarmerServiceCard.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new FarmerServiceCardViewModel()
                 {
                     Id = x.Id,

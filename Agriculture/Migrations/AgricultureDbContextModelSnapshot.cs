@@ -39,6 +39,9 @@ namespace Agriculture.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -75,6 +78,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("AgriCalendarTypeId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -184,6 +190,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("AgriCalendarTypeId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -206,6 +215,9 @@ namespace Agriculture.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -316,6 +328,9 @@ namespace Agriculture.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -370,6 +385,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LandOwnershipPhotoPath")
                         .HasColumnType("nvarchar(max)");
@@ -552,6 +570,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("FirmWardNo")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("KaryalayeName")
                         .HasColumnType("nvarchar(max)");
 
@@ -606,6 +627,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -641,6 +665,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProgramId")
                         .HasColumnType("int");
@@ -683,6 +710,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ProgramId")
                         .HasColumnType("int");
 
@@ -722,6 +752,9 @@ namespace Agriculture.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Questions")
                         .HasColumnType("nvarchar(max)");
@@ -789,6 +822,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -858,6 +894,9 @@ namespace Agriculture.Migrations
 
                     b.Property<string>("Institution")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
@@ -1181,6 +1220,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("CreatedWardId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -1286,6 +1328,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1453,6 +1498,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("TotalFemale")
                         .HasColumnType("int");
 
@@ -1608,6 +1656,9 @@ namespace Agriculture.Migrations
                     b.Property<string>("HouseNo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("PalikaId")
                         .HasColumnType("int");
 
@@ -1759,6 +1810,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ServiceDate")
                         .HasColumnType("nvarchar(max)");
 
@@ -1853,6 +1907,9 @@ namespace Agriculture.Migrations
 
                     b.Property<string>("FilePath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -1986,6 +2043,9 @@ namespace Agriculture.Migrations
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsKrishakDarta")
                         .HasColumnType("bit");
@@ -2336,6 +2396,9 @@ namespace Agriculture.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -2460,6 +2523,9 @@ namespace Agriculture.Migrations
                     b.Property<string>("FilePath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -2527,6 +2593,9 @@ namespace Agriculture.Migrations
 
                     b.Property<decimal?>("IncomeFromNonAgri")
                         .HasColumnType("decimal(18, 2)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsSelfJagga")
                         .HasColumnType("bit");
@@ -2822,6 +2891,9 @@ namespace Agriculture.Migrations
                     b.Property<string>("FilePath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -2857,6 +2929,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("CreatedWardId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -3061,6 +3136,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("FirmId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("RasidNumber")
                         .HasColumnType("nvarchar(max)");
@@ -3337,6 +3415,9 @@ namespace Agriculture.Migrations
                     b.Property<DateTime?>("EndDateEng")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ProvidedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -3457,6 +3538,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("CreatedWardId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsPublised")
                         .HasColumnType("bit");
 
@@ -3564,6 +3648,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("FarmerId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -3647,6 +3734,9 @@ namespace Agriculture.Migrations
                     b.Property<string>("FilePath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -3716,6 +3806,9 @@ namespace Agriculture.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -3858,6 +3951,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("CreatedWardId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -3901,6 +3997,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProgramId")
                         .HasColumnType("int");
@@ -4000,6 +4099,9 @@ namespace Agriculture.Migrations
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -4048,6 +4150,9 @@ namespace Agriculture.Migrations
 
                     b.Property<int>("FiscalYearId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Organizer")
                         .HasColumnType("nvarchar(max)");

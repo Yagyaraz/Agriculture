@@ -6,7 +6,7 @@
         public List<AgricultureProgramViewModel>Programs { get; set; }=new List<AgricultureProgramViewModel>();
         public List<AgricultureProjectViewModel> Projects { get; set; } = new List<AgricultureProjectViewModel>();
         public List<AgricultureServiceViewModel> Services { get; set; } = new List<AgricultureServiceViewModel>();
-        public List<AgricultureServiceAdditionalViewModel> AdditionalServices { get; set; } = new List<AgricultureServiceAdditionalViewModel>();
+        //public List<AgricultureServiceAdditionalViewModel> AdditionalServices { get; set; } = new List<AgricultureServiceAdditionalViewModel>();
         public List<AgricultureFarmerGroupViewModel> FarmerGroups { get; set; } = new List<AgricultureFarmerGroupViewModel>();
         public List<AgriCalendarTypeViewModel> CalenderTypes { get; set; } = new List<AgriCalendarTypeViewModel>();
         public List<AgriCalendarTypeViewModel> AgriCalendarTypes { get; set; } = new List<AgriCalendarTypeViewModel>();
@@ -18,7 +18,7 @@
         public List<AlbumViewModel> Albums { get; set; } = new List<AlbumViewModel>();
         public List<ImageGalleryViewModel> ImageGalleries { get; set; } = new List<ImageGalleryViewModel>();
         public List<LibraryViewModel> Libraries { get; set; } = new List<LibraryViewModel>();
-        public List<CommonViewModel> Markets { get; set; } = new List<CommonViewModel>();
+        public List<CommonViewModel> Common { get; set; } = new List<CommonViewModel>();
         public List<MarketPriceViewModel> MarketPrices { get; set; } = new List<MarketPriceViewModel>();
         public List<FertilizerStoreViewModel> FertilizerStores { get; set; } = new List<FertilizerStoreViewModel>();
         public List<SeedStoreViewModel> SeedStores { get; set; } = new List<SeedStoreViewModel>();

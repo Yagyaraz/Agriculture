@@ -11,7 +11,7 @@ namespace Agriculture.Data
         public string Title { get; set; }
         public string Description { get; set; }
         public string FilePath { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }

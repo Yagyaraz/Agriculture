@@ -14,7 +14,7 @@ namespace Agriculture.Data
         public string Address { get; set; }
         public string FilePath { get; set; }
         public int CreatedWardId { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
@@ -68,6 +68,7 @@ namespace Agriculture.Data
         public string PhoneNo { get; set; }
         public string Address { get; set; }
         public string FilePath { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public int CreatedWardId { get; set; }
         public string CreatedBy { get; set; }
@@ -83,6 +84,7 @@ namespace Agriculture.Data
         public int TypeId { get; set; }
         public int CategoryId { get; set; }
         public int ProductId { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -124,6 +126,7 @@ namespace Agriculture.Data
         public string PhoneNo { get; set; }
         public string Address { get; set; }
         public string FilePath { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }

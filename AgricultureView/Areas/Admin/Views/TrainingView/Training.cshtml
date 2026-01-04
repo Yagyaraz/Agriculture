@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TrainingViewModel>
+﻿@using AgricultureView.Constants
+@model IEnumerable<TrainingViewModel>
 @{
     ViewData["Title"] = "Training";
 }
@@ -41,11 +42,26 @@
                                         <td>@Html.DisplayFor(modelItem => item.PremiumName)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TrainingPlace)</td>
                                         <td>@Html.DisplayFor(modelItem => item.TrainingTypeName)</td>
-                                        <td class="text-center d-flex justify-content-between" style="width: 50px; height: 50px;">
-                                            <a asp-action="CreateTraining" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                        <td class="text-center align-middle p-2">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                            <a asp-action="CreateTraining" title="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-alt me-3" aria-hidden="true"></i></a>
                                        
-                                            <a asp-action="TrainingDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt" aria-hidden="true"></i></a>
-                                            <a asp-action="TrainingDetail" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+                                            <a asp-action="TrainingDetail" title="Details" asp-route-id="@item.Id"><i class="fa fa-file-alt me-3" aria-hidden="true"></i></a>
+                                            @* <a asp-action="TrainingDetail" title="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a> *@
+                                                <form asp-area=""
+                                                      asp-controller="AjaxMVC"
+                                                      asp-action="Delete"
+                                                      title="Delete"
+                                                      asp-route-table="@TableNameConstants.Training"
+                                                      asp-route-id="@item.Id"
+                                                      method="post"
+                                                      onsubmit="return confirm('के तपाई हटाउन चाहनुहुन्छ?');">
+
+                                                    <button type="submit" class="btn btn-link p-0">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 }

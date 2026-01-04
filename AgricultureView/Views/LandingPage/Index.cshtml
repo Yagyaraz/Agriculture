@@ -40,34 +40,41 @@
     <!-- Custom Styles -->
     <style>
         @@font-face {
-            font-family: 'Kalimati';
-            src: url('/fonts/Kalimati.woff2') format('woff2');
+            font-family: 'KokilaRegular';
+            src: url('fonts/kokila-regular.ttf') format('truetype');
             font-display: swap;
         }
 
 
         :root {
             --primary: #28a745;
-            --primary-secandory: #d58b3a;
-            --primary-secandory-dark: #704a20;
+            --primary-secondary: #d58b3a;
+            --primary-secondary-dark: #704a20;
             --secondary: #20c997;
             --dark: #155724;
             --light: #f8f9fa;
             --text: #212529;
+            --bg-success-subtle: linear-gradient(rgb(168 227 178));
+            --nepalitext: 'KokilaRegular';
+           
         }
 
         body {
             /* font-family: 'Open Sans', sans-serif; */
-            font-family: "Kalimati regular";
+            font-family: 'KokilaRegular';
             color: var(--text);
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
+
         input, .form-control{
             font-family: 'Open Sans', sans-serif;
         }
 
+        .bg-success-subtle{
+            background: linear-gradient(rgb(103 205 120 )) !important;
+        }
         .bg-primary {
             background: var(--primary) !important;
             color: #fff;
@@ -357,7 +364,21 @@
                 letter-spacing: 0.05em;
             }
 
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            line-height: 1.5; 
+        }
 
+            .check-item i {
+                flex-shrink: 0;
+                margin-top: 0.2rem; 
+            }
+
+            .check-item span {
+                display: inline-block;
+            }
 
         /* Responsive Adjustments */
         @@media (max-width: 768px) {
@@ -548,7 +569,7 @@
         }
 
         /* -----------------------------  traning ------------------------------------------ */
-        #traning {
+        #traning, #library {
             background: linear-gradient(rgb(168 227 178));
         }
 
@@ -577,6 +598,16 @@
 
         .badge-custom {
             font-size: 0.9rem;
+        }
+        /* --------------------------------------- anudan ------------------------------------*/
+        .anudhan-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
         }
 
         /* Gallery Styles */
@@ -698,6 +729,30 @@
             display: inline-block;
         }
 
+        .gallery-modal {
+    width: 900px;
+    height: 600px;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.gallery-modal-img {
+    max-width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+
+}
         /* Responsive Adjustments */
         @@media (max-width: 768px) {
             .gallery-card {
@@ -803,6 +858,9 @@
                 }
 
 
+        .hover-text-success:hover {
+            color: #000000 !important;
+        }
         /* @@keyframes flash {
             0%, 100% {
                 background-color: #dc3545;
@@ -930,7 +988,7 @@
         {
                 <div id="welcomeToast" class="toast centered-toast align-items-center text-bg-primary border-0 mb-3" role="alert">
                 <div class="toast-header bg-primary text-white">
-                    <strong class="me-auto fs-4">@notice.Title</strong>
+                    <strong class="me-auto fs-4">@Html.Raw(notice.Title)</strong>
                     <button type="button"
                             class="btn-close btn-close-white"
                             data-bs-dismiss="toast"
@@ -938,7 +996,7 @@
                 </div>
 
                 <div class="toast-body fs-5 text-white text-center py-4">
-                    <p>@notice.Description</p>
+                    <p>@Html.Raw(notice.Description)</p>
 
                         @if (!string.IsNullOrEmpty(notice.FilePath))
                     {
@@ -955,7 +1013,7 @@
     <div id="main-content">
     <div class="sticky-top">
         <!-- Topbar -->
-        <div class="container-fluid topbar px-0 d-none d-lg-block bg-light">
+        <div class="container-fluid topbar px-0 d-none d-lg-block bg-success">
             <div class="container px-0">
                 <div class="row gx-0 align-items-center" style="height:45px;">
                     <div class="col-lg-4 text-center text-lg-start">
@@ -964,17 +1022,19 @@
                                 <i class="fas fa-map-marker-alt text-primary me-2"></i>Find
                                 a Farmer
                             </a> *@
-                            <a href="tel:+01234567890" class="text-muted me-4">
-                                <i class="fas fa-phone-alt text-primary me-2"></i>@org.PhoneNo
+                                <a href="tel:@org.PhoneNo" class="text-white me-4">
+                                <i class="fas fa-phone-alt text-white me-2"></i>@org.PhoneNo
                             </a>
-                            <a href="mailto:info@agriconnect.com" class="text-muted me-0">
-                                <i class="fas fa-envelope text-primary me-2"></i>@org.Email
-                            </a>
+                                <a href="mailto:@(string.IsNullOrWhiteSpace(org.Email) ? "sirijangharuralmunicipality@gmail.com" : org.Email)"
+                                   class="text-white me-0">
+                                    <i class="fas fa-envelope text-white me-2"></i>
+                                    @(string.IsNullOrWhiteSpace(org.Email) ? "sirijangharuralmunicipality@gmail.com" : org.Email)
+                                </a>
                         </div>
                     </div>
                     <div class="col-lg-4 text-center text-lg-center">
                         <div class="d-inline-flex flex-wrap align-items-center gap-3 gap-md-4 small">
-                            <h1 class="m-0 fs-4 fs-lg-3 lh-1">
+                            <h1 class="m-0 fs-3 fs-lg-5 lh-1 fw-bold text-white">
                                 सिरीजङ्घा गाउँपालिका
                             </h1>
                         </div>
@@ -993,10 +1053,11 @@
                                 <i class="fab fa-youtube text-white"></i>
                             </a>
 
-                            <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
-                               class="btn btn-outline-success rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center">
-                                <i class="fas fa-user me-1"></i> लगइन
-                           </a>
+                                <a type="button" asp-area="" asp-controller="Account" asp-action="Index"
+                                   class="btn btn-outline-light text-white rounded-pill px-3 ms-2 d-none d-md-inline-flex align-items-center
+                                    hover-text-success">
+                                    <i class="fas fa-user me-1"></i> लगइन
+                                </a>
                         </div>
                     </div>
                 </div>
@@ -1007,8 +1068,8 @@
         <div class="container-fluid px-0 ">
             <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-4 ">
                 <a href="#" class="navbar-brand p-0 d-flex">
-                    <img src="~/assets/img/ag-logo.webp" alt="logo" width="50" height="50">
-                    <h1 class="text-primary m-0">@org.Name</h1>
+                    <img src="~/assets/img/ag-logo.webp" alt="logo" width="50" height="40">
+                    <h1 class="text-primary m-0 text-small fs-3">@org.Name</h1>
                     <!-- <h1 class="text-primary m-0"><i class="fas fa-seedling me-2"></i>AgriConnect</h1> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -1048,9 +1109,9 @@
                         </a>
 
                         <!-- appllycation  Button -->
-                        <a href="#appllycation" class="btn btn-primary-secandory rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
+                            <a asp-area="Admin" asp-controller="ApplicationFormView" asp-action="CreateApplicationForm" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
                             अनलाईन आवेदन
-                        </a>
+                            </a>
                         <!-- Complaint Button -->
                         <a href="#complaint" class="btn btn-primary rounded-pill nav-item nav-link px-4 py-2 order-1 order-lg-2">
                             <i class="fas fa-headset me-1"></i> गुनासो गर्नुहोस्
@@ -1129,46 +1190,193 @@
     <section id="about" class="container-fluid about bg-success-subtle py-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <img src="~/assets/img/about.png"
                          class="img-fluid rounded shadow" alt="Farmers">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <h4 class="text-primary">@org.Name बारेमा</h4>
+                    <h4 class="text-black fw-semibold">@org.Name बारेमा</h4>
                     <h1 class="mb-4">@org.PalikaName - कृषि संजाल</h1>
-                    <p class="mb-4">
-                        @org.Name, @org.DistrictName जिल्लाको @org.PalikaName को एक डिजिटल पहल हो, जसको उद्देश्य
-                        किसानहरूलाई प्रविधि–आधारित कृषि सेवासँग जोड्नु हो।
-                        नेपालको पूर्वी पहाडी क्षेत्रस्थित @org.PalikaName प्राकृतिक सौन्दर्य, सांस्कृतिक विविधता र मेहनती कृषक
-                        समुदायका लागि परिचित छ।
-                        यस प्लेटफर्ममार्फत किसानहरूले बालीसम्बन्धी सल्लाह, बजार पहुँच, मौसम सूचना र वित्तीय सहयोगका
-                        माध्यमबाट दिगो तथा नाफामुखी कृषि अभ्यास गर्न सक्नेछन्।
+                        <p class="mb-4 Details-file">
+                            यस सिरीजङ्घा गाउँपालिकाको कार्यालयलाई  कृषि पोर्टल व्यवस्थापन सूचना प्रणाली (Agriculture Portal Management Information System) को प्रयोगले कृषि क्षेत्रलाई व्यवस्थित, प्रविधिमैत्री र तथ्यमा आधारित बनाउन महत्वपूर्ण भूमिका खेल्दछ। यस प्रणालीमार्फत किसान विवरण, खेती क्षेत्र, उत्पादन अवस्था, कृषि कार्यक्रम, अनुदान तथा सेवासुविधाको एकीकृत अभिलेख व्यवस्थापन भई योजना तर्जुमा, बजेट विनियोजन र सेवा प्रवाह प्रभावकारी हुन्छ। साथै, किसान र गाउँपालिकाबीच सूचना आदान–प्रदान सहज भई पारदर्शिता, उत्तरदायित्व र कृषि विकासको गति तीव्र हुन्छ।
                     </p>
+                   @*  <p class="mb-4">
+                            @org.Name, @org.DistrictName जिल्लाको @org.PalikaName को एक डिजिटल पहल हो, जसको उद्देश्य
+                            किसानहरूलाई प्रविधि–आधारित कृषि सेवासँग जोड्नु हो।
+                            नेपालको पूर्वी पहाडी क्षेत्रस्थित @org.PalikaName प्राकृतिक सौन्दर्य, सांस्कृतिक विविधता र मेहनती कृषक
+                            समुदायका लागि परिचित छ।
+                            यस प्लेटफर्ममार्फत किसानहरूले बालीसम्बन्धी सल्लाह, बजार पहुँच, मौसम सूचना र वित्तीय सहयोगका
+                            माध्यमबाट दिगो तथा नाफामुखी कृषि अभ्यास गर्न सक्नेछन्।
+                    </p>  *@
                     <div class="row g-3 mb-4">
-                        <div class="col-6">
-                            <p><i class="fas fa-check-circle text-primary me-2"></i> बाली परामर्श र तालिम</p>
+                        @* <div class="col-6 pt-0  ">
+                            <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> बाली परामर्श र तालिम</div>
                         </div>
-                        <div class="col-6">
-                            <p><i class="fas fa-check-circle text-primary me-2"></i> बजार पहुँच र मूल्य जानकारी</p>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> बजार पहुँच र मूल्य जानकारी</div>
                         </div>
-                        <div class="col-6">
-                            <p><i class="fas fa-check-circle text-primary me-2"></i> मौसम अपडेट र चेतावनी</p>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> मौसम अपडेट र चेतावनी</div>
+                        </div> *@
+                        @*     <div class="col-6 pt-0  ">
+                                <p class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> किसान समुदाय मंच</p>
+                        </div> *@
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> किसान सूचीकरण</div>
                         </div>
-                        <div class="col-6">
-                            <p><i class="fas fa-check-circle text-primary me-2"></i> किसान समुदाय मंच</p>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषक समुह तथा फर्म दर्ता</div>
                         </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> प्रमाणपत्र तथा नवीकरण</div>
+                        </div>
+                            
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि तालिम सम्बन्धि जानकारी</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि पुस्तकालय प्रकाशन तथा कृषि क्यालेन्डर</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class ="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> तस्बिर तथा भिडियो सामाग्री</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> सूचना अदान प्रदान</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> मौसम सम्बन्धि जानकारी</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि सम्बन्धि गुनासो</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> बजार मूल्य तथा स्टोर सुची</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि विशेषज्ञ संग कुराकानी</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि सम्बन्धि रोगको पहिचान तथा नियन्त्रण</div>
+                        </div>
+                            <div class="col-6 pt-0  ">
+                                <div class="mb-0 check-item"><i class="fas fa-check-circle text-primary me-2"></i> कृषि कार्यक्रम,योजना तथा सेवा सुबिधा सम्बन्धि जानकारी</div>
+                            </div>
                     </div>
                     @* <a href="#contact" class="btn btn-primary rounded-pill py-3 px-5">सुरु गर्नुहोस्</a> *@
                 </div>
             </div>
         </div>
     </section>
+        <hr class="m-0" />
+
+    <!-- Gallery Section -->
+        <section id="gallery" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="text-black fw-semibold">हाम्रो ग्यालरी</h1>
+                    <h1> </h1>
+                </div>
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-4">
+                    <div class="text-center col-3">
+                        <input type="text" class="gallery-search form-control w-100" placeholder="ग्यालरी खोज्नुहोस्..." />
+                    </div>
+                   <div class="text-center col-4">
+                        <select class="gallery-dropdown form-select w-100">
+                            <option value="">सबै ग्यालरी देखाउनुहोस्</option>
+                            @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
+                            {
+                                @foreach (var gallery in Model.ImageGalleries)
+                                {
+                                    <option value="@gallery.Title.ToLower()">@gallery.Title</option>
+                                }
+                            }
+                        </select>
+                   </div> 
+                </div>
+                <div class="row g-4">
+                    @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
+                    {
+                        @foreach (var item in Model.ImageGalleries)
+                        {
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
+                                   onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
+                                    <img src="@(_global.BaseUrl() + item.FilePath)"
+                                         alt="@item.Title">
+                                    <div class="card-overlay">
+                                        <div class="card-title">@item.Title</div>
+                                        @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p data-aos="fade-in" data-aos-duration="800">No images found.</p>
+                    }
+                </div>
+            </div>
+            <!-- Modal Lightbox with Close Button -->
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-contents gallery-modal">
+                        <div class="modal-body text-center position-relative">
+
+                            <!-- Close Button -->
+                            <button class="close-btn" data-bs-dismiss="modal">×</button>
+
+                            <!-- Image -->
+                            <img id="modalImage" class="gallery-modal-img" />
+
+                        </div>
+                        <div class="text-center">
+                            <!-- Title as Button -->
+                            <button id="modalCaption" class="btn btn-primary mt-3 text-center"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+
+
+    <!-- video Section -->
+    <section id="videos" class="container-fluid py-5 bg-success-subtle">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5">
+                <h4 class="text-black fw-semibold">हाम्रो भिडियो</h4>
+                @* <h4 class="text-black fw-semibold">हेर्नुहोस् र सिक्नुहोस्</h4> *@
+                @* <h1>किसानका कथाहरू</h1>
+                <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p> *@
+            </div>
+
+            <div class="category-buttons text-center mb-4" id="categoryButtons"></div>
+
+            <div class="container py-4">
+                <div class="row g-4" id="videoList"></div>
+            </div>
+
+            <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title text-white" id="modalTitle"></h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body p-0" id="modalBodyContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <!-- Blog Section -->
-        <section id="blog" class="container-fluid py-5 bg-success-subtle">
+        @* <section id="blog" class="container-fluid py-5 bg-success-subtle">
             <div class="container py-5">
                 <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                    <h4 class="text-primary">नवीनतम जानकारी</h4>
+                    <h4 class="text-black fw-semibold">नवीनतम जानकारी</h4>
                     <h1 id="blog-heading">कृषि कार्यक्रम</h1>
                     <p class="text-muted">हाम्रा नवीनतम कृषि कार्यक्रमहरू बारे जानकारी प्राप्त गर्नुहोस् जसले किसानहरूलाई सशक्त बनाउँछ।</p>
                 </div>
@@ -1190,7 +1398,7 @@
                             }
                         </select>
                     </div>
-                </div>
+                </div> 
 
                 <!-- Program Items -->
                 @if (Model.Programs != null && Model.Programs.Any())
@@ -1214,13 +1422,14 @@
                     <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि कार्यक्रम उपलब्ध छैन</p>
                 }
             </div>
-        </section>
+        </section>*@
 
+        <hr class="m-0" />
         <!-- Services Section -->
         <section id="services" class="container-fluid py-5 bg-success-subtle">
             <div class="container py-5">
                 <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                    <h4 class="text-primary">हाम्रा सेवाहरू</h4>
+                    <h4 class="text-black fw-semibold">हाम्रा सेवाहरू</h4>
                     <h1 id="services-heading">कृषि प्रवर्द्धनका प्रमुख विशेषताहरू</h1>
                     <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
                 </div>
@@ -1252,10 +1461,64 @@
                         {
                             <div class="col-md-6 col-lg-4 col-xl-3 service-item-card" data-title="@service.ServiceName.ToLower()" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Services.IndexOf(service))" data-aos-easing="ease-in-out">
                                 <div class="service-item bg-white rounded shadow p-4 text-center h-100">
-                                    <div class="service-icon mb-3">
-                                        <i class="fas fa-seedling fa-3x text-primary"></i>
+                                    <a href="#service-modal-@service.Id" data-bs-toggle="modal">
+                                        <div class="service-icon mb-3">
+                                            <i class="fas fa-seedling fa-1x text-primary"></i>
+                                        </div>
+                                        <h5>@service.ServiceName</h5>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Lightbox Modal for each service -->
+                            <div class="modal fade" id="service-modal-@service.Id" tabindex="-1" aria-labelledby="serviceModalLabel-@service.Id" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="serviceModalLabel-@service.Id">@service.ServiceName</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p> आर्थिक वर्ष: @(service.FiscalYearName ?? "81/82")</p>
+                                            <i class="fas fa-seedling fa-1x text-primary mb-4"></i>
+                                            <p>योजना:  @(service.ProgramName ?? "यहाँ सेवाको विस्तृत विवरण राख्नुहोस्।")</p>
+                                            <p> कार्यक्रम: @(service.ProjectName ?? "यहाँ सेवाको विस्तृत विवरण राख्नुहोस्।")</p>
+                                            <table class="table table-bordered table-hover mt-2">
+                                                <thead>
+                                                    <tr class="text-center">
+                                                        <th>सेवा र सुविधाहरु</th>
+                                                    </tr>
+                                                </thead>
+                                                @* backend data laod for question *@
+                                                <tbody>
+                                                    @if (service.AgricultureServiceAdditionalViewModelList != null
+                                                                                                && service.AgricultureServiceAdditionalViewModelList.Any())
+                                                    {
+                                                        foreach (var item in service.AgricultureServiceAdditionalViewModelList)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.Questions</td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center text-muted">
+                                                                कुनै थप सेवाहरू छैन ।
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+
+                                            </table>
+                                            <!-- If you have an image for the service, add it here -->
+                                            @* <!-- <img src="@service.ImageUrl" class="img-fluid" alt="@service.ServiceName"> --> *@
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
+                                        </div>
                                     </div>
-                                    <h5>@service.ServiceName</h5>
                                 </div>
                             </div>
                         }
@@ -1265,12 +1528,15 @@
                 {
                     <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">कृषि सेवा उपलब्ध छैन</p>
                 }
+   
             </div>
         </section>
+        <hr class="m-0" />
 
+        @* Training  *@
     <section id="traning" class="container-fluid py-5">
         <div class="container">
-            <h1 class="text-center mb-5 fw-bold text-success">तालिम विवरण</h1>
+            <h1 class="text-center mb-5 fw-bold text-black">तालिम विवरण</h1>
 
             <div class="row g-4">
                 <!-- Training Card 1 -->
@@ -1358,72 +1624,327 @@
             </div>
         </div>
     </section>
+        <hr class="m-0" />
 
-    <!-- market -->
-        <section id="market" class="container-fluid py-5 bg-success-subtle">
+        <!-- SubsidyView anudhan Section -->
+        <section id="anudhan" class="container-fluid py-5 bg-success-subtle">
             <div class="container py-5">
+                <!-- Section Header -->
                 <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
-                    <h4 class="text-primary">बजार मूल्य</h4>
-                    <h1 id="market-heading">हाम्रा बजारहरू</h1>
-                    <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
+                    <h4 class="text-black fw-semibold">हाम्रा अनुदान</h4>
+                    <p class="text-muted">हामी स्थानीय किसानहरूलाई आवश्यक उपकरण, तालिम र बजार पहुँच प्रदान गरी उत्पादन र आम्दानी दुवैमा सुधार ल्याउँछौं।</p>
                 </div>
+
                 <!-- Search + Dropdown -->
-                <div class="row justify-content-center gap-4 mb-4">
-                    <div class="text-center col-3">
-                        <input type="text" class="market-search form-control w-100" placeholder="सेवा खोज्नुहोस्..." />
+                <div class="row justify-content-center gap-4 mb-5">
+                    <div class="col-md-4">
+                        <input type="text" id="anudhanSearch" class="form-control" placeholder="अनुदान खोज्नुहोस्..." />
                     </div>
-                    <div class="text-center col-4">
-                        <select class="market-dropdown form-select w-100">
-                            <option value="">सबै बजार मूल्य देखाउनुहोस्</option>
-                            @if (Model.Markets != null && Model.Markets.Any())
+                    <div class="col-md-4">
+                        <select id="anudhanFilter" class="form-select">
+                            <option value="">सबै अनुदान देखाउनुहोस्</option>
+                            @if (Model.Subsidies != null && Model.Subsidies.Any())
                             {
-                                @foreach (var markets in Model.Markets)
+                                foreach (var anudhan in Model.Subsidies)
                                 {
-                                    <option value="@markets.Name.ToLower()">@markets.Name</option>
+                                    <option value="@anudhan.ProgramName.ToLower()">@anudhan.ProjectName</option>
                                 }
                             }
                         </select>
                     </div>
                 </div>
 
-                @if (Model.Markets != null && Model.Markets.Any())
+                <!-- Anudhan Items -->
+                @if (Model.Subsidies != null && Model.Subsidies.Any())
                 {
-                    <div class="table-responsive" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200" data-aos-easing="ease-in-out">
-                        <table class="table table-bordered table-striped table-hover" role="grid" aria-describedby="market-heading">
+                    <div class="row g-4 justify-content-center anudhan-items">
+                        @foreach (var anudhan in Model.Subsidies)
+                        {
+                            <div class="col-md-6 col-lg-4 col-xl-3 anudhan-item-card" data-title="@anudhan.ProjectName.ToLower()" data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(100 * Model.Subsidies.IndexOf(anudhan))" data-aos-easing="ease-in-out">
+                                <div class="anudhan-item bg-white rounded shadow-sm p-4 text-center h-100 hover-shadow cursor-pointer" data-bs-toggle="modal" data-bs-target="#anudhan-modal-@anudhan.Id">
+                                    <div class="anudhan-icon mb-3">
+                                        <i class="fas fa-sack-dollar fa-1x text-success"></i>
+                                    </div>
+                                    <h5 class="fw-semibold">@anudhan.ProgramName</h5>
+                                    <p class="text-muted">@anudhan.ProjectName</p>
+                                </div>
+                            </div>
+
+                            <!-- Modal / Lightbox -->
+                            <div class="modal fade" id="anudhan-modal-@anudhan.Id" tabindex="-1" aria-labelledby="anudhanModalLabel-@anudhan.Id" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content rounded-4 shadow">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="anudhanModalLabel-@anudhan.Id">@anudhan.ProgramName</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <i class="fas fa-sack-dollar fa-1x text-success mb-3"></i>
+                                            @* <p><strong>आर्थिक वर्ष:</strong> @(anudhan.FiscalYearId ?? "81/82")</p> *@
+                                            <p><strong>योजना:</strong> @(anudhan.ProgramName ?? "यहाँ थप अनुदान विस्तृत विवरण राख्नुहोस्।")</p>
+                                            <p><strong>कार्यक्रम:</strong> @(anudhan.ProjectName ?? "यहाँ थप अनुदान विस्तृत विवरण राख्नुहोस्।")</p>
+
+                                            <table class="table table-bordered table-hover mt-3">
+                                                <thead class="table-success text-center">
+                                                    <tr>
+                                                        <th>अनुदान श्रेणी</th>
+                                                        <th>उप-श्रेणी</th>
+                                                        <th>अनुदान संख्या</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (anudhan.SubsidyDetailViewModelList != null && anudhan.SubsidyDetailViewModelList.Any())
+                                                    {
+                                                        foreach (var item in anudhan.SubsidyDetailViewModelList)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.CategoryId</td>
+                                                                <td>@item.SubCategoryId</td>
+                                                                <td>
+                                                                    <span class="badge badge-primary">@item.Quantity</span>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center text-muted">कुनै थप अनुदान छैन ।</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer border-0 justify-content-center">
+                                            <button type="button" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800">कृषि सेवा उपलब्ध छैन</p>
+                }
+            </div>
+        </section>
+        <hr class="m-0" />
+
+        @* पुस्तकालय Library *@
+        <section id="library" class="container-fluid py-5">
+            <div class="container">
+                <h1 class="text-center mb-5 fw-bold text-black">पुस्तकालय सूची</h1>
+
+                @if (Model.Libraries != null && Model.Libraries.Any())
+                {
+                    <div class="row g-4 justify-content-center anudhan-items">
+                        @{
+                            var delay = 0;
+                        }
+
+                        @foreach (var library in Model.Libraries)
+                        {
+                            <div class="col-md-6 col-lg-4 col-xl-3 anudhan-item-card"
+                                 data-title="@(library.Title?.ToLower() ?? "")"
+                                 data-aos="fade-up"
+                                 data-aos-duration="800"
+                                 data-aos-delay="@delay"
+                                 data-aos-easing="ease-in-out">
+
+                                <div class="anudhan-item bg-white rounded shadow-sm p-4 text-center h-100 hover-shadow cursor-pointer"
+                                     data-bs-toggle="modal"
+                                     data-bs-target="#library-modal-@library.Id">
+
+                                    <div class="anudhan-icon mb-3">
+                                        <i class="fas fa-book fa-1x text-success"></i>
+                                    </div>
+
+                                    <h5 class="fw-semibold">@library.Title</h5>
+                                    <p class="text-muted">@library.TypeId</p>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade"
+                                 id="library-modal-@library.Id"
+                                 tabindex="-1"
+                                 aria-labelledby="libraryModalLabel-@library.Id"
+                                 aria-hidden="true">
+
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content rounded-4 shadow">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="libraryModalLabel-@library.Id">
+                                                @library.Title
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body text-center">
+                                            <i class="fas fa-book fa-1x text-success mb-3"></i>
+
+                                            <p>
+                                                <strong>शीर्षक:</strong>
+                                                @(library.Title ?? "शीर्षक उपलब्ध छैन")
+                                            </p>
+                                            @* <p>
+                                                <strong>प्रकार:</strong>
+                                                @(library.TypeId ?? "प्रकार उपलब्ध छैन")
+                                            </p> *@
+
+                                            <p class="Details-file">
+                                                <strong>विवरण:</strong>
+                                                @Html.Raw(library.Description ?? "यहाँ पुस्तकालयको विस्तृत विवरण राख्नुहोस्।")
+                                            </p>
+                                            @* Image section *@
+                                            @if (!string.IsNullOrEmpty(library.FilePhotoPath))
+                                            {
+                                                <div class="text-center my-4">
+                                                    <img src="@(_global.BaseUrl() + library.FilePhotoPath)"
+                                                         class="img-fluid rounded shadow"
+                                                         style="max-height: 350px; max-width: 100%;"
+                                                         alt="पुस्तकालयको फोटो" />
+
+                                                    <small class="text-muted d-block mt-2">
+                                                        पुस्तकालयको फोटो
+                                                    </small>
+                                                </div>
+                                            }
+                                            
+                                        </div>
+
+                                        <div class="modal-footer border-0 justify-content-center">
+                                            <button type="button"
+                                                    class="btn btn-success rounded-pill px-4"
+                                                    data-bs-dismiss="modal">
+                                                बन्द गर्नुहोस्
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            delay += 100;
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800">
+                        पुस्तकालय सूची उपलब्ध छैन
+                    </p>
+                }
+            </div>
+        </section>
+
+        <hr class="m-0" />
+
+    <!-- market -->
+        <section id="market" class="container-fluid py-5 bg-success-subtle">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+                    <h4 class="text-black fw-semibold">बजार मूल्य</h4>
+                    <h1 id="market-heading">हाम्रा बजारहरू</h1>
+                    <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
+                </div>
+                <!-- Search + Dropdown -->
+                <div class="row justify-content-center gap-4 mb-4">
+                    <div class="text-center col-3">
+                        <input type="text" class="market-search form-control w-100" placeholder="सामानको मूल्य खोज्नुहोस्..." />
+                    </div>
+                    <div class="text-center col-4">
+                        <select class="market-dropdown form-select w-100">
+                            <option value="">सबै बजार मूल्य देखाउनुहोस्</option>
+                            @if (Model.MarketPrices != null && Model.MarketPrices.Any())
+                            {
+                                @foreach (var markets in Model.MarketPrices)
+                                {
+                                    <option value="@markets.MarketName.ToLower()">@markets.MarketName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                @if (Model.MarketPrices != null && Model.MarketPrices.Any())
+                {
+                    <div class="table-responsive" data-aos="fade-up" data-aos-duration="800">
+                        <table class="table table-bordered table-striped table-hover">
                             <thead class="table-success">
                                 <tr>
-                                    <th scope="col" class="text-center">क्र.स.</th>
-                                    <th scope="col" class="text-center">बजारको नाम</th>
-                                    <th scope="col" class="text-center">सामानको नाम</th>
-                                    <th scope="col" class="text-center">सामानको मूल्य</th>
+                                    <th class="text-center">क्र.स.</th>
+                                    <th class="text-center">बजारको नाम</th>
+                                    <th class="text-center">सामानको नाम</th>
+                                    <th class="text-center">सामानको मूल्य</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @for (int i = 0; i < Model.Markets.Count; i++)
+                                @{
+                                    int serial = 1;
+                                }
+
+                                @foreach (var market in Model.MarketPrices)
                                 {
-                                    var item = Model.Markets[i];
-                                    <tr data-aos="fade-up" data-aos-duration="800" data-aos-delay="@(300 + (100 * i))" data-aos-easing="ease-in-out" class="market-row">
-                                        <td class="text-center">@(i + 1)</td>
-                                        <td class="text-center">@item.Name</td>
-                                        @*--------------------------------------------------------------------------------------------
-                                    backend data input for this field 
-        --------------------------------------------------------------------------------------------*@
-                                        <td class="text-center">आलु</td>
-                                        <td class="text-center">८०</td>
-                                    </tr>
+                                    if (market.MarketPriceDetailsViewModelList != null &&
+                                    market.MarketPriceDetailsViewModelList.Any())
+                                    {
+                                        foreach (var detail in market.MarketPriceDetailsViewModelList)
+                                        {
+                                            <tr class="market-row">
+                                                <td class="text-center">@serial</td>
+                                                <td class="text-center">@market.MarketName</td>
+                                                <td class="text-center">@detail.ProductName</td>
+                                                <td class="text-center">@detail.RetailPrice</td>
+                                            </tr>
+                                            serial++;
+                                        }
+                                    }
                                 }
                             </tbody>
+                            @* <tbody>
+                                @{
+                                    int serial = 1;
+                                }
+
+                                @foreach (var market in Model.MarketPrices)
+                                {
+                                    if (market.MarketPriceDetailsViewModelList != null &&
+                                    market.MarketPriceDetailsViewModelList.Any())
+                                    {
+                                        foreach (var detail in market.MarketPriceDetailsViewModelList)
+                                        {
+                                            <tr>
+                                                <td class="text-center">@serial</td>
+                                                <td class="text-center">@market.MarketName</td>
+                                                <td class="text-center">@detail.ProductName</td>
+
+                                                
+                                                <td class="text-center">@detail.RetailPrice</td>
+                                              
+                                                 <td class="text-center">@detail.WholesalePrice</td> 
+                                               <td class="text-center">@detail.AveragePrice</td> 
+                                            </tr>
+                                            serial++;
+                                        }
+                                    }
+                                }
+                            </tbody> *@
                         </table>
                     </div>
                 }
                 else
                 {
-                    <p class="text-center text-muted" data-aos="fade-in" data-aos-duration="800" data-aos-easing="ease-in-out">No markets found.</p>
+                    <p class="text-center text-muted">No markets found.</p>
                 }
             </div>
         </section>
 
-    <!-- Projects ( Weather) -->
+        
+
+
+
+        <!-- Projects ( Weather) -->
     <section id="projects" class="project-item container-fluid py-5">
         <div class="container project-content">
             <div class="row align-items-center">
@@ -1458,84 +1979,7 @@
     </section>
 
 
-    <!-- Gallery Section -->
-        <section id="gallery" class="container-fluid py-5 bg-success-subtle">
-            <div class="container py-5">
-                <div class="text-center mx-auto pb-5" data-aos="fade-up" data-aos-duration="1000">
-                    <h1 class="text-primary">हाम्रो ग्यालरी</h1>
-                    <h1> </h1>
-                </div>
-                <div class="row g-4">
-                    @if (Model.ImageGalleries != null && Model.ImageGalleries.Any())
-                    {
-                        @foreach (var item in Model.ImageGalleries)
-                        {
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="d-block gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal"
-                                   onclick="changeModalImage('@(_global.BaseUrl() + item.FilePath)', '@item.Title')">
-                                    <img src="@(_global.BaseUrl() + item.FilePath)"
-                                         alt="@item.Title">
-                                    <div class="card-overlay">
-                                        <div class="card-title">@item.Title</div>
-                                        @* <div class="card-subtitle">Peris Mountains • Golden Hour</div> *@
-                                    </div>
-                                </a>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <p data-aos="fade-in" data-aos-duration="800">No images found.</p>
-                    }
-                </div>
-            </div>
-            <!-- Modal Lightbox with Close Button -->
-            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
-                    <div class="modal-content bg-transparent border-0 shadow-none">
-                        <div class="modal-body text-center position-relative p-4">
-
-                            <!-- Close Button (X) -->
-                            <div class="close-btn" data-bs-dismiss="modal">×</div>
-                            <div class="row justify-content-center">
-                                <img id="modalImage" src="" alt="Full view" class="img-fluid">
-                                <h4 id="modalCaption" class="mt-4" style="width: 50%;"></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-    <!-- video Section -->
-    <section id="videos" class="container-fluid py-5 bg-success-subtle">
-        <div class="container py-5">
-            <div class="text-center mx-auto pb-5">
-                <h4 class="text-primary">हेर्नुहोस् र सिक्नुहोस्</h4>
-                <h1>किसानका कथाहरू</h1>
-                <p class="lead">कुनै पनि भिडियोमा ट्याप गर्नुहोस् → पूर्ण स्क्रिन र आवाजसहित हेर्नुहोस्</p>
-            </div>
-
-            <div class="category-buttons text-center mb-4" id="categoryButtons"></div>
-
-            <div class="container py-4">
-                <div class="row g-4" id="videoList"></div>
-            </div>
-
-            <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content bg-dark">
-                        <div class="modal-header border-0">
-                            <h5 class="modal-title text-white" id="modalTitle"></h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body p-0" id="modalBodyContainer"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
 
 
@@ -1545,15 +1989,15 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3">
-                    <h1 class="text-white"><i class="fas fa-seedling me-2"></i>AgriConnect</h1>
+                        <h1 class="text-white"><i class="fas fa-seedling me-2"></i>@org.Name</h1>
                     <p class="text-light">Empowering farmers with technology and community.</p>
 
                     <div class="mt-5">
-                        <h5 class="text-white text-center">social Media Links</h5>
-                        <ul class="list-unstyled text-center">
-                            <li class="data-flex mt-4"><a href="#"><i class="fa-solid fa-envelope"></i> E-mail:@org.Email</a></li>
-                            <li class="mt-4"><a href="#"><i class="fa-solid fa-phone"></i> Phone No:@org.PhoneNo</a></li>
-                            <li class="mt-4"><a href="#"><i class="fa-solid fa-globe"></i> WebSite:sirijanghamun.gov.np/</a></li>
+                            <h5 class="text-white text-center">social Media Links</h5>
+                        <ul class="list-unstyled text-center mx-auto">
+                                <li class="data-flex mt-4" title="Email"><a href="#"><i class="fa-solid fa-envelope"></i> @(string.IsNullOrWhiteSpace(org.Email) ? "sirijangharuralmunicipality@gmail.com" : org.Email)</a></li>
+                                <li class="mt-4" title="Phone No"><a href="#"><i class="fa-solid fa-phone"></i> @org.PhoneNo</a></li>
+                                <li class="mt-4" title="WebSite"><a href="#"><i class="fa-solid fa-globe"></i> sirijanghamun.gov.np/</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1561,7 +2005,7 @@
                     <div class="row g-5 ">
                         <div class="col-6 col-md-4">
                             <h5 class="text-white text-center">Quick Links</h5>
-                            <ul class="list-unstyled">
+                            <ul class="list-unstyled text-center">
                                 <li><a href="#home">Home</a></li>
                                 <li><a href="#about">About</a></li>
                                 <li><a href="#services">Services</a></li>
@@ -1597,8 +2041,16 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center text-light">
+                    <p>
+                        सिरीजङ्घा गाउँपालिका,कृषि पोर्टल व्यवस्थापन सूचना प्रणाली
+                        ताप्लेजुङ्ग, तेल्लोक, कोशी प्रदेश, नेपाल
+                       
+                    </p>
+                    <p> "सिरीजङ्घाको गौरव कञ्चनजङ्गा"</p>
+            </div>
             <hr class="my-4">
-            <p class="text-center text-light mb-0">&copy; 2025 AgriConnect. All Rights Reserved.</p>
+                <p class="text-center text-light mb-0">&copy; २०२५ सिरीजङ्घा गाउँपालिका. </p>
         </div>
     </footer>
     </div>
@@ -1798,10 +2250,14 @@
          });
 
          // gallery light box
-         function changeModalImage(src, caption) {
-             document.getElementById('modalImage').src = src;
-             document.getElementById('modalCaption').textContent = caption;
-         }
+         // function changeModalImage(src, caption) {
+         //     document.getElementById('modalImage').src = src;
+         //     document.getElementById('modalCaption').textContent = caption;
+         // }
+                 function changeModalImage(src, title) {
+            $("#modalImage").attr("src", src);
+            $("#modalCaption").text(title);
+        }
 
         // Show button only when scrolled down
          window.onscroll = function() {
@@ -1886,7 +2342,7 @@
                              data-src="${v.src}" data-title="${v.title}">
                             <img class="video-thumb w-100 h-100 object-fit-cover" src="/image/video-placeholder.png" />
                         </div>
-                        <div class="video-card shadow rounded overflow-hidden local-play">
+                        <div class="video-card shadow rounded overflow-hidden local-play  mt-2">
                             <p class="text-center fw-bold">${v.title}</p>
                         </div>
                     </div>
@@ -1928,7 +2384,7 @@
             });
 
             video.onerror = () => {
-                imgElement.src = "/image/video-placeholder.png";
+                imgElement.src = "/assets/img/video-placeholder.jpg";
             };
         }
 
@@ -2041,41 +2497,76 @@
                 });
             });
 
-                 // Search filter for table
-        $(".market-search").on("keyup", function(){
-            var search = $(this).val().toLowerCase();
+                 // Search filter for market table
+            function filterMarketTable() {
+            var search = $(".market-search").val().toLowerCase().trim();
+            var selected = $(".market-dropdown").val().toLowerCase().trim();
 
-            $(".market-row").each(function(){
-                var name = $(this).find("td:eq(1)").text().toLowerCase(); // Market Name column
-                $(this).toggle(name.includes(search));
+            $(".market-row").each(function() {
+                var marketName = $(this).find("td:eq(1)").text().toLowerCase().trim();
+                var productName = $(this).find("td:eq(2)").text().toLowerCase().trim();
+
+                // Match search input with either Market Name or Product Name
+                var matchesSearch = marketName.includes(search) || productName.includes(search);
+                var matchesDropdown = selected === "" || marketName === selected;
+
+                $(this).toggle(matchesSearch && matchesDropdown);
             });
-        });
+        }
 
-        // Dropdown filter for table
-        $(".market-dropdown").on("change", function(){
-            var selected = $(this).val().toLowerCase();
+        // Trigger on search input
+        $(".market-search").on("keyup", filterMarketTable);
 
-            $(".market-row").each(function(){
-                var name = $(this).find("td:eq(1)").text().toLowerCase(); // Market Name column
-                $(this).toggle(selected === "" || name === selected);
+        // Trigger on dropdown change
+        $(".market-dropdown").on("change", filterMarketTable);
+
+        // Dropdown filter for card
+                $(".gallery-search").on("input", function () {
+            let search = $(this).val().toLowerCase();
+
+            $(".gallery-card").each(function () {
+                let title = $(this).find(".card-title").text().toLowerCase();
+                $(this).closest(".col-12").toggle(title.includes(search));
             });
         });
 
         // Optional: Combine search + dropdown simultaneously
-        $(".market-search, .market-dropdown").on("input change", function(){
-            var search = $(".market-search").val().toLowerCase();
-            var selected = $(".market-dropdown").val().toLowerCase();
+                 $(".gallery-search, .gallery-dropdown").on("input change", function () {
+            let searchText = $(".gallery-search").val().toLowerCase();
+            let selectedTitle = $(".gallery-dropdown").val().toLowerCase();
 
-            $(".market-row").each(function(){
-                var name = $(this).find("td:eq(1)").text().toLowerCase();
-                var matchSearch = name.includes(search);
-                var matchDropdown = (selected === "" || name === selected);
-                $(this).toggle(matchSearch && matchDropdown);
+            $(".gallery-card").each(function () {
+                let title = $(this).find(".card-title").text().toLowerCase(); 
+
+                let matchSearch = title.includes(searchText);
+                let matchDropdown = selectedTitle === "" || title === selectedTitle;
+
+                $(this).closest(".col-12").toggle(matchSearch && matchDropdown);
             });
         });
 
+        // anudhan search
+            $(".anudhan-search").on("keyup", function(){
+                var search = $(this).val().toLowerCase();
+                $(".anudhan-item-card").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(title.includes(search));
+                });
+            });
+
+            // anudhan dropdown
+            $(".anudhan-dropdown").on("change", function(){
+                var selected = $(this).val();
+                $(".anudhan-item-card").each(function(){
+                    var title = $(this).data("title");
+                    $(this).toggle(selected === "" || title === selected);
+                });
+            });
+
         });
     </script>
+
+  
 
 </body>
 

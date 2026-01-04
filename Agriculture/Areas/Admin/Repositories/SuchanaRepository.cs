@@ -23,7 +23,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<SuchanaViewModel>> GetAllSuchana()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.Suchanas.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.Suchanas.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new SuchanaViewModel()
                 {
                     Id = x.Id,

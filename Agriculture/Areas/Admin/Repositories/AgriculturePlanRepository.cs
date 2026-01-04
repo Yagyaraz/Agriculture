@@ -26,7 +26,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<AgricultureProgramViewModel>> GetAllProgram()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.AgricultureProgram.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.AgricultureProgram.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new AgricultureProgramViewModel()
                 {
                     Id = x.Id,
@@ -99,7 +100,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<AgricultureProjectViewModel>> GetAllProject()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.AgricultureProject.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.AgricultureProject.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new AgricultureProjectViewModel()
                 {
                     Id = x.Id,
@@ -176,7 +178,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<AgricultureServiceViewModel>> GetAllService()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.AgricultureService.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.AgricultureService.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new AgricultureServiceViewModel()
                 {
                     Id = x.Id,
@@ -190,6 +193,13 @@ namespace Agriculture.Areas.Admin.Repositories
                     FiscalYearName = x.FiscalYear.Name,
                     ProgramName = x.AgricultureProgram.Title,
                     ProjectName = x.AgricultureProject.ProjectName,
+                    AgricultureServiceAdditionalViewModelList = _context.AgricultureServiceAdditional.Where(z => z.ServiceId == x.Id)
+                    .Select(z => new AgricultureServiceAdditionalViewModel()
+                    {
+                        Id = z.Id,
+                        ServiceId = z.ServiceId,
+                        Questions = z.Questions,
+                    }).ToList() ?? new List<AgricultureServiceAdditionalViewModel>(),
                 }).ToListAsync()??new List<AgricultureServiceViewModel>();
         }
         public async Task<AgricultureServiceViewModel> GetServiceById(int id)
@@ -325,7 +335,8 @@ namespace Agriculture.Areas.Admin.Repositories
         public async Task<List<AgricultureApplicatoionFormFileViewModel>> GetAllApplicatoionForm()
         {
             int wardId = await _utility.GetWardNoForLogin_Role_User();
-            return await _context.AgricultureApplicatoionForm.Where(x => wardId == 0 || x.CreatedWardId == wardId)
+            return await _context.AgricultureApplicatoionForm.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new AgricultureApplicatoionFormFileViewModel()
                 {
                     Id = x.Id,
