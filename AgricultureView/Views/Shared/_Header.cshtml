@@ -2,6 +2,8 @@
 
 @{
     var sessionDetails = _Utility.GetSessionDetails();
+    var org = await _Utility.GetOfficeDetail();
+    var orgname = org.PalikaName;
 }
 
 
@@ -36,6 +38,7 @@
         <!-- Navbar Header -->
         <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
             <div class="container-fluid">
+                <h1 class="text-dark m-0 text-small fs-3 text-start">@org.Name</h1>
 
                 <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
 
@@ -59,7 +62,8 @@
                                 <div class="dropdown-divider"></div>
                                 <a asp-area="Admin" asp-controller="CommonView" asp-action="UserList" class="dropdown-item">Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Signout">Logout</a>
+                                @* <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Signout">Logout</a> *@
+                                <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Logout</a>
                             </li>
                         </ul>
                 </ul>
