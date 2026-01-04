@@ -1537,6 +1537,55 @@
     <section id="traning" class="container-fluid py-5">
         <div class="container">
             <h1 class="text-center mb-5 fw-bold text-black">तालिम विवरण</h1>
+                <div class="col-md-12">
+                    <h5 class="mb-3">तालिम विवरण</h5>
+
+                    @if (Model.Trainings != null && Model.Trainings.Any())
+                    {
+                        foreach (var training in Model.Trainings)
+                        {
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>तालिमको नाम:</strong> @training.Title</p>
+                                            <p><strong>तालिम प्रकार:</strong> @training.TrainingTypeName</p>
+                                            <p><strong>प्रशिक्षक:</strong> @training.TrainerName</p>
+                                            <p><strong>आयोजक:</strong> @training.Organizer</p>
+                                            <p><strong>तालिम स्थान:</strong> @training.TrainingPlace</p>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <p><strong>सुरु मिति (नेपाली):</strong> @training.StartDate</p>
+                                            <p><strong>समाप्त मिति (नेपाली):</strong> @training.EndDate</p>
+                                            <p><strong>सुरु मिति (English):</strong> @training.StartDateEng?.ToString("yyyy-MM-dd")</p>
+                                            <p><strong>समाप्त मिति (English):</strong> @training.EndDateEng?.ToString("yyyy-MM-dd")</p>
+                                            <p><strong>रकम:</strong> रु. @training.Amount</p>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+
+                                    <p><strong>प्रिमियम:</strong> @training.PremiumName</p>
+                                    <p><strong>विवरण:</strong> @training.Description</p>
+
+                                    @if (!string.IsNullOrEmpty(training.FilePath))
+                                    {
+                                        <a href="@training.FilePath" target="_blank" class="btn btn-sm btn-primary">
+                                            फाइल हेर्नुहोस्
+                                        </a>
+                                    }
+
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">कुनै पनि तालिम उपलब्ध छैन।</p>
+                    }
+                </div>
 
             <div class="row g-4">
                 <!-- Training Card 1 -->

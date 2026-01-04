@@ -27,7 +27,7 @@ namespace Agriculture.Data
         public string FilePath { get; set; }
         public string Description { get; set; }
         public string YoutubeURL { get; set; }
-
+        public bool IsDeleted { get; set; } = false;
         public int CreatedWardId { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }

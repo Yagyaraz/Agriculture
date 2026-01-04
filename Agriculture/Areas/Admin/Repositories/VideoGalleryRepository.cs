@@ -86,7 +86,9 @@ namespace Agriculture.Areas.Admin.Repositories
 
         public async Task<List<VideoGalleryViewModel>> GetAllVideoGallery()
         {
-            return await _context.VideoGallery
+            int wardId = await _utility.GetWardNoForLogin_Role_User();
+            return await _context.VideoGallery.Where(x =>
+            !x.IsDeleted && (wardId == 0 || x.CreatedWardId == wardId))
                 .Select(x => new VideoGalleryViewModel()
                 {
                     Id = x.Id,

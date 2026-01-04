@@ -29,7 +29,7 @@ namespace Agriculture.Data
         public bool IsPublised { get; set; }
         public string FilePath { get; set; }
         public int CreatedWardId { get; set; }
-
+        public bool IsDeleted {  get; set; }=false;
 
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
