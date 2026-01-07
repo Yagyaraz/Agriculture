@@ -981,7 +981,7 @@
             </div>
         </div>
     </div> *@
-@if (Model.Suchana != null && Model.Suchana.Any())
+@* @if (Model.Suchana != null && Model.Suchana.Any())
 {
     <div id="overlay" class="container-fluid">
         @foreach (var notice in Model.Suchana)
@@ -1009,7 +1009,43 @@
             </div>
         }
     </div>
-}
+} *@
+
+    @if (Model.Suchana != null && Model.Suchana.Any())
+    {
+        var latestNotice = Model.Suchana
+        .OrderByDescending(x => x.Id)
+        .FirstOrDefault();
+
+        <div id="overlay" class="container-fluid">
+            <div id="welcomeToast"
+                 class="toast centered-toast align-items-center text-bg-primary border-0 show"
+                 role="alert">
+
+                <div class="toast-header bg-primary text-white">
+                    <strong class="me-auto fs-4">
+                        @Html.Raw(latestNotice.Title)
+                    </strong>
+                    <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="toast"></button>
+                </div>
+
+                <div class="toast-body fs-5 text-white text-center py-4">
+                    <p>@Html.Raw(latestNotice.Description)</p>
+
+                    @if (!string.IsNullOrEmpty(latestNotice.FilePath))
+                    {
+                        <img src="@(_global.BaseUrl() + latestNotice.FilePath)"
+                             alt="notice image"
+                             width="250"
+                             height="250" />
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
     <div id="main-content">
     <div class="sticky-top">
         <!-- Topbar -->
@@ -1532,96 +1568,177 @@
             </div>
         </section>
         <hr class="m-0" />
+        @* <div class="col-md-12">
+            <h5 class="mb-3">तालिम विवरण</h5>
 
+            @if (Model.Trainings != null && Model.Trainings.Any())
+            {
+                foreach (var training in Model.Trainings)
+                {
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>तालिमको नाम:</strong> @training.Title</p>
+                                    <p><strong>तालिम प्रकार:</strong> @training.TrainingTypeName</p>
+                                    <p><strong>प्रशिक्षक:</strong> @training.TrainerName</p>
+                                    <p><strong>आयोजक:</strong> @training.Organizer</p>
+                                    <p><strong>तालिम स्थान:</strong> @training.TrainingPlace</p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p><strong>सुरु मिति (नेपाली):</strong> @training.StartDate</p>
+                                    <p><strong>समाप्त मिति (नेपाली):</strong> @training.EndDate</p>
+                                    <p><strong>सुरु मिति (English):</strong> @training.StartDateEng?.ToString("yyyy-MM-dd")</p>
+                                    <p><strong>समाप्त मिति (English):</strong> @training.EndDateEng?.ToString("yyyy-MM-dd")</p>
+                                    <p><strong>रकम:</strong> रु. @training.Amount</p>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <p><strong>प्रिमियम:</strong> @training.PremiumName</p>
+                            <p><strong>विवरण:</strong> @training.Description</p>
+
+                            @if (!string.IsNullOrEmpty(training.FilePath))
+                            {
+                                <a href="@training.FilePath" target="_blank" class="btn btn-sm btn-primary">
+                                    फाइल हेर्नुहोस्
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">कुनै पनि तालिम उपलब्ध छैन।</p>
+            }
+        </div> *@
         @* Training  *@
     <section id="traning" class="container-fluid py-5">
         <div class="container">
             <h1 class="text-center mb-5 fw-bold text-black">तालिम विवरण</h1>
 
-            <div class="row g-4">
-                <!-- Training Card 1 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 training-card shadow-sm" data-bs-toggle="modal" data-bs-target="#trainingModal1">
-                        <div class="card-body d-flex flex-column">
 
-                            <h5 class="card-title text-primary fw-bold" style="text-shadow: none;">पशुपालन तालिम</h5>  @* शिर्षक *@
+                <div class="row g-4">
+                    @if (Model.Trainings != null && Model.Trainings.Any())
+                    {
+                        foreach (var training in Model.Trainings)
+                        {
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card h-100 shadow-sm training-card"
+                                     data-bs-toggle="modal"
+                                     data-bs-target="#trainingModal_@training.Id">
 
-                            <div class="d-flex flex-wrap gap-2 mt-2 small text-muted">
-                                <span><i class="bi bi-calendar3"></i> सुरु: २०८२-०४-०१</span>  @* सुरु मिति *@
-                                <span><i class="bi bi-calendar-x"></i> अन्त्य: २०८२-०४-१५</span>  @* अन्तिम मिति *@
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="fw-bold text-primary">
+                                            तालिमको नाम: @training.Title
+                                        </h5>
+
+                                        @* <div class="small text-muted mt-2">
+                                            <i class="bi bi-calendar3"></i> सुरु: @training.StartDate<br />
+                                            <i class="bi bi-calendar-x"></i> अन्त्य: @training.EndDate
+                                        </div> *@
+                                    <div class="d-flex flex-wrap justify-content-between gap-2 mt-2 small text-muted"> 
+                                        <span><i class="bi bi-calendar3"></i> सुरु: @training.StartDate</span> 
+                                        <span><i class="bi bi-calendar-x"></i> अन्त्य: @training.EndDate</span>
+                                    </div>
+
+                                        <div class="mt-2">
+                                            <span class="badge bg-success">स्थान: @training.TrainingPlace</span>
+                                            <span class="badge bg-info text-dark">@training.PremiumName</span>
+                                            <span class="badge bg-warning text-dark">@training.TrainingTypeName</span>
+                                        </div>
+
+                                        <p class="mt-3 text-muted flex-grow-1">
+                                    @Html.Raw(training.Description.Length > 90
+                                                                                ? training.Description.Substring(0, 90) + "..."
+                                                                                : training.Description)
+                                </p>
+
+                                        <div class="text-end fw-bold text-primary">
+                                            थप पढ्नुहोस् →
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="mt-2">
-                                <span class="badge bg-success badge-custom">स्थान: काठमाडौँ</span> @* स्थान *@
-                                <span class="badge bg-info text-dark badge-custom">प्रिमियम</span>  @* प्रिमियम प्रकार *@
-                                <span class="badge bg-warning text-dark badge-custom">पशुपालन तालिम</span>  @* ट्रेनिङ प्रकार *@
-                            </div>
+                            <!-- ================= MODAL ================= -->
+                            <div class="modal fade" id="trainingModal_@training.Id" tabindex="-1">
+                                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
 
-                            <p class="short-desc mt-3 flex-grow-1">
-                                @* विवरण *@
-                                यो तालिमले सहभागीहरूलाई कम्प्युटरको आधारभूत प्रयोग, इन्टरनेटको सुरक्षित प्रयोग, एमएस अफिसका
-                                आधारभूत सफ्टवेयरहरू (Word, Excel, PowerPoint), इ-मेल र सामाजिक सञ्जालको उचित प्रयोग, डिजिटल
-                                सुरक्षा र गोपनीयता सम्बन्धी ज्ञान प्रदान गर्दछ।
-                                तालिम अवधिभर ह्यान्ड्स-अन अभ्यास, प्रोजेक्ट वर्क र प्रमाणपत्र वितरण गरिनेछ।
-                            </p>
+                                        <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title">@training.Title</h5>
+                                            <button type="button" class="btn-close btn-close-white"
+                                                    data-bs-dismiss="modal"></button>
+                                        </div>
 
-                            <div class="text-end mt-2">
-                                <a href="javascript:void(0)" class="text-primary fw-bold">
-                                    थप पढ्नुहोस् <i class="bi bi-arrow-right"></i>
-                                </a>
+                                        <div class="modal-body">
+                                            <h6 class="fw-bold text-success">
+                                                आयोजक: @training.Organizer
+                                            </h6>
+
+                                            <div class="row mt-3 small text-muted">
+                                                <div class="col-6"><strong>सुरु मिति (नेपाली):</strong> @training.StartDate</div>
+                                                <div class="col-6"><strong>सुरु मिति (English):):</strong> @training.StartDateEng?.ToString("yyyy-MM-dd")</div>
+                                                <div class="col-6"><strong>समाप्त मिति (नेपाली): </strong> @training.EndDate</div>
+                                                <div class="col-6"><strong>समाप्त मिति (English): </strong> @training.EndDateEng?.ToString("yyyy-MM-dd")</div>
+                                                @* <div class="col-6"><strong>आ.व.:</strong> @training.FiscalYearId</div> *@
+                                        <div class="col-6"><strong>रकम:</strong> रु. @(training.Amount ?? 0)</div>
+                                                <div class="col-6"><strong>स्थान:</strong> @training.TrainingPlace</div>
+                                                <div class="col-6"><strong>प्रशिक्षक:</strong> @training.TrainerName</div>
+                                                <div class="col-6"><strong>प्रिमियम:</strong> @training.PremiumName</div>
+                                                <div class="col-6"><strong>तालिम प्रकार:</strong> @training.TrainingTypeName</div>
+                                            </div>
+
+                                            <hr />
+
+                                            <h6 class="fw-bold">विवरण</h6>
+                                            <p>@Html.Raw(training.Description)</p>
+                                    @*         <p>@Html.Raw(notice.Description)</p>
+
+                                    @if (!string.IsNullOrEmpty(notice.FilePath))
+                                            {
+                                                <img src="@(_global.BaseUrl() + notice.FilePath)"
+                                                     alt="notice image"
+                                                     width="250"
+                                                     height="250" />
+                                            } *@
+
+                                    @if (!string.IsNullOrEmpty(training.FilePath))
+                                            {
+                                                @* <a href="@training.FilePath" target="_blank" class="btn btn-sm btn-primary">
+                                                    फाइल हेर्नुहोस्
+                                                </a> *@
+                                                <img src="@(_global.BaseUrl() + training.FilePath)"
+                                                     alt="notice image"
+                                                     width="250"
+                                                     height="250" />
+                                            }
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">
+                                                बन्द गर्नुहोस्
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                            <!-- =============== END MODAL =============== -->
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">कुनै पनि तालिम उपलब्ध छैन।</p>
+                    }
                 </div>
-
-            </div>
-        </div>
-
-        <!-- Modal (Lightbox) -->
-        <div class="modal fade" id="trainingModal1" tabindex="-1" aria-labelledby="trainingModalLabel1" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="trainingModalLabel1">डिजिटल साक्षरता तथा आधारभूत कम्प्युटर तालिम</h5>  @* शिर्षक *@
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h6 class="fw-bold text-success">आयोजक: नेपाल सरकार, सूचना प्रविधि मन्त्रालय</h6>  @* आयोजक *@
-
-                        <div class="row mt-3 text-muted small">
-                            <div class="col-6"><strong>सुरु मिति:</strong> २०८२-०४-०१</div>  @* सुरु मिति *@
-                            <div class="col-6"><strong>अन्तिम मिति:</strong> २०८२-०४-१५</div>  @* अन्तिम मिति *@
-                            <div class="col-6"><strong>आर्थिक वर्ष:</strong> २०८२/८३</div>  @* आर्थिक वर्ष *@
-                            <div class="col-6"><strong>स्थान:</strong> काठमाडौँ, नेपाल</div>  @* स्थान *@
-                            <div class="col-6"><strong>प्रशिक्षक:</strong> श्री रामबहादुर थापा</div>  @* प्रशिक्षक *@
-                            <div class="col-6"><strong>प्रिमियम प्रकार:</strong> प्रिमियम</div>  @* प्रिमियम प्रकार *@
-                            <div class="col-6"><strong>ट्रेनिङ प्रकार:</strong> आधारभूत तालिम</div>  @* ट्रेनिङ प्रकार *@
-                        </div>
-
-                        <hr>
-
-                        <h6 class="fw-bold">विवरण</h6>  @* विवरण *@
-                        <p>
-                            यो तालिमले सहभागीहरूलाई कम्प्युटरको आधारभूत प्रयोग, इन्टरनेटको सुरक्षित प्रयोग, एमएस अफिसका
-                            आधारभूत सफ्टवेयरहरू (Word, Excel, PowerPoint), इ-मेल र सामाजिक सञ्जालको उचित प्रयोग, डिजिटल
-                            सुरक्षा र गोपनीयता सम्बन्धी ज्ञान प्रदान गर्दछ।
-                            तालिम अवधिभर ह्यान्ड्स-अन अभ्यास, प्रोजेक्ट वर्क र प्रमाणपत्र वितरण गरिनेछ।
-                        </p>
-
-                        <div class="text-center my-4">
-                            @* फोटो *@
-                            <img src="https://imgs.search.brave.com/_7PApOFXoueFNjtQ12trK8ESVPyD8M3OPVvsFlTM95A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9zdW5z/ZXQtc29saXR1ZGUt/bG9uZS10cmVlLXN0/YW5kcy1kcnktY3Jh/Y2tlZC1lYXJ0aC1s/YW5kc2NhcGUtdW5k/ZXItZHJhbWF0aWMt/c2t5LWdlbmVyYXRp/dmUtYWktYmVhdXRp/ZnVsbHktY3JhZnRl/ZC1kaWdpdGFsLTM3/MzQxMTQ3Ni5qcGc"
-                                 class="img-fluid rounded shadow" style="height: 350px; width: 500px;" alt="तालिमको फोटो">
-                            <small class="text-muted d-block mt-2">तालिम उद्घाटन समारोहको फोटो</small>
-                        </div>
-                    </div>
-                    @* ---------------------- change to the apply the form ---------------------------------- *@
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बन्द गर्नुहोस्</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
         <hr class="m-0" />
