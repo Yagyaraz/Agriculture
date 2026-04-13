@@ -1,4 +1,4 @@
-﻿using Agriculture.Areas.Admin.Interface;
+using Agriculture.Areas.Admin.Interface;
 using Agriculture.Areas.Admin.Models;
 using Agriculture.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -33,7 +33,7 @@ namespace Agriculture.Areas.Admin.Controllers
         }
         [AllowAnonymous]
         [HttpPost("CreateGunaos")]
-        public async Task<IActionResult> CreateGunaso(GunasoViewModel model)
+        public async Task<IActionResult> CreateGunaso([FromForm] GunasoViewModel model)
         {
             var data = await _gunaso.CreateGunaso(model);
             return Ok(new ApiResponse { Status = data, Message = data ? "Successfully Created Gunaos" : "Gunaos Not Created Try Again", Data = data });

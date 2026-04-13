@@ -1,4 +1,4 @@
-﻿@using AgricultureView.Utility
+@using AgricultureView.Utility
 @model AgricultureView.Areas.Admin.Models.LandingPageViewModel
 @inject AgricultureView.Utility.IGlobalVeriable _global
 @inject IUtility _Utility
@@ -2144,6 +2144,10 @@
                                         <div class="col-12">
                                             <label class="form-label">गुनासोको विस्तृत विवरण <span class="text-danger">*</span></label>
                                             <textarea asp-for="Gunaso.Description" class="form-control" rows="8" placeholder="कृपया सत्य र स्पष्ट कुरा मात्र लेख्नुहोस्..." required></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">फोटो वा भिडियो (ऐच्छिक)</label>
+                                            <input type="file" asp-for="Gunaso.FilePhoto" class="form-control form-control-lg" accept="image/*,video/*" />
                                         </div>
 
                                         <div class="text-center my-5">

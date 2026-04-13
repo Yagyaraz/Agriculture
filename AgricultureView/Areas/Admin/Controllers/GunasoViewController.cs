@@ -1,4 +1,4 @@
-﻿using AgricultureView.Areas.Admin.Models;
+using AgricultureView.Areas.Admin.Models;
 using AgricultureView.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -50,10 +50,30 @@ namespace AgricultureView.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateGunaso(LandingPageViewModel model)
         {
-            var response = await _globalVeriable.PostMethod("Admin/Gunaso/CreateGunaos", model.Gunaso);
-            if (response.Status)
+            using (MultipartFormDataContent formData = new MultipartFormDataContent())
             {
-                return RedirectToAction("Index", "LandingPage", new { area = "" });
+                if (model.Gunaso.Id > 0)
+                {
+                    formData.Add(new StringContent(model.Gunaso.Id.ToString()), "Id");
+                }
+                if (!string.IsNullOrEmpty(model.Gunaso.Name))
+                    formData.Add(new StringContent(model.Gunaso.Name), "Name");
+                if (!string.IsNullOrEmpty(model.Gunaso.PhoneNumber))
+                    formData.Add(new StringContent(model.Gunaso.PhoneNumber), "PhoneNumber");
+                if (!string.IsNullOrEmpty(model.Gunaso.Description))
+                    formData.Add(new StringContent(model.Gunaso.Description), "Description");
+
+                if (model.Gunaso.FilePhoto != null)
+                {
+                    StreamContent photoContent = new StreamContent(model.Gunaso.FilePhoto.OpenReadStream());
+                    formData.Add(photoContent, "FilePhoto", model.Gunaso.FilePhoto.FileName);
+                }
+
+                var response = await _globalVeriable.PostFileMethod("Admin/Gunaso/CreateGunaos", formData);
+                if (response.Status)
+                {
+                    return RedirectToAction("Index", "LandingPage", new { area = "" });
+                }
             }
             return View(model);
         }

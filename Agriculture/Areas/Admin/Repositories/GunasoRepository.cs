@@ -1,4 +1,4 @@
-﻿using Agriculture.Areas.Admin.Interface;
+using Agriculture.Areas.Admin.Interface;
 using Agriculture.Areas.Admin.Models;
 using Agriculture.Data;
 using Microsoft.EntityFrameworkCore;
@@ -8,20 +8,30 @@ namespace Agriculture.Areas.Admin.Repositories
     public class GunasoRepository : IGunaso
     {
         private readonly AgricultureDbContext _dbContext;
+        private readonly IUtility _utility;
 
-        public GunasoRepository(AgricultureDbContext dbContext)
+        public GunasoRepository(AgricultureDbContext dbContext, IUtility utility)
         {
             _dbContext = dbContext;
+            _utility = utility;
         }
         public async Task<bool> CreateGunaso(GunasoViewModel model)
         {
             try
             {
+                var photo = "";
+                if (model.FilePhoto != null)
+                {
+                    photo = _utility.UploadImgReturnPathAndName("Gunaso", model.FilePhoto, "Gunaso").Result.FilePath;
+                }
+
                 var entity = new Gunaso
                 {
                     Name = model.Name,
                     PhoneNumber = model.PhoneNumber,
                     Description = model.Description,
+                    FilePath = photo,
+                    CreatedDate = DateTime.Now,
                     Status = true
                 };
                 _dbContext.Gunasos.Add(entity);
@@ -48,6 +58,8 @@ namespace Agriculture.Areas.Admin.Repositories
                 Name = entity.Name,
                 PhoneNumber = entity.PhoneNumber,
                 Description = entity.Description,
+                FilePath = entity.FilePath,
+                CreatedDate = entity.CreatedDate,
                 Status = entity.Status
             };
         }
@@ -61,6 +73,8 @@ namespace Agriculture.Areas.Admin.Repositories
                            Name = c.Name,
                            PhoneNumber = c.PhoneNumber,
                            Description = c.Description,
+                           FilePath = c.FilePath,
+                           CreatedDate = c.CreatedDate,
                            Status = c.Status
                        }).ToListAsync();
         }
