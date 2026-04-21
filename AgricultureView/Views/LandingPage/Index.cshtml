@@ -1967,7 +1967,7 @@
                     <p class="text-muted">हाम्रा बजारहरूले स्थानीय उत्पादनहरूलाई उपभोक्तासम्म पुर्‍याउन सहयोग गर्छन्।</p>
                 </div>
                 <!-- Search + Dropdown -->
-                <div class="row justify-content-center gap-4 mb-4">
+                @* <div class="row justify-content-center gap-4 mb-4">
                     <div class="text-center col-3">
                         <input type="text" class="market-search form-control w-100" placeholder="सामानको मूल्य खोज्नुहोस्..." />
                     </div>
@@ -1983,8 +1983,121 @@
                             }
                         </select>
                     </div>
-                </div>
-                @if (Model.MarketPrices != null && Model.MarketPrices.Any())
+                </div> *@
+                @* <div style="width:100%; height:100vh; overflow:hidden; position:relative;">
+                    <iframe src="https://kalimatimarket.gov.np/price"
+                            style="
+                              width:100%;
+                              height:290vh;
+                              border:none;
+                              position:relative;
+                              top:-1060px;
+                              transform:scale(1.15);
+                              transform-origin:top;
+                            ">
+                    </iframe>
+                </div> *@
+                <section  class="container-fluid home bg-light p-0">
+                    <div class="header-carousel owl-carousel owl-theme pt-2">
+                        <div>
+                        <p class="text-center fw-bold fs-2"><strog>कालीमाटी फलफूल तथा तरकारी मूल्य</strog></p>
+                            <p class="text-center">
+                                <strog class="fw-bold"> Source </strog> <br />
+                                Kalimati Fruit and Vegetable Market
+                            </p>
+                          <div style="width:100%; height:100vh; overflow:hidden; position:relative;">
+                            @* <iframe src="https://ramropatro.com/vegetable" *@
+                            <iframe src="https://nepalipatro.com.np/vegetables"
+                                    style="
+                                      width:100%;
+                                      height:200vh;
+                                      border:none;
+                                      position:relative;
+                                      top:-200px;
+                                      transform:scale(1.1);
+                                      transform-origin:top;
+                                    ">
+                            </iframe>
+                        </div>  
+                        <p>
+                            <strong>स्रोत : </strong> <a href="https://nepalipatro.com.np/vegetables">नेपाली पात्रो</a>
+                        </p>
+                    </div>
+
+                        @* <div>
+                            <p class="text-center fw-bold fs-2"><strog>प्रदेश फलफूल तथा तरकारी मूल्य</strog></p>
+                            <div style="width:100%; height:100vh; overflow:hidden; position:relative;">
+                                <iframe src="https://connectkisan.com/en/market-price/municipalities"
+                                        style="
+                              width:100%;
+                              height:200vh;
+                              border:none;
+                              position:relative;
+                              top:-200px;
+                              transform:scale(1.1);
+                              transform-origin:top;
+                            ">
+                                </iframe>
+                            </div>
+                            <p>
+                                <strong>स्रोत : </strong> <a href="https://connectkisan.com/en/market-price/municipalities">ConnectKisan Logo</a>
+                            </p>
+                        </div> *@
+
+                            <div class="px-5">
+                                <p class="text-center fw-bold fs-2"><strog>स्थानीय फलफूल तथा तरकारी मूल्य</strog></p>
+                            <p class="text-center">
+                                <strog class="fw-bold"> Source </strog> <br />
+                                Shrijhanga Fruit and Vegetable Market
+                            </p>
+                                @if (Model.MarketPrices != null && Model.MarketPrices.Any())
+                                {
+                                    <div class="table-responsive" data-aos="fade-up" data-aos-duration="800">
+                                        <table class="table table-bordered table-striped table-hover">
+                                            <thead class="table-success">
+                                                <tr>
+                                                    <th class="text-center">क्र.स.</th>
+                                                    <th class="text-center">बजारको नाम</th>
+                                                    <th class="text-center">सामानको नाम</th>
+                                                    <th class="text-center">सामानको मूल्य</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{
+                                                    int serial = 1;
+                                                }
+
+                                                @foreach (var market in Model.MarketPrices)
+                                                {
+                                                    if (market.MarketPriceDetailsViewModelList != null &&
+                                                    market.MarketPriceDetailsViewModelList.Any())
+                                                    {
+                                                        foreach (var detail in market.MarketPriceDetailsViewModelList)
+                                                        {
+                                                            <tr class="market-row">
+                                                                <td class="text-center">@serial</td>
+                                                                <td class="text-center">@market.MarketName</td>
+                                                                <td class="text-center">@detail.ProductName</td>
+                                                                <td class="text-center">@detail.RetailPrice</td>
+                                                            </tr>
+                                                            serial++;
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                           
+                                        </table>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p class="text-center text-muted">No markets found.</p>
+                                }
+                               
+                            </div>
+                    </div>
+                </section>
+                @* @if (Model.MarketPrices != null && Model.MarketPrices.Any())
                 {
                     <div class="table-responsive" data-aos="fade-up" data-aos-duration="800">
                         <table class="table table-bordered table-striped table-hover">
@@ -2018,7 +2131,7 @@
                                         }
                                     }
                                 }
-                            </tbody>
+                            </tbody> *@
                             @* <tbody>
                                 @{
                                     int serial = 1;
@@ -2047,19 +2160,15 @@
                                     }
                                 }
                             </tbody> *@
-                        </table>
-                    </div>
+                    @*      </table>
+                    </div>  
                 }
                 else
                 {
                     <p class="text-center text-muted">No markets found.</p>
-                }
+                }*@
             </div>
         </section>
-
-        
-
-
 
         <!-- Projects ( Weather) -->
     <section id="projects" class="project-item container-fluid py-5">
@@ -2094,12 +2203,6 @@
             </div>
         </div>
     </section>
-
-
-    
-
-
-
 
     <!-- Footer -->
     <footer class="footer py-5">
@@ -2348,27 +2451,51 @@
          });
 
          // Owl Carousel
-         $('.header-carousel').owlCarousel({
-             loop: true, margin: 0, nav: true, autoplay: true, autoplayTimeout: 8000,
-             items: 1, dots: true, animateOut: 'fadeOut', animateIn: 'fadeIn'
-         });
+                 $(document).ready(function () {
+            var owl = $(".header-carousel");
 
-         $(document).ready(function () {
-             $(".header-carousel").owlCarousel({
-                 items: 1,
-                 loop: true,
-                 autoplay: true,
-                 autoplayTimeout: 5000,
-                 autoplayHoverPause: true,
-                 smartSpeed: 900,
-                 nav: true,
-                 dots: false,
-                 navText: [
-                     '<i class="fas fa-chevron-left"></i>',
-                     '<i class="fas fa-chevron-right"></i>'
-                 ]
-             });
-         });
+            owl.owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 0,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true, // ✅ pause on hover
+                smartSpeed: 900,
+                nav: true,
+                dots: true,
+                animateOut: 'fadeOut',
+                animateIn: 'fadeIn',
+                navText: [
+                    '<i class="fas fa-chevron-left"></i>',
+                    '<i class="fas fa-chevron-right"></i>'
+                ]
+            });
+
+            // 🔧 Backup manual control (guaranteed hover pause)
+            owl.on('mouseenter', function () {
+                owl.trigger('stop.owl.autoplay');
+            });
+
+            owl.on('mouseleave', function () {
+                owl.trigger('play.owl.autoplay');
+            });
+                $(document).on('keydown', function (e) {
+
+            if (e.key === "ArrowLeft") {
+                owl.trigger('prev.owl.carousel');   // ⬅️ previous slide
+                owl.trigger('stop.owl.autoplay');   // optional pause
+                owl.trigger('play.owl.autoplay');   // restart autoplay
+            }
+
+            if (e.key === "ArrowRight") {
+                owl.trigger('next.owl.carousel');   // ➡️ next slide
+                owl.trigger('stop.owl.autoplay');   // optional pause
+                owl.trigger('play.owl.autoplay');   // restart autoplay
+            }
+
+        });
+        });
 
          // gallery light box
          // function changeModalImage(src, caption) {
@@ -2422,7 +2549,7 @@
             }
             
         ];
-        console.log("video :", videos)
+        // console.log("video :", videos)
     </script>
 
     <script>
