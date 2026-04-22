@@ -13,66 +13,1155 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
    
 }
-@* 
-<div class="cards-container">
-    <div class="card" style="background: #E8F5E9;">
-        <h3>Total Land Area</h3>
-        <div class="value">12,000 square meters (m²)</div>
-    </div>
-    <div class="card" style="background: #F1F8E9;">
-        <h3>Crops Planted</h3>
-        <div class="value">3 Crops</div>
-    </div>
-    <div class="card" style="background: #F9FBE7;">
-        <h3>Harvest Yield</h3>
-        <div class="value">85% Target</div>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-    </div>
-    <div class="card" style="background: #FFF8E1;">
-        <h3>Soil Moisture</h3>
-        <div class="value">62% Optimal</div>
-    </div>
-</div>
 
-<div class="weather-widget">
-    <h2>Current Weather</h2>
-    <div class="weather-info">
-        <div class="temp">🌤️ 28°C</div>
-        <div class="precipitation">💧 20% Precipitation</div>
-        <div class="forecast">📅 7-Day Forecast Available</div>
-    </div>
-</div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<div class="crop-health">
-    <div class="card">
-        <h2>Crop Health Status</h2>
-        <div class="health-item">
-            <div class="crop-name">Wheat <span class="status good">Good</span></div>
-            <div class="progress-bar">
-                <div class="progress" style="width: 85%;"></div>
+    <style>
+        :root {
+            --bg-body: #f4f7f6;
+            --card-bg: #ffffff;
+            --primary-green: #2ecc71;
+            --accent-gold: #f1c40f;
+            --text-main: #2c3e50;
+            --glass: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --leaf-green: #2ecc71;
+            --glow: rgba(46, 204, 113, 0.6);
+        }
+
+
+
+        
+
+        /* Navbar & Switch */
+        .dashboard-nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+            .theme-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+            }
+
+        input:checked + .slider {
+            background-color: var(--primary-green);
+        }
+
+            input:checked + .slider:before {
+                transform: translateX(30px);
+            }
+
+            /* time and data */
+
+    /* floating leaves */
+    .bg-leaf {
+        position: absolute;
+        color: rgb(46 204 113 / 55%);
+        font-size: 80px;
+        animation: float 20s linear infinite;
+        z-index: -1;
+    }
+
+    @@keyframes float {
+        from
+
+    {
+        transform: translateY(110vh) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-20vh) rotate(360deg);
+    }
+
+    }
+
+    /* container */
+    .leaf-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* big leaf */
+    .leaf-frame {
+        font-size: 300px;
+        color: rgba(46, 204, 113, 0.12);
+        filter: drop-shadow(0 0 25px var(--glow));
+        animation: sway 5s ease-in-out infinite;
+    }
+
+    @@keyframes sway {
+        0%, 100%
+
+    {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(6deg);
+    }
+
+    }
+
+    /* content inside leaf */
+    .inner-content {
+        position: absolute;
+        text-align: center;
+        transform: translateY(-5%);
+    }
+
+    /* TIME */
+    .time {
+        font-size: 32px;
+        font-weight: 800;
+        color: #198754;
+        letter-spacing: 2px;
+        text-shadow: 0 0 20px var(--glow);
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* DATE BOX */
+    .date-box {
+        margin-top: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 18px;
+        border-radius: 50px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(46, 204, 113, 0.3);
+        backdrop-filter: blur(6px);
+    }
+
+    /* DATE TEXT */
+    .date-text {
+        font-size: 16px;
+        color: var(--leaf-green);
+        letter-spacing: 1px;
+    }
+
+    /* LIVE DOT */
+    .live-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--leaf-green);
+        border-radius: 50%;
+        animation: pulse 1.5s infinite;
+        box-shadow: 0 0 10px var(--leaf-green);
+    }
+
+    @@keyframes pulse {
+        0%
+
+    {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    }
+
+        /* Card Customization */
+        .custom-card {
+            background: var(--card-bg);
+            border: none;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            height: 100%;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+            .custom-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            }
+
+        /* Animation Keyframes */
+        @@keyframes fadeInUp {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+
+        /* Progress Bars */
+        .progress {
+            height: 8px;
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Weather Widget */
+        .weather-gradient {
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            color: white;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: left;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+            .btn-custom:hover {
+                background-color: var(--primary-green);
+                color: white;
+                transform: scale(1.02);
+            }
+
+        /* Recent Activity List */
+        .activity-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activity-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+
+            .activity-item i {
+                margin-right: 15px;
+                color: var(--primary-green);
+            }
+
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background: rgba(46, 204, 113, 0.2);
+            color: #27ae60;
+            margin-left: 10px;
+        }
+
+    /* Glass Container */
+    .weather-container {
+        background: linear-gradient(135deg, #9ed7aa, #74c69d, #b7e4c7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 30px;
+        padding: 40px;
+        width: 100%;
+        max-width: 900px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    /* Search Box */
+    .search-box {
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+        .search-box input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 12px 25px;
+            width: 100%;
+            color: #055a00;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+            .search-box input:focus {
+                background: rgba(255, 255, 255, 0.2);
+                box-shadow: 0 0 15px rgba(255,255,255,0.1);
+            }
+
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            border-radius: 12px;
+            border: none;
+            background: #fff;
+            color: #1e3c72;
+            padding: 7px 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+            .search-box button:hover {
+                transform: scale(1.05);
+            }
+
+    /* suggestions */
+    .weather-container .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #ddd;
+        max-height: 250px;
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+        .weather-container .dropdown div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+            .weather-container .dropdown div:hover {
+                background: #f0f0f0;
+            }
+
+    /* Current Weather Section */
+    .current-section {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    #temp {
+        font-size: 5rem;
+        font-weight: 800;
+        margin: 0;
+        text-shadow: var(--text-shadow);
+    }
+
+    #location {
+        font-weight: 400;
+        opacity: 0.9;
+        margin-bottom: 5px;
+    }
+
+    #desc {
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    /* Metrics Grid */
+    .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .metric-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 20px;
+        text-align: center;
+        border: 1px solid transparent;
+        transition: 0.3s;
+    }
+
+        .metric-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--glass-border);
+        }
+
+        .metric-card i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1164b7;
+        }
+
+        .metric-card p {
+            margin: 0;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .metric-card span {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+    /* Hourly & Daily Sections */
+    .section-title {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.6;
+        margin-bottom: 15px;
+    }
+
+    #hourly {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding-bottom: 15px;
+        scrollbar-width: none;
+    }
+
+        #hourly::-webkit-scrollbar {
+            display: none;
+        }
+
+    .hour-item {
+        min-width: 80px;
+        text-align: center;
+        background: rgba(255,255,255,0.05);
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    #daily {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .day-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255,255,255,0.05);
+        padding: 12px 25px;
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+
+        .day-row:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+    /* Responsive Fixes */
+    @@media (max-width: 576px) {
+        .weather-container
+
+    {
+        padding: 25px;
+    }
+
+    #temp {
+        font-size: 3.5rem;
+    }
+
+    }
+    </style>
+
+
+<div class="page-inner">
+    <div class="container">
+        <header class="dashboard-nav">
+        <h2 class="fw-bold m-0">
+            <i class="fas fa-leaf text-success me-2"></i>Agri Shrijhanga
+        </h2>
+
+            <div class="clock">
+                <!-- background leaves -->
+                <i class="fas fa-leaf bg-leaf" style="left:10%; animation-delay:0s;"></i>
+                <i class="fas fa-leaf bg-leaf" style="left:80%; animation-delay:5s;"></i>
+                <i class="fas fa-leaf bg-leaf" style="left:50%; animation-delay:10s;"></i>
+
+                <!-- MAIN CLOCK -->
+                <div class="leaf-container">
+
+                    <i class="fas fa-leaf leaf-frame"></i>
+
+                    <div class="inner-content">
+                        <div class="time" id="time">00:00:00</div>
+
+                        <div class="date-box">
+                            <span class="live-dot"></span>
+                            <span id="date" class="date-text">Loading...</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+      <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card-glass p-4 animate-card" style="animation-delay: 0.1s">
+                    <small class="text-muted uppercase">Total Area</small>
+                    <h2 class="fw-bold">12,000 <span class="fs-6">m²</span></h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-glass p-4 animate-card" style="animation-delay: 0.2s">
+                    <small class="text-muted">Active Crops</small>
+                    <h2 class="fw-bold" id="crop-count">0</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-glass p-4 animate-card" style="animation-delay: 0.3s">
+                    <small class="text-muted">Avg Soil Moisture</small>
+                    <h2 class="fw-bold text-info" id="moisture-val">62%</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-glass p-4 animate-card" style="animation-delay: 0.4s">
+                    <small class="text-muted">Weather</small>
+                    <h2 class="fw-bold" id="temp-val">28°C</h2>
+                </div>
             </div>
         </div>
-        <!-- Add more crop health items -->
+
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                @* <div class="custom-card weather-gradient mb-4">
+                    <h2>Current Weather</h2>
+                    <h1 id="temperature" class="display-4 fw-bold">--°C</h1>
+                    <p class="mb-0"><i class="fas fa-cloud-rain"></i> <span id="precipitation">--%</span> Precipitation</p>
+                    <div class="d-flex text-center">
+                        <p class="fs-3 fw-bold"><strong>weather : </strong> </p>
+                        <p id="weatherCondition" class="fs-3 fw-bold ms-2 text-center">Loading...</p>
+                    </div>
+                    
+
+                    <!-- Wheat -->
+                    <span>Wheat <span id="wheatStatus" class="status-badge"></span></span>
+                    <span id="wheatValue">0%</span>
+                    <div class="progress">
+                        <div id="wheatBar" class="progress-fill"></div>
+                    </div>
+
+                    <!-- Corn -->
+                    <span>Corn <span id="cornStatus" class="status-badge"></span></span>
+                    <span id="cornValue">0%</span>
+                    <div class="progress">
+                        <div id="cornBar" class="progress-fill"></div>
+                    </div>
+                </div> *@
+
+
+                <div class="weather-container">
+                    <div class="search-box" style="position: relative;">
+                        <input id="cityInput"
+                               placeholder="Enter city name..."
+                               onkeypress="if(event.key === 'Enter') getWeather()"
+                               oninput="searchCities()"
+                               autocomplete="off">
+
+                        <button onclick="getWeather()">Search</button>
+
+                        <div id="suggestions" class="dropdown"></div>
+                    </div>
+
+                    <div class="current-section">
+                        <h2 id="location"><i class="fas fa-location-dot me-2"></i>Loading...</h2>
+                        <h1 id="temp">--°</h1>
+                        <p id="desc">--</p>
+                        <p id="feels" class="small opacity-75">Feels like --°</p>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <i class="fas fa-wind"></i>
+                            <p>Wind</p>
+                            <span id="wind">-- m/s</span>
+                        </div>
+                        <div class="metric-card">
+                            <i class="fas fa-droplet"></i>
+                            <p>Humidity</p>
+                            <span id="humidity">--%</span>
+                        </div>
+                        <div class="metric-card">
+                            <i class="fas fa-eye"></i>
+                            <p>Visibility</p>
+                            <span id="visibility">-- km</span>
+                        </div>
+                        <div class="metric-card">
+                            <i class="fas fa-gauge-high"></i>
+                            <p>Pressure</p>
+                            <span id="pressure">-- hPa</span>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-12 mb-4">
+                            <p class="section-title">24-Hour Forecast</p>
+                            <div id="hourly">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <p class="section-title">Next 5 Days</p>
+                            <div id="daily">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <div class="col-lg-4">
+                <div class="custom-card mb-4">
+                    <h4 class="fw-bold mb-3">Quick Actions</h4>
+                    <button class="btn btn-custom"><i class="fas fa-plus me-2"></i> अनुदान थप्नुहोस्</button>
+                    <button class="btn btn-custom"><i class="fas fa-droplet me-2"></i> Schedule Irrigation</button>
+                    <button class="btn btn-custom"><i class="fas fa-file-alt me-2"></i> Generate Report</button>
+                    <button class="btn btn-custom"><i class="fas fa-plus me-2"></i> समुह/सहकारि/फर्म दर्ता गर्नुहोस्</button>
+                    <button class="btn btn-custom"><i class="fas fa-plus me-2"></i> आवेदन फारम  भर्नुहोस्</button>
+                    <button class="btn btn-custom"><i class="fas fa-plus me-2"></i> तालिमको आवेदन फारम भर्नुहोस्</button>
+                </div>
+
+                <div class="custom-card">
+                    <h4 class="fw-bold mb-3">Recent Activity</h4>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <p class="mb-0 fw-semibold">Irrigation Field B</p>
+                                <small class="text-muted">2 hours ago</small>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <i class="fas fa-bug"></i>
+                            <div>
+                                <p class="mb-0 fw-semibold">Pest Control Applied</p>
+                                <small class="text-muted">4 hours ago</small>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <i class="fas fa-shuttle-van"></i>
+                            <div>
+                                <p class="mb-0 fw-semibold">Harvesting Field C</p>
+                                <small class="text-muted">Yesterday</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addCropModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0" style="border-radius: 20px;">
+                <div class="modal-header border-0">
+                    <h5 class="fw-bold">Register New Crop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="newCropName" class="form-control mb-3" placeholder="Crop Name (e.g. Barley)">
+                    <input type="number" id="newCropHealth" class="form-control mb-3" placeholder="Initial Health %" max="100">
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-primary w-100" id="saveCropBtn">Add to Field</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>Quick Actions</h2>
-        <button class="btn"><i class="fas fa-plus"></i> Add Crop</button>
-        <button class="btn"><i class="fas fa-tint"></i> Schedule Irrigation</button>
-        <button class="btn"><i class="fas fa-clipboard-list"></i> Create Report</button>
-    </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class="recent-activity card">
-    <h2>Recent Activities</h2>
-    <ul>
-        <li>🕒 2h ago: Irrigation completed in Field B</li>
-        <li>🕒 4h ago: Pest control applied to Wheat crops</li>
-        <li>🕒 1d ago: Harvest started in Field C</li>
-    </ul>
-</div>
+<script>
+    function updateClock() {
+        const now = new Date();
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
- *@
+        // TIME
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+
+        document.getElementById("time").textContent = `${h}:${m}:${s}`;
+
+        // NEPALI STYLE DATE (locale based)
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+
+        const nepaliDate = now.toLocaleDateString('ne-NP', options);
+        document.getElementById("date").textContent = nepaliDate;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+<script>
+
+const apiKey = "30bc825522a1e4c3c7ed7d70f230b478";
+let timeout;
+
+async function getWeather(cityFromClick = null) {
+
+    const cityInput = document.getElementById("cityInput");
+    const city = cityFromClick || cityInput.value.trim() || "Kathmandu";
+
+    try {
+
+        const currentRes = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+        );
+
+        if (!currentRes.ok) throw new Error("City not found");
+
+        const current = await currentRes.json();
+
+        const forecastRes = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
+        );
+
+        const forecast = await forecastRes.json();
+
+        document.getElementById("location").innerHTML =
+            `<i class="fas fa-location-dot me-2"></i>${current.name}, ${current.sys.country}`;
+
+        document.getElementById("temp").textContent =
+            Math.round(current.main.temp) + "°";
+
+        document.getElementById("desc").textContent =
+            current.weather[0].description;
+
+        document.getElementById("feels").textContent =
+            "Feels like " + Math.round(current.main.feels_like) + "°";
+
+        document.getElementById("wind").textContent =
+            current.wind.speed + " m/s";
+
+        document.getElementById("humidity").textContent =
+            current.main.humidity + "%";
+
+        document.getElementById("visibility").textContent =
+            (current.visibility / 1000) + " km";
+
+        document.getElementById("pressure").textContent =
+            current.main.pressure + " hPa";
+
+        cityInput.value = "";
+        document.getElementById("suggestions").innerHTML = "";
+
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+// ---------------- AUTOCOMPLETE ----------------
+async function searchCities() {
+
+    const input = document.getElementById("cityInput").value.trim();
+    const box = document.getElementById("suggestions");
+
+    if (input.length < 2) {
+        box.innerHTML = "";
+        return;
+    }
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(async () => {
+
+        const url =
+            `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=10&appid=${apiKey}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        box.innerHTML = "";
+
+        data.forEach(item => {
+
+            const div = document.createElement("div");
+
+            div.textContent = `${item.name}, ${item.country}`;
+
+            div.onclick = () => {
+                document.getElementById("cityInput").value =
+                    item.name;
+
+                box.innerHTML = "";
+
+                getWeather(item.name);
+            };
+
+            box.appendChild(div);
+        });
+
+    }, 300);
+}
+
+// initial load
+getWeather();
+
+</script>
+
+<script>
+    async function getWeather() {
+        const cityInput = document.getElementById("cityInput");
+        const city = cityInput.value || "Kathmandu";
+        const apiKey = "30bc825522a1e4c3c7ed7d70f230b478";
+
+        try {
+            // CURRENT WEATHER
+            const currentRes = await fetch(
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+            );
+            if (!currentRes.ok) throw new Error("City not found");
+            const current = await currentRes.json();
+
+            // FORECAST
+            const forecastRes = await fetch(
+                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
+            );
+            const forecast = await forecastRes.json();
+
+            // UI Update: Current
+            document.getElementById("location").innerHTML = `<i class="fas fa-location-dot me-2"></i>${current.name}, ${current.sys.country}`;
+            document.getElementById("temp").textContent = Math.round(current.main.temp) + "°";
+            document.getElementById("desc").textContent = current.weather[0].description;
+            document.getElementById("feels").textContent = "Feels like " + Math.round(current.main.feels_like) + "°";
+            document.getElementById("wind").textContent = current.wind.speed + " m/s";
+            document.getElementById("humidity").textContent = current.main.humidity + "%";
+            document.getElementById("visibility").textContent = (current.visibility / 1000) + " km";
+            document.getElementById("pressure").textContent = current.main.pressure + " hPa";
+                
+
+            // UI Update: Hourly
+            let hourlyHTML = "";
+            forecast.list.slice(0, 8).forEach(item => {
+                const time = new Date(item.dt * 1000).getHours();
+                const icon = item.weather[0].main === 'Clear' ? 'sun' : 'cloud';
+                hourlyHTML += `
+                    <div class="hour-item">
+                        <p class="small mb-2">${time}:00</p>
+                        <i class="fas fa-${getIcon(item.weather[0].main)} mb-2 text-info"></i>
+                        <p class="fw-bold mb-0">${Math.round(item.main.temp)}°</p>
+                    </div>
+                `;
+            });
+            document.getElementById("hourly").innerHTML = hourlyHTML;
+
+            // UI Update: Daily (Grouping by 12:00 PM for accuracy)
+            let dailyHTML = "";
+            const dailyData = forecast.list.filter(item => item.dt_txt.includes("12:00:00"));
+
+            dailyData.forEach(item => {
+                const date = new Date(item.dt * 1000);
+                const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+                dailyHTML += `
+                    <div class="day-row">
+                        <span style="width: 50px">${dayName}</span>
+                        <i class="fas fa-${getIcon(item.weather[0].main)} text-info"></i>
+                        <span class="small opacity-75">${item.weather[0].description}</span>
+                        <span class="fw-bold">${Math.round(item.main.temp)}°</span>
+                    </div>
+                `;
+            });
+            document.getElementById("daily").innerHTML = dailyHTML;
+            cityInput.value = ""; // Clear input
+
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    function getIcon(condition) {
+        const map = {
+            'Clear': 'sun',
+            'Clouds': 'cloud',
+            'Rain': 'cloud-showers-heavy',
+            'Snow': 'snowflake',
+            'Thunderstorm': 'bolt',
+            'Drizzle': 'cloud-rain'
+        };
+        return map[condition] || 'cloud';
+    }
+
+    // Initial Load
+    getWeather();
+</script>
+
+@* <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+
+        const apiKey = "30bc825522a1e4c3c7ed7d70f230b478";
+        const city = "Kathmandu";
+
+        try {
+            const res = await fetch(
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+            );
+
+            const data = await res.json();
+
+            if (data.cod !== 200) {
+                throw new Error(data.message);
+            }
+
+            // ---------------- WEATHER UI ----------------
+            const temp = Math.round(data.main.temp);
+            const rain = data.rain?.["1h"] || 0;
+            const condition = data.weather[0].main.toLowerCase();
+
+            document.getElementById("temperature").textContent = temp + "°C";
+            document.getElementById("weatherCondition").textContent =
+                data.weather[0].description;
+
+            document.getElementById("precipitation").textContent =
+                rain + " mm";
+
+            // ---------------- CROP LOGIC ----------------
+            function calculateCropScore(temp, rain, condition) {
+                let score = 100;
+
+                // temperature impact
+                if (temp < 10 || temp > 38) score -= 40;
+                else if (temp < 15 || temp > 32) score -= 20;
+
+                // rain impact
+                if (rain > 10) score -= 30;
+                else if (rain > 3) score -= 15;
+
+                // weather condition impact
+                if (condition.includes("rain")) score -= 20;
+                if (condition.includes("storm")) score -= 40;
+                if (condition.includes("haze")) score -= 10;
+
+                return Math.max(0, Math.min(100, score));
+            }
+
+            const wheatScore = calculateCropScore(temp, rain, condition);
+            const cornScore = calculateCropScore(temp + 2, rain, condition); // slight variation
+
+            function updateCropUI(name, score) {
+
+                const bar = document.getElementById(name + "Bar");
+                const value = document.getElementById(name + "Value");
+                const status = document.getElementById(name + "Status");
+
+                bar.style.width = score + "%";
+                value.textContent = score + "%";
+
+                if (score >= 75) {
+                    status.textContent = "Excellent";
+                    status.style.color = "green";
+                    bar.style.background = "green";
+                }
+                else if (score >= 50) {
+                    status.textContent = "Good";
+                    status.style.color = "orange";
+                    bar.style.background = "orange";
+                }
+                else {
+                    status.textContent = "Bad";
+                    status.style.color = "red";
+                    bar.style.background = "red";
+                }
+            }
+
+            updateCropUI("wheat", wheatScore);
+            updateCropUI("corn", cornScore);
+
+        } catch (err) {
+            console.error("API ERROR:", err.message);
+
+            document.getElementById("temperature").textContent = "N/A";
+            document.getElementById("weatherCondition").textContent = err.message;
+            document.getElementById("precipitation").textContent = "--";
+        }
+    });
+</script> *@
+
+    <script>
+    // 1. Initial State
+    let crops = [
+        { name: 'Wheat', health: 85, status: 'Stable' },
+        { name: 'Corn', health: 92, status: 'Excellent' }
+    ];
+
+    // 2. Core Functions
+    const renderCrops = () => {
+        const container = document.getElementById('crop-list');
+        const countDisplay = document.getElementById('crop-count');
+        
+        container.innerHTML = '';
+        countDisplay.innerText = crops.length;
+
+        crops.forEach((crop, index) => {
+            const html = `
+                <div class="mb-4 animate-card">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="fw-bold">${crop.name} <small class="text-muted ms-2">${crop.status}</small></span>
+                        <span class="fw-bold text-primary">${crop.health}%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: ${crop.health}%"></div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += html;
+        });
+    };
+
+    const logActivity = (msg) => {
+        const log = document.getElementById('activity-log');
+        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const entry = `
+            <div class="d-flex align-items-center mb-3 border-bottom pb-2">
+                <div class="bg-light p-2 rounded me-3"><i class="fas fa-clock text-primary"></i></div>
+                <div>
+                    <p class="mb-0 small fw-bold">${msg}</p>
+                    <small class="text-muted">${time}</small>
+                </div>
+            </div>
+        `;
+        log.insertAdjacentHTML('afterbegin', entry);
+    };
+
+    // 3. Simulated Sensors
+    setInterval(() => {
+        const randomMoisture = Math.floor(Math.random() * (65 - 58) + 58);
+        const randomTemp = Math.floor(Math.random() * (30 - 26) + 26);
+        document.getElementById('moisture-val').innerText = randomMoisture + '%';
+        document.getElementById('temp-val').innerText = randomTemp + '°C';
+    }, 3000);
+
+    // 4. Event Listeners
+    document.getElementById('saveCropBtn').addEventListener('click', () => {
+        const name = document.getElementById('newCropName').value;
+        const health = document.getElementById('newCropHealth').value;
+
+        if(name && health) {
+            crops.push({ name, health: parseInt(health), status: 'New' });
+            renderCrops();
+            logActivity(`New crop planted: ${name}`);
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addCropModal'));
+            modal.hide();
+            
+            // Clear inputs
+            document.getElementById('newCropName').value = '';
+            document.getElementById('newCropHealth').value = '';
+        }
+    });
+
+    // Theme Toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        const body = document.documentElement;
+        const isDark = body.getAttribute('data-theme') === 'dark';
+        body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    });
+
+    // Initialize
+    document.getElementById('current-date').innerText = new Date().toDateString();
+    renderCrops();
+    logActivity('System initialized successfully');
+
+
+        // Trigger progress bar animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const fills = document.querySelectorAll('.progress-fill');
+            fills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
