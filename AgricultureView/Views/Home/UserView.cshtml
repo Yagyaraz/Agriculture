@@ -216,9 +216,9 @@
             border: none;
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             transition: var(--transition);
-            height: 100%;
+            /* height: 100%; */
             animation: fadeInUp 0.6s ease-out forwards;
             opacity: 0;
         }
@@ -503,7 +503,7 @@
         }
 
     .hour-item {
-        min-width: 80px;
+        min-width: 100px;
         text-align: center;
         background: rgba(255,255,255,0.05);
         padding: 15px;
@@ -678,13 +678,13 @@
 
                     <div class="row g-4">
                         <div class="col-12 mb-4">
-                            <p class="section-title">24-Hour Forecast</p>
+                            <p class="section-title fw-bold fs-4">24-Hour Forecast</p>
                             <div id="hourly">
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <p class="section-title">Next 5 Days</p>
+                            <p class="section-title fw-bold fs-4">Next 5 Days</p>
                             <div id="daily">
                             </div>
                         </div>
@@ -973,6 +973,45 @@ getWeather();
 
     // Initial Load
     getWeather();
+</script>
+
+<script>
+              const hourlyContainer = document.getElementById("hourly");
+
+    let direction = 1; // 1 = → right, -1 = → left
+    let speed = 0.6;
+    let isPaused = false;
+
+    function autoScroll() {
+        if (!isPaused) {
+            const maxScroll =
+                hourlyContainer.scrollWidth - hourlyContainer.clientWidth;
+
+            hourlyContainer.scrollLeft += speed * direction;
+
+            // Use >= and <= with small buffer (important fix)
+            if (hourlyContainer.scrollLeft >= maxScroll - 1) {
+                direction = -1; // go left
+            }
+            else if (hourlyContainer.scrollLeft <= 1) {
+                direction = 1; // go right
+            }
+        }
+
+        requestAnimationFrame(autoScroll);
+    }
+
+    // Pause on hover
+    hourlyContainer.addEventListener("mouseenter", () => {
+        isPaused = true;
+    });
+
+    // Resume on leave
+    hourlyContainer.addEventListener("mouseleave", () => {
+        isPaused = false;
+    });
+
+    autoScroll();
 </script>
 
 @* <script>
